@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="robots" content="index,follow,noimageindex">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -166,4 +167,7 @@ body:has(#work:target) .navlinks a[href="#work"]{color:#b8c0ff}
 </section>
 <section class="contact-teaser"><h2>LET'S TALK.</h2><a class="brand-work__cta contact-teaser__cta" href="contact/">CONTACT ME <svg class="ui-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" stroke-linejoin="miter"><path d="M7 17 17 7M8 7h9v9"/></svg></a></section>
 <footer>© 2026 Lidiia Demchenko</footer>
+
+<style>img{-webkit-user-drag:none;user-select:none;-webkit-user-select:none}</style>
+<script>document.addEventListener("contextmenu",function(e){if(e.target.closest&&e.target.closest("img"))e.preventDefault()});document.addEventListener("dragstart",function(e){if(e.target.closest&&e.target.closest("img"))e.preventDefault()});</script>
 </body></html>
