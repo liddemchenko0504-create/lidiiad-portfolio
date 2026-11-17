@@ -285,6 +285,16 @@ footer{padding:14px clamp(14px,3vw,36px);border-top:3px solid var(--ink);font-we
 @media(max-width:700px){.work-catalog{grid-template-columns:1fr}.work-catalog__image{border-right:0;border-bottom:3px solid var(--ink);min-height:320px}.work-catalog__content{min-height:380px}}
 
 .work-collection--carli .work-collection__visual img{object-position:center center}
+
+/* Clean collaboration labels — only title and dedicated Explore CTA. */
+.work-collection__body{justify-content:space-between;min-height:200px}
+.work-collection__body h4{font-size:clamp(32px,4vw,61px);line-height:.96;letter-spacing:-.045em;margin:0 0 32px}
+.work-collection__body .work-collection__action{margin-top:auto}
+.work-catalog__image--brand{background:radial-gradient(circle at 40% 30%,#4a5bff4d,transparent 53%),#1c141c;display:flex;align-items:center;justify-content:center;padding:25px}
+.work-catalog__image--brand span{font-size:clamp(75px,10vw,170px);line-height:.76;letter-spacing:-.09em;text-align:center;font-weight:900;color:#fff;transform:rotate(-7deg)}
+.work-catalog__content{justify-content:center}
+.work-catalog__content>.work-collection__action{margin-top:30px}
+@media(max-width:700px){.work-collection__body{min-height:175px}.work-catalog__image--brand{min-height:320px}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/motion@14.9.0/dist/motion.js"></script>
 </head>
@@ -350,31 +360,30 @@ footer{padding:14px clamp(14px,3vw,36px);border-top:3px solid var(--ink);font-we
     <div class="work-collection-grid">
       <article class="work-collection work-collection--rico">
         <div class="work-collection__visual"><img src="assets/rico-laptop.webp" alt="Rico Nasty IL MAKIAGE collaboration campaign" loading="lazy"></div>
-        <div class="work-collection__body"><span class="work-collection__brand">IL MAKIAGE / CAMPAIGN LAUNCH</span><h4>RICO NASTY.</h4><p>Products, bundles, landing pages, localization and launch QA.</p><a class="work-collection__action" href="work/il-makiage/rico-nasty/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
+        <div class="work-collection__body"><h4>IL MAKIAGE × RICO NASTY.</h4><a class="work-collection__action" href="work/il-makiage/rico-nasty/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
       </article>
       <article class="work-collection work-collection--carli">
         <div class="work-collection__visual"><img src="https://images.squarespace-cdn.com/content/v1/5ee7bdb2713b3e63608939b1/1617206369346-USZYDHPLBH1DZ77QHJZJ/CarliPhotoshootgrid.jpg" alt="Carli Bybel IL MAKIAGE collection photoshoot" loading="lazy"></div>
-        <div class="work-collection__body"><span class="work-collection__brand">IL MAKIAGE / COLLECTION</span><h4>CARLI BYBEL.</h4><p>Collection merchandising, PDP setup, bundles and Klaviyo launch testing.</p><a class="work-collection__action" href="work/il-makiage/carli-bybel/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
+        <div class="work-collection__body"><h4>IL MAKIAGE × CARLI BYBEL.</h4><a class="work-collection__action" href="work/il-makiage/carli-bybel/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
       </article>
       <article class="work-collection work-collection--kathleen">
         <div class="work-collection__visual work-collection__visual--type"><strong>DAY TO<br>DISCO.</strong></div>
-        <div class="work-collection__body"><span class="work-collection__brand">IL MAKIAGE / LIMITED COLLECTION</span><h4>KATHLEEN LIGHTS.</h4><p>Shoppable landing pages, product bundles, localization and QA.</p><a class="work-collection__action" href="work/il-makiage/kathleen-lights/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
+        <div class="work-collection__body"><h4>IL MAKIAGE × KATHLEEN LIGHTS.</h4><a class="work-collection__action" href="work/il-makiage/kathleen-lights/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
       </article>
       <article class="work-collection work-collection--jeremy">
         <div class="work-collection__visual"><img src="https://wwd.com/wp-content/uploads/2025/03/spoiledchild-jeremy-scott-capsule.jpg" alt="SpoiledChild x Jeremy Scott capsule collection featuring collectible figurine" loading="lazy" onerror="this.style.display='none'"></div>
-        <div class="work-collection__body"><span class="work-collection__brand">SPOILEDCHILD / COLLECTION LAUNCH</span><h4>JEREMY SCOTT.</h4><p>Digital merchandising, product setup, creative assets and storefront QA.</p><a class="work-collection__action" href="work/il-makiage/jeremy-scott/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
+        <div class="work-collection__body"><h4>SPOILEDCHILD × JEREMY SCOTT.</h4><a class="work-collection__action" href="work/il-makiage/jeremy-scott/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
       </article>
     </div>
   </div>
   <div class="work-category" id="product-work">
     <div class="work-category__head"><h3>PRODUCT PAGES<br>&amp; CATALOG.</h3><p>Structured product experiences — from Magento catalog content to conversion-focused PDPs.</p></div>
-    <div class="work-catalog" aria-label="Product pages and catalog work">
-      <div class="work-catalog__image"><img src="assets/dirty-talk-averie-pdp.webp" alt="IL MAKIAGE Dirty Talk Lipstick product detail page" loading="lazy"></div>
+    <div class="work-catalog" aria-label="IL MAKIAGE product pages and catalog">
+      <div class="work-catalog__image work-catalog__image--brand" aria-label="IL MAKIAGE brand artwork placeholder"><span>IL<br>MAKIAGE.</span></div>
       <div class="work-catalog__content">
-        <span class="work-collection__brand">E-COMMERCE / MAGENTO / PRODUCT CONTENT</span>
         <h4>CATALOG &amp;<br>PRODUCT PAGES.</h4>
-        <p>One evolving collection of product content, PDP builds and catalog operations across international storefronts: shades, attributes, categories, imagery, localization and storefront QA.</p>
-        <div class="work-catalog__example"><span class="work-catalog__label">FEATURED PRODUCT / 01</span><strong>DIRTY TALK LIPSTICK</strong><p>Product setup, shade information, merchandising and launch QA.</p><a class="work-collection__action" href="work/il-makiage/dirty-talk/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
+        <p>A growing collection of e-commerce work across international storefronts: product detail pages, shade content, category merchandising, collections, localization and shop banners.</p>
+        <a class="work-collection__action" href="work/il-makiage/catalog/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a>
       </div>
     </div>
   </div>
