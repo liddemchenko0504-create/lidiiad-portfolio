@@ -296,6 +296,27 @@ footer{padding:14px clamp(14px,3vw,36px);border-top:3px solid var(--ink);font-we
 .work-catalog__content>.work-collection__action{margin-top:30px}
 @media(max-width:700px){.work-collection__body{min-height:175px}.work-catalog__image--brand{min-height:320px}}
 .work-collection--kathleen .work-collection__visual img{object-position:center center}
+
+/* ODDITY Tech two-brand navigation on homepage */
+.brand-work__intro{display:flex;align-items:end;justify-content:space-between;gap:28px;padding:clamp(22px,3vw,45px);border-bottom:3px solid var(--ink)}
+.brand-work__intro span{font-size:13px;font-weight:900;letter-spacing:.1em;white-space:nowrap}
+.brand-work__intro p{font-size:clamp(18px,2vw,27px);max-width:540px;line-height:1.25;margin:0}
+.brand-work__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.brand-work__card{min-width:0;display:flex;flex-direction:column}
+.brand-work__card:first-child{border-right:3px solid var(--ink)}
+.brand-work__visual{height:clamp(320px,41vw,630px);overflow:hidden;background:#261a24}
+.brand-work__visual img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.brand-work__card--spoiled .brand-work__visual img{object-fit:contain}
+.brand-work__card:hover .brand-work__visual img{transform:scale(1.035)}
+.brand-work__body{flex:1;padding:clamp(24px,3.5vw,56px);display:flex;align-items:flex-start;flex-direction:column;min-height:380px}
+.brand-work__eyebrow{font-size:12px;font-weight:900;letter-spacing:.1em;color:#f5a2bc}
+.brand-work__body h3{font-size:clamp(58px,8vw,126px);line-height:.8;letter-spacing:-.065em;margin:22px 0 28px}
+.brand-work__body p{font-size:clamp(16px,1.6vw,22px);line-height:1.4;max-width:430px;margin:0 0 32px}
+.brand-work__cta{margin-top:auto;display:inline-flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 18px;background:var(--ink);border:2px solid var(--ink);color:var(--bg);font-size:14px;font-weight:900;text-decoration:none;box-shadow:5px 5px 0 var(--blue);transition:background .2s,transform .25s,color .2s,box-shadow .2s}
+.brand-work__cta:hover,.brand-work__cta:focus-visible{background:var(--blue);color:#fff;border-color:var(--blue);transform:translateY(-6px);box-shadow:8px 8px 0 var(--a)}
+.brand-work__cta span{font-size:22px;line-height:1}
+@media(max-width:800px){.brand-work__intro{display:block}.brand-work__intro p{margin-top:14px}.brand-work__grid{grid-template-columns:1fr}.brand-work__card:first-child{border-right:0;border-bottom:3px solid var(--ink)}.brand-work__visual{height:440px}.brand-work__body{min-height:330px}}
+@media(prefers-reduced-motion:reduce){.brand-work__cta,.brand-work__visual img{transition:none!important}.brand-work__cta:hover,.brand-work__card:hover .brand-work__visual img{transform:none!important}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/motion@14.9.0/dist/motion.js"></script>
 </head>
@@ -354,46 +375,18 @@ footer{padding:14px clamp(14px,3vw,36px);border-top:3px solid var(--ink);font-we
   </div>
 </section>
 
-<section class="work work-curated" id="work">
-  <h2>Work<span class="work-count">SELECTED PROJECTS / 2026</span></h2>
-  <div class="work-category" id="collaborations">
-    <div class="work-category__head"><h3>COLLABORATIONS.</h3><p>From campaign to cart — launches, collections and cross-functional e-commerce work.</p></div>
-    <div class="work-collection-grid">
-      <article class="work-collection work-collection--rico">
-        <div class="work-collection__visual"><img src="assets/rico-laptop.webp" alt="Rico Nasty IL MAKIAGE collaboration campaign" loading="lazy"></div>
-        <div class="work-collection__body"><h4>IL MAKIAGE × RICO NASTY.</h4><a class="work-collection__action" href="work/il-makiage/rico-nasty/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
-      </article>
-      <article class="work-collection work-collection--carli">
-        <div class="work-collection__visual"><img src="https://images.squarespace-cdn.com/content/v1/5ee7bdb2713b3e63608939b1/1617206369346-USZYDHPLBH1DZ77QHJZJ/CarliPhotoshootgrid.jpg" alt="Carli Bybel IL MAKIAGE collection photoshoot" loading="lazy"></div>
-        <div class="work-collection__body"><h4>IL MAKIAGE × CARLI BYBEL.</h4><a class="work-collection__action" href="work/il-makiage/carli-bybel/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
-      </article>
-      <article class="work-collection work-collection--kathleen">
-        <div class="work-collection__visual"><img src="https://i1.wp.com/beautyvelle.com/wp-content/uploads/2022/08/Il-Makiage-Kathleen-Lights-Disco-Collection-5.png?ssl=1" alt="IL MAKIAGE × Kathleen Lights Day to Disco collection" loading="lazy"></div>
-        <div class="work-collection__body"><h4>IL MAKIAGE × KATHLEEN LIGHTS.</h4><a class="work-collection__action" href="work/il-makiage/kathleen-lights/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
-      </article>
-      <article class="work-collection work-collection--jeremy">
-        <div class="work-collection__visual"><img src="https://wwd.com/wp-content/uploads/2025/03/spoiledchild-jeremy-scott-capsule.jpg" alt="SpoiledChild x Jeremy Scott capsule collection featuring collectible figurine" loading="lazy" onerror="this.style.display='none'"></div>
-        <div class="work-collection__body"><h4>SPOILEDCHILD × JEREMY SCOTT.</h4><a class="work-collection__action" href="work/il-makiage/jeremy-scott/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
-      </article>
-    </div>
-  </div>
-  <div class="work-category" id="product-work">
-    <div class="work-category__head"><h3>PRODUCT PAGES<br>&amp; CATALOG.</h3><p>Structured product experiences — from Magento catalog content to conversion-focused PDPs.</p></div>
-    <div class="work-catalog" aria-label="IL MAKIAGE product pages and catalog">
-      <div class="work-catalog__image work-catalog__image--brand" aria-label="IL MAKIAGE brand artwork placeholder"><span>IL<br>MAKIAGE.</span></div>
-      <div class="work-catalog__content">
-        <h4>CATALOG &amp;<br>PRODUCT PAGES.</h4>
-        <p>A growing collection of e-commerce work across international storefronts: product detail pages, shade content, category merchandising, collections, localization and shop banners.</p>
-        <a class="work-collection__action" href="work/il-makiage/catalog/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a>
-      </div>
-    </div>
-  </div>
-  <div class="work-category work-category--last" id="interactive-experiences">
-    <div class="work-category__head"><h3>INTERACTIVE<br>EXPERIENCES.</h3><p>Guided customer journeys that connect discovery to shopping.</p></div>
-    <div class="work-feature">
-      <div class="work-feature__copy"><span class="work-collection__brand">IL MAKIAGE / SHADE MATCHING</span><h4>FOUNDATION<br>POWERMATCH QUIZ.</h4><p>A guided foundation match experience built around customer answers and product recommendations.</p><a class="work-collection__action" href="work/il-makiage/powermatch-quiz/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
-      <div class="work-feature__visual"><img src="https://media.ilmakiage.com/media/theme/default/LandingBannerTopMobile_12_1.jpg" alt="IL MAKIAGE Foundation PowerMatch Quiz campaign" loading="lazy"></div>
-    </div>
+<section class="work brand-work" id="work">
+  <h2>Work</h2>
+  <div class="brand-work__intro"><span>ODDITY TECH / BRAND PORTFOLIO</span><p>Two brands. Distinct product worlds. Explore the work behind each.</p></div>
+  <div class="brand-work__grid">
+    <article class="brand-work__card brand-work__card--ilm">
+      <div class="brand-work__visual"><img src="assets/rico-laptop.webp" alt="IL MAKIAGE campaign visual featuring Rico Nasty" loading="lazy"></div>
+      <div class="brand-work__body"><span class="brand-work__eyebrow">ODDITY TECH / BEAUTY</span><h3>IL<br>MAKIAGE.</h3><p>Collaborations, catalog merchandising, product pages and quiz experiences.</p><a class="brand-work__cta" href="work/il-makiage/">EXPLORE BRAND <span aria-hidden="true">↗</span></a></div>
+    </article>
+    <article class="brand-work__card brand-work__card--spoiled">
+      <div class="brand-work__visual"><img src="https://wwd.com/wp-content/uploads/2025/03/spoiledchild-jeremy-scott-capsule.jpg" alt="SpoiledChild Jeremy Scott capsule collaboration with figurine" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="brand-work__body"><span class="brand-work__eyebrow">ODDITY TECH / WELLNESS</span><h3>SPOILED<br>CHILD.</h3><p>Digital launches, creative merchandising and product experiences.</p><a class="brand-work__cta" href="work/spoiledchild/">EXPLORE BRAND <span aria-hidden="true">↗</span></a></div>
+    </article>
   </div>
 </section>
 
