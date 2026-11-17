@@ -317,6 +317,12 @@ footer{padding:14px clamp(14px,3vw,36px);border-top:3px solid var(--ink);font-we
 .brand-work__cta span{font-size:22px;line-height:1}
 @media(max-width:800px){.brand-work__intro{display:block}.brand-work__intro p{margin-top:14px}.brand-work__grid{grid-template-columns:1fr}.brand-work__card:first-child{border-right:0;border-bottom:3px solid var(--ink)}.brand-work__visual{height:440px}.brand-work__body{min-height:330px}}
 @media(prefers-reduced-motion:reduce){.brand-work__cta,.brand-work__visual img{transition:none!important}.brand-work__cta:hover,.brand-work__card:hover .brand-work__visual img{transform:none!important}}
+
+/* Brand hero images: supplied IL MAKIAGE and SpoiledChild campaign artwork */
+.brand-work__card--ilm .brand-work__visual{background:#161616}
+.brand-work__card--ilm .brand-work__visual img{object-position:center center}
+.brand-work__card--spoiled .brand-work__visual{background:#004d20}
+.brand-work__card--spoiled .brand-work__visual img{object-fit:contain;object-position:center center}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/motion@14.9.0/dist/motion.js"></script>
 </head>
@@ -380,11 +386,11 @@ footer{padding:14px clamp(14px,3vw,36px);border-top:3px solid var(--ink);font-we
   <div class="brand-work__intro"><span>ODDITY TECH / BRAND PORTFOLIO</span><p>Two brands. Distinct product worlds. Explore the work behind each.</p></div>
   <div class="brand-work__grid">
     <article class="brand-work__card brand-work__card--ilm">
-      <div class="brand-work__visual"><img src="assets/rico-laptop.webp" alt="IL MAKIAGE campaign visual featuring Rico Nasty" loading="lazy"></div>
+      <div class="brand-work__visual"><img src="https://media.ilmakiage.com/media/hpsliderimage/image//b/e/bestsellers-seasonless-no_cta-desktop.png" alt="IL MAKIAGE bestsellers brand campaign banner" loading="lazy"></div>
       <div class="brand-work__body"><span class="brand-work__eyebrow">ODDITY TECH / BEAUTY</span><h3>IL<br>MAKIAGE.</h3><p>Collaborations, catalog merchandising, product pages and quiz experiences.</p><a class="brand-work__cta" href="work/il-makiage/">EXPLORE BRAND <span aria-hidden="true">↗</span></a></div>
     </article>
     <article class="brand-work__card brand-work__card--spoiled">
-      <div class="brand-work__visual"><img src="https://wwd.com/wp-content/uploads/2025/03/spoiledchild-jeremy-scott-capsule.jpg" alt="SpoiledChild Jeremy Scott capsule collaboration with figurine" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="brand-work__visual"><img src="https://media.licdn.com/dms/image/v2/C4D1BAQGVAIwmYwjEoQ/company-background_10000/company-background_10000/0/1643388477640/spoiledchild_cover?e=2147483647&amp;v=beta&amp;t=0hsnrcRimyTVaPmJ9BSppETovfvpCybet4Y5ZbMESYY" alt="SpoiledChild brand artwork featuring green capsules and logo" loading="lazy"></div>
       <div class="brand-work__body"><span class="brand-work__eyebrow">ODDITY TECH / WELLNESS</span><h3>SPOILED<br>CHILD.</h3><p>Digital launches, creative merchandising and product experiences.</p><a class="brand-work__cta" href="work/spoiledchild/">EXPLORE BRAND <span aria-hidden="true">↗</span></a></div>
     </article>
   </div>
