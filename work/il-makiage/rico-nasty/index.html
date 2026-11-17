@@ -47,26 +47,86 @@ footer a{text-decoration:none;display:inline-flex;align-items:center;gap:7px}
 footer a:hover{color:#b8c0ff}
 @media(max-width:720px){nav{flex-wrap:wrap;padding:13px 16px}.navlinks{gap:12px;font-size:12px}.hero,.section{padding:50px 20px}.hero{padding-top:65px;padding-bottom:70px}h1{font-size:clamp(49px,11.6vw,84px);overflow-wrap:normal}h2{font-size:clamp(38px,9vw,70px)}.scope{grid-template-columns:1fr}.scope-item,.scope-item:nth-child(even){padding:26px 0}.scope-item:nth-child(odd){border-right:0}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
+
+/* RESTORED CAMPAIGN PORTRAIT */
+.hero-split{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(270px,.78fr);gap:clamp(24px,4vw,65px);align-items:center}
+.hero-copy{min-width:0}.hero-split h1{font-size:clamp(53px,7.2vw,121px)}
+.hero-portrait{min-width:0;display:flex;align-items:center;justify-content:center;background:#171719;overflow:hidden}
+.hero-portrait img{display:block;width:100%;height:auto;max-height:660px;object-fit:contain}
+.scope-item{display:flex;flex-direction:column;align-items:flex-start}
+.learn-more{margin-top:26px;padding:13px 16px;display:inline-flex;align-items:center;gap:28px;justify-content:space-between;font:800 12px/1 Archivo,Arial,sans-serif;letter-spacing:.04em;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.learn-more span{font-size:23px;font-weight:400;line-height:.65}
+.learn-more:hover,.learn-more:focus-visible{background:var(--ink);color:var(--bg)}
+.work-dialog{position:fixed;inset:0;margin:auto;width:min(820px,calc(100vw - 34px));max-width:820px;max-height:85dvh;overflow:auto;background:#111114;color:var(--ink);border:1px solid #ffffff80;padding:0;box-shadow:0 24px 95px #0009}
+.work-dialog::backdrop{background:rgba(0,0,0,.56);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.work-dialog__header{padding:18px clamp(20px,3vw,38px);border-bottom:1px solid #ffffff3c;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.dialog-close{background:transparent;color:var(--ink);border:1px solid #ffffff80;width:42px;height:42px;flex:none;cursor:pointer;font:400 30px/1 Arial,sans-serif}
+.dialog-close:hover{background:var(--ink);color:var(--bg)}
+.work-dialog__body{padding:clamp(30px,6vw,66px)}
+.work-dialog__body h2{font-size:clamp(40px,7.5vw,79px);margin:16px 0 24px}
+.work-dialog__body p:not(.eyebrow){max-width:60ch;font-size:clamp(18px,2vw,23px);line-height:1.52;color:#d5d5da}
+.work-dialog__body .dialog-tools{font-size:12px!important;color:var(--muted)!important;font-weight:800;letter-spacing:.06em;margin-top:30px}
+.site-footer{display:block;padding:0;border:0}
+.footer-talk{padding:clamp(40px,6vw,85px) clamp(20px,5vw,82px);border-top:1px solid #ffffff3c;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}
+.footer-talk h2{font-size:clamp(52px,9vw,138px);margin:0}
+.footer-bottom{padding:19px clamp(18px,4vw,64px);border-top:1px solid #ffffff3c;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12px;font-weight:800}
+.footer-bottom a{text-decoration:none;display:inline-flex;align-items:center;gap:7px}
+.footer-bottom a:hover{color:#b8c0ff}
+@media(max-width:800px){.hero-split{grid-template-columns:1fr}.hero-split h1{font-size:clamp(49px,11.6vw,84px)}.hero-portrait{max-width:520px;width:100%}.hero-portrait img{max-height:none}.footer-talk h2{font-size:clamp(52px,12vw,92px)}}
+@media(prefers-reduced-motion:reduce){.learn-more{transition:none}}
+
 </style></head>
 <body>
 <nav><a href="../../../" class="site-logo" aria-label="Home"><img src="../../../assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="../../../#work">WORK</a><a href="../../../journal/">JOURNAL</a><a href="../../../contact/">CONTACT</a></div></nav>
 <main>
-<header class="hero">
-<p class="eyebrow">IL MAKIAGE / SELECTED WORK</p>
+<header class="hero hero-split">
+<div class="hero-copy"><p class="eyebrow">IL MAKIAGE / SELECTED WORK</p>
 <h1>IL MAKIAGE <span class="pink-cross">×</span><br>RICO NASTY.</h1>
 <p class="hero-lead">An influencer collaboration brought to life through product pages, bundles and a coordinated digital launch.</p>
-<p class="hero-meta">E-COMMERCE MERCHANDISING / MAGENTO / CONTENT OPERATIONS / QA</p>
+<p class="hero-meta">E-COMMERCE MERCHANDISING / MAGENTO / CONTENT OPERATIONS / QA</p></div>
+<div class="hero-portrait"><img src="../../../assets/rico-phone.webp" alt="Rico Nasty portrait from the IL MAKIAGE collaboration campaign" width="266" height="658" fetchpriority="high"></div>
 </header>
 <section class="section"><p class="eyebrow">THE PROJECT</p><h2>FROM CAMPAIGN<br>TO STOREFRONT.</h2><p class="lead">I worked on the e-commerce execution of the collaboration, bringing approved campaign assets and product information into shoppable experiences across international storefronts.</p></section>
 <section class="section"><p class="eyebrow">MY CONTRIBUTION</p><h2>THE WORK.</h2>
 <div class="scope">
-<article class="scope-item"><h3>Products &amp; Bundles</h3><p>Configured products, bundles, attributes and collection merchandising in Magento.</p></article>
-<article class="scope-item"><h3>Landing Page</h3><p>Set up the collection landing page and populated it with approved creative, product information and shopping links.</p></article>
-<article class="scope-item"><h3>Localization</h3><p>Coordinated product and campaign content across international storefronts.</p></article>
-<article class="scope-item"><h3>Quality Assurance</h3><p>Checked product information, imagery and storefront journeys before launch, including campaign page testing in Klaviyo.</p></article>
+<article class="scope-item"><h3>Products &amp; Bundles</h3><p>Configured products, bundles, attributes and collection merchandising in Magento.</p><button type="button" class="learn-more" data-detail="catalog" aria-haspopup="dialog" aria-label="Learn more about Products and Bundles">LEARN MORE <span aria-hidden="true">+</span></button></article>
+<article class="scope-item"><h3>Landing Page</h3><p>Set up the collection landing page and populated it with approved creative, product information and shopping links.</p><button type="button" class="learn-more" data-detail="landing" aria-haspopup="dialog" aria-label="Learn more about Landing Page">LEARN MORE <span aria-hidden="true">+</span></button></article>
+<article class="scope-item"><h3>Localization</h3><p>Coordinated product and campaign content across international storefronts.</p><button type="button" class="learn-more" data-detail="localization" aria-haspopup="dialog" aria-label="Learn more about Localization">LEARN MORE <span aria-hidden="true">+</span></button></article>
+<article class="scope-item"><h3>Quality Assurance</h3><p>Checked product information, imagery and storefront journeys before launch, including campaign page testing in Klaviyo.</p><button type="button" class="learn-more" data-detail="qa" aria-haspopup="dialog" aria-label="Learn more about Quality Assurance">LEARN MORE <span aria-hidden="true">+</span></button></article>
 </div></section>
 <section class="section"><p class="eyebrow">EDITORIAL COVERAGE</p><h2>IN THE PRESS.</h2><p class="press-intro">Explore independent media coverage of the collaboration in the Journal archive.</p><a class="button" href="../../../journal/rico-nasty/">VIEW PRESS ARCHIVE <svg class="icon-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"><path d="M7 17 17 7M8 7h9v9"/></svg></a></section>
-<section class="section"><p class="eyebrow">GET IN TOUCH</p><h2>LET'S TALK.</h2><p class="press-intro">E-commerce, SEO, content operations and creative collaborations.</p><a class="button" href="../../../contact/">CONTACT ME <svg class="icon-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"><path d="M7 17 17 7M8 7h9v9"/></svg></a><div class="end-links"><a class="back-link" href="../"><svg class="icon-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"><path d="M19 12H5m7-7-7 7 7 7"/></svg> BACK TO IL MAKIAGE</a></div></section>
 </main>
-<footer><span>© 2026 LIDIIA DEMCHENKO</span><a href="../../../contact/">CONTACT <svg class="icon-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"><path d="M7 17 17 7M8 7h9v9"/></svg></a></footer>
+<dialog class="work-dialog" id="work-dialog" aria-labelledby="detail-title" aria-describedby="detail-description">
+  <div class="work-dialog__header"><span class="eyebrow">IL MAKIAGE × RICO NASTY / THE WORK</span><button class="dialog-close" type="button" aria-label="Close details">×</button></div>
+  <div class="work-dialog__body"><p class="eyebrow" id="detail-category"></p><h2 id="detail-title"></h2><p id="detail-description"></p><p class="dialog-tools" id="detail-tools"></p></div>
+</dialog>
+<footer class="site-footer">
+  <div class="footer-talk"><h2>LET'S TALK.</h2><a class="button" href="../../../contact/">CONTACT ME <svg class="icon-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+  <div class="footer-bottom"><span>© 2026 LIDIIA DEMCHENKO</span><a href="../"><svg class="icon-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"><path d="M19 12H5m7-7-7 7 7 7"/></svg> BACK TO IL MAKIAGE</a></div>
+</footer>
+<script>
+(function(){
+const dialog=document.getElementById('work-dialog');
+if(!dialog||typeof dialog.showModal!=='function')return;
+const entries={
+catalog:{category:'01 / E-COMMERCE MERCHANDISING',title:'PRODUCTS & BUNDLES',text:'Configured the collaboration product catalog in Magento, including product records, bundles, attributes, collection placement and visibility. This connected the campaign assortment to customer-facing product and category pages.',tools:'MAGENTO / CATALOG / MERCHANDISING'},
+landing:{category:'02 / CONTENT IMPLEMENTATION',title:'LANDING PAGE',text:'Built and populated the collection landing page with approved campaign creative, imagery, product content and shopping links, creating a coherent path from the launch story to shoppable products.',tools:'MAGENTO / CMS / CAMPAIGN CONTENT'},
+localization:{category:'03 / INTERNATIONAL STOREFRONTS',title:'LOCALIZATION',text:'Prepared and checked localized product information, campaign copy, images and merchandising across international storefronts to support a consistent launch experience.',tools:'CONTENT OPERATIONS / MULTI-STORE / QA'},
+qa:{category:'04 / RELEASE READINESS',title:'QUALITY ASSURANCE',text:'Reviewed product information, imagery, merchandising and navigation before launch. Also tested campaign pages in Klaviyo as part of launch-readiness checks.',tools:'STOREFRONT QA / MAGENTO / KLAVIYO'}
+};
+let opener=null;
+document.querySelectorAll('[data-detail]').forEach(button=>button.addEventListener('click',()=>{
+const item=entries[button.dataset.detail];if(!item)return;
+opener=button;
+document.getElementById('detail-category').textContent=item.category;
+document.getElementById('detail-title').textContent=item.title;
+document.getElementById('detail-description').textContent=item.text;
+document.getElementById('detail-tools').textContent=item.tools;
+dialog.showModal();
+}));
+dialog.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());
+dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
+dialog.addEventListener('close',()=>{if(opener)opener.focus()});
+})();
+</script>
 </body></html>
