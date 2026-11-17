@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="robots" content="noindex,follow,noimageindex">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -179,4 +180,7 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
 <p class="journal-note">Press articles are independent coverage of the collaborations, not third-party assessments of my individual work. Editorial and campaign imagery belongs to the original rights holders.</p></section>
 </main>
 <footer class="copyright-footer">© 2026 Lidiia Demchenko</footer>
+
+<style>img{-webkit-user-drag:none;user-select:none;-webkit-user-select:none}</style>
+<script>document.addEventListener("contextmenu",function(e){if(e.target.closest&&e.target.closest("img"))e.preventDefault()});document.addEventListener("dragstart",function(e){if(e.target.closest&&e.target.closest("img"))e.preventDefault()});</script>
 </body></html>
