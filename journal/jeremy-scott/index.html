@@ -70,10 +70,40 @@ footer{border-top:1px solid #ffffff3c}
 /* CONSISTENT GLOBAL NAVIGATION */nav{font-family:Archivo,Arial,sans-serif;font-size:13px;font-weight:800;letter-spacing:.015em}nav .navlinks{display:flex;align-items:center;justify-content:flex-end;gap:clamp(12px,2.5vw,28px);flex-wrap:wrap}nav .navlinks a{font:inherit;text-transform:uppercase;text-decoration:none}@media(max-width:650px){nav{font-size:12px}nav .navlinks{gap:12px}}
 
 .portfolio-breadcrumbs{display:block;background:#0b0b0c;color:#aaa;border-bottom:1px solid #ffffff24;padding:13px clamp(18px,3vw,42px);font:500 11px/1.6 Archivo,Arial,sans-serif;letter-spacing:.065em;text-transform:uppercase}.portfolio-breadcrumbs ol{display:flex;flex-wrap:wrap;align-items:center;gap:7px;list-style:none;margin:0;padding:0}.portfolio-breadcrumbs li{display:inline-flex;align-items:center;gap:7px}.portfolio-breadcrumbs li+li:before{content:"/";color:#777}.portfolio-breadcrumbs a{text-decoration:none;color:#aaa}.portfolio-breadcrumbs a:hover,.portfolio-breadcrumbs [aria-current="page"]{color:#f1f1ec}@media(max-width:650px){.portfolio-breadcrumbs{padding:11px 15px;font-size:10px;letter-spacing:.035em}}
+
+/* Campaign video feature — quiet editorial treatment */
+.motion-feature{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);border:1px solid #ffffff3c;overflow:hidden}
+.motion-feature__visual{position:relative;display:block;min-height:300px;background:#161616;overflow:hidden;text-decoration:none}
+.motion-feature__visual img{display:block;width:100%;height:100%;min-height:300px;max-height:470px;object-fit:cover;filter:grayscale(12%);transition:transform .4s ease,filter .4s ease}
+.motion-feature__visual:hover img,.motion-feature__visual:focus-visible img{transform:scale(1.025);filter:none}
+.motion-feature__play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.motion-feature__play span{display:grid;place-items:center;width:74px;height:74px;border:1px solid #ffffffbd;border-radius:50%;background:#09090980;color:white;font-size:24px;transition:background .2s ease}
+.motion-feature__visual:hover .motion-feature__play span,.motion-feature__visual:focus-visible .motion-feature__play span{background:#0b0b0c}
+.motion-feature__details{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:20px;padding:clamp(24px,4vw,60px)}
+.motion-feature__details h3{font-size:clamp(28px,3.1vw,52px);font-weight:900;text-transform:uppercase;letter-spacing:-.035em;line-height:1.05;margin:0}
+.motion-feature__details p{font-size:16px;line-height:1.55;margin:0;color:#c9c9c7}
+.motion-feature__link{display:inline-flex;gap:14px;align-items:center;border:1px solid #f1f1ec;background:#f1f1ec;color:#0b0b0c;text-decoration:none;font-size:12px;font-weight:900;padding:13px 19px;transition:background .18s,border-color .18s,color .18s}
+.motion-feature__link:hover,.motion-feature__link:focus-visible{background:#4a5bff;color:#fff;border-color:#4a5bff}
+@media(max-width:760px){.motion-feature{grid-template-columns:1fr}.motion-feature__visual,.motion-feature__visual img{min-height:235px}.motion-feature__details{gap:16px;padding:27px 22px}}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://lidiiad.tech/"},{"@type":"ListItem","position":2,"name":"Journal","item":"https://lidiiad.tech/journal/"},{"@type":"ListItem","position":3,"name":"Jeremy Scott","item":"https://lidiiad.tech/journal/jeremy-scott/"}]}</script></head><body>
 <nav><a href="../../" class="site-logo"><img src="../../assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="../../#work">WORK</a><a href="../../journal/">JOURNAL</a><a href="../../contact/">CONTACT</a></div></nav><div class="portfolio-breadcrumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="../../">Home</a></li><li><a href="../../journal/">Journal</a></li><li><span aria-current="page">Jeremy Scott</span></li></ol></div>
 <main><header class="hero"><div class="hero-content"><h1>JEREMY SCOTT.</h1><p class="subtitle">Future-facing wellness, designed to make an entrance.</p></div>
 <div class="hero-visual"><img src="https://www.spoiledchild.com/static/version1777546287/frontend/SpoiledChild/default/en_US/images/jeremy_launch/js-collectors-slide-dp2.jpg" alt="JEREMY SCOTT × SPOILEDCHILD collection editorial image" onerror="this.style.display='none'" loading="eager"></div></header>
+
+<section class="section" id="motion" aria-labelledby="motion-heading">
+  <div class="sectionhead"><h2 id="motion-heading">CAMPAIGN IN MOTION.</h2></div>
+  <article class="motion-feature">
+    <a class="motion-feature__visual" href="https://fashionup.cz/141647-2/" target="_blank" rel="noopener noreferrer" aria-label="Watch SpoiledChild's Jeremy Scott Chrome Spaceship campaign video in the FashionUP article">
+      <img src="https://www.spoiledchild.com/static/version1777546287/frontend/SpoiledChild/default/en_US/images/jeremy_launch/js-collectors-slide-dp2.jpg" alt="Jeremy Scott and SpoiledChild Chrome Spaceship campaign visual" loading="lazy">
+      <span class="motion-feature__play" aria-hidden="true"><span>▶</span></span>
+    </a>
+    <div class="motion-feature__details">
+      <h3>THE CHROME<br>SPACESHIP.</h3>
+      <p>Jeremy Scott introduces the limited-edition Chrome Spaceship for SpoiledChild. The original brand TikTok is embedded in FashionUP’s launch coverage.</p>
+      <a class="motion-feature__link" href="https://fashionup.cz/141647-2/" target="_blank" rel="noopener noreferrer">WATCH CAMPAIGN VIDEO <span aria-hidden="true">↗</span></a>
+    </div>
+  </article>
+</section>
 <section class="section" id="press"><div class="sectionhead"><h2>IN THE PRESS.</h2><p>Independent editorial coverage of the SPOILEDCHILD × JEREMY SCOTT collaboration. Articles document the collection; they do not evaluate my personal contribution.</p></div>
 <div class="press-list"><a class="press-item" href="https://www.thezoereport.com/culture/jeremy-scott-spoiledchild-collaboration" target="_blank" rel="noopener noreferrer"><div class="entry"><span class="publication">THE ZOE REPORT</span><h3>Jeremy Scott Collaborated With Wellness Brand SpoiledChild on Space-Age-Inspired Skincare</h3><span class="meta">2024 / BEAUTY &amp; CULTURE</span></div><span class="go" aria-hidden="true"><svg class="ui-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
 <a class="press-item" href="https://essentialhomme.fr/jeremy-scott-et-spoiledchild-collab-beaute/" target="_blank" rel="noopener noreferrer"><div class="entry"><span class="publication">ESSENTIAL HOMME</span><h3>La collaboration entre Jeremy Scott et SpoiledChild met en lumière une beauté futuriste</h3><span class="meta">2024 / FASHION</span></div><span class="go" aria-hidden="true"><svg class="ui-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
