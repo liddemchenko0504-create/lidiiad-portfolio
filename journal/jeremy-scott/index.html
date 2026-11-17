@@ -100,6 +100,19 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
 /* Monochrome editorial CTA system: ivory default, outlined inverse hover */
 .back,.motion-feature__link{background:#f1f1ec!important;color:#0b0b0c!important;border:1px solid #f1f1ec!important;box-shadow:none!important;transform:none!important}
 .back:hover,.back:focus-visible,.motion-feature__link:hover,.motion-feature__link:focus-visible{background:#0b0b0c!important;color:#f1f1ec!important;border-color:#f1f1ec!important;box-shadow:none!important;transform:none!important}
+
+/* Refined Campaign in Motion: borderless editorial layout and vector controls */
+.motion-feature{border:0;overflow:visible;column-gap:clamp(28px,4vw,64px);align-items:center}
+.motion-feature__visual{min-height:0;overflow:hidden}
+.motion-feature__visual img{min-height:0;max-height:none;aspect-ratio:16/9;height:auto;object-fit:cover}
+.motion-feature__play{pointer-events:none}
+.motion-feature__play svg{display:block;width:19px;height:19px;filter:drop-shadow(0 1px 2px #0008)}
+.motion-feature__play{inset:auto;top:50%;left:50%;width:54px;height:54px;transform:translate(-50%,-50%);display:grid;place-items:center;border:1px solid #ffffffbd;border-radius:50%;background:#0b0b0c9c;color:#f1f1ec;transition:background .2s ease,border-color .2s ease}
+.motion-feature__visual:hover .motion-feature__play,.motion-feature__visual:focus-visible .motion-feature__play{background:#0b0b0c;border-color:#f1f1ec}
+.motion-feature__details{padding:0;gap:18px}
+.motion-feature__link{gap:12px}
+.motion-feature__arrow{display:block;flex:none;width:17px;height:17px}
+@media(max-width:760px){.motion-feature{grid-template-columns:1fr;gap:0}.motion-feature__visual,.motion-feature__visual img{min-height:0}.motion-feature__details{padding:25px 0 0;gap:18px}.motion-feature__play{width:52px;height:52px}}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://lidiiad.tech/"},{"@type":"ListItem","position":2,"name":"Journal","item":"https://lidiiad.tech/journal/"},{"@type":"ListItem","position":3,"name":"Jeremy Scott","item":"https://lidiiad.tech/journal/jeremy-scott/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://lidiiad.tech/journal/jeremy-scott/#webpage","url":"https://lidiiad.tech/journal/jeremy-scott/","name":"JEREMY SCOTT — Press | Lidiia Demchenko Journal","description":"Independent media coverage of JEREMY SCOTT × SPOILEDCHILD. Curated press archive by Lidiia Demchenko.","inLanguage":"en","isPartOf":{"@id":"https://lidiiad.tech/#website"},"about":{"@type":"Thing","name":"JEREMY SCOTT"}}]}</script></head><body>
 <nav><a href="../../" class="site-logo"><img src="../../assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="../../#work">WORK</a><a href="../../journal/" aria-current="page">JOURNAL</a><a href="../../contact/">CONTACT</a></div></nav><div class="portfolio-breadcrumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="../../">Home</a></li><li><a href="../../journal/">Journal</a></li><li><span aria-current="page">Jeremy Scott</span></li></ol></div>
 <main><header class="hero"><div class="hero-content"><h1>JEREMY SCOTT.</h1><p class="subtitle">Future-facing wellness, designed to make an entrance.</p></div>
@@ -110,12 +123,12 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
   <article class="motion-feature">
     <a class="motion-feature__visual" href="https://fashionup.cz/141647-2/" target="_blank" rel="noopener noreferrer" aria-label="Watch SpoiledChild's Jeremy Scott Chrome Spaceship campaign video in the FashionUP article">
       <img src="../../assets/SCJC.png" alt="Jeremy Scott and SpoiledChild Chrome Spaceship campaign visual" loading="lazy">
-      <span class="motion-feature__play" aria-hidden="true"><span>▶</span></span>
+      <span class="motion-feature__play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" focusable="false"><path d="M8 5.5v13l10-6.5z"/></svg></span>
     </a>
     <div class="motion-feature__details">
       <h3>THE CHROME<br>SPACESHIP.</h3>
       <p>Jeremy Scott introduces the limited-edition Chrome Spaceship for SpoiledChild. The original brand TikTok is embedded in FashionUP’s launch coverage.</p>
-      <a class="motion-feature__link" href="https://fashionup.cz/141647-2/" target="_blank" rel="noopener noreferrer">WATCH CAMPAIGN VIDEO <span aria-hidden="true">↗</span></a>
+      <a class="motion-feature__link" href="https://fashionup.cz/141647-2/" target="_blank" rel="noopener noreferrer">WATCH CAMPAIGN VIDEO <svg class="motion-feature__arrow" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     </div>
   </article>
 </section>
