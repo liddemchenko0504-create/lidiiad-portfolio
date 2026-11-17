@@ -23,7 +23,7 @@ nav a{text-decoration:none}
 nav a:hover{color:#c7ceff}
 main{max-width:1900px;margin:auto}
 h1,h2,h3{font-weight:900;line-height:.93;letter-spacing:-.045em;text-transform:uppercase;margin:0}
-.hero{min-height:74svh;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(32px,5vw,80px) clamp(18px,3vw,48px);border-bottom:3px solid var(--ink);background:radial-gradient(circle at 82% 40%,#5a1028,transparent 46%),var(--bg)}
+.hero{min-height:74svh;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(32px,5vw,80px) clamp(18px,3vw,48px);border-bottom:3px solid var(--ink);background:var(--bg)}
 .eyebrow{font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.13em}
 .hero h1{font-size:clamp(75px,19vw,300px);max-width:100%;overflow-wrap:anywhere}
 .hero p:last-child{font-size:clamp(19px,2vw,30px);max-width:750px;margin:20px 0 0}
@@ -108,6 +108,21 @@ nav{border-bottom:1px solid #ffffff3c}
 footer{border-top:1px solid #ffffff3c}
 @media(max-width:800px){.hero{padding:70px 20px 65px}.hero h1{font-size:clamp(44px,10.5vw,76px)}.collection-image{height:auto}.collection-image img{width:100%;height:auto;object-fit:contain}.collection-details{min-height:0}.collection-grid{gap:30px}.collection-index{padding:40px 20px}}
 
+
+/* FINAL JOURNAL FIX — compact hero, no gradient, CTA-only navigation */
+.hero{background:#0b0b0c!important;min-height:0!important;padding:clamp(44px,6vw,84px) clamp(20px,5vw,82px)!important;gap:22px;justify-content:flex-start}
+.hero h1{font-size:clamp(50px,7.6vw,104px)!important;line-height:.92;letter-spacing:-.06em;overflow-wrap:normal}
+.hero p:last-child{font-size:clamp(16px,1.7vw,23px);margin:10px 0 0}
+.collection-card{cursor:default;transition:none!important}
+.collection-card:hover,.collection-card:focus-within{background:transparent;box-shadow:none!important;transform:none!important}
+.collection-image,.collection-card--carli-bybel .collection-image,.collection-card--rico-nasty .collection-image,.collection-card--kathleen-lights .collection-image,.collection-card--jeremy-scott .collection-image{background:#171719!important}
+.collection-image img{transition:none!important}
+.collection-card:hover .collection-image img{transform:none!important}
+.collection-action{display:inline-flex;align-items:center;gap:14px;text-decoration:none;cursor:pointer;box-shadow:none!important;background:var(--ink);color:var(--bg);transform:none!important;border:1px solid var(--ink)}
+.collection-card:hover .collection-action,.collection-card:focus-within .collection-action{background:var(--ink);color:var(--bg);border-color:var(--ink);box-shadow:none!important;transform:none!important}
+.collection-action:hover,.collection-action:focus-visible{background:var(--blue)!important;color:#fff!important;border-color:var(--blue)!important;box-shadow:none!important;transform:none!important}
+@media(max-width:800px){.hero{padding:48px 20px 55px!important}.hero h1{font-size:clamp(45px,10.7vw,74px)!important}.collection-details{padding:20px 0 30px}}
+
 </style>
 </head>
 <body>
@@ -117,18 +132,18 @@ footer{border-top:1px solid #ffffff3c}
 
 <section class="collection-index" id="collections" aria-labelledby="collections-heading">
 <div class="collection-heading"><div><p class="eyebrow">SELECT A COLLECTION</p><h2 id="collections-heading">COVER STORIES.</h2></div><p>Discover how each collaboration appeared across international beauty, fashion and culture publications.</p></div>
-<div class="collection-grid"><a class="collection-card collection-card--carli-bybel" href="carli-bybel/" aria-label="Explore press coverage for IL MAKIAGE x CARLI BYBEL">
+<div class="collection-grid"><article class="collection-card collection-card--carli-bybel">
 <div class="collection-image"><img src="https://media.modernluxury.com/ntgpghfuax/styles/article-hero-reg/2024/11/21/Carli-Bybel-Talks-Il-Makiage-Celestial-Collection-Palette-and-How-to-Get-the-Best-Look_Header.jpg.webp?t=9c470dd9.webp" alt="IL MAKIAGE × CARLI BYBEL collection campaign imagery" loading="lazy" onerror="this.style.display='none'"></div>
-<div class="collection-details"><span class="collection-brand">IL MAKIAGE / PRESS ARCHIVE</span><h3>CARLI BYBEL.</h3><p>CELESTIAL COLLECTION / 2019—2021</p><span class="collection-action">EXPLORE THE PRESS <span aria-hidden="true"><svg class="ui-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M7 17 17 7M8 7h9v9"/></svg></span></span></div></a>
-<a class="collection-card collection-card--rico-nasty" href="rico-nasty/" aria-label="Explore press coverage for IL MAKIAGE x RICO NASTY">
+<div class="collection-details"><span class="collection-brand">IL MAKIAGE / PRESS ARCHIVE</span><h3>CARLI BYBEL.</h3><p>CELESTIAL COLLECTION / 2019—2021</p><a class="collection-action" href="carli-bybel/" aria-label="Explore press coverage for IL MAKIAGE x CARLI BYBEL">EXPLORE THE PRESS <span aria-hidden="true"><svg class="ui-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a></div></article>
+<article class="collection-card collection-card--rico-nasty">
 <div class="collection-image"><img src="../assets/rico-laptop.webp" alt="IL MAKIAGE × RICO NASTY collection campaign imagery" loading="lazy" onerror="this.style.display='none'"></div>
-<div class="collection-details"><span class="collection-brand">IL MAKIAGE / PRESS ARCHIVE</span><h3>RICO NASTY.</h3><p>COLOR, CULTURE & COLLABORATION / 2020</p><span class="collection-action">EXPLORE THE PRESS <span aria-hidden="true"><svg class="ui-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M7 17 17 7M8 7h9v9"/></svg></span></span></div></a>
-<a class="collection-card collection-card--kathleen-lights" href="kathleen-lights/" aria-label="Explore press coverage for IL MAKIAGE x KATHLEEN LIGHTS">
+<div class="collection-details"><span class="collection-brand">IL MAKIAGE / PRESS ARCHIVE</span><h3>RICO NASTY.</h3><p>COLOR, CULTURE & COLLABORATION / 2020</p><a class="collection-action" href="rico-nasty/" aria-label="Explore press coverage for IL MAKIAGE x RICO NASTY">EXPLORE THE PRESS <span aria-hidden="true"><svg class="ui-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a></div></article>
+<article class="collection-card collection-card--kathleen-lights">
 <div class="collection-image"><img src="https://medias.atmag.co.il/www/uploads/2022/09/KATHLEEN-LIGHTS-X-IL-MAKIAGE-PHOTO-Alex-Lipkin-1000x1500.jpg" alt="IL MAKIAGE × KATHLEEN LIGHTS collection campaign imagery" loading="lazy" onerror="this.style.display='none'"></div>
-<div class="collection-details"><span class="collection-brand">IL MAKIAGE / PRESS ARCHIVE</span><h3>KATHLEEN LIGHTS.</h3><p>DAY TO DISCO / 2022</p><span class="collection-action">EXPLORE THE PRESS <span aria-hidden="true"><svg class="ui-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M7 17 17 7M8 7h9v9"/></svg></span></span></div></a>
-<a class="collection-card collection-card--jeremy-scott" href="jeremy-scott/" aria-label="Explore press coverage for SPOILEDCHILD x JEREMY SCOTT">
+<div class="collection-details"><span class="collection-brand">IL MAKIAGE / PRESS ARCHIVE</span><h3>KATHLEEN LIGHTS.</h3><p>DAY TO DISCO / 2022</p><a class="collection-action" href="kathleen-lights/" aria-label="Explore press coverage for IL MAKIAGE x KATHLEEN LIGHTS">EXPLORE THE PRESS <span aria-hidden="true"><svg class="ui-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a></div></article>
+<article class="collection-card collection-card--jeremy-scott">
 <div class="collection-image"><img src="https://wwd.com/wp-content/uploads/2025/03/spoiledchild-jeremy-scott-capsule.jpg" alt="SPOILEDCHILD × JEREMY SCOTT collection campaign imagery" loading="lazy" onerror="this.style.display='none'"></div>
-<div class="collection-details"><span class="collection-brand">SPOILEDCHILD / PRESS ARCHIVE</span><h3>JEREMY SCOTT.</h3><p>FUTURISTIC WELLNESS / 2024</p><span class="collection-action">EXPLORE THE PRESS <span aria-hidden="true"><svg class="ui-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M7 17 17 7M8 7h9v9"/></svg></span></span></div></a></div>
+<div class="collection-details"><span class="collection-brand">SPOILEDCHILD / PRESS ARCHIVE</span><h3>JEREMY SCOTT.</h3><p>FUTURISTIC WELLNESS / 2024</p><a class="collection-action" href="jeremy-scott/" aria-label="Explore press coverage for SPOILEDCHILD x JEREMY SCOTT">EXPLORE THE PRESS <span aria-hidden="true"><svg class="ui-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a></div></article></div>
 <p class="journal-note">Press articles are independent coverage of the collaborations, not third-party assessments of my individual work. Editorial and campaign imagery belongs to the original rights holders.</p></section>
 </main>
 <footer><span>© 2026 LIDIIA DEMCHENKO</span><a href="mailto:hello@lidiiad.tech">HELLO@LIDIIAD.TECH</a></footer>
