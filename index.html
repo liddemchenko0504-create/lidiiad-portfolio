@@ -117,6 +117,14 @@ nav .navlinks a{font:inherit;text-transform:uppercase;text-decoration:none}
 /* IL MAKIAGE product banner on home — natural composition, no text overlays */
 .brand-work__card--ilm .brand-work__visual{background:#161416}
 .brand-work__card--ilm .brand-work__visual img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;object-position:center;filter:none}
+
+/* Home Work: concise heading, without ODDITY artwork */
+.brand-work>h2{font-size:clamp(43px,7.4vw,115px);line-height:.94;letter-spacing:-.055em;text-transform:uppercase;padding:clamp(36px,5vw,75px) clamp(20px,5vw,82px);margin:0;border-bottom:1px solid #ffffff3c}
+@media(max-width:800px){
+  .intro-beauty h1{display:none}
+  .intro-beauty__copy{padding:20px 18px;gap:0}
+  .brand-work>h2{font-size:clamp(40px,9.2vw,73px);padding:36px 18px}
+}
 </style></head>
 <body>
 <nav><a href="#top" aria-label="Lidiia Demchenko homepage" class="site-logo"><img src="assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="#work">WORK</a><a href="journal/">JOURNAL</a><a href="contact/">CONTACT</a></div></nav>
@@ -128,9 +136,7 @@ nav .navlinks a{font:inherit;text-transform:uppercase;text-decoration:none}
   </div>
 </header>
 <section class="work brand-work" id="work">
-  <h2>Work</h2>
-  <div class="brand-work__banner"><img src="assets/oddity-work-banner.webp" alt="ODDITY logo with blue lightning" width="1200" height="300" loading="eager" decoding="async"></div>
-  <div class="brand-work__intro"><p>Two brands. Distinct product worlds. Explore the work behind each.</p></div>
+  <h2>Work Experience</h2>
   <div class="brand-work__grid">
     <article class="brand-work__card brand-work__card--ilm">
       <div class="brand-work__visual"><img src="assets/il-makiage-home-banner.webp" alt="IL MAKIAGE cosmetics product editorial still life" width="700" height="255" loading="lazy" decoding="async"></div>
