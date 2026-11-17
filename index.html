@@ -3,160 +3,195 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Lidiia Demchenko — Brand & Product Pages</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Lidiia Demchenko — Brand & PDP</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#efe9e7;--ink:#24101c;--mute:#6f5f66;--line:#d8cdca;--accent:#9b1c3a;--gold1:#e8cf9a;--gold2:#a8803f;
+:root{--bg:#e4e4df;--ink:#0c0c0c;--paper:#f6f6f2;--blue:#2b3cff;--a:#9b1c3a;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d0e17;--ink:#f1e8e6;--mute:#b3a1a8;--line:#3d2631}}
-:root[data-theme="dark"]{--bg:#1d0e17;--ink:#f1e8e6;--mute:#b3a1a8;--line:#3d2631}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141414;--ink:#f1f1ec;--paper:#1d1d1d}}
+:root[data-theme="dark"]{--bg:#141414;--ink:#f1f1ec;--paper:#1d1d1d}
 *{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:300 17px/1.65 Jost,system-ui,sans-serif;transition:background .6s}
-h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;line-height:1;margin:0}
-a{color:inherit}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:5;display:flex;justify-content:space-between;padding:22px clamp(20px,5vw,64px);mix-blend-mode:difference;color:#fff;font-size:14px;letter-spacing:.06em}
-nav a{text-decoration:none;margin-left:28px}
-section{padding:clamp(72px,12vw,160px) clamp(20px,5vw,64px)}
-.wrap{max-width:1180px;margin:0 auto}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.5 Archivo,Arial,sans-serif}
+a{color:inherit}:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+h1,h2,h3{margin:0;font-weight:900;font-stretch:125%;line-height:.88;letter-spacing:-.03em;text-transform:uppercase}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;display:flex;justify-content:space-between;background:var(--bg);border-bottom:3px solid var(--ink);padding:12px clamp(14px,3vw,36px);font-weight:700;font-stretch:110%}
+nav a{text-decoration:none;margin-left:22px}nav a:hover{background:var(--ink);color:var(--bg)}
 /* hero */
-.hero{min-height:100svh;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:24px;padding-top:120px}
-.hero h1{font-size:clamp(56px,10vw,150px);letter-spacing:-.02em}
-.hero h1 em{display:block;font-style:italic;color:var(--accent);transition:color .6s}
-.hero p{max-width:34ch;color:var(--mute);margin-top:32px}
-.stick{width:min(100%,300px);margin:0 auto;display:block}
-/* PDP */
-.pdp{height:320vh;padding:0;position:relative}
-.pdp-in{position:sticky;top:0;height:100svh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;padding:0 clamp(20px,5vw,64px);max-width:1180px;margin:0 auto}
-.pdp-copy h2{font-size:clamp(40px,6vw,84px);margin-bottom:20px}
-.facts{list-style:none;padding:0;margin:28px 0 0}
-.facts li{border-top:1px solid var(--line);padding:14px 0;opacity:.18;transform:translateX(-8px);transition:opacity .5s,transform .5s}
-.facts li.on{opacity:1;transform:none}
-.facts b{font-weight:500;display:block}
-.shades{display:flex;gap:12px;margin-top:28px}
-.shades button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);cursor:pointer;background:var(--c);padding:0;transition:transform .3s,box-shadow .3s}
-.shades button[aria-pressed=true]{box-shadow:0 0 0 3px var(--bg),0 0 0 4px var(--ink);transform:scale(1.1)}
-.sname{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;margin-top:14px;min-height:1.4em}
-.pdp-vis{display:grid;place-items:center;position:relative}
-.glow{position:absolute;width:70%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,var(--accent),transparent 68%);opacity:.22;filter:blur(30px);transition:background .6s}
-.pdp-vis svg{position:relative;width:min(100%,300px);max-height:78svh}
-.hint{position:absolute;bottom:4svh;left:0;right:0;text-align:center;font-size:13px;color:var(--mute)}
+.hero{border-bottom:3px solid var(--ink);display:grid;grid-template-columns:1fr minmax(180px,26vw);min-height:calc(100svh - 52px);overflow:hidden}
+.hero h1{font-size:clamp(54px,12.5vw,190px);padding:clamp(14px,3vw,36px);align-self:end}
+.hero .side{border-left:3px solid var(--ink);display:flex;flex-direction:column;justify-content:space-between;padding:20px;background:var(--a);transition:background .5s}
+.hero .side p{margin:0;font-weight:700;font-stretch:110%;color:#fff;max-width:18ch}
+.hero svg{width:100%;max-height:60svh}
+.marq{border-bottom:3px solid var(--ink);overflow:hidden;white-space:nowrap;background:var(--ink);color:var(--bg);font-weight:800;font-stretch:125%;text-transform:uppercase;padding:10px 0}
+.marq div{display:inline-block;animation:m 28s linear infinite}
+@keyframes m{to{transform:translateX(-50%)}}
+/* cases */
+.case{height:300vh;position:relative;border-bottom:3px solid var(--ink)}
+.in{position:sticky;top:52px;height:calc(100svh - 52px);display:grid;grid-template-columns:1fr 1fr}
+.copy{padding:clamp(16px,3vw,40px);display:flex;flex-direction:column;justify-content:space-between;border-right:3px solid var(--ink)}
+.copy h2{font-size:clamp(44px,8vw,120px)}
+.role{font-weight:700;font-stretch:110%;margin:14px 0 0}
+.facts{list-style:none;margin:0;padding:0}
+.facts li{border:3px solid var(--ink);padding:10px 14px;margin-top:-3px;background:var(--paper);opacity:.25;transition:opacity .4s,background .4s,color .4s}
+.facts li.on{opacity:1;background:var(--ink);color:var(--bg)}
+.facts b{display:block;font-stretch:115%}
+.stage{display:grid;place-items:center;background:var(--a);transition:background .5s;position:relative;overflow:hidden}
+.c2 .stage{background:var(--blue)}
+.stage svg{width:min(78%,300px);max-height:76%}
+.big{position:absolute;inset:auto 0 -2% 0;text-align:center;font:900 clamp(60px,16vw,230px)/.8 Archivo;font-stretch:125%;color:#fff;opacity:.14;pointer-events:none}
+.sw{display:flex;gap:0;margin-top:14px}
+.sw button{width:48px;height:48px;border:3px solid var(--ink);margin-left:-3px;background:var(--c);cursor:pointer;padding:0}
+.sw button:first-child{margin-left:0}.sw button[aria-pressed=true]{box-shadow:inset 0 0 0 4px var(--bg)}
+.nm{font-weight:800;font-stretch:115%;text-transform:uppercase;margin-top:8px;min-height:1.5em}
 /* work */
-.work h2,.exp h2,.contact h2{font-size:clamp(40px,6vw,84px);margin-bottom:48px}
-.row{display:grid;grid-template-columns:1.1fr 1.5fr 1fr;gap:24px;padding:28px 0;border-top:1px solid var(--line);align-items:baseline;transition:padding .4s}
-.row:hover{padding-left:16px}
-.row h3{font-size:34px}
-.row span{color:var(--mute);font-size:15px}
-.exp ol{list-style:none;margin:0;padding:0;border-left:1px solid var(--line)}
-.exp li{padding:0 0 40px 32px;position:relative;max-width:64ch}
-.exp li::before{content:"";position:absolute;left:-5px;top:9px;width:9px;height:9px;border-radius:50%;background:var(--accent)}
-.exp time{color:var(--mute);font-size:14px}
-.exp h3{font-size:30px;margin:4px 0 8px}
-.contact{text-align:center}
-.contact a.big{font:italic 300 clamp(28px,5vw,64px)/1.1 'Cormorant Garamond',serif;text-decoration:none;border-bottom:1px solid var(--accent)}
-footer{padding:32px;text-align:center;color:var(--mute);font-size:13px}
+.work>h2{font-size:clamp(44px,9vw,130px);padding:clamp(14px,3vw,36px);border-bottom:3px solid var(--ink)}
+.wk{display:grid;grid-template-columns:1fr 1.2fr;border-bottom:3px solid var(--ink)}
+.wk .tx{padding:clamp(16px,3vw,40px);border-right:3px solid var(--ink)}
+.wk h3{font-size:clamp(30px,4.4vw,64px)}
+.wk .tag{display:inline-block;border:3px solid var(--ink);padding:2px 10px;margin:14px 0;font-weight:800;font-stretch:115%;text-transform:uppercase;font-size:14px}
+.wk p{margin:0 0 12px;max-width:52ch}
+.wk .res{background:var(--ink);color:var(--bg);padding:10px 14px;font-weight:700;font-stretch:110%}
+.shots{display:grid;grid-template-columns:1fr 1fr}
+.sh{margin:0;position:relative;min-height:320px;border-left:3px solid var(--ink);background:var(--paper);display:grid;place-items:center;text-align:center;font-weight:700;font-size:13px;padding:10px;overflow:hidden}
+.sh:first-child{border-left:0}
+.sh img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.wk:hover .tag{background:var(--blue);color:#fff;border-color:var(--blue)}
+/* exp + contact */
+.exp{border-bottom:3px solid var(--ink)}
+.exp h2,.ct h2{font-size:clamp(44px,9vw,130px);padding:clamp(14px,3vw,36px);border-bottom:3px solid var(--ink)}
+.r{display:grid;grid-template-columns:200px 1fr 1fr;gap:20px;padding:22px clamp(14px,3vw,36px);border-bottom:3px solid var(--ink);transition:background .2s,color .2s}
+.r:last-child{border:0}.r:hover{background:var(--ink);color:var(--bg)}
+.r b{font-stretch:115%;text-transform:uppercase}
+.ct{padding-bottom:40px}
+.ct a{display:block;font:900 clamp(28px,7.2vw,112px)/1 Archivo;font-stretch:125%;letter-spacing:-.03em;padding:30px clamp(14px,3vw,36px);text-decoration:none;word-break:break-all}
+.ct a:hover{background:var(--blue);color:#fff}
+footer{padding:14px clamp(14px,3vw,36px);border-top:3px solid var(--ink);font-weight:600;font-size:14px}
 @media (max-width:800px){
-.hero,.pdp-in{grid-template-columns:1fr}.hero{padding-top:100px}.stick{width:180px;order:-1}
-.pdp-in{align-content:center;gap:8px}.pdp-vis svg{max-height:34svh}.facts li{padding:8px 0;font-size:15px}.facts{margin-top:12px}
-.row{grid-template-columns:1fr;gap:6px}nav a{margin-left:16px}}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+.wk{grid-template-columns:1fr}.wk .tx{border-right:0;border-bottom:3px solid var(--ink)}.sh{min-height:220px}
+.hero{grid-template-columns:1fr}.hero .side{border-left:0;border-top:3px solid var(--ink);flex-direction:row;align-items:center;order:-1;min-height:28svh}.hero svg{max-height:26svh;width:auto}
+.hero h1{align-self:start}.in{grid-template-columns:1fr;grid-template-rows:auto 1fr}.copy{border-right:0;border-bottom:3px solid var(--ink);padding:12px}
+.copy h2{font-size:12vw}.facts li{padding:6px 10px;font-size:14px}.stage svg{max-height:92%}.r{grid-template-columns:1fr;gap:4px}nav a{margin-left:12px}}
+@media (prefers-reduced-motion:reduce){.marq div{animation:none}*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<nav><a href="#top" style="margin:0">L. Demchenko</a><div><a href="#pdp">PDP craft</a><a href="#work">Brands</a><a href="#exp">Path</a><a href="#contact">Contact</a></div></nav>
+<nav><a href="#top" style="margin:0">L.D.</a><div><a href="#il">PDP</a><a href="#work">Work</a><a href="#exp">Path</a><a href="#ct">Contact</a></div></nav>
 
 <section class="hero" id="top">
-  <div>
-    <h1>Lidiia<br>Demchenko<em>makes products desirable.</em></h1>
-    <p>Brand and e-commerce strategist for luxury beauty. I turn product pages into the moment a customer decides.</p>
-  </div>
-  <svg class="stick" data-stick viewBox="0 0 200 420" aria-label="Animated lipstick"></svg>
+  <h1>Lidiia Demchenko</h1>
+  <div class="side"><p>E-commerce and PDP specialist for beauty.</p><svg id="hs" viewBox="0 0 200 420" aria-label="Animated lipstick"></svg></div>
 </section>
+<div class="marq" aria-hidden="true"><div>Product pages / Brand strategy / E-commerce / Launches / Content systems / Product pages / Brand strategy / E-commerce / Launches / Content systems / Product pages / Brand strategy / E-commerce / Launches / Content systems / Product pages / Brand strategy / E-commerce / Launches / Content systems /</div></div>
 
-<section class="pdp" id="pdp" aria-label="Product page showcase">
-  <div class="pdp-in">
-    <div class="pdp-copy">
-      <h2>Product pages that move.</h2>
-      <p>A live sample of the PDP interactions I design and ship. Scroll to twist the lipstick, then choose a shade.</p>
-      <ul class="facts">
-        <li data-at=".12"><b>Product reveal</b>Motion that mirrors the real ritual of use.</li>
-        <li data-at=".4"><b>Shade-aware interface</b>The whole page takes on the color you choose.</li>
-        <li data-at=".7"><b>Conversion, measured</b>Add your PDP results here: conversion lift, add-to-cart rate.</li>
-      </ul>
-      <div class="shades" role="group" aria-label="Choose shade">
-        <button style="--c:#9b1c3a" data-n="Velvet Garnet" aria-label="Velvet Garnet" aria-pressed="true"></button>
-        <button style="--c:#c4577a" data-n="Rose Atelier" aria-label="Rose Atelier" aria-pressed="false"></button>
-        <button style="--c:#b5543a" data-n="Terra Silk" aria-label="Terra Silk" aria-pressed="false"></button>
-        <button style="--c:#5a1a3d" data-n="Plum Noir" aria-label="Plum Noir" aria-pressed="false"></button>
+<section class="case c1" id="il" data-case>
+  <div class="in">
+    <div class="copy">
+      <div><h2>Il Makiage</h2><p class="role">Collaboration launches in Magento. Scroll to twist.</p></div>
+      <div>
+        <ul class="facts">
+          <li data-at=".1"><b>Collab launches</b>Rico Nasty, Carli Bybel, Kathleen Lights, SpoiledChild × Jeremy Scott.</li>
+          <li data-at=".4"><b>Built in Magento</b>Products, shades, bundles, landing pages, localization and QA.</li>
+          <li data-at=".7"><b>Sold out</b>The Rico Nasty collection and its relaunch sold out, products and bundles included.</li>
+        </ul>
+        <div class="sw" role="group" aria-label="Choose shade">
+          <button style="--c:#9b1c3a" data-n="Garnet" aria-label="Garnet" aria-pressed="true"></button>
+          <button style="--c:#d6457a" data-n="Fuchsia" aria-label="Fuchsia" aria-pressed="false"></button>
+          <button style="--c:#c4562c" data-n="Terracotta" aria-label="Terracotta" aria-pressed="false"></button>
+          <button style="--c:#4a1236" data-n="Plum" aria-label="Plum" aria-pressed="false"></button>
+        </div>
+        <div class="nm" id="nm" aria-live="polite">Garnet</div>
       </div>
-      <div class="sname" id="sname" aria-live="polite">Velvet Garnet</div>
     </div>
-    <div class="pdp-vis"><div class="glow"></div><svg id="pdpStick" viewBox="0 0 200 420" aria-label="Interactive lipstick"></svg></div>
-    <div class="hint">Keep scrolling</div>
+    <div class="stage"><div class="big" aria-hidden="true">PDP</div><svg id="ls" viewBox="0 0 200 420" aria-label="Interactive lipstick"></svg></div>
   </div>
 </section>
 
-<section class="work" id="work"><div class="wrap">
-  <h2>Brands I've worked with</h2>
-  <div class="row"><h3>Brand One</h3><span>Replace with your role, e.g. PDP redesign and content system for 400+ SKUs</span><span>Result: +00% conversion</span></div>
-  <div class="row"><h3>Brand Two</h3><span>Replace with your role, e.g. Launch strategy and campaign landing pages</span><span>Result: add metric</span></div>
-  <div class="row"><h3>Brand Three</h3><span>Replace with your role, e.g. Brand guidelines and visual merchandising</span><span>Result: add metric</span></div>
-  <div class="row"><h3>Brand Four</h3><span>Replace with your role, e.g. Marketplace and retail content</span><span>Result: add metric</span></div>
-</div></section>
+<section class="case c2" id="mq" data-case>
+  <div class="in">
+    <div class="copy">
+      <div><h2>Methodiq</h2><p class="role">Your role here, e.g. skincare PDP and launch pages. Scroll to dose.</p></div>
+      <ul class="facts">
+        <li data-at=".1"><b>Lift</b>The dropper leaves the bottle as you scroll.</li>
+        <li data-at=".4"><b>Dose</b>One drop forms. The product is the story.</li>
+        <li data-at=".7"><b>Result</b>Add your metric: +00% conversion, +00% time on page.</li>
+      </ul>
+    </div>
+    <div class="stage"><div class="big" aria-hidden="true">PDP</div><svg id="ms" viewBox="0 0 200 420" aria-label="Animated serum dropper"></svg></div>
+  </div>
+</section>
 
-<section class="exp" id="exp"><div class="wrap">
-  <h2>Experience</h2>
-  <ol>
-    <li><time>2023 – Present</time><h3>Current role, Company</h3>What you own, the team you lead, and one result you are proud of.</li>
-    <li><time>2020 – 2023</time><h3>Previous role, Company</h3>Short description of scope and impact.</li>
-    <li><time>2017 – 2020</time><h3>Earlier role, Company</h3>Short description of scope and impact.</li>
-  </ol>
-</div></section>
+<section class="work" id="work">
+  <h2>Work</h2>
+  <article class="wk"><div class="tx"><h3>Il Makiage ft. Rico Nasty</h3><span class="tag">Influencer collab / Magento / Klaviyo</span><p>The brand’s first influencer collaboration. I set up products, bundles and the collection landing page in Magento, implemented approved campaign content, coordinated localization and ran QA across international storefronts. I also tested the campaign CMS pages in Klaviyo before launch.</p><div class="res">Sold out, and every product and bundle sold out again on the relaunch.</div></div><div class="shots"><figure class="sh">assets/rico-1.webp<img src="assets/rico-1.webp" alt="Rico Nasty collection landing page" loading="lazy" onerror="this.remove()"></figure><figure class="sh">assets/rico-2.webp<img src="assets/rico-2.webp" alt="Rico Nasty product page" loading="lazy" onerror="this.remove()"></figure></div></article>
+  <article class="wk"><div class="tx"><h3>Il Makiage × Carli Bybel</h3><span class="tag">Collection / PDPs / Klaviyo</span><p>A complete makeup wardrobe: three four-pan face palettes, two lipsticks with matching lip pencils and two brushes, plus the return of the fan-favorite shades Libra and Taurus. I built the whole collection in the Magento catalog: shades, attributes, imagery, pricing, categories, bundles, related products and visibility. I tested the campaign pages and emails in Klaviyo for launch and relaunch.</p></div><div class="shots"><figure class="sh">assets/carli-1.webp<img src="assets/carli-1.webp" alt="Carli Bybel collection page" loading="lazy" onerror="this.remove()"></figure><figure class="sh">assets/carli-2.webp<img src="assets/carli-2.webp" alt="Carli Bybel product page" loading="lazy" onerror="this.remove()"></figure></div></article>
+  <article class="wk"><div class="tx"><h3>Kathleen Lights × Il Makiage</h3><span class="tag">Day-to-Disco / Landing page</span><p>A limited-edition collection built to take customers from daytime makeup to disco-ready looks. I turned the campaign brief into shoppable landing and product pages, and managed catalog setup, bundle merchandising, localization and launch QA.</p></div><div class="shots"><figure class="sh">assets/kathleen-1.webp<img src="assets/kathleen-1.webp" alt="Day-to-Disco landing page" loading="lazy" onerror="this.remove()"></figure><figure class="sh">assets/kathleen-2.webp<img src="assets/kathleen-2.webp" alt="Day-to-Disco bundles" loading="lazy" onerror="this.remove()"></figure></div></article>
+  <article class="wk"><div class="tx"><h3>SpoiledChild × Jeremy Scott</h3><span class="tag">Limited edition / Launch support</span><p>I supported the digital launch, turning a bold fashion concept into a consistent e-commerce experience: collection landing page, product setup, digital merchandising, creative asset implementation, storefront QA and cross-team launch coordination.</p></div><div class="shots"><figure class="sh">assets/spoiledchild-1.webp<img src="assets/spoiledchild-1.webp" alt="SpoiledChild x Jeremy Scott landing page" loading="lazy" onerror="this.remove()"></figure><figure class="sh">assets/spoiledchild-2.webp<img src="assets/spoiledchild-2.webp" alt="SpoiledChild x Jeremy Scott products" loading="lazy" onerror="this.remove()"></figure></div></article>
+  <article class="wk"><div class="tx"><h3>Dirty Talk Lipstick</h3><span class="tag">Product launch</span><p>I launched the Dirty Talk Lipstick on the brand’s website: product setup in Magento, a merchandised collection page, shade and product information, localized content, visibility settings, and QA before and after launch across international storefronts.</p></div><div class="shots"><figure class="sh">assets/dirtytalk-1.webp<img src="assets/dirtytalk-1.webp" alt="Dirty Talk lipstick page" loading="lazy" onerror="this.remove()"></figure><figure class="sh">assets/dirtytalk-2.webp<img src="assets/dirtytalk-2.webp" alt="Dirty Talk social posts" loading="lazy" onerror="this.remove()"></figure></div></article>
+  <article class="wk"><div class="tx"><h3>PowerMatch Concealer Quiz</h3><span class="tag">Quiz / Result page</span><p>An end-to-end quiz that guides customers to their F*CK I’M FLAWLESS concealer shade and turns the result into a shopping journey. I wrote the questions and answer flows, built the result page with descriptions, CTAs, imagery and bundle recommendations, connected each shade result to the right product in Magento, and ran QA.</p></div><div class="shots"><figure class="sh">assets/quiz-1.webp<img src="assets/quiz-1.webp" alt="PowerMatch quiz" loading="lazy" onerror="this.remove()"></figure><figure class="sh">assets/quiz-2.webp<img src="assets/quiz-2.webp" alt="PowerMatch result page" loading="lazy" onerror="this.remove()"></figure></div></article>
+  <article class="wk"><div class="tx"><h3>Outdoor and shop banners</h3><span class="tag">Creative / Design</span><p>Large-format outdoor banners that build brand awareness in busy urban locations, plus shop page banners. I developed the concept, selected visuals, adapted copy, laid out the banners and prepared production-ready assets.</p></div><div class="shots"><figure class="sh">assets/outdoor-1.webp<img src="assets/outdoor-1.webp" alt="Outdoor advertising campaign" loading="lazy" onerror="this.remove()"></figure><figure class="sh">assets/banners-1.webp<img src="assets/banners-1.webp" alt="Shop page banners" loading="lazy" onerror="this.remove()"></figure></div></article>
+</section>
 
-<section class="contact" id="contact"><div class="wrap">
-  <h2>Let's build the next launch.</h2>
-  <a class="big" href="mailto:hello@example.com">hello@example.com</a>
-</div></section>
+<section class="exp" id="exp">
+  <h2>Path</h2>
+  <div class="r"><b>2023 – now</b><span>Current role, Company</span><span>What you own and one result.</span></div>
+  <div class="r"><b>2020 – 2023</b><span>Previous role, Company</span><span>Scope and impact.</span></div>
+  <div class="r"><b>2017 – 2020</b><span>Earlier role, Company</span><span>Scope and impact.</span></div>
+</section>
+
+<section class="ct" id="ct">
+  <h2>Say hello</h2>
+  <a href="mailto:hello@lidiiad.tech">hello@lidiiad.tech</a>
+</section>
 <footer>© 2026 Lidiia Demchenko</footer>
 
 <script>
 (function(){
-var shade='#9b1c3a';
-function stick(svg,id){
-  svg.innerHTML=
-  '<defs><linearGradient id="g'+id+'" x1="0" x2="1"><stop offset="0" stop-color="#a8803f"/><stop offset=".35" stop-color="#f3e2b4"/><stop offset=".7" stop-color="#c9a15c"/><stop offset="1" stop-color="#8a6630"/></linearGradient>'+
-  '<linearGradient id="s'+id+'" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".25"/><stop offset=".4" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></linearGradient></defs>'+
-  '<g class="bul"><path class="bc" d="M70 230V120Q70 96 100 80L132 96V230Z" fill="'+shade+'"/><path d="M70 230V120Q70 96 100 80L132 96V230Z" fill="url(#s'+id+')"/></g>'+
-  '<rect x="62" y="206" width="76" height="96" rx="4" fill="url(#g'+id+')"/>'+
-  '<rect x="62" y="206" width="76" height="6" fill="#fff" opacity=".35"/>'+
-  '<rect x="56" y="302" width="88" height="108" rx="6" fill="url(#g'+id+')"/>'+
-  '<rect x="56" y="302" width="88" height="8" fill="#000" opacity=".25"/>'+
-  '<g stroke="#000" opacity=".12"><path d="M70 318V400M85 318V400M100 318V400M115 318V400M130 318V400"/></g>';
-  return {bul:svg.querySelector('.bul'),bc:svg.querySelector('.bc')};
+var shade='#9b1c3a',root=document.documentElement;
+function lip(svg,id){
+  svg.innerHTML='<defs><linearGradient id="g'+id+'" x1="0" x2="1"><stop offset="0" stop-color="#0c0c0c"/><stop offset=".4" stop-color="#5a5a5a"/><stop offset="1" stop-color="#0c0c0c"/></linearGradient><linearGradient id="s'+id+'" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".3"/><stop offset=".4" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></linearGradient></defs>'+
+  '<g class="b"><path class="bc" d="M70 230V120Q70 96 100 80L132 96V230Z" fill="'+shade+'"/><path d="M70 230V120Q70 96 100 80L132 96V230Z" fill="url(#s'+id+')"/></g>'+
+  '<rect x="62" y="206" width="76" height="96" fill="url(#g'+id+')" stroke="#fff" stroke-width="3"/>'+
+  '<rect x="56" y="302" width="88" height="108" fill="url(#g'+id+')" stroke="#fff" stroke-width="3"/>'+
+  '<path d="M70 318V400M85 318V400M100 318V400M115 318V400M130 318V400" stroke="#fff" opacity=".25"/>';
+  return svg.querySelector('.b');
 }
-var h=stick(document.querySelector('[data-stick]'),'h'),p=stick(document.getElementById('pdpStick'),'p');
-function twist(o,t){o.bul.style.transform='translateY('+(-t*88)+'px)'}
+function ease(k){return 1-Math.pow(1-k,3)}
+var hb=lip(document.getElementById('hs'),'h'),lb=lip(document.getElementById('ls'),'l');
 var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-twist(h,reduce?1:0);twist(p,0);
-if(!reduce){var s=null;(function a(ts){s=s||ts;var k=Math.min((ts-s-500)/1800,1);if(k<0)return requestAnimationFrame(a);twist(h,1-Math.pow(1-k,3));if(k<1)requestAnimationFrame(a)})(0)}
-var sec=document.getElementById('pdp'),facts=[].slice.call(document.querySelectorAll('.facts li')),hint=document.querySelector('.hint');
-function scroll(){
-  var r=sec.getBoundingClientRect(),pr=Math.max(0,Math.min(1,-r.top/(sec.offsetHeight-innerHeight)));
-  var k=Math.min(pr/.35,1);twist(p,1-Math.pow(1-k,2));
-  facts.forEach(function(li){li.classList.toggle('on',pr>=parseFloat(li.dataset.at))});
-  hint.style.opacity=pr>.1?0:1;
+hb.style.transform='translateY('+(reduce?-88:0)+'px)';lb.style.transform='translateY(0)';
+if(!reduce){var s=null;(function a(t){s=s||t;var k=Math.min((t-s-400)/1600,1);if(k<0)return requestAnimationFrame(a);hb.style.transform='translateY('+(-88*ease(k))+'px)';if(k<1)requestAnimationFrame(a)})(0)}
+/* serum */
+var ms=document.getElementById('ms');
+ms.innerHTML='<rect x="44" y="200" width="112" height="206" fill="#fff" fill-opacity=".18" stroke="#fff" stroke-width="4"/><rect id="liq" x="48" y="300" width="104" height="102" fill="#f2c94c" opacity=".9"/><rect x="72" y="176" width="56" height="26" fill="#fff" stroke="#0c0c0c" stroke-width="3"/>'+
+'<g id="dr"><ellipse id="bulb" cx="100" cy="60" rx="26" ry="42" fill="#0c0c0c" style="transform-origin:100px 100px"/><rect x="68" y="100" width="64" height="34" fill="#fff" stroke="#0c0c0c" stroke-width="3"/><rect x="92" y="134" width="16" height="150" fill="#fff" fill-opacity=".75" stroke="#0c0c0c" stroke-width="3"/><path d="M96 284h8l-4 12z" fill="#f2c94c"/></g>'+
+'<circle id="drop" cx="100" cy="0" r="0" fill="#f2c94c" stroke="#0c0c0c" stroke-width="2"/>';
+var dr=ms.querySelector('#dr'),bulb=ms.querySelector('#bulb'),drop=ms.querySelector('#drop'),liq=ms.querySelector('#liq');
+function serum(p){
+  var up=ease(Math.min(p/.3,1)); dr.style.transform='translateY('+(-130*up)+'px)';
+  var sq=Math.max(0,Math.min((p-.3)/.2,1)); bulb.style.transform='scaleY('+(1-.25*Math.sin(sq*Math.PI))+')';
+  var tipY=296-130*up, g=Math.max(0,Math.min((p-.4)/.2,1)), f=Math.max(0,Math.min((p-.6)/.4,1));
+  var y=tipY+14+f*(330-tipY-14); drop.setAttribute('cy',y); drop.setAttribute('r',(g*8*(1-f*.3)).toFixed(1));
+  drop.style.opacity=f>.97?0:1;
+  var lv=f>.9?(f-.9)*10:0; liq.setAttribute('y',300-lv*6); liq.setAttribute('height',102+lv*6);
 }
-addEventListener('scroll',scroll,{passive:true});scroll();
-function setShade(c,n){
-  shade=c;h.bc.setAttribute('fill',c);p.bc.setAttribute('fill',c);
-  document.documentElement.style.setProperty('--accent',c);
-  document.getElementById('sname').textContent=n;
+serum(0);
+var cases=[].slice.call(document.querySelectorAll('[data-case]'));
+function onScroll(){
+  cases.forEach(function(sec){
+    var r=sec.getBoundingClientRect(),p=Math.max(0,Math.min(1,-r.top/(sec.offsetHeight-innerHeight)));
+    sec.querySelectorAll('.facts li').forEach(function(li){li.classList.toggle('on',p>=parseFloat(li.dataset.at))});
+    if(sec.id==='il')lb.style.transform='translateY('+(-88*ease(Math.min(p/.35,1)))+'px)';
+    else serum(p);
+  });
 }
-document.querySelectorAll('.shades button').forEach(function(b){
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+document.querySelectorAll('.sw button').forEach(function(b){
   b.addEventListener('click',function(){
-    document.querySelectorAll('.shades button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
-    setShade(b.style.getPropertyValue('--c').trim(),b.dataset.n);
-    twist(p,0);requestAnimationFrame(function(){requestAnimationFrame(scroll)});
+    document.querySelectorAll('.sw button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+    shade=b.style.getPropertyValue('--c').trim();
+    root.style.setProperty('--a',shade);
+    document.querySelectorAll('.bc').forEach(function(e){e.setAttribute('fill',shade)});
+    document.getElementById('nm').textContent=b.dataset.n;
   });
 });
 })();
