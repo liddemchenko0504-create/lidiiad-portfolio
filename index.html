@@ -6,7 +6,7 @@
 <title>Lidiia Demchenko — Brand & PDP</title>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0b0b0c;--ink:#f1f1ec;--paper:#161617;--blue:#4a5bff;--a:#9b1c3a;
+:root{--bg:#0b0b0c;--ink:#f1f1ec;--paper:#161617;--blue:#4a5bff;--a:#961D28;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141414;--ink:#f1f1ec;--paper:#1d1d1d}}
 :root[data-theme="dark"]{--bg:#141414;--ink:#f1f1ec;--paper:#1d1d1d}
@@ -85,6 +85,20 @@ footer{padding:14px clamp(14px,3vw,36px);border-top:3px solid var(--ink);font-we
 .hero h1{align-self:start}.in{grid-template-columns:1fr;grid-template-rows:auto 1fr}.copy{border-right:0;border-bottom:3px solid var(--ink);padding:12px}
 .copy h2{font-size:12vw}.facts li{padding:6px 10px;font-size:14px}.stage svg{max-height:92%}.r{grid-template-columns:1fr;gap:4px}nav a{margin-left:12px}}
 @media (prefers-reduced-motion:reduce){.marq div{animation:none}*{transition:none!important;scroll-behavior:auto!important}}
+
+/* Dirty Talk: verified brand shades + source PDP screenshots */
+.c1 .stage{display:flex;align-items:center;justify-content:space-evenly;gap:12px;padding:clamp(14px,2.5vw,28px)}
+.c1 .lip-visual{position:relative;z-index:1;width:29%;height:68%;display:flex;justify-content:center;align-items:center;flex-shrink:0}
+.c1 .lip-visual svg{width:100%;height:100%;max-height:100%}
+.c1 .pdp-preview{z-index:2;width:68%;max-width:650px;min-width:0;background:#fff;color:#111;padding:9px;display:flex;flex-direction:column;gap:8px;text-decoration:none;box-shadow:10px 10px 0 rgba(0,0,0,.26);transition:transform .25s ease,opacity .2s ease}
+.c1 .pdp-preview:hover{transform:translateY(-7px)}
+.c1 .pdp-preview img{display:block;width:100%;height:auto;aspect-ratio:1556 / 960;object-fit:contain;background:#fff}
+.c1 .pdp-topline,.c1 .pdp-footer{font:800 clamp(10px,.85vw,14px)/1.2 Archivo,Arial,sans-serif;letter-spacing:.04em;display:flex;justify-content:space-between;gap:8px}
+.c1 .pdp-footer{border-top:2px solid #111;padding-top:5px}
+.c1 .pdp-preview.is-switching{opacity:.35}
+@media(max-width:1100px){.c1 .stage{flex-direction:column;justify-content:center;gap:12px}.c1 .lip-visual{width:26%;height:38%;min-height:110px}.c1 .pdp-preview{width:min(90%,500px)}}
+@media(max-width:800px){.c1 .stage{padding:10px;gap:8px}.c1 .lip-visual{height:24%;min-height:80px;width:26%}.c1 .pdp-preview{width:min(96%,470px);padding:6px;gap:4px}.c1 .pdp-topline,.c1 .pdp-footer{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.c1 .pdp-preview{transition:none}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/motion@14.9.0/dist/motion.js"></script>
 </head>
@@ -109,15 +123,23 @@ footer{padding:14px clamp(14px,3vw,36px);border-top:3px solid var(--ink);font-we
           <li data-at=".7"><b>Sold out</b>The Rico Nasty collection and its relaunch sold out, products and bundles included.</li>
         </ul>
         <div class="sw" role="group" aria-label="Choose shade">
-          <button style="--c:#9b1c3a" data-n="Garnet" aria-label="Garnet" aria-pressed="true"></button>
-          <button style="--c:#d6457a" data-n="Fuchsia" aria-label="Fuchsia" aria-pressed="false"></button>
-          <button style="--c:#c4562c" data-n="Terracotta" aria-label="Terracotta" aria-pressed="false"></button>
-          <button style="--c:#4a1236" data-n="Plum" aria-label="Plum" aria-pressed="false"></button>
+          <button style="--c:#961D28" data-n="AVERIE" data-shot="assets/dirty-talk-averie-pdp.webp" aria-label="Show AVERIE shade and PDP" aria-pressed="true"></button>
+          <button style="--c:#741A20" data-n="DIAZ" data-shot="assets/dirty-talk-diaz-pdp.webp" aria-label="Show DIAZ shade and PDP" aria-pressed="false"></button>
+          <button style="--c:#C04F4A" data-n="ARIADNA" data-shot="assets/dirty-talk-ariadna-pdp.webp" aria-label="Show ARIADNA shade and PDP" aria-pressed="false"></button>
+          <button style="--c:#382A34" data-n="WILLIAM" data-shot="assets/dirty-talk-william-pdp.webp" aria-label="Show WILLIAM shade and PDP" aria-pressed="false"></button>
         </div>
-        <div class="nm" id="nm" aria-live="polite">Garnet</div>
+        <div class="nm" id="nm" aria-live="polite">AVERIE</div>
       </div>
     </div>
-    <div class="stage"><div class="big" aria-hidden="true">PDP</div><svg id="ls" viewBox="0 0 200 420" aria-label="Interactive lipstick"></svg></div>
+    <div class="stage">
+      <div class="big" aria-hidden="true">PDP</div>
+      <div class="lip-visual"><svg id="ls" viewBox="0 0 200 420" aria-label="Interactive lipstick"></svg></div>
+      <a class="pdp-preview" href="https://www.ilmakiage.com/uk/lips/212-12717-dirty-talk" target="_blank" rel="noopener noreferrer" aria-label="View the original Dirty Talk Lipstick product page">
+        <span class="pdp-topline">REAL PRODUCT DETAIL PAGE <span id="pdp-shade">AVERIE</span></span>
+        <img id="pdp-shot" src="assets/dirty-talk-averie-pdp.webp" alt="IL MAKIAGE Dirty Talk Lipstick PDP, shade AVERIE" width="1556" height="960" decoding="async">
+        <span class="pdp-footer">VIEW ORIGINAL PDP ↗</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -161,7 +183,7 @@ footer{padding:14px clamp(14px,3vw,36px);border-top:3px solid var(--ink);font-we
 
 <script>
 (function(){
-var shade='#9b1c3a',root=document.documentElement,glc=null,mx=0,my=0;
+var shade='#961D28',root=document.documentElement,glc=null,mx=0,my=0;
 function glInit(){var c=document.getElementById('gl');if(!window.THREE||!c)return;try{
 var T=THREE,r=new T.WebGLRenderer({canvas:c,alpha:true,antialias:true});r.setPixelRatio(Math.min(devicePixelRatio,2));
 var sc=new T.Scene(),cam=new T.PerspectiveCamera(45,1,.1,10);cam.position.z=3.2;
@@ -233,6 +255,15 @@ document.querySelectorAll('.sw button').forEach(function(b){
     root.style.setProperty('--a',shade);if(glc)glc(shade);
     document.querySelectorAll('.bc').forEach(function(e){e.setAttribute('fill',shade)});
     document.getElementById('nm').textContent=b.dataset.n;
+    var shot=document.getElementById('pdp-shot'),preview=document.querySelector('.pdp-preview');
+    var nextSrc=b.dataset.shot;
+    if(shot.getAttribute('src')!==nextSrc){
+      preview.classList.add('is-switching');
+      var next=new Image();
+      next.onload=function(){shot.src=nextSrc;shot.alt='IL MAKIAGE Dirty Talk Lipstick PDP, shade '+b.dataset.n;document.getElementById('pdp-shade').textContent=b.dataset.n;preview.classList.remove('is-switching');};
+      next.onerror=function(){preview.classList.remove('is-switching');};
+      next.src=nextSrc;
+    }
   });
 });
 })();
