@@ -1,0 +1,11 @@
+# Lidiia Demchenko — portfolio
+User-agent: *
+Allow: /
+Disallow: /lidiiad-rico-media-logos/
+Disallow: /lidiiad-rico-photos-in-mockups/
+Disallow: /lidiiad-rico-press-animated-cta/
+Disallow: /lidiiad-rico-single-photo/
+Disallow: /lidiiad-rico-two-photo-collage/
+Disallow: /work/il-makiage/rico-nasty/lidiiad-rico-horizontal-gallery/
+
+Sitemap: https://lidiiad.tech/sitemap.xml
