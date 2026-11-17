@@ -262,12 +262,33 @@ footer{padding:14px clamp(14px,3vw,36px);border-top:3px solid var(--ink);font-we
 @media(max-width:700px){.work-collection-grid,.work-secondary-grid,.work-feature{grid-template-columns:1fr}.work-collection:nth-child(odd),.work-secondary:first-child{border-right:0}.work-collection:not(:last-child),.work-secondary:first-child{border-bottom:3px solid var(--ink)}.work-collection__visual{height:360px}.work-collection__body,.work-secondary__body{min-height:220px}.work-feature__visual{border-left:0;border-top:3px solid var(--ink);min-height:320px}.work-count{display:none}}
 @media(prefers-reduced-motion:reduce){.work-collection,.work-collection__visual img,.work-secondary__visual img,.work-feature__visual img,.work-collection__action,.work-collection__visual--type strong{animation:none!important;transition:none!important;transform:none!important}}
 
+
+/* Interaction model: project cards are informational; the CTA is the only link. */
+.work-collection,.work-feature{cursor:default}
+.work-collection .work-collection__action,.work-feature .work-collection__action,.work-catalog__example .work-collection__action{text-decoration:none;cursor:pointer;position:relative;z-index:2}
+.work-collection:hover .work-collection__action,.work-feature:hover .work-collection__action{background:var(--ink);color:var(--bg);border-color:var(--ink);transform:none;box-shadow:5px 5px 0 var(--blue)}
+.work-collection .work-collection__action:hover,.work-collection .work-collection__action:focus-visible,.work-feature .work-collection__action:hover,.work-feature .work-collection__action:focus-visible,.work-catalog .work-collection__action:hover,.work-catalog .work-collection__action:focus-visible{background:var(--blue);color:#fff;border-color:var(--blue);transform:translateY(-6px);box-shadow:8px 8px 0 var(--a)}
+.work-collection--jeremy .work-collection__visual img{object-position:center 75%}
+.work-category__head{grid-template-columns:minmax(0,1.4fr) minmax(200px,.75fr)}
+.work-catalog{display:grid;grid-template-columns:1fr 1.08fr;min-height:480px}
+.work-catalog__image{min-height:440px;overflow:hidden;background:#f1efec;border-right:3px solid var(--ink)}
+.work-catalog__image img{display:block;width:100%;height:100%;object-fit:contain}
+.work-catalog__content{padding:clamp(24px,4vw,60px);display:flex;flex-direction:column;align-items:flex-start}
+.work-catalog__content h4{font-size:clamp(38px,5.3vw,83px);font-weight:900;text-transform:uppercase;letter-spacing:-.055em;line-height:.9;margin:24px 0}
+.work-catalog__content>p{font-size:17px;line-height:1.4;margin:0 0 24px;max-width:55ch}
+.work-catalog__example{margin-top:auto;border-top:2px solid var(--ink);width:100%;padding-top:22px}
+.work-catalog__example .work-catalog__label{display:block;font-size:12px;font-weight:900;letter-spacing:.1em;color:#f6a6bb;margin-bottom:7px}
+.work-catalog__example strong{font-size:clamp(19px,2vw,28px);font-weight:900}
+.work-catalog__example p{font-size:15px;line-height:1.4;margin:8px 0 18px}
+@media(max-width:900px){.work-category__head{grid-template-columns:1fr}}
+@media(max-width:700px){.work-catalog{grid-template-columns:1fr}.work-catalog__image{border-right:0;border-bottom:3px solid var(--ink);min-height:320px}.work-catalog__content{min-height:380px}}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/motion@14.9.0/dist/motion.js"></script>
 </head>
 <body>
 <div id="prog" aria-hidden="true"></div>
-<nav><a href="#top" style="margin:0">L.D.</a><div><a href="#work">Work</a><a href="journal/">Journal</a><a href="#exp">About</a><a href="contact/">Contact</a></div></nav>
+<nav><a href="#top" style="margin:0">L.D.</a><div><a href="#work">Work</a><a href="journal/">Journal</a><a href="contact/">Contact</a></div></nav>
 
 <section class="hero" id="top"><canvas id="gl" aria-hidden="true"></canvas>
   <h1>Lidiia Demchenko</h1>
@@ -323,54 +344,48 @@ footer{padding:14px clamp(14px,3vw,36px);border-top:3px solid var(--ink);font-we
 <section class="work work-curated" id="work">
   <h2>Work<span class="work-count">SELECTED PROJECTS / 2026</span></h2>
   <div class="work-category" id="collaborations">
-    <div class="work-category__head"><span class="work-category__index">01 / WORK</span><h3>COLLABORATIONS.</h3><p>From campaign to cart — launches, collections and cross-functional e-commerce work.</p></div>
+    <div class="work-category__head"><h3>COLLABORATIONS.</h3><p>From campaign to cart — launches, collections and cross-functional e-commerce work.</p></div>
     <div class="work-collection-grid">
-      <a class="work-collection work-collection--rico" href="work/il-makiage/rico-nasty/" aria-label="Explore IL MAKIAGE x Rico Nasty case">
+      <article class="work-collection work-collection--rico">
         <div class="work-collection__visual"><img src="assets/rico-laptop.webp" alt="Rico Nasty IL MAKIAGE collaboration campaign" loading="lazy"></div>
-        <div class="work-collection__body"><span class="work-collection__brand">IL MAKIAGE / CAMPAIGN LAUNCH</span><h4>RICO NASTY.</h4><p>Products, bundles, landing pages, localization and launch QA.</p><span class="work-collection__action">EXPLORE FULL CASE <span aria-hidden="true">↗</span></span></div>
-      </a>
-      <a class="work-collection work-collection--carli" href="work/il-makiage/carli-bybel/" aria-label="Explore IL MAKIAGE x Carli Bybel case">
+        <div class="work-collection__body"><span class="work-collection__brand">IL MAKIAGE / CAMPAIGN LAUNCH</span><h4>RICO NASTY.</h4><p>Products, bundles, landing pages, localization and launch QA.</p><a class="work-collection__action" href="work/il-makiage/rico-nasty/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
+      </article>
+      <article class="work-collection work-collection--carli">
         <div class="work-collection__visual work-collection__visual--type"><strong>CARLI<br>BYBEL.</strong></div>
-        <div class="work-collection__body"><span class="work-collection__brand">IL MAKIAGE / COLLECTION</span><h4>CARLI BYBEL.</h4><p>Collection merchandising, PDP setup, bundles and Klaviyo launch testing.</p><span class="work-collection__action">EXPLORE FULL CASE <span aria-hidden="true">↗</span></span></div>
-      </a>
-      <a class="work-collection work-collection--kathleen" href="work/il-makiage/kathleen-lights/" aria-label="Explore Kathleen Lights x IL MAKIAGE case">
+        <div class="work-collection__body"><span class="work-collection__brand">IL MAKIAGE / COLLECTION</span><h4>CARLI BYBEL.</h4><p>Collection merchandising, PDP setup, bundles and Klaviyo launch testing.</p><a class="work-collection__action" href="work/il-makiage/carli-bybel/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
+      </article>
+      <article class="work-collection work-collection--kathleen">
         <div class="work-collection__visual work-collection__visual--type"><strong>DAY TO<br>DISCO.</strong></div>
-        <div class="work-collection__body"><span class="work-collection__brand">IL MAKIAGE / LIMITED COLLECTION</span><h4>KATHLEEN LIGHTS.</h4><p>Shoppable landing pages, product bundles, localization and QA.</p><span class="work-collection__action">EXPLORE FULL CASE <span aria-hidden="true">↗</span></span></div>
-      </a>
-      <a class="work-collection work-collection--jeremy" href="work/il-makiage/jeremy-scott/" aria-label="Explore SpoiledChild x Jeremy Scott case">
+        <div class="work-collection__body"><span class="work-collection__brand">IL MAKIAGE / LIMITED COLLECTION</span><h4>KATHLEEN LIGHTS.</h4><p>Shoppable landing pages, product bundles, localization and QA.</p><a class="work-collection__action" href="work/il-makiage/kathleen-lights/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
+      </article>
+      <article class="work-collection work-collection--jeremy">
         <div class="work-collection__visual"><img src="https://wwd.com/wp-content/uploads/2025/03/spoiledchild-jeremy-scott-capsule.jpg" alt="SpoiledChild x Jeremy Scott capsule collection featuring collectible figurine" loading="lazy" onerror="this.style.display='none'"></div>
-        <div class="work-collection__body"><span class="work-collection__brand">SPOILEDCHILD / COLLECTION LAUNCH</span><h4>JEREMY SCOTT.</h4><p>Digital merchandising, product setup, creative assets and storefront QA.</p><span class="work-collection__action">EXPLORE FULL CASE <span aria-hidden="true">↗</span></span></div>
-      </a>
+        <div class="work-collection__body"><span class="work-collection__brand">SPOILEDCHILD / COLLECTION LAUNCH</span><h4>JEREMY SCOTT.</h4><p>Digital merchandising, product setup, creative assets and storefront QA.</p><a class="work-collection__action" href="work/il-makiage/jeremy-scott/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
+      </article>
     </div>
   </div>
   <div class="work-category" id="product-work">
-    <div class="work-category__head"><span class="work-category__index">02 / WORK</span><h3>PRODUCT PAGES<br>&amp; CATALOG.</h3><p>Structured product experiences — from Magento catalog content to conversion-focused PDPs.</p></div>
-    <div class="work-secondary-grid">
-      <a class="work-secondary work-secondary--dirty" href="work/il-makiage/dirty-talk/" aria-label="Explore Dirty Talk Lipstick product case">
-        <div class="work-secondary__visual"><img src="assets/dirty-talk-averie-pdp.webp" alt="IL MAKIAGE Dirty Talk Lipstick product detail page for shade Averie" loading="lazy"></div>
-        <div class="work-secondary__body"><span class="work-collection__brand">IL MAKIAGE / PRODUCT LAUNCH</span><h4>DIRTY TALK LIPSTICK.</h4><p>Shade setup, product content, PDP merchandising and storefront QA.</p><span class="work-collection__action">EXPLORE FULL CASE <span aria-hidden="true">↗</span></span></div>
-      </a>
-      <a class="work-secondary work-secondary--catalog" href="#il" aria-label="Explore e-commerce catalog and product detail page work on this homepage">
-        <div class="work-secondary__visual work-secondary__visual--type"><strong>PDP<br>+ CMS.</strong></div>
-        <div class="work-secondary__body"><span class="work-collection__brand">E-COMMERCE / MAGENTO</span><h4>CATALOG &amp; PDP OPERATIONS.</h4><p>Product attributes, categories, localization, imagery and multi-store QA.</p><span class="work-collection__action">EXPLORE PRODUCT WORK <span aria-hidden="true">↗</span></span></div>
-      </a>
+    <div class="work-category__head"><h3>PRODUCT PAGES<br>&amp; CATALOG.</h3><p>Structured product experiences — from Magento catalog content to conversion-focused PDPs.</p></div>
+    <div class="work-catalog" aria-label="Product pages and catalog work">
+      <div class="work-catalog__image"><img src="assets/dirty-talk-averie-pdp.webp" alt="IL MAKIAGE Dirty Talk Lipstick product detail page" loading="lazy"></div>
+      <div class="work-catalog__content">
+        <span class="work-collection__brand">E-COMMERCE / MAGENTO / PRODUCT CONTENT</span>
+        <h4>CATALOG &amp;<br>PRODUCT PAGES.</h4>
+        <p>One evolving collection of product content, PDP builds and catalog operations across international storefronts: shades, attributes, categories, imagery, localization and storefront QA.</p>
+        <div class="work-catalog__example"><span class="work-catalog__label">FEATURED PRODUCT / 01</span><strong>DIRTY TALK LIPSTICK</strong><p>Product setup, shade information, merchandising and launch QA.</p><a class="work-collection__action" href="work/il-makiage/dirty-talk/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
+      </div>
     </div>
   </div>
   <div class="work-category work-category--last" id="interactive-experiences">
-    <div class="work-category__head"><span class="work-category__index">03 / WORK</span><h3>INTERACTIVE<br>EXPERIENCES.</h3><p>Guided customer journeys that connect discovery to shopping.</p></div>
-    <a class="work-feature" href="work/il-makiage/powermatch-quiz/" aria-label="Explore Foundation PowerMatch Quiz case">
-      <div class="work-feature__copy"><span class="work-collection__brand">IL MAKIAGE / SHADE MATCHING</span><h4>FOUNDATION<br>POWERMATCH QUIZ.</h4><p>A guided foundation match experience built around customer answers and product recommendations.</p><span class="work-collection__action">EXPLORE FULL CASE <span aria-hidden="true">↗</span></span></div>
+    <div class="work-category__head"><h3>INTERACTIVE<br>EXPERIENCES.</h3><p>Guided customer journeys that connect discovery to shopping.</p></div>
+    <div class="work-feature">
+      <div class="work-feature__copy"><span class="work-collection__brand">IL MAKIAGE / SHADE MATCHING</span><h4>FOUNDATION<br>POWERMATCH QUIZ.</h4><p>A guided foundation match experience built around customer answers and product recommendations.</p><a class="work-collection__action" href="work/il-makiage/powermatch-quiz/">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div>
       <div class="work-feature__visual"><img src="https://media.ilmakiage.com/media/theme/default/LandingBannerTopMobile_12_1.jpg" alt="IL MAKIAGE Foundation PowerMatch Quiz campaign" loading="lazy"></div>
-    </a>
+    </div>
   </div>
 </section>
 
-<section class="exp" id="exp">
-  <h2>Path</h2>
-  <div class="r"><b>2023 – now</b><span>Current role, Company</span><span>What you own and one result.</span></div>
-  <div class="r"><b>2020 – 2023</b><span>Previous role, Company</span><span>Scope and impact.</span></div>
-  <div class="r"><b>2017 – 2020</b><span>Earlier role, Company</span><span>Scope and impact.</span></div>
-</section>
+
 
 <section class="ct" id="ct">
   <h2>Say hello</h2>
