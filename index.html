@@ -56,12 +56,18 @@ footer{padding:18px clamp(18px,4vw,65px);border-top:3px solid var(--ink);font-si
 }
 @media(max-width:420px){.intro h1{font-size:clamp(43px,11vw,65px)}.brand-work__body h3{font-size:clamp(51px,12vw,72px)}nav{font-size:13px;padding:13px 15px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+/* ODDITY Tech work banner placed above both brand collections. */
+.brand-work__banner{width:100%;border-bottom:3px solid var(--ink);overflow:hidden;background:#171719}
+.brand-work__banner img{display:block;width:100%;height:auto;object-fit:contain;object-position:center}
+@media(max-width:800px){.brand-work__banner img{width:100%;height:auto;max-height:none;object-fit:contain}}
 </style></head>
 <body>
 <nav><a href="#top" aria-label="Lidiia Demchenko homepage">L.D.</a><div class="navlinks"><a href="#work">WORK</a><a href="journal/">JOURNAL</a><a href="contact/">CONTACT</a></div></nav>
 <header class="intro" id="top"><span class="eyebrow">LIDIIA DEMCHENKO / DIGITAL COMMERCE</span><h1>LIDIIA<br>DEMCHENKO.</h1><p>E-commerce, product content and digital experiences across beauty and wellness.</p></header>
 <section class="work brand-work" id="work">
   <h2>Work</h2>
+  <div class="brand-work__banner"><img src="https://media.licdn.com/dms/image/v2/D4E22AQEvgD0aBergrQ/feedshare-shrink_800/feedshare-shrink_800/0/1731623137818?e=2147483647&amp;v=beta&amp;t=loprEN5-fgd4rbbVi-NaR9YPtvfpi53hK6IvEtBU6FA" alt="ODDITY Tech brand portfolio editorial banner" loading="lazy"></div>
   <div class="brand-work__intro"><span>ODDITY TECH / BRAND PORTFOLIO</span><p>Two brands. Distinct product worlds. Explore the work behind each.</p></div>
   <div class="brand-work__grid">
     <article class="brand-work__card brand-work__card--ilm">
