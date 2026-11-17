@@ -1,6 +1,21 @@
-# Lidiia Demchenko — portfolio
+# Lidiia Demchenko — only homepage is intended for search results.
+# HTML pages remain crawlable so their noindex directives can be seen.
+User-agent: Googlebot-Image
+Disallow: /
+
 User-agent: *
 Allow: /
+Allow: /favicon.ico
+Allow: /favicon-16x16.png
+Allow: /favicon-32x32.png
+Allow: /favicon-48x48.png
+Disallow: /*.jpg$
+Disallow: /*.jpeg$
+Disallow: /*.png$
+Disallow: /*.webp$
+Disallow: /*.gif$
+Disallow: /*.avif$
+Disallow: /*.svg$
 Disallow: /lidiiad-rico-media-logos/
 Disallow: /lidiiad-rico-photos-in-mockups/
 Disallow: /lidiiad-rico-press-animated-cta/
