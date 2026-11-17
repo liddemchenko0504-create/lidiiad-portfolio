@@ -35,9 +35,21 @@ nav{font-family:Archivo,Arial,sans-serif;font-size:13px;font-weight:800;letter-s
 nav .navlinks{display:flex;align-items:center;justify-content:flex-end;gap:clamp(12px,2.5vw,28px);flex-wrap:wrap}
 nav .navlinks a{font:inherit;text-transform:uppercase;text-decoration:none}
 @media(max-width:650px){nav{font-size:12px}nav .navlinks{gap:12px}}
-</style></head>
+
+/* Minimal SEO breadcrumbs */
+.portfolio-breadcrumbs{display:block;background:#0b0b0c;color:#a9a9ac;border-bottom:1px solid #ffffff24;padding:13px clamp(18px,3vw,42px);font:500 11px/1.6 Archivo,Arial,sans-serif;letter-spacing:.065em;text-transform:uppercase}
+.portfolio-breadcrumbs ol{display:flex;flex-wrap:wrap;align-items:center;gap:7px;list-style:none;margin:0;padding:0}
+.portfolio-breadcrumbs li{display:inline-flex;align-items:center;gap:7px;min-width:0}
+.portfolio-breadcrumbs li+li::before{content:"/";color:#6d6d72}
+.portfolio-breadcrumbs a{text-decoration:none;color:#a9a9ac;transition:color .15s}
+.portfolio-breadcrumbs a:hover,.portfolio-breadcrumbs a:focus-visible{color:#f1f1ec}
+.portfolio-breadcrumbs [aria-current="page"]{color:#f1f1ec}
+@media(max-width:650px){.portfolio-breadcrumbs{padding:11px 15px;font-size:10px;letter-spacing:.035em}}
+</style><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://lidiiad.tech/"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://lidiiad.tech/contact/"}]}</script>
+</head>
 <body>
 <nav><a href="../" class="site-logo" aria-label="Home"><img src="../assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="../#work">WORK</a><a href="../journal/">JOURNAL</a><a href="../contact/" aria-current="page">CONTACT</a></div></nav>
+<nav class="portfolio-breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="../">Home</a></li><li><span aria-current="page">Contact</span></li></ol></nav>
 <main>
 <section aria-labelledby="contact-heading"><p class="eyebrow">LIDIIA DEMCHENKO / CONTACT</p><h1 id="contact-heading">LET'S<br>CONNECT.</h1><a class="email" href="mailto:hello@lidiiad.tech">hello@lidiiad.tech</a><p class="subline">E-commerce · SEO · Creative Content</p></section>
 <section class="details" aria-label="Social links and location"><div><p class="detail-label">FIND ME ONLINE</p><a class="detail-link" href="https://www.linkedin.com/in/lidiia-demchenko/" target="_blank" rel="noopener noreferrer">LinkedIn <svg class="arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a class="detail-link" href="https://www.instagram.com/__lidiia__/" target="_blank" rel="noopener noreferrer">Instagram <svg class="arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div><div><p class="detail-label">BASED IN</p><p class="location">Kyiv, Ukraine</p><p class="location-sub">Open to international projects</p></div></section>
