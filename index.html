@@ -110,26 +110,14 @@ footer{padding:14px clamp(14px,3vw,36px);border-top:3px solid var(--ink);font-we
 .case-open span{font-size:24px;line-height:1}
 @media (prefers-reduced-motion:reduce){.wk-linked{transition:none}}
 
-/* Rico Nasty — user-provided campaign montage on the homepage */
-.wk-rico .rico-gallery{
-  display:flex; align-items:center; justify-content:center;
-  min-width:0; min-height:380px; padding:0;
-  background:#fff; overflow:hidden;
-}
-.wk-rico .rico-gallery img{
-  display:block; width:100%; height:100%;
-  object-fit:contain; object-position:center;
-  transition:transform .7s cubic-bezier(.2,.7,.2,1);
-}
-.wk-rico:hover .rico-gallery img{transform:scale(1.025)}
-@media(max-width:800px){
-  .wk-rico .rico-gallery{min-height:0}
-  .wk-rico .rico-gallery img{height:auto}
-}
-@media(prefers-reduced-motion:reduce){
-  .wk-rico .rico-gallery img{transition:none}
-  .wk-rico:hover .rico-gallery img{transform:none}
-}
+/* Rico Nasty — actual campaign photography inside the existing laptop/phone mockups */
+.wk-rico .rico-devices{min-width:0;overflow:hidden}
+.wk-rico .rico-laptop,.wk-rico .rico-phone{position:relative;overflow:hidden;padding:0}
+.wk-rico .rico-laptop img,.wk-rico .rico-phone img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;transition:transform .65s cubic-bezier(.2,.7,.2,1)}
+.wk-rico .rico-laptop img{object-position:center}
+.wk-rico .rico-phone img{object-position:center}
+.wk-rico:hover .rico-devices img{transform:scale(1.035)}
+@media(prefers-reduced-motion:reduce){.wk-rico .rico-devices img{transition:none}.wk-rico:hover .rico-devices img{transform:none}}
 
 </style>
 <script src="https://cdn.jsdelivr.net/npm/motion@14.9.0/dist/motion.js"></script>
@@ -191,7 +179,10 @@ footer{padding:14px clamp(14px,3vw,36px);border-top:3px solid var(--ink);font-we
 
 <section class="work" id="work">
   <h2>Work</h2>
-  <article class="wk wk-linked wk-rico"><div class="tx"><h3>Il Makiage ft. Rico Nasty</h3><span class="tag">Influencer collab / Magento / Klaviyo</span><p>The brand’s first influencer collaboration. I set up products, bundles and the collection landing page in Magento, implemented approved campaign content, coordinated localization and ran QA across international storefronts. I also tested the campaign CMS pages in Klaviyo before launch.</p><div class="res">Sold out, and every product and bundle sold out again on the relaunch.</div><a class="case-open" href="work/il-makiage/rico-nasty/" aria-label="Open the IL MAKIAGE x Rico Nasty case study">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div><div class="shots rico-gallery"><img src="assets/rico-nasty-collage.webp" alt="IL MAKIAGE x Rico Nasty collaboration: campaign landing page, model portraits, colorful makeup and product imagery" loading="lazy" width="1894" height="1153"></div></article>
+  <article class="wk wk-linked wk-rico"><div class="tx"><h3>Il Makiage ft. Rico Nasty</h3><span class="tag">Influencer collab / Magento / Klaviyo</span><p>The brand’s first influencer collaboration. I set up products, bundles and the collection landing page in Magento, implemented approved campaign content, coordinated localization and ran QA across international storefronts. I also tested the campaign CMS pages in Klaviyo before launch.</p><div class="res">Sold out, and every product and bundle sold out again on the relaunch.</div><a class="case-open" href="work/il-makiage/rico-nasty/" aria-label="Open the IL MAKIAGE x Rico Nasty case study">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div><div class="shots rico-devices">
+  <figure class="sh rico-laptop"><img src="assets/rico-laptop.webp" alt="Rico Nasty campaign portrait with a colorful makeup palette" loading="lazy" width="1080" height="540"></figure>
+  <figure class="sh rico-phone"><img src="assets/rico-phone.webp" alt="Rico Nasty campaign portrait with blue sunglasses and vibrant makeup" loading="lazy" width="266" height="658"></figure>
+</div></article>
   <article class="wk"><div class="tx"><h3>Il Makiage × Carli Bybel</h3><span class="tag">Collection / PDPs / Klaviyo</span><p>A complete makeup wardrobe: three four-pan face palettes, two lipsticks with matching lip pencils and two brushes, plus the return of the fan-favorite shades Libra and Taurus. I built the whole collection in the Magento catalog: shades, attributes, imagery, pricing, categories, bundles, related products and visibility. I tested the campaign pages and emails in Klaviyo for launch and relaunch.</p></div><div class="shots"><figure class="sh">assets/carli-1.webp<img src="assets/carli-1.webp" alt="Carli Bybel collection page" loading="lazy" onerror="this.remove()"></figure><figure class="sh">assets/carli-2.webp<img src="assets/carli-2.webp" alt="Carli Bybel product page" loading="lazy" onerror="this.remove()"></figure></div></article>
   <article class="wk"><div class="tx"><h3>Kathleen Lights × Il Makiage</h3><span class="tag">Day-to-Disco / Landing page</span><p>A limited-edition collection built to take customers from daytime makeup to disco-ready looks. I turned the campaign brief into shoppable landing and product pages, and managed catalog setup, bundle merchandising, localization and launch QA.</p></div><div class="shots"><figure class="sh">assets/kathleen-1.webp<img src="assets/kathleen-1.webp" alt="Day-to-Disco landing page" loading="lazy" onerror="this.remove()"></figure><figure class="sh">assets/kathleen-2.webp<img src="assets/kathleen-2.webp" alt="Day-to-Disco bundles" loading="lazy" onerror="this.remove()"></figure></div></article>
   <article class="wk"><div class="tx"><h3>SpoiledChild × Jeremy Scott</h3><span class="tag">Limited edition / Launch support</span><p>I supported the digital launch, turning a bold fashion concept into a consistent e-commerce experience: collection landing page, product setup, digital merchandising, creative asset implementation, storefront QA and cross-team launch coordination.</p></div><div class="shots"><figure class="sh">assets/spoiledchild-1.webp<img src="assets/spoiledchild-1.webp" alt="SpoiledChild x Jeremy Scott landing page" loading="lazy" onerror="this.remove()"></figure><figure class="sh">assets/spoiledchild-2.webp<img src="assets/spoiledchild-2.webp" alt="SpoiledChild x Jeremy Scott products" loading="lazy" onerror="this.remove()"></figure></div></article>
