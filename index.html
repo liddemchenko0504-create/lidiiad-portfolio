@@ -62,25 +62,37 @@ footer{padding:18px clamp(18px,4vw,65px);border-top:3px solid var(--ink);font-si
 .brand-work__banner img{display:block;width:100%;height:auto;object-fit:contain;object-position:center}
 @media(max-width:800px){.brand-work__banner img{width:100%;height:auto;max-height:none;object-fit:contain}}
 .site-logo{display:inline-flex!important;align-items:center;flex:0 0 auto;line-height:0;text-decoration:none!important;margin:0!important}.site-logo img{display:block;width:clamp(120px,16vw,210px);max-width:100%;height:auto;object-fit:contain}nav{align-items:center;gap:12px}@media(max-width:650px){nav{flex-wrap:wrap;gap:8px;padding-left:12px;padding-right:12px}.site-logo img{width:120px}nav .navlinks{gap:10px;justify-content:flex-end;min-width:0}nav a{margin-left:0}}
+
+/* ODDITY WORK — a continuous dark editorial section, no white divider bands */
+.brand-work>h2{border-bottom:0;padding-bottom:0}
+.brand-work__banner{border-bottom:0;background:#020817;line-height:0}
+.brand-work__banner img{display:block;width:100%;height:auto;max-height:none;object-fit:contain}
+.brand-work__intro{justify-content:flex-end;border-bottom:0;padding-top:clamp(6px,1.2vw,16px);padding-bottom:clamp(22px,3vw,42px)}
+.brand-work__intro p{max-width:660px}
+.brand-work__body h3{margin-top:12px}
+.contact-teaser a.contact-teaser__cta{margin-top:0;display:inline-flex;gap:17px;align-items:center;justify-content:space-between;padding:13px 18px;border:2px solid var(--ink);background:var(--ink);color:var(--bg);font-size:13px;font-weight:900;text-decoration:none;box-shadow:5px 5px 0 var(--blue);transition:background .2s,color .2s,transform .25s,box-shadow .2s;white-space:nowrap}
+.contact-teaser a.contact-teaser__cta:hover,.contact-teaser a.contact-teaser__cta:focus-visible{background:var(--blue);color:#fff;border-color:var(--blue);transform:translateY(-5px);box-shadow:8px 8px 0 var(--wine)}
+@media(max-width:800px){.brand-work__banner img{width:100%;height:auto;object-fit:contain}.brand-work__intro{padding-top:8px}.contact-teaser a.contact-teaser__cta{margin-top:24px}}
+@media(prefers-reduced-motion:reduce){.contact-teaser a.contact-teaser__cta{transition:none!important}.contact-teaser a.contact-teaser__cta:hover{transform:none!important}}
 </style></head>
 <body>
 <nav><a href="#top" aria-label="Lidiia Demchenko homepage" class="site-logo"><img src="assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="#work">WORK</a><a href="journal/">JOURNAL</a><a href="contact/">CONTACT</a></div></nav>
 <header class="intro" id="top"><span class="eyebrow">LIDIIA DEMCHENKO / DIGITAL COMMERCE</span><h1>LIDIIA<br>DEMCHENKO.</h1><p>E-commerce, product content and digital experiences across beauty and wellness.</p></header>
 <section class="work brand-work" id="work">
   <h2>Work</h2>
-  <div class="brand-work__banner"><img src="https://media.licdn.com/dms/image/v2/D4E22AQEvgD0aBergrQ/feedshare-shrink_800/feedshare-shrink_800/0/1731623137818?e=2147483647&amp;v=beta&amp;t=loprEN5-fgd4rbbVi-NaR9YPtvfpi53hK6IvEtBU6FA" alt="ODDITY Tech brand portfolio editorial banner" loading="lazy"></div>
-  <div class="brand-work__intro"><span>ODDITY TECH / BRAND PORTFOLIO</span><p>Two brands. Distinct product worlds. Explore the work behind each.</p></div>
+  <div class="brand-work__banner"><img src="assets/oddity-work-banner.webp" alt="ODDITY logo with blue lightning" width="1200" height="300" loading="eager" decoding="async"></div>
+  <div class="brand-work__intro"><p>Two brands. Distinct product worlds. Explore the work behind each.</p></div>
   <div class="brand-work__grid">
     <article class="brand-work__card brand-work__card--ilm">
       <div class="brand-work__visual"><img src="https://media.ilmakiage.com/media/hpsliderimage/image//b/e/bestsellers-seasonless-no_cta-desktop.png" alt="IL MAKIAGE bestsellers brand campaign banner" loading="lazy"></div>
-      <div class="brand-work__body"><span class="brand-work__eyebrow">ODDITY TECH / BEAUTY</span><h3>IL<br>MAKIAGE.</h3><p>Collaborations, catalog merchandising, product pages and quiz experiences.</p><a class="brand-work__cta" href="work/il-makiage/">EXPLORE BRAND <span aria-hidden="true"><svg class="ui-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" stroke-linejoin="miter"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a></div>
+      <div class="brand-work__body"><h3>IL<br>MAKIAGE.</h3><p>Collaborations, catalog merchandising, product pages and quiz experiences.</p><a class="brand-work__cta" href="work/il-makiage/">EXPLORE BRAND <span aria-hidden="true"><svg class="ui-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" stroke-linejoin="miter"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a></div>
     </article>
     <article class="brand-work__card brand-work__card--spoiled">
       <div class="brand-work__visual"><img src="https://media.licdn.com/dms/image/v2/C4D1BAQGVAIwmYwjEoQ/company-background_10000/company-background_10000/0/1643388477640/spoiledchild_cover?e=2147483647&amp;v=beta&amp;t=0hsnrcRimyTVaPmJ9BSppETovfvpCybet4Y5ZbMESYY" alt="SpoiledChild brand artwork featuring green capsules and logo" loading="lazy"></div>
-      <div class="brand-work__body"><span class="brand-work__eyebrow">ODDITY TECH / WELLNESS</span><h3>SPOILED<br>CHILD.</h3><p>Digital launches, creative merchandising and product experiences.</p><a class="brand-work__cta" href="work/spoiledchild/">EXPLORE BRAND <span aria-hidden="true"><svg class="ui-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" stroke-linejoin="miter"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a></div>
+      <div class="brand-work__body"><h3>SPOILED<br>CHILD.</h3><p>Digital launches, creative merchandising and product experiences.</p><a class="brand-work__cta" href="work/spoiledchild/">EXPLORE BRAND <span aria-hidden="true"><svg class="ui-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" stroke-linejoin="miter"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a></div>
     </article>
   </div>
 </section>
-<section class="contact-teaser"><h2>LET'S TALK.</h2><a href="contact/">CONTACT ME <svg class="ui-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" stroke-linejoin="miter"><path d="M7 17 17 7M8 7h9v9"/></svg></a></section>
+<section class="contact-teaser"><h2>LET'S TALK.</h2><a class="brand-work__cta contact-teaser__cta" href="contact/">CONTACT ME <svg class="ui-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" stroke-linejoin="miter"><path d="M7 17 17 7M8 7h9v9"/></svg></a></section>
 <footer>© 2026 Lidiia Demchenko</footer>
 </body></html>
