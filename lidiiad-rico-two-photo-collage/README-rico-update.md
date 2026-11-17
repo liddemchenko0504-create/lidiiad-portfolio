@@ -1,0 +1,1 @@
+Rico Nasty homepage collage: horizontal campaign photo fills the entire right panel; narrow vertical photo overlaps in the lower-right corner; no laptop or phone frames. Upload updated index.html and assets/rico-laptop.webp plus assets/rico-phone.webp. The entire card remains linked to work/il-makiage/rico-nasty/.

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lidiia Demchenko — Brand & PDP</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0b0c;--ink:#f1f1ec;--paper:#161617;--blue:#4a5bff;--a:#961D28;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141414;--ink:#f1f1ec;--paper:#1d1d1d}}
+:root[data-theme="dark"]{--bg:#141414;--ink:#f1f1ec;--paper:#1d1d1d}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.5 Archivo,Arial,sans-serif}
+a{color:inherit}:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+h1,h2,h3{margin:0;font-weight:900;font-stretch:125%;line-height:.88;letter-spacing:-.03em;text-transform:uppercase}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;display:flex;justify-content:space-between;background:var(--bg);border-bottom:3px solid var(--ink);padding:12px clamp(14px,3vw,36px);font-weight:700;font-stretch:110%}
+nav a{text-decoration:none;margin-left:22px}nav a:hover{background:var(--ink);color:var(--bg)}
+/* hero */
+.hero{position:relative;border-bottom:3px solid var(--ink);display:grid;grid-template-columns:1fr minmax(180px,26vw);min-height:calc(100svh - 52px);overflow:hidden}
+.hero h1{position:relative;z-index:1;font-size:clamp(54px,12.5vw,190px);padding:clamp(14px,3vw,36px);align-self:end}
+.hero .side{border-left:3px solid var(--ink);display:flex;flex-direction:column;justify-content:space-between;padding:20px;background:var(--a);transition:background .5s}
+.hero .side p{margin:0;font-weight:700;font-stretch:110%;color:#fff;max-width:18ch}
+.hero svg{width:100%;max-height:60svh}
+.marq{border-bottom:3px solid var(--ink);overflow:hidden;white-space:nowrap;background:var(--ink);color:var(--bg);font-weight:800;font-stretch:125%;text-transform:uppercase;padding:10px 0}
+.marq div{display:inline-block;animation:m 28s linear infinite}
+@keyframes m{to{transform:translateX(-50%)}}
+/* cases */
+.case{height:300vh;position:relative;border-bottom:3px solid var(--ink)}
+.in{position:sticky;top:52px;height:calc(100svh - 52px);display:grid;grid-template-columns:1fr 1fr}
+.copy{padding:clamp(16px,3vw,40px);display:flex;flex-direction:column;justify-content:space-between;border-right:3px solid var(--ink)}
+.copy h2{font-size:clamp(44px,8vw,120px)}
+.role{font-weight:700;font-stretch:110%;margin:14px 0 0}
+.facts{list-style:none;margin:0;padding:0}
+.facts li{border:3px solid var(--ink);padding:10px 14px;margin-top:-3px;background:var(--paper);opacity:.25;transition:opacity .4s,background .4s,color .4s}
+.facts li.on{opacity:1;background:var(--ink);color:var(--bg)}
+.facts b{display:block;font-stretch:115%}
+.stage{display:grid;place-items:center;background:var(--a);transition:background .5s;position:relative;overflow:hidden}
+.c2 .stage{background:var(--blue)}
+.stage svg{width:min(78%,300px);max-height:76%}
+.big{position:absolute;inset:auto 0 -2% 0;text-align:center;font:900 clamp(60px,16vw,230px)/.8 Archivo;font-stretch:125%;color:#fff;opacity:.14;pointer-events:none}
+.sw{display:flex;gap:0;margin-top:14px}
+.sw button{width:48px;height:48px;border:3px solid var(--ink);margin-left:-3px;background:var(--c);cursor:pointer;padding:0}
+.sw button:first-child{margin-left:0}.sw button[aria-pressed=true]{box-shadow:inset 0 0 0 4px var(--bg)}
+.nm{font-weight:800;font-stretch:115%;text-transform:uppercase;margin-top:8px;min-height:1.5em}
+/* work */
+.work>h2{font-size:clamp(44px,9vw,130px);padding:clamp(14px,3vw,36px);border-bottom:3px solid var(--ink)}
+.wk{display:grid;grid-template-columns:1fr 1.2fr;border-bottom:3px solid var(--ink)}
+.wk .tx{padding:clamp(16px,3vw,40px);border-right:3px solid var(--ink)}
+.wk h3{font-size:clamp(30px,4.4vw,64px)}
+.wk .tag{display:inline-block;border:3px solid var(--ink);padding:2px 10px;margin:14px 0;font-weight:800;font-stretch:115%;text-transform:uppercase;font-size:14px}
+.wk p{margin:0 0 12px;max-width:52ch}
+.wk .res{background:var(--ink);color:var(--bg);padding:10px 14px;font-weight:700;font-stretch:110%}
+.shots{display:grid;grid-template-columns:1fr 1fr}
+.sh{margin:0;position:relative;min-height:320px;border-left:3px solid var(--ink);background:var(--paper);display:grid;place-items:center;text-align:center;font-weight:700;font-size:13px;padding:10px;overflow:hidden}
+.sh:first-child{border-left:0}
+.sh img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.wk:hover .tag{background:var(--blue);color:#fff;border-color:var(--blue)}
+/* cinematic */
+#gl{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero .side{position:relative;z-index:1}
+.rv{opacity:0;transform:translateY(32px);transition:opacity .9s,transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.shots{display:flex;align-items:center;justify-content:center;gap:5%;padding:clamp(16px,3vw,40px);background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--a) 38%,transparent),transparent 70%)}
+.sh{min-height:0;overflow:visible;background:#18181a;color:#8a8a8e;border:8px solid #2b2b2e}
+.sh img{border-radius:inherit}
+.sh:first-child{width:68%;aspect-ratio:16/10;border-radius:12px 12px 2px 2px;margin-bottom:18px}
+.sh:first-child::after{content:"";position:absolute;left:-8%;right:-8%;bottom:-26px;height:14px;background:#3a3a3e;border-radius:0 0 16px 16px}
+.sh:last-child{width:22%;aspect-ratio:9/19;border-radius:22px;border-width:6px}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+#prog{position:fixed;top:0;left:0;right:0;height:4px;background:var(--a);transform-origin:0 50%;transform:scaleX(0);z-index:20;transition:background .5s}
+/* exp + contact */
+.exp{border-bottom:3px solid var(--ink)}
+.exp h2,.ct h2{font-size:clamp(44px,9vw,130px);padding:clamp(14px,3vw,36px);border-bottom:3px solid var(--ink)}
+.r{display:grid;grid-template-columns:200px 1fr 1fr;gap:20px;padding:22px clamp(14px,3vw,36px);border-bottom:3px solid var(--ink);transition:background .2s,color .2s}
+.r:last-child{border:0}.r:hover{background:var(--ink);color:var(--bg)}
+.r b{font-stretch:115%;text-transform:uppercase}
+.ct{padding-bottom:40px}
+.ct a{display:block;font:900 clamp(28px,7.2vw,112px)/1 Archivo;font-stretch:125%;letter-spacing:-.03em;padding:30px clamp(14px,3vw,36px);text-decoration:none;word-break:break-all}
+.ct a:hover{background:var(--blue);color:#fff}
+footer{padding:14px clamp(14px,3vw,36px);border-top:3px solid var(--ink);font-weight:600;font-size:14px}
+@media (max-width:800px){
+.wk{grid-template-columns:1fr}.wk .tx{border-right:0;border-bottom:3px solid var(--ink)}.sh{min-height:0}.sh:last-child{width:26%}
+.hero{grid-template-columns:1fr}.hero .side{border-left:0;border-top:3px solid var(--ink);flex-direction:row;align-items:center;order:-1;min-height:28svh}.hero svg{max-height:26svh;width:auto}
+.hero h1{align-self:start}.in{grid-template-columns:1fr;grid-template-rows:auto 1fr}.copy{border-right:0;border-bottom:3px solid var(--ink);padding:12px}
+.copy h2{font-size:12vw}.facts li{padding:6px 10px;font-size:14px}.stage svg{max-height:92%}.r{grid-template-columns:1fr;gap:4px}nav a{margin-left:12px}}
+@media (prefers-reduced-motion:reduce){.marq div{animation:none}*{transition:none!important;scroll-behavior:auto!important}}
+
+/* Dirty Talk: verified brand shades + source PDP screenshots */
+.c1 .stage{display:flex;align-items:center;justify-content:space-evenly;gap:12px;padding:clamp(14px,2.5vw,28px)}
+.c1 .lip-visual{position:relative;z-index:1;width:29%;height:68%;display:flex;justify-content:center;align-items:center;flex-shrink:0}
+.c1 .lip-visual svg{width:100%;height:100%;max-height:100%}
+.c1 .pdp-preview{z-index:2;width:68%;max-width:650px;min-width:0;background:#fff;color:#111;padding:9px;display:flex;flex-direction:column;gap:8px;text-decoration:none;box-shadow:10px 10px 0 rgba(0,0,0,.26);transition:transform .25s ease,opacity .2s ease}
+.c1 .pdp-preview:hover{transform:translateY(-7px)}
+.c1 .pdp-preview img{display:block;width:100%;height:auto;aspect-ratio:1556 / 960;object-fit:contain;background:#fff}
+.c1 .pdp-topline,.c1 .pdp-footer{font:800 clamp(10px,.85vw,14px)/1.2 Archivo,Arial,sans-serif;letter-spacing:.04em;display:flex;justify-content:space-between;gap:8px}
+.c1 .pdp-footer{border-top:2px solid #111;padding-top:5px}
+.c1 .pdp-preview.is-switching{opacity:.35}
+@media(max-width:1100px){.c1 .stage{flex-direction:column;justify-content:center;gap:12px}.c1 .lip-visual{width:26%;height:38%;min-height:110px}.c1 .pdp-preview{width:min(90%,500px)}}
+@media(max-width:800px){.c1 .stage{padding:10px;gap:8px}.c1 .lip-visual{height:24%;min-height:80px;width:26%}.c1 .pdp-preview{width:min(96%,470px);padding:6px;gap:4px}.c1 .pdp-topline,.c1 .pdp-footer{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.c1 .pdp-preview{transition:none}}
+
+/* Rico Nasty case-study navigation: full-card link overlay */
+.wk-linked{position:relative;cursor:pointer;transition:background .25s ease}
+.wk-linked:hover{background:#17171c}
+.case-open{display:inline-flex;align-items:center;gap:18px;font-weight:900;font-stretch:115%;text-transform:uppercase;text-decoration:none;border:3px solid var(--ink);padding:12px 16px;margin-top:16px;position:static}
+.case-open::after{content:"";position:absolute;inset:0;z-index:2}
+.case-open:focus-visible{outline:none}
+.wk-linked:has(.case-open:focus-visible){outline:4px solid var(--blue);outline-offset:-6px}
+.case-open span{font-size:24px;line-height:1}
+@media (prefers-reduced-motion:reduce){.wk-linked{transition:none}}
+
+/* Rico Nasty — actual campaign photography inside the existing laptop/phone mockups */
+.wk-rico .rico-devices{min-width:0;overflow:hidden}
+.wk-rico .rico-laptop,.wk-rico .rico-phone{position:relative;overflow:hidden;padding:0}
+.wk-rico .rico-laptop img,.wk-rico .rico-phone img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;transition:transform .65s cubic-bezier(.2,.7,.2,1)}
+.wk-rico .rico-laptop img{object-position:center}
+.wk-rico .rico-phone img{object-position:center}
+.wk-rico:hover .rico-devices img{transform:scale(1.035)}
+@media(prefers-reduced-motion:reduce){.wk-rico .rico-devices img{transition:none}.wk-rico:hover .rico-devices img{transform:none}}
+
+/* Rico Nasty — one full-height campaign image, no device mockups */
+.wk-rico .rico-single{min-width:0;overflow:hidden}
+.wk-rico .rico-full{position:relative;overflow:hidden;padding:0;min-height:100%;height:100%;background:#000}
+.wk-rico .rico-full img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center;transition:transform .65s cubic-bezier(.2,.7,.2,1)}
+.wk-rico:hover .rico-full img{transform:scale(1.035)}
+@media(max-width:800px){.wk-rico .rico-full{min-height:420px}}
+@media(prefers-reduced-motion:reduce){.wk-rico .rico-full img{transition:none}.wk-rico:hover .rico-full img{transform:none}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/motion@14.9.0/dist/motion.js"></script>
+</head>
+<body>
+<div id="prog" aria-hidden="true"></div>
+<nav><a href="#top" style="margin:0">L.D.</a><div><a href="#il">PDP</a><a href="#work">Work</a><a href="#exp">Path</a><a href="#ct">Contact</a></div></nav>
+
+<section class="hero" id="top"><canvas id="gl" aria-hidden="true"></canvas>
+  <h1>Lidiia Demchenko</h1>
+  <div class="side"><p>E-commerce and PDP specialist for beauty.</p><svg id="hs" viewBox="0 0 200 420" aria-label="Animated lipstick"></svg></div>
+</section>
+<div class="marq" aria-hidden="true"><div>Product pages / Brand strategy / E-commerce / Launches / Content systems / Product pages / Brand strategy / E-commerce / Launches / Content systems / Product pages / Brand strategy / E-commerce / Launches / Content systems / Product pages / Brand strategy / E-commerce / Launches / Content systems /</div></div>
+
+<section class="case c1" id="il" data-case>
+  <div class="in">
+    <div class="copy">
+      <div><h2>Il Makiage</h2><p class="role">Collaboration launches in Magento. Scroll to twist.</p></div>
+      <div>
+        <ul class="facts">
+          <li data-at=".1"><b>Collab launches</b>Rico Nasty, Carli Bybel, Kathleen Lights, SpoiledChild × Jeremy Scott.</li>
+          <li data-at=".4"><b>Built in Magento</b>Products, shades, bundles, landing pages, localization and QA.</li>
+          <li data-at=".7"><b>Sold out</b>The Rico Nasty collection and its relaunch sold out, products and bundles included.</li>
+        </ul>
+        <div class="sw" role="group" aria-label="Choose shade">
+          <button style="--c:#961D28" data-n="AVERIE" data-shot="assets/dirty-talk-averie-pdp.webp" aria-label="Show AVERIE shade and PDP" aria-pressed="true"></button>
+          <button style="--c:#741A20" data-n="DIAZ" data-shot="assets/dirty-talk-diaz-pdp.webp" aria-label="Show DIAZ shade and PDP" aria-pressed="false"></button>
+          <button style="--c:#C04F4A" data-n="ARIADNA" data-shot="assets/dirty-talk-ariadna-pdp.webp" aria-label="Show ARIADNA shade and PDP" aria-pressed="false"></button>
+          <button style="--c:#382A34" data-n="WILLIAM" data-shot="assets/dirty-talk-william-pdp.webp" aria-label="Show WILLIAM shade and PDP" aria-pressed="false"></button>
+        </div>
+        <div class="nm" id="nm" aria-live="polite">AVERIE</div>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="big" aria-hidden="true">PDP</div>
+      <div class="lip-visual"><svg id="ls" viewBox="0 0 200 420" aria-label="Interactive lipstick"></svg></div>
+      <a class="pdp-preview" href="https://www.ilmakiage.com/uk/lips/212-12717-dirty-talk" target="_blank" rel="noopener noreferrer" aria-label="View the original Dirty Talk Lipstick product page">
+        <span class="pdp-topline">REAL PRODUCT DETAIL PAGE <span id="pdp-shade">AVERIE</span></span>
+        <img id="pdp-shot" src="assets/dirty-talk-averie-pdp.webp" alt="IL MAKIAGE Dirty Talk Lipstick PDP, shade AVERIE" width="1556" height="960" decoding="async">
+        <span class="pdp-footer">VIEW ORIGINAL PDP ↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="case c2" id="mq" data-case>
+  <div class="in">
+    <div class="copy">
+      <div><h2>Methodiq</h2><p class="role">Your role here, e.g. skincare PDP and launch pages. Scroll to dose.</p></div>
+      <ul class="facts">
+        <li data-at=".1"><b>Lift</b>The dropper leaves the bottle as you scroll.</li>
+        <li data-at=".4"><b>Dose</b>One drop forms. The product is the story.</li>
+        <li data-at=".7"><b>Result</b>Add your metric: +00% conversion, +00% time on page.</li>
+      </ul>
+    </div>
+    <div class="stage"><div class="big" aria-hidden="true">PDP</div><svg id="ms" viewBox="0 0 200 420" aria-label="Animated serum dropper"></svg></div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <h2>Work</h2>
+  <article class="wk wk-linked wk-rico"><div class="tx"><h3>Il Makiage ft. Rico Nasty</h3><span class="tag">Influencer collab / Magento / Klaviyo</span><p>The brand’s first influencer collaboration. I set up products, bundles and the collection landing page in Magento, implemented approved campaign content, coordinated localization and ran QA across international storefronts. I also tested the campaign CMS pages in Klaviyo before launch.</p><div class="res">Sold out, and every product and bundle sold out again on the relaunch.</div><a class="case-open" href="work/il-makiage/rico-nasty/" aria-label="Open the IL MAKIAGE x Rico Nasty case study">EXPLORE FULL CASE <span aria-hidden="true">↗</span></a></div><div class="shots rico-single">
+  <figure class="sh rico-full"><img src="assets/rico-phone.webp" alt="Rico Nasty campaign portrait with blue sunglasses and vibrant makeup" loading="lazy" width="266" height="658"></figure>
+</div></article>
+  <article class="wk"><div class="tx"><h3>Il Makiage × Carli Bybel</h3><span class="tag">Collection / PDPs / Klaviyo</span><p>A complete makeup wardrobe: three four-pan face palettes, two lipsticks with matching lip pencils and two brushes, plus the return of the fan-favorite shades Libra and Taurus. I built the whole collection in the Magento catalog: shades, attributes, imagery, pricing, categories, bundles, related products and visibility. I tested the campaign pages and emails in Klaviyo for launch and relaunch.</p></div><div class="shots"><figure class="sh">assets/carli-1.webp<img src="assets/carli-1.webp" alt="Carli Bybel collection page" loading="lazy" onerror="this.remove()"></figure><figure class="sh">assets/carli-2.webp<img src="assets/carli-2.webp" alt="Carli Bybel product page" loading="lazy" onerror="this.remove()"></figure></div></article>
+  <article class="wk"><div class="tx"><h3>Kathleen Lights × Il Makiage</h3><span class="tag">Day-to-Disco / Landing page</span><p>A limited-edition collection built to take customers from daytime makeup to disco-ready looks. I turned the campaign brief into shoppable landing and product pages, and managed catalog setup, bundle merchandising, localization and launch QA.</p></div><div class="shots"><figure class="sh">assets/kathleen-1.webp<img src="assets/kathleen-1.webp" alt="Day-to-Disco landing page" loading="lazy" onerror="this.remove()"></figure><figure class="sh">assets/kathleen-2.webp<img src="assets/kathleen-2.webp" alt="Day-to-Disco bundles" loading="lazy" onerror="this.remove()"></figure></div></article>
+  <article class="wk"><div class="tx"><h3>SpoiledChild × Jeremy Scott</h3><span class="tag">Limited edition / Launch support</span><p>I supported the digital launch, turning a bold fashion concept into a consistent e-commerce experience: collection landing page, product setup, digital merchandising, creative asset implementation, storefront QA and cross-team launch coordination.</p></div><div class="shots"><figure class="sh">assets/spoiledchild-1.webp<img src="assets/spoiledchild-1.webp" alt="SpoiledChild x Jeremy Scott landing page" loading="lazy" onerror="this.remove()"></figure><figure class="sh">assets/spoiledchild-2.webp<img src="assets/spoiledchild-2.webp" alt="SpoiledChild x Jeremy Scott products" loading="lazy" onerror="this.remove()"></figure></div></article>
+  <article class="wk"><div class="tx"><h3>Dirty Talk Lipstick</h3><span class="tag">Product launch</span><p>I launched the Dirty Talk Lipstick on the brand’s website: product setup in Magento, a merchandised collection page, shade and product information, localized content, visibility settings, and QA before and after launch across international storefronts.</p></div><div class="shots"><figure class="sh">assets/dirtytalk-1.webp<img src="assets/dirtytalk-1.webp" alt="Dirty Talk lipstick page" loading="lazy" onerror="this.remove()"></figure><figure class="sh">assets/dirtytalk-2.webp<img src="assets/dirtytalk-2.webp" alt="Dirty Talk social posts" loading="lazy" onerror="this.remove()"></figure></div></article>
+  <article class="wk"><div class="tx"><h3>PowerMatch Concealer Quiz</h3><span class="tag">Quiz / Result page</span><p>An end-to-end quiz that guides customers to their F*CK I’M FLAWLESS concealer shade and turns the result into a shopping journey. I wrote the questions and answer flows, built the result page with descriptions, CTAs, imagery and bundle recommendations, connected each shade result to the right product in Magento, and ran QA.</p></div><div class="shots"><figure class="sh">assets/quiz-1.webp<img src="assets/quiz-1.webp" alt="PowerMatch quiz" loading="lazy" onerror="this.remove()"></figure><figure class="sh">assets/quiz-2.webp<img src="assets/quiz-2.webp" alt="PowerMatch result page" loading="lazy" onerror="this.remove()"></figure></div></article>
+  <article class="wk"><div class="tx"><h3>Outdoor and shop banners</h3><span class="tag">Creative / Design</span><p>Large-format outdoor banners that build brand awareness in busy urban locations, plus shop page banners. I developed the concept, selected visuals, adapted copy, laid out the banners and prepared production-ready assets.</p></div><div class="shots"><figure class="sh">assets/outdoor-1.webp<img src="assets/outdoor-1.webp" alt="Outdoor advertising campaign" loading="lazy" onerror="this.remove()"></figure><figure class="sh">assets/banners-1.webp<img src="assets/banners-1.webp" alt="Shop page banners" loading="lazy" onerror="this.remove()"></figure></div></article>
+</section>
+
+<section class="exp" id="exp">
+  <h2>Path</h2>
+  <div class="r"><b>2023 – now</b><span>Current role, Company</span><span>What you own and one result.</span></div>
+  <div class="r"><b>2020 – 2023</b><span>Previous role, Company</span><span>Scope and impact.</span></div>
+  <div class="r"><b>2017 – 2020</b><span>Earlier role, Company</span><span>Scope and impact.</span></div>
+</section>
+
+<section class="ct" id="ct">
+  <h2>Say hello</h2>
+  <a href="mailto:hello@lidiiad.tech">hello@lidiiad.tech</a>
+</section>
+<footer>© 2026 Lidiia Demchenko</footer>
+
+<script>
+(function(){
+var shade='#961D28',root=document.documentElement,glc=null,mx=0,my=0;
+function glInit(){var c=document.getElementById('gl');if(!window.THREE||!c)return;try{
+var T=THREE,r=new T.WebGLRenderer({canvas:c,alpha:true,antialias:true});r.setPixelRatio(Math.min(devicePixelRatio,2));
+var sc=new T.Scene(),cam=new T.PerspectiveCamera(45,1,.1,10);cam.position.z=3.2;
+var u={t:{value:0},c:{value:new T.Color(shade)}};
+var m=new T.Mesh(new T.IcosahedronGeometry(1,48),new T.ShaderMaterial({uniforms:u,
+vertexShader:'uniform float t;varying vec3 n;varying float d;void main(){vec3 p=position;d=sin(p.x*2.2+t)*sin(p.y*2.4+t*1.3)*sin(p.z*2.1+t*.7);p+=normal*d*.22;n=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(p,1.);}',
+fragmentShader:'uniform vec3 c;varying vec3 n;varying float d;void main(){float f=pow(1.-abs(n.z),2.);float l=dot(normalize(n),normalize(vec3(.5,.7,.8)))*.5+.5;gl_FragColor=vec4(c*(.25+l*.9)+vec3(f*.5)+d*.12,1.);}'}));
+sc.add(m);
+function rs(){var w=c.parentNode.clientWidth,h=c.parentNode.clientHeight;r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();m.position.x=w>800?-cam.aspect*1.325*.26:0;m.scale.setScalar(w>800?1.15:.9)}
+rs();addEventListener('resize',rs);
+addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+var rd=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function f(ts){if(c.getBoundingClientRect().bottom>0){u.t.value=ts/1000;m.rotation.y=ts/7000+mx*.5;m.rotation.x=my*.35;r.render(sc,cam)}if(!rd)requestAnimationFrame(f)}
+requestAnimationFrame(f);
+glc=function(col){u.c.value.set(col)};
+}catch(e){}}
+var s3=document.createElement('script');s3.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';s3.onload=glInit;document.head.appendChild(s3);
+function lip(svg,id){
+  svg.innerHTML='<defs><linearGradient id="g'+id+'" x1="0" x2="1"><stop offset="0" stop-color="#0c0c0c"/><stop offset=".4" stop-color="#5a5a5a"/><stop offset="1" stop-color="#0c0c0c"/></linearGradient><linearGradient id="s'+id+'" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".3"/><stop offset=".4" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></linearGradient></defs>'+
+  '<g class="b"><path class="bc" d="M70 230V120Q70 96 100 80L132 96V230Z" fill="'+shade+'"/><path d="M70 230V120Q70 96 100 80L132 96V230Z" fill="url(#s'+id+')"/></g>'+
+  '<rect x="62" y="206" width="76" height="96" fill="url(#g'+id+')" stroke="#fff" stroke-width="3"/>'+
+  '<rect x="56" y="302" width="88" height="108" fill="url(#g'+id+')" stroke="#fff" stroke-width="3"/>'+
+  '<path d="M70 318V400M85 318V400M100 318V400M115 318V400M130 318V400" stroke="#fff" opacity=".25"/>';
+  return svg.querySelector('.b');
+}
+function ease(k){return 1-Math.pow(1-k,3)}
+var hb=lip(document.getElementById('hs'),'h'),lb=lip(document.getElementById('ls'),'l');
+var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+hb.style.transform='translateY('+(reduce?-88:0)+'px)';lb.style.transform='translateY(0)';
+if(!reduce){var s=null;(function a(t){s=s||t;var k=Math.min((t-s-400)/1600,1);if(k<0)return requestAnimationFrame(a);hb.style.transform='translateY('+(-88*ease(k))+'px)';if(k<1)requestAnimationFrame(a)})(0)}
+/* serum */
+var ms=document.getElementById('ms');
+ms.innerHTML='<rect x="44" y="200" width="112" height="206" fill="#fff" fill-opacity=".18" stroke="#fff" stroke-width="4"/><rect id="liq" x="48" y="300" width="104" height="102" fill="#f2c94c" opacity=".9"/><rect x="72" y="176" width="56" height="26" fill="#fff" stroke="#0c0c0c" stroke-width="3"/>'+
+'<g id="dr"><ellipse id="bulb" cx="100" cy="60" rx="26" ry="42" fill="#0c0c0c" style="transform-origin:100px 100px"/><rect x="68" y="100" width="64" height="34" fill="#fff" stroke="#0c0c0c" stroke-width="3"/><rect x="92" y="134" width="16" height="150" fill="#fff" fill-opacity=".75" stroke="#0c0c0c" stroke-width="3"/><path d="M96 284h8l-4 12z" fill="#f2c94c"/></g>'+
+'<circle id="drop" cx="100" cy="0" r="0" fill="#f2c94c" stroke="#0c0c0c" stroke-width="2"/>';
+var dr=ms.querySelector('#dr'),bulb=ms.querySelector('#bulb'),drop=ms.querySelector('#drop'),liq=ms.querySelector('#liq');
+function serum(p){
+  var up=ease(Math.min(p/.3,1)); dr.style.transform='translateY('+(-130*up)+'px)';
+  var sq=Math.max(0,Math.min((p-.3)/.2,1)); bulb.style.transform='scaleY('+(1-.25*Math.sin(sq*Math.PI))+')';
+  var tipY=296-130*up, g=Math.max(0,Math.min((p-.4)/.2,1)), f=Math.max(0,Math.min((p-.6)/.4,1));
+  var y=tipY+14+f*(330-tipY-14); drop.setAttribute('cy',y); drop.setAttribute('r',(g*8*(1-f*.3)).toFixed(1));
+  drop.style.opacity=f>.97?0:1;
+  var lv=f>.9?(f-.9)*10:0; liq.setAttribute('y',300-lv*6); liq.setAttribute('height',102+lv*6);
+}
+serum(0);
+var cases=[].slice.call(document.querySelectorAll('[data-case]'));
+function onScroll(){
+  cases.forEach(function(sec){
+    var r=sec.getBoundingClientRect(),p=Math.max(0,Math.min(1,-r.top/(sec.offsetHeight-innerHeight)));
+    sec.querySelectorAll('.facts li').forEach(function(li){li.classList.toggle('on',p>=parseFloat(li.dataset.at))});
+    if(sec.id==='il')lb.style.transform='translateY('+(-88*ease(Math.min(p/.35,1)))+'px)';
+    else serum(p);
+  });
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+var rv=document.querySelectorAll('.work>h2,.wk .tx,.shots,.exp h2,.ct h2');
+var M=window.Motion,spr={type:'spring',stiffness:90,damping:18};
+if(!reduce&&M&&M.inView&&M.animate){
+  rv.forEach(function(e){M.animate(e,{opacity:0,y:40},{duration:0});var d=0;M.inView(e,function(){if(d)return;d=1;M.animate(e,{opacity:1,y:0},spr)},{amount:.15})});
+  M.scroll(M.animate('#prog',{scaleX:[0,1]},{ease:'linear'}));
+  M.hover('.sw button',function(el){M.animate(el,{scale:1.15},{type:'spring',stiffness:500,damping:16});return function(){M.animate(el,{scale:1},{type:'spring',stiffness:400,damping:14})}});
+  M.press('.sw button',function(el){M.animate(el,{scale:.88},{type:'spring',stiffness:600,damping:20});return function(){M.animate(el,{scale:1},{type:'spring',stiffness:400,damping:12})}});
+  M.hover('.sh',function(el){M.animate(el,{y:-10,scale:1.03},{type:'spring',stiffness:260,damping:16});return function(){M.animate(el,{y:0,scale:1},{type:'spring',stiffness:260,damping:18})}});
+}else if('IntersectionObserver' in window&&!reduce){rv.forEach(function(e){e.classList.add('rv')});var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12});rv.forEach(function(e){io.observe(e)})}
+document.querySelectorAll('.sw button').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.sw button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+    shade=b.style.getPropertyValue('--c').trim();
+    root.style.setProperty('--a',shade);if(glc)glc(shade);
+    document.querySelectorAll('.bc').forEach(function(e){e.setAttribute('fill',shade)});
+    document.getElementById('nm').textContent=b.dataset.n;
+    var shot=document.getElementById('pdp-shot'),preview=document.querySelector('.pdp-preview');
+    var nextSrc=b.dataset.shot;
+    if(shot.getAttribute('src')!==nextSrc){
+      preview.classList.add('is-switching');
+      var next=new Image();
+      next.onload=function(){shot.src=nextSrc;shot.alt='IL MAKIAGE Dirty Talk Lipstick PDP, shade '+b.dataset.n;document.getElementById('pdp-shade').textContent=b.dataset.n;preview.classList.remove('is-switching');};
+      next.onerror=function(){preview.classList.remove('is-switching');};
+      next.src=nextSrc;
+    }
+  });
+});
+})();
+</script>
+</body>
+</html>
