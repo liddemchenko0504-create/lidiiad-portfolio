@@ -40,6 +40,19 @@ h1{font-size:clamp(64px,10vw,170px);margin:32px 0}h1 span{color:#e8496b}
 footer{border-top:3px solid var(--ink);padding:14px clamp(22px,4vw,68px);font-size:14px;font-weight:650;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 @media(max-width:800px){.hero{grid-template-columns:1fr}.hero-art{min-height:240px;border-left:0;border-top:3px solid var(--ink)}.hero-art .vertical{font-size:150px}.scope,.gallery{grid-template-columns:1fr}.scope article:nth-child(odd){border-right:0}.placeholder{min-height:250px}.section{padding:36px 20px}.hero-copy{padding:36px 20px}h1{font-size:clamp(54px,12vw,90px)}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Independent press coverage of the collaboration (not personal results) */
+.press-intro{max-width:740px;color:#c9c9c9;font-size:19px}
+.press-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:30px}
+.press-card{border:3px solid var(--ink);display:flex;flex-direction:column;justify-content:space-between;gap:40px;padding:26px;min-height:245px;text-decoration:none;transition:transform .25s ease,background .25s ease,color .25s ease,box-shadow .25s ease}
+.press-card .publisher{font-size:clamp(25px,3vw,45px);font-weight:900;line-height:.94;letter-spacing:-.05em;text-transform:uppercase}
+.press-card .headline{font-size:15px;font-weight:650;line-height:1.35;margin-top:18px}
+.press-card .press-link{font-weight:900;font-size:13px;letter-spacing:.03em;text-transform:uppercase;display:flex;align-items:center;justify-content:space-between}
+.press-card:hover,.press-card:focus-visible{background:var(--ink);color:var(--bg);transform:translateY(-5px);box-shadow:6px 6px 0 var(--accent)}
+.press-note{font-size:14px;color:#bbb;max-width:78ch;margin:22px 0 0}
+@media(max-width:850px){.press-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:580px){.press-grid{grid-template-columns:1fr}.press-card{min-height:200px}}
+@media(prefers-reduced-motion:reduce){.press-card{transition:none}.press-card:hover,.press-card:focus-visible{transform:none}}
 </style>
 </head>
 <body>
@@ -59,7 +72,33 @@ footer{border-top:3px solid var(--ink);padding:14px clamp(22px,4vw,68px);font-si
 <div class="scope"><article><span class="no">01 — Catalog</span><h3>Products & bundles</h3><p>Configured products, bundles, attributes and collection merchandising in Magento.</p></article><article><span class="no">02 — Campaign</span><h3>Landing page</h3><p>Set up the collection landing page and implemented approved creative and product content.</p></article><article><span class="no">03 — International</span><h3>Localization</h3><p>Coordinated content and storefront readiness across international markets.</p></article><article><span class="no">04 — Release</span><h3>Quality assurance</h3><p>Checked product and campaign pages before launch, including campaign CMS page testing in Klaviyo.</p></article></div>
 </section>
 <section class="section"><p class="kicker">03 / Project visuals</p><h2>THE DIGITAL<br>EXPERIENCE.</h2><p>Real campaign visuals and screenshots can be added here once selected for public display.</p><div class="gallery"><div class="placeholder"><small>Campaign landing page / Awaiting source image</small><div class="pmark">01</div><p>Reserved for an actual landing-page screenshot from this project</p></div><div class="placeholder"><small>Product detail page / Awaiting source image</small><div class="pmark">02</div><p>Reserved for an actual PDP or bundle screenshot</p></div></div></section>
-<section class="section outcome"><p class="kicker">04 / Launch outcome</p><h2>THE RESULT.</h2><p class="lead">The collection and its relaunch sold out, including products and bundles.</p><p>Reported project outcome; supporting material can be added to the published case study.</p></section>
+<section class="section" id="press" aria-labelledby="press-heading">
+  <p class="kicker">04 / Media coverage</p>
+  <h2 id="press-heading">AS SEEN<br>IN THE PRESS.</h2>
+  <p class="press-intro">Independent beauty, fashion and music publications covered the IL MAKIAGE × Rico Nasty collaboration. These articles document the campaign's media presence, not my individual professional results.</p>
+  <div class="press-grid">
+    <a class="press-card" href="https://www.nylon.com/beauty/a-rico-nasty-x-il-makiage-makeup-collaboration-is-here" target="_blank" rel="noopener noreferrer" aria-label="Read NYLON coverage (opens in a new tab)">
+      <div><div class="publisher">NYLON</div><div class="headline">A Rico Nasty x Il Makiage Makeup Collaboration Is Here</div></div><div class="press-link"><span>READ ARTICLE</span><span aria-hidden="true">↗</span></div>
+    </a>
+    <a class="press-card" href="https://www.teenvogue.com/story/rico-nasty-eyeshadow-palettes-il-makiage" target="_blank" rel="noopener noreferrer" aria-label="Read Teen Vogue coverage (opens in a new tab)">
+      <div><div class="publisher">TEEN VOGUE</div><div class="headline">Rico Nasty Is Launching Eyeshadow Palettes With Il Makiage</div></div><div class="press-link"><span>READ ARTICLE</span><span aria-hidden="true">↗</span></div>
+    </a>
+    <a class="press-card" href="https://hypebae.com/2020/9/rico-nasty-il-makiage-makeup-collaboration-collection-eyeshadow-eyeliner-brush-release" target="_blank" rel="noopener noreferrer" aria-label="Read Hypebae coverage (opens in a new tab)">
+      <div><div class="publisher">HYPEBAE</div><div class="headline">Rico Nasty and IL MAKIAGE Team Up on Neon Makeup Collection</div></div><div class="press-link"><span>READ ARTICLE</span><span aria-hidden="true">↗</span></div>
+    </a>
+    <a class="press-card" href="https://www.nme.com/big-reads/rico-nasty-cover-interview-2020-iphone-nightmare-vacation-2750494" target="_blank" rel="noopener noreferrer" aria-label="Read NME interview (opens in a new tab)">
+      <div><div class="publisher">NME</div><div class="headline">Cover interview mentioning the IL MAKIAGE collaboration</div></div><div class="press-link"><span>READ ARTICLE</span><span aria-hidden="true">↗</span></div>
+    </a>
+    <a class="press-card" href="https://www.licenseglobal.com/beauty-cosmetics/rico-nasty-ventures-makeup-il-makiage" target="_blank" rel="noopener noreferrer" aria-label="Read License Global coverage (opens in a new tab)">
+      <div><div class="publisher">LICENSE GLOBAL</div><div class="headline">Rico Nasty Ventures into Makeup with Il Makiage</div></div><div class="press-link"><span>READ ARTICLE</span><span aria-hidden="true">↗</span></div>
+    </a>
+    <a class="press-card" href="https://www.hercampus.com/school/howard/why-i-love-rico-nasty-x-il-makiages-makeup-palette/" target="_blank" rel="noopener noreferrer" aria-label="Read Her Campus review (opens in a new tab)">
+      <div><div class="publisher">HER CAMPUS</div><div class="headline">Why I Love Rico Nasty x Il Makiage's Makeup Palette</div></div><div class="press-link"><span>READ ARTICLE</span><span aria-hidden="true">↗</span></div>
+    </a>
+  </div>
+  <p class="press-note">Press coverage is presented as independent editorial context. My responsibilities and project outcomes are documented separately above and below.</p>
+</section>
+<section class="section outcome"><p class="kicker">05 / Launch outcome</p><h2>THE RESULT.</h2><p class="lead">The collection and its relaunch sold out, including products and bundles.</p><p>Reported project outcome; supporting material can be added to the published case study.</p></section>
 <a class="next" href="../../../#work"><span>← ALL PROJECTS</span><span aria-hidden="true">↗</span></a>
 </main><footer><span>© 2026 Lidiia Demchenko</span><a href="mailto:hello@lidiiad.tech">hello@lidiiad.tech</a></footer>
 </body></html>

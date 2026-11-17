@@ -109,6 +109,40 @@ footer{padding:14px clamp(14px,3vw,36px);border-top:3px solid var(--ink);font-we
 .wk-linked:has(.case-open:focus-visible){outline:4px solid var(--blue);outline-offset:-6px}
 .case-open span{font-size:24px;line-height:1}
 @media (prefers-reduced-motion:reduce){.wk-linked{transition:none}}
+/* Full-case CTA: blue/pink hover + subtle vertical hop, no JavaScript needed */
+.wk-rico .case-open{
+  position:static;
+  background:var(--ink);
+  color:var(--bg);
+  border-color:var(--ink);
+  border-radius:0;
+  box-shadow:5px 5px 0 var(--blue);
+  transition:background-color .22s ease,color .22s ease,
+             border-color .22s ease,box-shadow .22s ease;
+  will-change:transform;
+}
+.wk-rico .case-open:hover,
+.wk-rico .case-open:focus-visible{
+  background:var(--blue);
+  color:#fff;
+  border-color:var(--blue);
+  box-shadow:7px 7px 0 var(--a);
+  animation:rico-cta-hop .65s cubic-bezier(.32,.72,.32,1) both;
+}
+.wk-rico .case-open span{display:inline-block;transition:transform .25s ease}
+.wk-rico .case-open:hover span,
+.wk-rico .case-open:focus-visible span{transform:translate(3px,-3px)}
+@keyframes rico-cta-hop{
+  0%,100%{transform:translateY(0)}
+  28%{transform:translateY(-8px)}
+  52%{transform:translateY(0)}
+  73%{transform:translateY(-3px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .wk-rico .case-open{animation:none!important;transition:none!important;will-change:auto}
+  .wk-rico .case-open span{transition:none!important}
+}
+
 
 /* Rico Nasty — full-bleed two-photo collage, no device frames */
 .wk-rico .rico-collage {
