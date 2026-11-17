@@ -107,6 +107,12 @@ nav{border-bottom:1px solid #ffffff3c}
 footer{border-top:1px solid #ffffff3c}
 @media(max-width:800px){.brand-work__card:first-child{border-right:0;border-bottom:1px solid #ffffff3c}.brand-work__body{min-height:230px}}
 
+
+/* CONSISTENT GLOBAL NAVIGATION */
+nav{font-family:Archivo,Arial,sans-serif;font-size:13px;font-weight:800;letter-spacing:.015em}
+nav .navlinks{display:flex;align-items:center;justify-content:flex-end;gap:clamp(12px,2.5vw,28px);flex-wrap:wrap}
+nav .navlinks a{font:inherit;text-transform:uppercase;text-decoration:none}
+@media(max-width:650px){nav{font-size:12px}nav .navlinks{gap:12px}}
 </style></head>
 <body>
 <nav><a href="#top" aria-label="Lidiia Demchenko homepage" class="site-logo"><img src="assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="#work">WORK</a><a href="journal/">JOURNAL</a><a href="contact/">CONTACT</a></div></nav>
