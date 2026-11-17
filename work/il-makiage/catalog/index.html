@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en"><head>
+<meta name="robots" content="noindex,follow,noimageindex">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -146,4 +147,7 @@ modal.addEventListener('click',e=>{if(e.target===modal)modal.close()});
 modal.addEventListener('keydown',e=>{if(e.key==='ArrowRight'&&at<galleries[current].length-1){at++;show();e.preventDefault()}if(e.key==='ArrowLeft'&&at>0){at--;show();e.preventDefault()}});
 modal.addEventListener('close',()=>{if(opener)opener.focus()});
 })();
-</script></body></html>
+</script>
+<style>img{-webkit-user-drag:none;user-select:none;-webkit-user-select:none}</style>
+<script>document.addEventListener("contextmenu",function(e){if(e.target.closest&&e.target.closest("img"))e.preventDefault()});document.addEventListener("dragstart",function(e){if(e.target.closest&&e.target.closest("img"))e.preventDefault()});</script>
+</body></html>
