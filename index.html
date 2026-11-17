@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lidiia Demchenko — Brand & Product Pages</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#efe9e7;--ink:#24101c;--mute:#6f5f66;--line:#d8cdca;--accent:#9b1c3a;--gold1:#e8cf9a;--gold2:#a8803f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d0e17;--ink:#f1e8e6;--mute:#b3a1a8;--line:#3d2631}}
+:root[data-theme="dark"]{--bg:#1d0e17;--ink:#f1e8e6;--mute:#b3a1a8;--line:#3d2631}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:300 17px/1.65 Jost,system-ui,sans-serif;transition:background .6s}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;line-height:1;margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:5;display:flex;justify-content:space-between;padding:22px clamp(20px,5vw,64px);mix-blend-mode:difference;color:#fff;font-size:14px;letter-spacing:.06em}
+nav a{text-decoration:none;margin-left:28px}
+section{padding:clamp(72px,12vw,160px) clamp(20px,5vw,64px)}
+.wrap{max-width:1180px;margin:0 auto}
+/* hero */
+.hero{min-height:100svh;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:24px;padding-top:120px}
+.hero h1{font-size:clamp(56px,10vw,150px);letter-spacing:-.02em}
+.hero h1 em{display:block;font-style:italic;color:var(--accent);transition:color .6s}
+.hero p{max-width:34ch;color:var(--mute);margin-top:32px}
+.stick{width:min(100%,300px);margin:0 auto;display:block}
+/* PDP */
+.pdp{height:320vh;padding:0;position:relative}
+.pdp-in{position:sticky;top:0;height:100svh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;padding:0 clamp(20px,5vw,64px);max-width:1180px;margin:0 auto}
+.pdp-copy h2{font-size:clamp(40px,6vw,84px);margin-bottom:20px}
+.facts{list-style:none;padding:0;margin:28px 0 0}
+.facts li{border-top:1px solid var(--line);padding:14px 0;opacity:.18;transform:translateX(-8px);transition:opacity .5s,transform .5s}
+.facts li.on{opacity:1;transform:none}
+.facts b{font-weight:500;display:block}
+.shades{display:flex;gap:12px;margin-top:28px}
+.shades button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);cursor:pointer;background:var(--c);padding:0;transition:transform .3s,box-shadow .3s}
+.shades button[aria-pressed=true]{box-shadow:0 0 0 3px var(--bg),0 0 0 4px var(--ink);transform:scale(1.1)}
+.sname{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;margin-top:14px;min-height:1.4em}
+.pdp-vis{display:grid;place-items:center;position:relative}
+.glow{position:absolute;width:70%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,var(--accent),transparent 68%);opacity:.22;filter:blur(30px);transition:background .6s}
+.pdp-vis svg{position:relative;width:min(100%,300px);max-height:78svh}
+.hint{position:absolute;bottom:4svh;left:0;right:0;text-align:center;font-size:13px;color:var(--mute)}
+/* work */
+.work h2,.exp h2,.contact h2{font-size:clamp(40px,6vw,84px);margin-bottom:48px}
+.row{display:grid;grid-template-columns:1.1fr 1.5fr 1fr;gap:24px;padding:28px 0;border-top:1px solid var(--line);align-items:baseline;transition:padding .4s}
+.row:hover{padding-left:16px}
+.row h3{font-size:34px}
+.row span{color:var(--mute);font-size:15px}
+.exp ol{list-style:none;margin:0;padding:0;border-left:1px solid var(--line)}
+.exp li{padding:0 0 40px 32px;position:relative;max-width:64ch}
+.exp li::before{content:"";position:absolute;left:-5px;top:9px;width:9px;height:9px;border-radius:50%;background:var(--accent)}
+.exp time{color:var(--mute);font-size:14px}
+.exp h3{font-size:30px;margin:4px 0 8px}
+.contact{text-align:center}
+.contact a.big{font:italic 300 clamp(28px,5vw,64px)/1.1 'Cormorant Garamond',serif;text-decoration:none;border-bottom:1px solid var(--accent)}
+footer{padding:32px;text-align:center;color:var(--mute);font-size:13px}
+@media (max-width:800px){
+.hero,.pdp-in{grid-template-columns:1fr}.hero{padding-top:100px}.stick{width:180px;order:-1}
+.pdp-in{align-content:center;gap:8px}.pdp-vis svg{max-height:34svh}.facts li{padding:8px 0;font-size:15px}.facts{margin-top:12px}
+.row{grid-template-columns:1fr;gap:6px}nav a{margin-left:16px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav><a href="#top" style="margin:0">L. Demchenko</a><div><a href="#pdp">PDP craft</a><a href="#work">Brands</a><a href="#exp">Path</a><a href="#contact">Contact</a></div></nav>
+
+<section class="hero" id="top">
+  <div>
+    <h1>Lidiia<br>Demchenko<em>makes products desirable.</em></h1>
+    <p>Brand and e-commerce strategist for luxury beauty. I turn product pages into the moment a customer decides.</p>
+  </div>
+  <svg class="stick" data-stick viewBox="0 0 200 420" aria-label="Animated lipstick"></svg>
+</section>
+
+<section class="pdp" id="pdp" aria-label="Product page showcase">
+  <div class="pdp-in">
+    <div class="pdp-copy">
+      <h2>Product pages that move.</h2>
+      <p>A live sample of the PDP interactions I design and ship. Scroll to twist the lipstick, then choose a shade.</p>
+      <ul class="facts">
+        <li data-at=".12"><b>Product reveal</b>Motion that mirrors the real ritual of use.</li>
+        <li data-at=".4"><b>Shade-aware interface</b>The whole page takes on the color you choose.</li>
+        <li data-at=".7"><b>Conversion, measured</b>Add your PDP results here: conversion lift, add-to-cart rate.</li>
+      </ul>
+      <div class="shades" role="group" aria-label="Choose shade">
+        <button style="--c:#9b1c3a" data-n="Velvet Garnet" aria-label="Velvet Garnet" aria-pressed="true"></button>
+        <button style="--c:#c4577a" data-n="Rose Atelier" aria-label="Rose Atelier" aria-pressed="false"></button>
+        <button style="--c:#b5543a" data-n="Terra Silk" aria-label="Terra Silk" aria-pressed="false"></button>
+        <button style="--c:#5a1a3d" data-n="Plum Noir" aria-label="Plum Noir" aria-pressed="false"></button>
+      </div>
+      <div class="sname" id="sname" aria-live="polite">Velvet Garnet</div>
+    </div>
+    <div class="pdp-vis"><div class="glow"></div><svg id="pdpStick" viewBox="0 0 200 420" aria-label="Interactive lipstick"></svg></div>
+    <div class="hint">Keep scrolling</div>
+  </div>
+</section>
+
+<section class="work" id="work"><div class="wrap">
+  <h2>Brands I've worked with</h2>
+  <div class="row"><h3>Brand One</h3><span>Replace with your role, e.g. PDP redesign and content system for 400+ SKUs</span><span>Result: +00% conversion</span></div>
+  <div class="row"><h3>Brand Two</h3><span>Replace with your role, e.g. Launch strategy and campaign landing pages</span><span>Result: add metric</span></div>
+  <div class="row"><h3>Brand Three</h3><span>Replace with your role, e.g. Brand guidelines and visual merchandising</span><span>Result: add metric</span></div>
+  <div class="row"><h3>Brand Four</h3><span>Replace with your role, e.g. Marketplace and retail content</span><span>Result: add metric</span></div>
+</div></section>
+
+<section class="exp" id="exp"><div class="wrap">
+  <h2>Experience</h2>
+  <ol>
+    <li><time>2023 – Present</time><h3>Current role, Company</h3>What you own, the team you lead, and one result you are proud of.</li>
+    <li><time>2020 – 2023</time><h3>Previous role, Company</h3>Short description of scope and impact.</li>
+    <li><time>2017 – 2020</time><h3>Earlier role, Company</h3>Short description of scope and impact.</li>
+  </ol>
+</div></section>
+
+<section class="contact" id="contact"><div class="wrap">
+  <h2>Let's build the next launch.</h2>
+  <a class="big" href="mailto:hello@example.com">hello@example.com</a>
+</div></section>
+<footer>© 2026 Lidiia Demchenko</footer>
+
+<script>
+(function(){
+var shade='#9b1c3a';
+function stick(svg,id){
+  svg.innerHTML=
+  '<defs><linearGradient id="g'+id+'" x1="0" x2="1"><stop offset="0" stop-color="#a8803f"/><stop offset=".35" stop-color="#f3e2b4"/><stop offset=".7" stop-color="#c9a15c"/><stop offset="1" stop-color="#8a6630"/></linearGradient>'+
+  '<linearGradient id="s'+id+'" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".25"/><stop offset=".4" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></linearGradient></defs>'+
+  '<g class="bul"><path class="bc" d="M70 230V120Q70 96 100 80L132 96V230Z" fill="'+shade+'"/><path d="M70 230V120Q70 96 100 80L132 96V230Z" fill="url(#s'+id+')"/></g>'+
+  '<rect x="62" y="206" width="76" height="96" rx="4" fill="url(#g'+id+')"/>'+
+  '<rect x="62" y="206" width="76" height="6" fill="#fff" opacity=".35"/>'+
+  '<rect x="56" y="302" width="88" height="108" rx="6" fill="url(#g'+id+')"/>'+
+  '<rect x="56" y="302" width="88" height="8" fill="#000" opacity=".25"/>'+
+  '<g stroke="#000" opacity=".12"><path d="M70 318V400M85 318V400M100 318V400M115 318V400M130 318V400"/></g>';
+  return {bul:svg.querySelector('.bul'),bc:svg.querySelector('.bc')};
+}
+var h=stick(document.querySelector('[data-stick]'),'h'),p=stick(document.getElementById('pdpStick'),'p');
+function twist(o,t){o.bul.style.transform='translateY('+(-t*88)+'px)'}
+var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+twist(h,reduce?1:0);twist(p,0);
+if(!reduce){var s=null;(function a(ts){s=s||ts;var k=Math.min((ts-s-500)/1800,1);if(k<0)return requestAnimationFrame(a);twist(h,1-Math.pow(1-k,3));if(k<1)requestAnimationFrame(a)})(0)}
+var sec=document.getElementById('pdp'),facts=[].slice.call(document.querySelectorAll('.facts li')),hint=document.querySelector('.hint');
+function scroll(){
+  var r=sec.getBoundingClientRect(),pr=Math.max(0,Math.min(1,-r.top/(sec.offsetHeight-innerHeight)));
+  var k=Math.min(pr/.35,1);twist(p,1-Math.pow(1-k,2));
+  facts.forEach(function(li){li.classList.toggle('on',pr>=parseFloat(li.dataset.at))});
+  hint.style.opacity=pr>.1?0:1;
+}
+addEventListener('scroll',scroll,{passive:true});scroll();
+function setShade(c,n){
+  shade=c;h.bc.setAttribute('fill',c);p.bc.setAttribute('fill',c);
+  document.documentElement.style.setProperty('--accent',c);
+  document.getElementById('sname').textContent=n;
+}
+document.querySelectorAll('.shades button').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.shades button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+    setShade(b.style.getPropertyValue('--c').trim(),b.dataset.n);
+    twist(p,0);requestAnimationFrame(function(){requestAnimationFrame(scroll)});
+  });
+});
+})();
+</script>
+</body>
+</html>
