@@ -170,6 +170,20 @@ body:has(#work:target) .navlinks a[href="#work"]{color:#b8c0ff}
 .about-section__detail p{margin:0;color:#c8c8cc;font-size:clamp(16px,1.45vw,21px);line-height:1.55}
 .about-section__detail .brand-work__cta{margin-top:16px}
 @media(max-width:720px){.about-section{padding:54px 20px 70px}.about-section__content{grid-template-columns:1fr;gap:28px}.about-section__heading{gap:14px}.about-section__eyebrow{font-size:10px}.about-section__lead{font-size:clamp(28px,8vw,42px)}}
+
+/* About Me — portrait-led editorial split, natural image proportions */
+.about-section .about-section__content{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(26px,5vw,82px);align-items:start}
+.about-section__portrait{margin:0;min-width:0;width:100%;overflow:hidden;background:transparent}
+.about-section__portrait img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;object-position:center}
+.about-section__copy{display:flex;flex-direction:column;gap:clamp(22px,3vw,38px);min-width:0}
+.about-section__copy .about-section__lead{max-width:650px}
+.about-section__copy .about-section__detail{max-width:660px}
+@media(max-width:720px){
+ .about-section .about-section__content{grid-template-columns:minmax(0,1fr);gap:28px}
+ .about-section__portrait{max-width:100%}
+ .about-section__portrait img{width:100%;height:auto;max-height:none;object-fit:contain}
+ .about-section__copy{gap:22px}
+}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://lidiiad.tech/#person","name":"Lidiia Demchenko","url":"https://lidiiad.tech/","jobTitle":"E-commerce and Digital Content Specialist","sameAs":["https://www.linkedin.com/in/lidiia-demchenko/","https://www.instagram.com/__lidiia__/"]},{"@type":"WebSite","@id":"https://lidiiad.tech/#website","url":"https://lidiiad.tech/","name":"Lidiia Demchenko — Portfolio","inLanguage":"en","creator":{"@id":"https://lidiiad.tech/#person"}},{"@type":"WebPage","@id":"https://lidiiad.tech/#webpage","url":"https://lidiiad.tech/","name":"Lidiia Demchenko — E-commerce & Brand Portfolio","description":"Selected e-commerce, merchandising and creative operations work across ODDITY Tech brands IL MAKIAGE and SpoiledChild.","inLanguage":"en","isPartOf":{"@id":"https://lidiiad.tech/#website"},"about":{"@id":"https://lidiiad.tech/#person"}}]}</script></head>
 <body>
 <nav><a href="#top" aria-label="Lidiia Demchenko homepage" class="site-logo"><img src="assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="#about">ABOUT ME</a><a href="#work">WORK</a><a href="journal/">JOURNAL</a><a href="contact/">CONTACT</a></div></nav>
@@ -183,11 +197,14 @@ body:has(#work:target) .navlinks a[href="#work"]{color:#b8c0ff}
 <section class="about-section" id="about" aria-labelledby="about-title">
   <div class="about-section__heading"><h2 id="about-title">ABOUT ME.</h2><span class="about-section__eyebrow">E-COMMERCE / CONTENT / SEO</span></div>
   <div class="about-section__content">
-    <p class="about-section__lead">I work at the intersection of beauty, digital commerce and search.</p>
-    <div class="about-section__detail">
+    <figure class="about-section__portrait"><img src="assets/me_main_about.png.jpeg" alt="Portrait of Lidiia Demchenko" loading="lazy" decoding="async"></figure>
+    <div class="about-section__copy">
+      <p class="about-section__lead">I work at the intersection of beauty, digital commerce and search.</p>
+      <div class="about-section__detail">
       <p>I'm Lidiia Demchenko, an e-commerce and content specialist with over six years of experience at ODDITY Tech, working across IL MAKIAGE and SpoiledChild.</p>
       <p>My work spans product and category experiences, global storefront launches, content operations, merchandising, SEO and cross-functional collaboration. I combine an eye for visual storytelling with a structured, data-informed approach to how people discover and shop for products.</p>
       <a class="brand-work__cta" href="contact/">GET IN TOUCH</a>
+      </div>
     </div>
   </div>
 </section>
