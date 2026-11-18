@@ -119,6 +119,11 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
 .quiz-more__link:hover,.quiz-more__link:focus-visible{background:transparent;color:#f1f1ec}
 .quiz-back{border-bottom:0}
 @media(max-width:700px){.quiz-more__grid{grid-template-columns:1fr;gap:40px}.quiz-more__details{margin-top:16px}.quiz-more__image{aspect-ratio:16/10}}
+
+/* Uploaded quiz images: make preview visible at natural aspect ratio on all screens */
+.quiz-more__image{display:block;aspect-ratio:auto;min-height:0;border:0;background:transparent;overflow:hidden}
+.quiz-more__image img{position:static;inset:auto;display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain;background:transparent}
+@media(max-width:700px){.quiz-more__image{aspect-ratio:auto}.quiz-more__image img{width:100%;height:auto;object-fit:contain}}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://lidiiad.tech/"},{"@type":"ListItem","position":2,"name":"WORK","item":"https://lidiiad.tech/#work"},{"@type":"ListItem","position":3,"name":"IL MAKIAGE","item":"https://lidiiad.tech/work/il-makiage/"},{"@type":"ListItem","position":4,"name":"PowerMatch Quiz","item":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/#webpage","url":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/","name":"Foundation PowerMatch Quiz — Lidiia Demchenko","description":"A guided foundation shade-matching journey connecting customer answers to a suitable complexion product.","inLanguage":"en","isPartOf":{"@id":"https://lidiiad.tech/#website"},"mainEntity":{"@id":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/#case-study"}},{"@type":"CreativeWork","@id":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/#case-study","name":"Foundation PowerMatch Quiz — Lidiia Demchenko","description":"A guided foundation shade-matching journey connecting customer answers to a suitable complexion product.","url":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/","inLanguage":"en","creator":{"@id":"https://lidiiad.tech/#person"},"genre":"Portfolio case study"}]}</script></head>
 <body><nav><a href="../../../" aria-label="Return to Lidiia Demchenko home" class="site-logo"><img src="../../../assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="../../../#work" aria-current="page">WORK</a><a href="../../../journal/">JOURNAL</a><a href="../../../contact/">CONTACT</a></div></nav><div class="portfolio-breadcrumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="../../../">Home</a></li><li><a href="../../../#work">WORK</a></li><li><a href="../">IL MAKIAGE</a></li><li><span aria-current="page">PowerMatch Quiz</span></li></ol></div>
 <main><header class="hero powermatch-hero"><div class="powermatch-hero__copy"><h1>Foundation <span class="powermatch-word">PowerMatch</span> Quiz</h1></div><div class="hero-art powermatch-hero__art"><img src="../../../assets/IL%20MAKIAGE_bunddle.png" alt="IL MAKIAGE foundation shade range with makeup flowing over stacked bottles" loading="eager" decoding="async" fetchpriority="high"></div></header>
@@ -134,15 +139,13 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
 <div class="quiz-more__grid">
 <article class="quiz-more__item">
 <a class="quiz-more__image" href="https://www.ilmakiage.com/powermatch-primer-quiz/" target="_blank" rel="noopener noreferrer" aria-label="Explore the IL MAKIAGE Primer Quiz">
-<span class="quiz-more__placeholder" aria-hidden="true">PRIMER QUIZ</span>
-<img src="../../../assets/Primer-1.png" alt="IL MAKIAGE Primer PowerMatch Quiz" loading="lazy" decoding="async" onerror="this.hidden=true">
+<img src="../../../assets/Primer-1.png" alt="IL MAKIAGE Primer PowerMatch Quiz" loading="lazy" decoding="async">
 </a>
 <div class="quiz-more__details"><h3>PRIMER QUIZ.</h3><a class="quiz-more__link" href="https://www.ilmakiage.com/powermatch-primer-quiz/" target="_blank" rel="noopener noreferrer">EXPLORE QUIZ</a></div>
 </article>
 <article class="quiz-more__item">
 <a class="quiz-more__image" href="https://www.ilmakiage.com/powermatch-skin-quiz/" target="_blank" rel="noopener noreferrer" aria-label="Explore the IL MAKIAGE Skin Quiz">
-<span class="quiz-more__placeholder" aria-hidden="true">SKIN QUIZ</span>
-<img src="../../../assets/04.png" alt="IL MAKIAGE Skin PowerMatch Quiz" loading="lazy" decoding="async" onerror="this.hidden=true">
+<img src="../../../assets/04.png" alt="IL MAKIAGE Skin PowerMatch Quiz" loading="lazy" decoding="async">
 </a>
 <div class="quiz-more__details"><h3>SKIN QUIZ.</h3><a class="quiz-more__link" href="https://www.ilmakiage.com/powermatch-skin-quiz/" target="_blank" rel="noopener noreferrer">EXPLORE QUIZ</a></div>
 </article>
