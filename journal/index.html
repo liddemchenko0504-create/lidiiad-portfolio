@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b0b0c">
 <title>Journal — Lidiia Demchenko | Collection Press Archive</title>
-<meta name="description" content="An editorial archive of independent press coverage for the Carli Bybel, Rico Nasty, Kathleen Lights and Jeremy Scott collaborations.">
+<meta name="description" content="An editorial archive of collaboration press and ODDITY Tech's July 2023 NASDAQ IPO.">
 <link rel="canonical" href="https://lidiiad.tech/journal/">
 <meta property="og:type" content="website"><meta property="og:title" content="Journal — Lidiia Demchenko"><meta property="og:description" content="Independent media coverage, organized by collection.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -154,6 +154,20 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
 /* Monochrome editorial CTA system: ivory default, outlined inverse hover */
 .action,.collection-action{background:#f1f1ec!important;color:#0b0b0c!important;border:1px solid #f1f1ec!important;box-shadow:none!important;transform:none!important}
 .action:hover,.action:focus-visible,.collection-action:hover,.collection-action:focus-visible{background:#0b0b0c!important;color:#f1f1ec!important;border-color:#f1f1ec!important;box-shadow:none!important;transform:none!important}
+
+/* ODDITY NASDAQ debut — separate editorial press story */
+.ipo-press{padding:clamp(50px,6vw,96px) clamp(20px,5vw,82px);border-bottom:1px solid #ffffff3c}
+.ipo-press__eyebrow{display:block;color:#a9a9ac;font:700 12px/1.5 Archivo,Arial,sans-serif;letter-spacing:.13em;margin-bottom:20px}
+.ipo-press__header h2{font-size:clamp(48px,7vw,108px);line-height:.92;letter-spacing:-.055em;margin:0 0 25px}
+.ipo-press__header>p{max-width:820px;color:#c9c9cd;font-size:clamp(16px,1.55vw,21px);line-height:1.5;margin:0 0 clamp(38px,5vw,64px)}
+.ipo-press__articles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.5vw,35px)}
+.ipo-press__article{display:flex;flex-direction:column;gap:16px;min-width:0;text-decoration:none;padding:24px 0 30px;border-top:1px solid #ffffff70;border-bottom:1px solid #ffffff35;transition:border-color .2s}
+.ipo-press__article>span{color:#a9a9ac;font:700 12px/1.5 Archivo,Arial,sans-serif;letter-spacing:.13em}
+.ipo-press__article h3{font-size:clamp(22px,2.5vw,34px);line-height:1.12;letter-spacing:-.04em;text-transform:none;margin:0;font-weight:800}
+.ipo-press__article small{margin-top:auto;color:#a9a9ac;font-size:11px;letter-spacing:.07em}
+.ipo-press__article:hover,.ipo-press__article:focus-visible{border-top-color:#f1f1ec}
+.ipo-press__article:hover h3,.ipo-press__article:focus-visible h3{color:#b8c0ff}
+@media(max-width:800px){.ipo-press__articles{grid-template-columns:1fr}.ipo-press__header h2{font-size:clamp(42px,11vw,76px)}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://lidiiad.tech/"},{"@type":"ListItem","position":2,"name":"Journal","item":"https://lidiiad.tech/journal/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://lidiiad.tech/journal/#webpage","url":"https://lidiiad.tech/journal/","name":"Journal — Lidiia Demchenko | Collection Press Archive","description":"An editorial archive of independent press coverage for the Carli Bybel, Rico Nasty, Kathleen Lights and Jeremy Scott collaborations.","inLanguage":"en","isPartOf":{"@id":"https://lidiiad.tech/#website"},"about":{"@id":"https://lidiiad.tech/#person"}}]}</script></head>
@@ -161,7 +175,7 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
 <nav><a href="../" class="site-logo"><img src="../assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="../#work">WORK</a><a href="../journal/" aria-current="page">JOURNAL</a><a href="../contact/">CONTACT</a></div></nav>
 <div class="portfolio-breadcrumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="../">Home</a></li><li><span aria-current="page">Journal</span></li></ol></div>
 <main>
-<header class="hero"><h1>THE<br>JOURNAL.</h1><p>Four collaborations. One editorial archive. Explore independent media coverage collection by collection.</p></header>
+<header class="hero"><h1>THE<br>JOURNAL.</h1><p>Collaborations, international media coverage, and a milestone for the company behind IL MAKIAGE and SpoiledChild.</p></header>
 
 <section class="collection-index" id="collections" aria-labelledby="collections-heading">
 <div class="collection-heading"><div><h2 id="collections-heading">COVER STORIES.</h2></div><p>Discover how each collaboration appeared across international beauty, fashion and culture publications.</p></div>
@@ -178,6 +192,18 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
 <div class="collection-image"><img src="https://wwd.com/wp-content/uploads/2025/03/spoiledchild-jeremy-scott-capsule.jpg" alt="SPOILEDCHILD × JEREMY SCOTT collection campaign imagery" loading="lazy" onerror="this.style.display='none'"></div>
 <div class="collection-details"><span class="collection-brand">SPOILEDCHILD</span><h3>JEREMY SCOTT.</h3><p>FUTURISTIC WELLNESS / 2024</p><a class="collection-action" href="jeremy-scott/" aria-label="Explore press coverage for SPOILEDCHILD x JEREMY SCOTT">EXPLORE THE PRESS </a></div></article></div>
 <p class="journal-note">Press articles are independent coverage of the collaborations, not third-party assessments of my individual work. Editorial and campaign imagery belongs to the original rights holders.</p></section>
+<section class="ipo-press" aria-labelledby="ipo-press-title">
+  <div class="ipo-press__header">
+    <span class="ipo-press__eyebrow">ODDITY TECH / JULY 2023</span>
+    <h2 id="ipo-press-title">THE NASDAQ<br>DEBUT.</h2>
+    <p>On July 19, 2023, ODDITY Tech — the company behind IL MAKIAGE and SpoiledChild — made its public-market debut on NASDAQ under the ticker <strong>ODD</strong>. Independent reporting and official exchange coverage of this company milestone.</p>
+  </div>
+  <div class="ipo-press__articles">
+    <a class="ipo-press__article" href="https://www.voguebusiness.com/beauty/whats-next-for-oddity-after-a-dollar28-billion-ipo" target="_blank" rel="noopener noreferrer"><span>VOGUE BUSINESS</span><h3>What's next for Oddity after a $2.8 billion IPO?</h3><small>2023 / BEAUTY &amp; BUSINESS</small></a>
+    <a class="ipo-press__article" href="https://fortune.com/2023/07/20/oddity-makiage-spoiledchild-ipo-nasdaq/" target="_blank" rel="noopener noreferrer"><span>FORTUNE</span><h3>Oddity, the company behind IL MAKIAGE and SpoiledChild, makes its Nasdaq debut</h3><small>2023 / BUSINESS &amp; TECHNOLOGY</small></a>
+    <a class="ipo-press__article" href="https://www.nasdaq.com/events/oddity-rings-the-opening-bell" target="_blank" rel="noopener noreferrer"><span>NASDAQ</span><h3>ODDITY rings the opening bell</h3><small>2023 / OFFICIAL EXCHANGE COVERAGE</small></a>
+  </div>
+</section>
 </main>
 <footer class="copyright-footer">© 2026 Lidiia Demchenko</footer>
 
