@@ -156,9 +156,23 @@ body:has(#work:target) .navlinks a[href="#work"]{color:#b8c0ff}
  .brand-work__card .brand-work__body{padding:24px 20px 32px;gap:24px;min-height:0}
  .brand-work__card .brand-work__body h3{font-size:clamp(38px,8vw,65px)}
 }
+
+/* About me — minimal editorial introduction */
+#about{scroll-margin-top:90px}
+#work{scroll-margin-top:90px}
+.about-section{padding:clamp(52px,7vw,110px) clamp(20px,5vw,82px);border-top:1px solid #ffffff3c;background:#0b0b0c}
+.about-section__heading{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;padding-bottom:clamp(25px,4vw,48px);border-bottom:1px solid #ffffff3c}
+.about-section h2{font-size:clamp(48px,8vw,114px);margin:0;line-height:.91;letter-spacing:-.055em}
+.about-section__eyebrow{color:#a9a9ad;font-size:11px;letter-spacing:.14em;font-weight:700}
+.about-section__content{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,86px);padding-top:clamp(30px,5vw,68px)}
+.about-section__lead{font-size:clamp(28px,3.4vw,53px);font-weight:750;letter-spacing:-.045em;line-height:1.15;margin:0;max-width:660px}
+.about-section__detail{max-width:650px;display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.about-section__detail p{margin:0;color:#c8c8cc;font-size:clamp(16px,1.45vw,21px);line-height:1.55}
+.about-section__detail .brand-work__cta{margin-top:16px}
+@media(max-width:720px){.about-section{padding:54px 20px 70px}.about-section__content{grid-template-columns:1fr;gap:28px}.about-section__heading{gap:14px}.about-section__eyebrow{font-size:10px}.about-section__lead{font-size:clamp(28px,8vw,42px)}}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://lidiiad.tech/#person","name":"Lidiia Demchenko","url":"https://lidiiad.tech/","jobTitle":"E-commerce and Digital Content Specialist","sameAs":["https://www.linkedin.com/in/lidiia-demchenko/","https://www.instagram.com/__lidiia__/"]},{"@type":"WebSite","@id":"https://lidiiad.tech/#website","url":"https://lidiiad.tech/","name":"Lidiia Demchenko — Portfolio","inLanguage":"en","creator":{"@id":"https://lidiiad.tech/#person"}},{"@type":"WebPage","@id":"https://lidiiad.tech/#webpage","url":"https://lidiiad.tech/","name":"Lidiia Demchenko — E-commerce & Brand Portfolio","description":"Selected e-commerce, merchandising and creative operations work across ODDITY Tech brands IL MAKIAGE and SpoiledChild.","inLanguage":"en","isPartOf":{"@id":"https://lidiiad.tech/#website"},"about":{"@id":"https://lidiiad.tech/#person"}}]}</script></head>
 <body>
-<nav><a href="#top" aria-label="Lidiia Demchenko homepage" class="site-logo"><img src="assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="#work">WORK</a><a href="journal/">JOURNAL</a><a href="contact/">CONTACT</a></div></nav>
+<nav><a href="#top" aria-label="Lidiia Demchenko homepage" class="site-logo"><img src="assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="#work">WORK</a><a href="#about">ABOUT ME</a><a href="journal/">JOURNAL</a><a href="contact/">CONTACT</a></div></nav>
 <header class="intro intro-beauty" id="top">
   <img class="intro-beauty__photo" src="assets/beauty-hero-full.webp" alt="Black-and-white street editorial photograph with architecture and a seated woman" width="1536" height="864" decoding="async" fetchpriority="high" onerror="this.style.display='none'">
   <div class="intro-beauty__copy">
@@ -177,6 +191,17 @@ body:has(#work:target) .navlinks a[href="#work"]{color:#b8c0ff}
       <div class="brand-work__visual"><img src="https://media.licdn.com/dms/image/v2/C4D1BAQGVAIwmYwjEoQ/company-background_10000/company-background_10000/0/1643388477640/spoiledchild_cover?e=2147483647&amp;v=beta&amp;t=0hsnrcRimyTVaPmJ9BSppETovfvpCybet4Y5ZbMESYY" alt="SpoiledChild brand artwork featuring green capsules and logo" loading="lazy"></div>
       <div class="brand-work__body"><h3>SPOILEDCHILD.</h3><a class="brand-work__cta" href="work/spoiledchild/">EXPLORE BRAND</a></div>
     </article>
+  </div>
+</section>
+<section class="about-section" id="about" aria-labelledby="about-title">
+  <div class="about-section__heading"><h2 id="about-title">ABOUT ME.</h2><span class="about-section__eyebrow">E-COMMERCE / CONTENT / SEO</span></div>
+  <div class="about-section__content">
+    <p class="about-section__lead">I work at the intersection of beauty, digital commerce and search.</p>
+    <div class="about-section__detail">
+      <p>I'm Lidiia Demchenko, an e-commerce and content specialist with over six years of experience at ODDITY Tech, working across IL MAKIAGE and SpoiledChild.</p>
+      <p>My work spans product and category experiences, global storefront launches, content operations, merchandising, SEO and cross-functional collaboration. I combine an eye for visual storytelling with a structured, data-informed approach to how people discover and shop for products.</p>
+      <a class="brand-work__cta" href="contact/">GET IN TOUCH</a>
+    </div>
   </div>
 </section>
 <section class="contact-teaser"><h2>LET'S TALK.</h2><a class="brand-work__cta contact-teaser__cta" href="contact/">CONTACT ME </a></section>
