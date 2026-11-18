@@ -152,7 +152,9 @@ nav .navlinks a[aria-current="page"]{color:#b8c0ff!important}
 @media(max-width:700px){
  .global-launches__track .global-launches__flag-image{width:1050px;flex:0 0 1050px}
  .global-launches__flag-image>img{width:100%;max-width:none;height:auto}
- .global-launches__scroll:focus-within .global-launches__track,.global-launches__scroll:hover .global-launches__track{animation-play-state:paused}
+ /* Do not pause the moving flags on touch: mobile taps retain focus after opening links. */
+ @media(hover:hover) and (pointer:fine){.global-launches__scroll:hover .global-launches__track{animation-play-state:paused}}
+ .global-launches__scroll:has(.global-launches__hotspots a:focus-visible) .global-launches__track{animation-play-state:paused}
 }
 @media(min-width:701px){.global-launches__flag-image.global-launches__duplicate{display:none!important}}
 /* Keep the projects anchor visible beneath the sticky navigation */
