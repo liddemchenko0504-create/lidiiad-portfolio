@@ -168,6 +168,15 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
 .ipo-press__article:hover,.ipo-press__article:focus-visible{border-top-color:#f1f1ec}
 .ipo-press__article:hover h3,.ipo-press__article:focus-visible h3{color:#b8c0ff}
 @media(max-width:800px){.ipo-press__articles{grid-template-columns:1fr}.ipo-press__header h2{font-size:clamp(42px,11vw,76px)}}
+
+/* Journal editorial topic filters */
+.journal-filters{display:flex;align-items:center;gap:clamp(10px,2vw,30px);flex-wrap:wrap;padding:18px clamp(20px,5vw,82px);border-bottom:1px solid #ffffff3c;background:#0b0b0c}
+.journal-filters button{border:0;border-bottom:2px solid transparent;background:transparent;color:#a9a9ac;font:800 clamp(11px,1vw,13px)/1.5 Archivo,Arial,sans-serif;padding:9px 2px;letter-spacing:.025em;cursor:pointer}
+.journal-filters button[aria-pressed="true"]{color:#f1f1ec;border-bottom-color:#f1f1ec}
+.journal-filters button:hover,.journal-filters button:focus-visible{color:#b8c0ff}
+.journal-topic[hidden]{display:none!important}
+.acquisitions-press{border-bottom:0}
+@media(max-width:700px){.journal-filters{gap:10px 18px;padding:12px 20px}.journal-filters button{font-size:11px}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://lidiiad.tech/"},{"@type":"ListItem","position":2,"name":"Journal","item":"https://lidiiad.tech/journal/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://lidiiad.tech/journal/#webpage","url":"https://lidiiad.tech/journal/","name":"Journal — Lidiia Demchenko | Collection Press Archive","description":"An editorial archive of independent press coverage for the Carli Bybel, Rico Nasty, Kathleen Lights and Jeremy Scott collaborations.","inLanguage":"en","isPartOf":{"@id":"https://lidiiad.tech/#website"},"about":{"@id":"https://lidiiad.tech/#person"}}]}</script></head>
@@ -175,10 +184,16 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
 <nav><a href="../" class="site-logo"><img src="../assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="../#work">WORK</a><a href="../journal/" aria-current="page">JOURNAL</a><a href="../contact/">CONTACT</a></div></nav>
 <div class="portfolio-breadcrumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="../">Home</a></li><li><span aria-current="page">Journal</span></li></ol></div>
 <main>
-<header class="hero"><h1>THE<br>JOURNAL.</h1><p>Collaborations, international media coverage, and a milestone for the company behind IL MAKIAGE and SpoiledChild.</p></header>
+<header class="hero"><h1>THE<br>JOURNAL.</h1><p>An editorial archive of creative collaborations, company milestones and beauty-tech innovation.</p></header>
+<div class="journal-filters" role="group" aria-label="Filter journal topics">
+ <button type="button" data-topic="all" aria-pressed="true">ALL</button>
+ <button type="button" data-topic="collaborations" aria-pressed="false">COLLABORATIONS</button>
+ <button type="button" data-topic="milestones" aria-pressed="false">IPO &amp; MILESTONES</button>
+ <button type="button" data-topic="acquisitions" aria-pressed="false">TECH &amp; ACQUISITIONS</button>
+</div>
 
-<section class="collection-index" id="collections" aria-labelledby="collections-heading">
-<div class="collection-heading"><div><h2 id="collections-heading">COVER STORIES.</h2></div><p>Discover how each collaboration appeared across international beauty, fashion and culture publications.</p></div>
+<section class="collection-index journal-topic" id="collaborations" data-category="collaborations" aria-labelledby="collections-heading">
+<div class="collection-heading"><div><h2 id="collections-heading">COLLABORATIONS.</h2></div><p>Campaign stories and international coverage across beauty, fashion and culture.</p></div>
 <div class="collection-grid"><article class="collection-card collection-card--carli-bybel">
 <div class="collection-image"><img src="https://media.modernluxury.com/ntgpghfuax/styles/article-hero-reg/2024/11/21/Carli-Bybel-Talks-Il-Makiage-Celestial-Collection-Palette-and-How-to-Get-the-Best-Look_Header.jpg.webp?t=9c470dd9.webp" alt="IL MAKIAGE × CARLI BYBEL collection campaign imagery" loading="lazy" onerror="this.style.display='none'"></div>
 <div class="collection-details"><span class="collection-brand">IL MAKIAGE</span><h3>CARLI BYBEL.</h3><p>CELESTIAL COLLECTION / 2019—2021</p><a class="collection-action" href="carli-bybel/" aria-label="Explore press coverage for IL MAKIAGE x CARLI BYBEL">EXPLORE THE PRESS </a></div></article>
@@ -192,7 +207,7 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
 <div class="collection-image"><img src="https://wwd.com/wp-content/uploads/2025/03/spoiledchild-jeremy-scott-capsule.jpg" alt="SPOILEDCHILD × JEREMY SCOTT collection campaign imagery" loading="lazy" onerror="this.style.display='none'"></div>
 <div class="collection-details"><span class="collection-brand">SPOILEDCHILD</span><h3>JEREMY SCOTT.</h3><p>FUTURISTIC WELLNESS / 2024</p><a class="collection-action" href="jeremy-scott/" aria-label="Explore press coverage for SPOILEDCHILD x JEREMY SCOTT">EXPLORE THE PRESS </a></div></article></div>
 <p class="journal-note">Press articles are independent coverage of the collaborations, not third-party assessments of my individual work. Editorial and campaign imagery belongs to the original rights holders.</p></section>
-<section class="ipo-press" aria-labelledby="ipo-press-title">
+<section class="ipo-press journal-topic" id="company-milestones" data-category="milestones" aria-labelledby="ipo-press-title">
   <div class="ipo-press__header">
     <span class="ipo-press__eyebrow">ODDITY TECH / JULY 2023</span>
     <h2 id="ipo-press-title">THE NASDAQ<br>DEBUT.</h2>
@@ -204,9 +219,29 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
     <a class="ipo-press__article" href="https://www.nasdaq.com/events/oddity-rings-the-opening-bell" target="_blank" rel="noopener noreferrer"><span>NASDAQ</span><h3>ODDITY rings the opening bell</h3><small>2023 / OFFICIAL EXCHANGE COVERAGE</small></a>
   </div>
 </section>
+<section class="ipo-press acquisitions-press journal-topic" id="acquisitions" data-category="acquisitions" aria-labelledby="acquisitions-title">
+ <div class="ipo-press__header">
+  <span class="ipo-press__eyebrow">IL MAKIAGE / AUGUST 2021</span>
+  <h2 id="acquisitions-title">TECH &amp;<br>ACQUISITIONS.</h2>
+  <p>IL MAKIAGE acquired Voyage81, an Israeli startup specializing in computer vision and hyperspectral imaging. Coverage of a company milestone in beauty-tech and personalized digital shopping.</p>
+ </div>
+ <div class="ipo-press__articles">
+  <a class="ipo-press__article" href="https://en.globes.co.il/en/article-il-makiage-acquires-israeli-ai-imaging-co-voyage81-1001381559" target="_blank" rel="noopener noreferrer"><span>GLOBES</span><h3>IL MAKIAGE acquires Israeli AI imaging company Voyage81</h3><small>2021 / ACQUISITION</small></a>
+  <a class="ipo-press__article" href="https://www.gcimagazine.com/brands-products/news/news/21862861/il-makiage-acquires-voyage81" target="_blank" rel="noopener noreferrer"><span>GLOBAL COSMETIC INDUSTRY</span><h3>IL MAKIAGE acquires Voyage81</h3><small>2021 / BEAUTY TECHNOLOGY</small></a>
+ </div>
+</section>
 </main>
 <footer class="copyright-footer">© 2026 Lidiia Demchenko</footer>
 
 <style>img{-webkit-user-drag:none;user-select:none;-webkit-user-select:none}</style>
 <script>document.addEventListener("contextmenu",function(e){if(e.target.closest&&e.target.closest("img"))e.preventDefault()});document.addEventListener("dragstart",function(e){if(e.target.closest&&e.target.closest("img"))e.preventDefault()});</script>
-</body></html>
+
+<script>
+(()=>{const buttons=[...document.querySelectorAll('.journal-filters button')], sections=[...document.querySelectorAll('.journal-topic')];
+buttons.forEach(button=>button.addEventListener('click',()=>{
+ const topic=button.dataset.topic;
+ buttons.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+ sections.forEach(section=>{section.hidden=topic!=='all'&&section.dataset.category!==topic});
+}));
+})();
+</script></body></html>
