@@ -2,6 +2,7 @@
 # HTML pages remain crawlable so their noindex directives can be seen.
 User-agent: Googlebot-Image
 Allow: /assets/work_ilmakiage_main_header.png
+Allow: /assets/68b2155a9c377a3526d83ad4_spoiled%20child.png
 Disallow: /
 
 User-agent: *
