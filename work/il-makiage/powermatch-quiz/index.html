@@ -105,6 +105,20 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
 .customer-journey-visual{width:100%;max-width:940px;margin:clamp(22px,3vw,40px) auto 0;min-width:0}
 .customer-journey-visual img{display:block;width:100%;height:auto;max-height:480px;object-fit:contain;object-position:center}
 @media(max-width:760px){.customer-journey-visual{max-width:100%;margin-top:24px}.customer-journey-visual img{width:100%;height:auto;max-height:none;object-fit:contain}}
+
+/* Other PowerMatch experiences: two editorial preview cards */
+.quiz-more__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,3vw,42px);margin-top:clamp(26px,4vw,55px)}
+.quiz-more__item{min-width:0}
+.quiz-more__image{display:grid;position:relative;place-items:center;min-height:0;aspect-ratio:16/10;background:#171719;border:1px solid #ffffff24;overflow:hidden;text-decoration:none}
+.quiz-more__image img{grid-area:1/1;display:block;width:100%;height:100%;object-fit:contain;position:absolute;inset:0;background:#0b0b0c}
+.quiz-more__image img[hidden]{display:none}
+.quiz-more__placeholder{font:900 clamp(20px,3vw,38px)/1.1 Archivo,Arial,sans-serif;letter-spacing:-.035em;color:#aaa}
+.quiz-more__details{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-top:22px}
+.quiz-more__details h3{font-size:clamp(24px,3.1vw,42px);margin:0;line-height:1.05}
+.quiz-more__link{display:inline-flex;align-items:center;padding:13px 18px;border:1px solid #f1f1ec;background:#f1f1ec;color:#0b0b0c;font:900 12px/1.2 Archivo,Arial,sans-serif;text-decoration:none}
+.quiz-more__link:hover,.quiz-more__link:focus-visible{background:transparent;color:#f1f1ec}
+.quiz-back{border-bottom:0}
+@media(max-width:700px){.quiz-more__grid{grid-template-columns:1fr;gap:40px}.quiz-more__details{margin-top:16px}.quiz-more__image{aspect-ratio:16/10}}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://lidiiad.tech/"},{"@type":"ListItem","position":2,"name":"WORK","item":"https://lidiiad.tech/#work"},{"@type":"ListItem","position":3,"name":"IL MAKIAGE","item":"https://lidiiad.tech/work/il-makiage/"},{"@type":"ListItem","position":4,"name":"PowerMatch Quiz","item":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/#webpage","url":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/","name":"Foundation PowerMatch Quiz — Lidiia Demchenko","description":"A guided foundation shade-matching journey connecting customer answers to a suitable complexion product.","inLanguage":"en","isPartOf":{"@id":"https://lidiiad.tech/#website"},"mainEntity":{"@id":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/#case-study"}},{"@type":"CreativeWork","@id":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/#case-study","name":"Foundation PowerMatch Quiz — Lidiia Demchenko","description":"A guided foundation shade-matching journey connecting customer answers to a suitable complexion product.","url":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/","inLanguage":"en","creator":{"@id":"https://lidiiad.tech/#person"},"genre":"Portfolio case study"}]}</script></head>
 <body><nav><a href="../../../" aria-label="Return to Lidiia Demchenko home" class="site-logo"><img src="../../../assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="../../../#work" aria-current="page">WORK</a><a href="../../../journal/">JOURNAL</a><a href="../../../contact/">CONTACT</a></div></nav><div class="portfolio-breadcrumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="../../../">Home</a></li><li><a href="../../../#work">WORK</a></li><li><a href="../">IL MAKIAGE</a></li><li><span aria-current="page">PowerMatch Quiz</span></li></ol></div>
 <main><header class="hero powermatch-hero"><div class="powermatch-hero__copy"><h1>Foundation <span class="powermatch-word">PowerMatch</span> Quiz</h1></div><div class="hero-art powermatch-hero__art"><img src="../../../assets/IL%20MAKIAGE_bunddle.png" alt="IL MAKIAGE foundation shade range with makeup flowing over stacked bottles" loading="eager" decoding="async" fetchpriority="high"></div></header>
@@ -114,7 +128,27 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
   <figure><img src="../../../assets/1_quiz.png" alt="PowerMatch foundation quiz — first screen" loading="lazy" decoding="async"></figure>
   <figure><img src="../../../assets/2_quiz.png" alt="PowerMatch foundation quiz — second screen" loading="lazy" decoding="async"></figure>
   <figure><img src="../../../assets/3_quiz.png" alt="PowerMatch foundation quiz — third screen" loading="lazy" decoding="async"></figure>
-</div><p><a class="back" href="../#projects"> BACK TO PROJECTS</a></p></section>
+</div></section>
+<section class="content quiz-more" id="explore-other-quizzes">
+<h2>EXPLORE OTHER QUIZZES.</h2>
+<div class="quiz-more__grid">
+<article class="quiz-more__item">
+<a class="quiz-more__image" href="https://www.ilmakiage.com/powermatch-primer-quiz/" target="_blank" rel="noopener noreferrer" aria-label="Explore the IL MAKIAGE Primer Quiz">
+<span class="quiz-more__placeholder" aria-hidden="true">PRIMER QUIZ</span>
+<img src="../../../assets/Primer-1.png" alt="IL MAKIAGE Primer PowerMatch Quiz" loading="lazy" decoding="async" onerror="this.hidden=true">
+</a>
+<div class="quiz-more__details"><h3>PRIMER QUIZ.</h3><a class="quiz-more__link" href="https://www.ilmakiage.com/powermatch-primer-quiz/" target="_blank" rel="noopener noreferrer">EXPLORE QUIZ</a></div>
+</article>
+<article class="quiz-more__item">
+<a class="quiz-more__image" href="https://www.ilmakiage.com/powermatch-skin-quiz/" target="_blank" rel="noopener noreferrer" aria-label="Explore the IL MAKIAGE Skin Quiz">
+<span class="quiz-more__placeholder" aria-hidden="true">SKIN QUIZ</span>
+<img src="../../../assets/04.png" alt="IL MAKIAGE Skin PowerMatch Quiz" loading="lazy" decoding="async" onerror="this.hidden=true">
+</a>
+<div class="quiz-more__details"><h3>SKIN QUIZ.</h3><a class="quiz-more__link" href="https://www.ilmakiage.com/powermatch-skin-quiz/" target="_blank" rel="noopener noreferrer">EXPLORE QUIZ</a></div>
+</article>
+</div>
+</section>
+<section class="content quiz-back"><a class="back" href="../#projects">BACK TO PROJECTS</a></section>
 </main><footer class="copyright-footer">© 2026 Lidiia Demchenko</footer>
 <style>img{-webkit-user-drag:none;user-select:none;-webkit-user-select:none}</style>
 <script>document.addEventListener("contextmenu",function(e){if(e.target.closest&&e.target.closest("img"))e.preventDefault()});document.addEventListener("dragstart",function(e){if(e.target.closest&&e.target.closest("img"))e.preventDefault()});</script>
