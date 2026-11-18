@@ -157,6 +157,9 @@ body:has(#work:target) .navlinks a[href="#work"]{color:#b8c0ff}
  .brand-work__card .brand-work__body h3{font-size:clamp(38px,8vw,65px)}
 }
 
+/* Mobile: remove the stray horizontal divider above About Me. */
+@media(max-width:720px){.intro-beauty{border-bottom:0}.about-section{border-top:0}}
+
 /* About me — minimal editorial introduction */
 #about{scroll-margin-top:90px}
 #work{scroll-margin-top:90px}
