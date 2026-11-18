@@ -200,6 +200,14 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
 .ai-journal__article h3{font-size:clamp(21px,2.1vw,30px)}
 @media(max-width:900px){.ai-journal__articles{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.ai-journal__featured{grid-template-columns:1fr;gap:20px}.ai-journal__feature-copy{padding:0}.ai-journal__feature-copy h3{font-size:clamp(33px,9vw,58px)}.ai-journal__subhead{display:block}.ai-journal__subhead p{margin-top:12px}.ai-journal__articles{grid-template-columns:1fr}}
+
+/* AI editorial feature: portrait visual aligned to the right of the text. */
+.ai-journal__featured{grid-template-columns:minmax(0,1.15fr) minmax(250px,.72fr);gap:clamp(24px,5vw,85px);align-items:center}
+.ai-journal__feature-copy{grid-column:1;grid-row:1}
+.ai-journal__feature-art{grid-column:2;grid-row:1;justify-self:end;width:100%;max-width:490px;aspect-ratio:3/4;overflow:hidden;background:#0b0b0c}
+.ai-journal__feature-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:33% center}
+@media(max-width:700px){.ai-journal__featured{grid-template-columns:minmax(0,1fr) minmax(0,.65fr);gap:16px;align-items:start}.ai-journal__feature-copy{grid-column:1;grid-row:1}.ai-journal__feature-art{grid-column:2;grid-row:1;max-width:none;aspect-ratio:3/4}.ai-journal__feature-copy h3{font-size:clamp(24px,6.1vw,38px)}.ai-journal__feature-copy p{font-size:14px;line-height:1.4}.ai-journal__feature-copy .collection-action{font-size:11px;padding:10px 12px}}
+@media(max-width:390px){.ai-journal__featured{grid-template-columns:minmax(0,1fr) minmax(0,.55fr);gap:12px}.ai-journal__feature-copy h3{font-size:23px}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://lidiiad.tech/"},{"@type":"ListItem","position":2,"name":"Journal","item":"https://lidiiad.tech/journal/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://lidiiad.tech/journal/#webpage","url":"https://lidiiad.tech/journal/","name":"Journal — Lidiia Demchenko | Collection Press Archive","description":"An editorial archive of beauty collaborations, industry milestones, AI search, LLM visibility and wellness technology research.","inLanguage":"en","isPartOf":{"@id":"https://lidiiad.tech/#website"},"about":{"@id":"https://lidiiad.tech/#person"}}]}</script></head>
