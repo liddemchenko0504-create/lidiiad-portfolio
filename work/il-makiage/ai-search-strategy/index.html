@@ -21,7 +21,7 @@ nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-con
 .navlinks{display:flex;align-items:center;gap:clamp(12px,2.5vw,28px);flex-wrap:wrap}.navlinks a{text-decoration:none;text-transform:uppercase}.navlinks a[aria-current="page"]{color:#b8c0ff}
 .breadcrumbs{padding:12px clamp(20px,5vw,82px);font-size:11px;letter-spacing:.06em;color:#aaa;text-transform:uppercase;border-bottom:1px solid #ffffff24}.breadcrumbs a{text-decoration:none}.breadcrumbs a:hover{color:var(--fg)}.breadcrumbs ol{display:flex;align-items:center;gap:7px;flex-wrap:wrap;list-style:none;padding:0;margin:0}.breadcrumbs li{display:inline-flex;align-items:center;gap:7px}.breadcrumbs li+li:before{content:"/";color:#777}.breadcrumbs [aria-current="page"]{color:var(--fg);font-weight:700}
 main{max-width:1700px;margin:auto}.eyebrow{font-size:12px;letter-spacing:.14em;font-weight:800;text-transform:uppercase;color:var(--muted)}
-.hero{padding:clamp(70px,9vw,145px) clamp(20px,6vw,100px) clamp(70px,8vw,120px);border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 86% 14%,#252438 0%,transparent 52%)}
+.hero{padding:clamp(70px,9vw,145px) clamp(20px,6vw,100px) clamp(70px,8vw,120px);border-bottom:1px solid var(--line);background:#0b0b0c}
 .hero h1{font-size:clamp(52px,10.3vw,160px);line-height:.87;letter-spacing:-.07em;max-width:12ch;margin:30px 0 35px;font-weight:900;text-transform:uppercase;overflow-wrap:normal}
 .hero .dek{max-width:860px;font-size:clamp(20px,2.5vw,36px);line-height:1.33;letter-spacing:-.025em;margin:0}
 .hero .meta{margin-top:40px;color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
@@ -81,7 +81,7 @@ header.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.75fr);ali
 .claude-heading-icon{display:block;flex:0 0 auto;width:clamp(28px,3vw,46px);height:clamp(28px,3vw,46px);object-fit:contain}
 @media(max-width:750px){.customer-journey-heading{gap:12px}.claude-heading-icon{width:30px;height:30px}}
 /* Mobile-only clean editorial treatment: no hero gradient or link emoji arrows. */
-@media(max-width:750px){.hero{background:none}.prompt-link span[aria-hidden="true"]{display:none}}
+@media(max-width:750px){.hero{background:#0b0b0c}.prompt-link span[aria-hidden="true"]{display:none}}
 
 .traditional-search-example img{display:block;width:100%;max-width:100%;height:auto;object-fit:contain;object-position:left center;margin:12px 0 0}
 @media(max-width:750px){.traditional-search-example img{width:100%;height:auto}}
