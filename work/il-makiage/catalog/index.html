@@ -125,6 +125,11 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
  .catalog-hero__art img{width:100%;max-width:480px;max-height:none;height:auto;object-fit:contain}
  .catalog-banner-slider__slide img{aspect-ratio:auto;max-height:460px}
 }
+
+/* Preserve the original Dirty Talk product case alongside the added IM SKIN feature */
+.catalog-skin-feature--additional{margin-top:clamp(30px,4vw,54px);padding-top:clamp(26px,3vw,42px);border-top:1px solid #ffffff3c}
+.catalog-skin-feature--additional h3{font-size:clamp(32px,4.2vw,60px)}
+.catalog-skin-feature--additional .intro{max-width:700px}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://lidiiad.tech/"},{"@type":"ListItem","position":2,"name":"WORK","item":"https://lidiiad.tech/#work"},{"@type":"ListItem","position":3,"name":"IL MAKIAGE","item":"https://lidiiad.tech/work/il-makiage/"},{"@type":"ListItem","position":4,"name":"Product Pages & Catalog","item":"https://lidiiad.tech/work/il-makiage/catalog/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://lidiiad.tech/work/il-makiage/catalog/#webpage","url":"https://lidiiad.tech/work/il-makiage/catalog/","name":"IL MAKIAGE — Product Pages & Catalog | Lidiia Demchenko","description":"Selected e-commerce catalog, product detail page, categories and digital banner work for IL MAKIAGE, including Magento merchandising and international storefront content.","inLanguage":"en","isPartOf":{"@id":"https://lidiiad.tech/#website"},"mainEntity":{"@id":"https://lidiiad.tech/work/il-makiage/catalog/#case-study"}},{"@type":"CreativeWork","@id":"https://lidiiad.tech/work/il-makiage/catalog/#case-study","name":"IL MAKIAGE — Product Pages & Catalog | Lidiia Demchenko","description":"Selected e-commerce catalog, product detail page, categories and digital banner work for IL MAKIAGE, including Magento merchandising and international storefront content.","url":"https://lidiiad.tech/work/il-makiage/catalog/","inLanguage":"en","creator":{"@id":"https://lidiiad.tech/#person"},"genre":"Portfolio case study"}]}</script></head><body>
 <nav><a href="../../../" class="site-logo"><img src="../../../assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="../../../#work" aria-current="page">WORK</a><a href="../../../journal/">JOURNAL</a><a href="../../../contact/">CONTACT</a></div></nav><div class="portfolio-breadcrumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="../../../">Home</a></li><li><a href="../../../#work">WORK</a></li><li><a href="../">IL MAKIAGE</a></li><li><span aria-current="page">Product Pages & Catalog</span></li></ol></div>
 <main>
@@ -145,10 +150,45 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
 </div>
 </div></article>
 </div></section>
-<section class="section"><h2>FROM SHADES<br>TO STOREFRONT.</h2><div class="catalog-skin-feature"><p class="intro">Product experiences designed to connect shades, product details and the shopping journey.</p><a class="button" href="https://www.ilmakiage.com/im-skin" target="_blank" rel="noopener noreferrer">EXPLORE IM SKIN</a></div></section>
+<section class="section"><h2>FROM SHADES<br>TO STOREFRONT.</h2>
+<div class="feature">
+<div class="feature-media"><img src="../../../assets/dirty-talk-averie-pdp.webp" alt="IL MAKIAGE Dirty Talk Lipstick Averie product page" loading="lazy" decoding="async"></div>
+<div class="feature-copy"><h3>DIRTY TALK<br>LIPSTICK.</h3><p>One example of product setup, shade content, merchandising and launch QA.</p><a class="button" href="https://www.ilmakiage.com/uk/lips/212-12717-dirty-talk" target="_blank" rel="noopener noreferrer">EXPLORE PRODUCT CASE</a></div>
+</div>
+<div class="catalog-skin-feature catalog-skin-feature--additional"><h3>IM SKIN.</h3><p class="intro">Explore the IL MAKIAGE skin collection.</p><a class="button" href="https://www.ilmakiage.com/im-skin" target="_blank" rel="noopener noreferrer">EXPLORE IM SKIN</a></div>
+</section>
 
 <section class="section"><a class="button" href="../#projects"> BACK TO PROJECTS</a></section>
 </main>
+<footer class="copyright-footer">© 2026 Lidiia Demchenko</footer>
+<script>
+(function(){
+"use strict";
+function initCatalogBanners(){
+  var gallery=document.querySelector(".catalog-banner-slider");
+  if(!gallery)return;
+  var slides=Array.from(gallery.querySelectorAll(".catalog-banner-slider__slide"));
+  var prev=gallery.querySelector('[data-banner-direction="prev"]');
+  var next=gallery.querySelector('[data-banner-direction="next"]');
+  if(!prev||!next||!slides.length)return;
+  var index=0;
+  function render(){
+    slides.forEach(function(slide,i){slide.hidden=i!==index;});
+    prev.disabled=index===0;
+    next.disabled=index===slides.length-1;
+  }
+  prev.addEventListener("click",function(){if(index>0){index--;render();}});
+  next.addEventListener("click",function(){if(index<slides.length-1){index++;render();}});
+  gallery.addEventListener("keydown",function(event){
+    if(event.key==="ArrowLeft"&&index>0){index--;render();event.preventDefault();}
+    if(event.key==="ArrowRight"&&index<slides.length-1){index++;render();event.preventDefault();}
+  });
+  render();
+}
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",initCatalogBanners);}
+else{initCatalogBanners();}
+})();
+</script>
 <style>img{-webkit-user-drag:none;user-select:none;-webkit-user-select:none}</style>
 <script>document.addEventListener("contextmenu",function(e){if(e.target.closest&&e.target.closest("img"))e.preventDefault()});document.addEventListener("dragstart",function(e){if(e.target.closest&&e.target.closest("img"))e.preventDefault()});</script>
 </body></html>
