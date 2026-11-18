@@ -65,6 +65,9 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
 .seo-gallery__arrow:focus-visible{outline:2px solid #b8c0ff;outline-offset:2px}
 @media(max-width:700px){.seo-gallery__empty{min-height:190px}.seo-gallery__arrow{width:40px;height:40px}}
 
+/* Hide the extra divider above the first Technical SEO heading on mobile. */
+@media(max-width:700px){.seo-case-studies .areas > .area:first-child{border-top:0!important}}
+
 /* Editorial SEO case studies — no boxed cards, with understated section dividers */
 .seo-case-studies .areas{display:block;border:0;margin:0;padding:0}
 .seo-case-studies .area,
