@@ -122,6 +122,13 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
  #ilm-page-curtain.is-visible{opacity:1;pointer-events:auto}
 }
 @media(prefers-reduced-motion:reduce){#ilm-page-curtain{display:none}}
+</style><style id="rico-x-cursor-styles">
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+ html.rico-x-active,html.rico-x-active body,html.rico-x-active body *:not(input):not(textarea):not(select){cursor:none!important}
+ #rico-x-cursor{position:fixed;top:0;left:0;width:36px;height:36px;pointer-events:none;z-index:2147483646;opacity:0;transform:translate3d(-100px,-100px,0);will-change:transform}
+ #rico-x-cursor::before,#rico-x-cursor::after{content:"";position:absolute;left:-3px;top:13px;width:42px;height:10px;background:#f35a96;transform:rotate(45deg)}
+ #rico-x-cursor::after{transform:rotate(-45deg)}
+}
 </style></head>
 <body>
 <nav><a href="../../../" class="site-logo" aria-label="Home"><img src="../../../assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="../../../#work" aria-current="page">WORK</a><a href="../../../journal/">JOURNAL</a><a href="../../../contact/">CONTACT</a></div></nav><div class="portfolio-breadcrumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="../../../">Home</a></li><li><a href="../../../#work">WORK</a></li><li><a href="../">IL MAKIAGE</a></li><li><span aria-current="page">Rico Nasty</span></li></ol></div>
@@ -166,5 +173,20 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
   setTimeout(()=>{location.assign(next.href)},290);
  });
  addEventListener('pageshow',()=>{leaving=false;curtain.classList.remove('is-visible')});
+})();
+</script><script id="rico-x-cursor-script">
+(()=>{
+ const mq=matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)');
+ if(!mq.matches)return;
+ const cross=document.createElement('div');cross.id='rico-x-cursor';cross.setAttribute('aria-hidden','true');
+ document.body.appendChild(cross);
+ document.documentElement.classList.add('rico-x-active');
+ const move=e=>{if(e.pointerType!=='mouse')return;cross.style.opacity='1';cross.style.transform='translate3d('+(e.clientX-18)+'px,'+(e.clientY-18)+'px,0)'};
+ const hide=()=>{cross.style.opacity='0'};
+ addEventListener('pointermove',move,{passive:true});
+ document.addEventListener('mouseleave',hide);
+ addEventListener('visibilitychange',()=>{if(document.hidden)hide()});
+ addEventListener('blur',hide);
+ mq.addEventListener('change',()=>{cross.remove();document.documentElement.classList.remove('rico-x-active')},{once:true});
 })();
 </script></body></html>
