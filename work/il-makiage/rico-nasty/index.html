@@ -113,7 +113,16 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
 .rico-campaign-story .rico-products-visual{margin:0;width:100%;max-width:none;min-width:0;justify-self:end}
 .rico-campaign-story .rico-products-visual img{display:block;width:100%;height:auto;max-height:570px;object-fit:contain;object-position:center}
 @media(max-width:800px){.rico-campaign-story{display:flex;flex-direction:column;align-items:stretch;gap:28px}.rico-campaign-story .rico-products-visual{width:100%;max-width:520px;margin:0 auto}.rico-campaign-story .rico-products-visual img{width:100%;height:auto;max-height:none;object-fit:contain}}
-</style><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://lidiiad.tech/"},{"@type":"ListItem","position":2,"name":"WORK","item":"https://lidiiad.tech/#work"},{"@type":"ListItem","position":3,"name":"IL MAKIAGE","item":"https://lidiiad.tech/work/il-makiage/"},{"@type":"ListItem","position":4,"name":"Rico Nasty","item":"https://lidiiad.tech/work/il-makiage/rico-nasty/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://lidiiad.tech/work/il-makiage/rico-nasty/#webpage","url":"https://lidiiad.tech/work/il-makiage/rico-nasty/","name":"IL MAKIAGE × Rico Nasty — Selected Work | Lidiia Demchenko","description":"Lidiia Demchenko's e-commerce merchandising work for the IL MAKIAGE × Rico Nasty collaboration: catalog, landing pages, localization and storefront QA.","inLanguage":"en","isPartOf":{"@id":"https://lidiiad.tech/#website"},"mainEntity":{"@id":"https://lidiiad.tech/work/il-makiage/rico-nasty/#case-study"}},{"@type":"CreativeWork","@id":"https://lidiiad.tech/work/il-makiage/rico-nasty/#case-study","name":"IL MAKIAGE × Rico Nasty — Selected Work | Lidiia Demchenko","description":"Lidiia Demchenko's e-commerce merchandising work for the IL MAKIAGE × Rico Nasty collaboration: catalog, landing pages, localization and storefront QA.","url":"https://lidiiad.tech/work/il-makiage/rico-nasty/","inLanguage":"en","creator":{"@id":"https://lidiiad.tech/#person"},"genre":"Portfolio case study"}]}</script></head>
+</style><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://lidiiad.tech/"},{"@type":"ListItem","position":2,"name":"WORK","item":"https://lidiiad.tech/#work"},{"@type":"ListItem","position":3,"name":"IL MAKIAGE","item":"https://lidiiad.tech/work/il-makiage/"},{"@type":"ListItem","position":4,"name":"Rico Nasty","item":"https://lidiiad.tech/work/il-makiage/rico-nasty/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://lidiiad.tech/work/il-makiage/rico-nasty/#webpage","url":"https://lidiiad.tech/work/il-makiage/rico-nasty/","name":"IL MAKIAGE × Rico Nasty — Selected Work | Lidiia Demchenko","description":"Lidiia Demchenko's e-commerce merchandising work for the IL MAKIAGE × Rico Nasty collaboration: catalog, landing pages, localization and storefront QA.","inLanguage":"en","isPartOf":{"@id":"https://lidiiad.tech/#website"},"mainEntity":{"@id":"https://lidiiad.tech/work/il-makiage/rico-nasty/#case-study"}},{"@type":"CreativeWork","@id":"https://lidiiad.tech/work/il-makiage/rico-nasty/#case-study","name":"IL MAKIAGE × Rico Nasty — Selected Work | Lidiia Demchenko","description":"Lidiia Demchenko's e-commerce merchandising work for the IL MAKIAGE × Rico Nasty collaboration: catalog, landing pages, localization and storefront QA.","url":"https://lidiiad.tech/work/il-makiage/rico-nasty/","inLanguage":"en","creator":{"@id":"https://lidiiad.tech/#person"},"genre":"Portfolio case study"}]}</script><style id="ilm-page-transition-style">
+/* Lightweight intra-project page transition */
+@media (prefers-reduced-motion:no-preference){
+ body{animation:ilmPageEnter .42s ease-out both}
+ @keyframes ilmPageEnter{from{opacity:0}to{opacity:1}}
+ #ilm-page-curtain{position:fixed;inset:0;background:#0b0b0c;opacity:0;pointer-events:none;z-index:2147483647;transition:opacity .29s ease-in-out}
+ #ilm-page-curtain.is-visible{opacity:1;pointer-events:auto}
+}
+@media(prefers-reduced-motion:reduce){#ilm-page-curtain{display:none}}
+</style></head>
 <body>
 <nav><a href="../../../" class="site-logo" aria-label="Home"><img src="../../../assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="../../../#work" aria-current="page">WORK</a><a href="../../../journal/">JOURNAL</a><a href="../../../contact/">CONTACT</a></div></nav><div class="portfolio-breadcrumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="../../../">Home</a></li><li><a href="../../../#work">WORK</a></li><li><a href="../">IL MAKIAGE</a></li><li><span aria-current="page">Rico Nasty</span></li></ol></div>
 <main>
@@ -141,4 +150,21 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
 
 <style>img{-webkit-user-drag:none;user-select:none;-webkit-user-select:none}</style>
 <script>document.addEventListener("contextmenu",function(e){if(e.target.closest&&e.target.closest("img"))e.preventDefault()});document.addEventListener("dragstart",function(e){if(e.target.closest&&e.target.closest("img"))e.preventDefault()});</script>
-</body></html>
+<script id="ilm-page-transition-script">
+(()=>{
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ if(reduced.matches)return;
+ const curtain=document.createElement('div');curtain.id='ilm-page-curtain';curtain.setAttribute('aria-hidden','true');document.body.appendChild(curtain);
+ let leaving=false;
+ document.addEventListener('click',e=>{
+  if(leaving||e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+  const a=e.target.closest('a[href]');if(!a||a.hasAttribute('download')||(a.target&&a.target!=='_self'))return;
+  const next=new URL(a.href,location.href);
+  if(next.origin!==location.origin||!next.pathname.startsWith('/work/il-makiage/'))return;
+  if(next.pathname===location.pathname&&next.search===location.search)return;
+  e.preventDefault();leaving=true;curtain.classList.add('is-visible');
+  setTimeout(()=>{location.assign(next.href)},290);
+ });
+ addEventListener('pageshow',()=>{leaving=false;curtain.classList.remove('is-visible')});
+})();
+</script></body></html>
