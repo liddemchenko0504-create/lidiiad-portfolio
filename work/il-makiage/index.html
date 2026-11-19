@@ -219,45 +219,56 @@ nav .navlinks a[aria-current="page"]{color:#b8c0ff!important}
  document.body.append(canvas,bottle);
  const ctx=canvas.getContext('2d',{alpha:true});
  if(!ctx){canvas.remove();bottle.remove();return}
- const bottleImage=bottle.querySelector('img');
- bottleImage.addEventListener('load',()=>document.documentElement.classList.add('foundation-trail-active'),{once:true});
- bottleImage.addEventListener('error',()=>{canvas.remove();bottle.remove()},{once:true});
- if(bottleImage.complete&&bottleImage.naturalWidth)document.documentElement.classList.add('foundation-trail-active');
- let w=innerWidth,h=innerHeight,x=-100,y=-100,targetX=-100,targetY=-100,visible=false,previous=null,last=0,raf=0;
- const marks=[],colors=['#f0d4bc','#e4b38f','#cf9873','#b57857','#986244'];
- function resize(){w=innerWidth;h=innerHeight;const d=Math.min(devicePixelRatio||1,2);canvas.width=Math.ceil(w*d);canvas.height=Math.ceil(h*d);ctx.setTransform(d,0,0,d,0,0)}
+ const img=bottle.querySelector('img');
+ let active=false,raf=0,lastFrame=0,lastMark=0,lastPoint=null,marks=[];
+ const colors=['#f0d4bc','#e4b38f','#cf9873','#b57857','#986244'];
+ function resize(){canvas.width=innerWidth;canvas.height=innerHeight}
  resize();addEventListener('resize',resize,{passive:true});
- function move(e){if(!bottleImage.complete||!bottleImage.naturalWidth)return;targetX=e.clientX;targetY=e.clientY;visible=true;bottle.style.opacity='1';if(!previous){x=targetX;y=targetY;previous={x,y}}}
- function hide(){visible=false;bottle.style.opacity='0';previous=null}
- addEventListener('pointermove',e=>{if(e.pointerType==='mouse')move(e)},{passive:true});
- document.addEventListener('mouseleave',hide);
- addEventListener('blur',hide);
+ function stop(){if(raf)cancelAnimationFrame(raf);raf=0;marks=[];ctx.clearRect(0,0,canvas.width,canvas.height);lastPoint=null;lastFrame=0;bottle.style.opacity='0'}
+ function ready(){if(!fine.matches||active)return;active=true;document.documentElement.classList.add('foundation-trail-active')}
+ img.addEventListener('load',ready,{once:true});
+ img.addEventListener('error',()=>{stop();document.documentElement.classList.remove('foundation-trail-active');canvas.remove();bottle.remove()},{once:true});
+ if(img.complete&&img.naturalWidth)ready();
  function frame(t){
-  raf=requestAnimationFrame(frame);
-  ctx.clearRect(0,0,w,h);
-  if(visible){
-   x+=(targetX-x)*.52;y+=(targetY-y)*.52;
-   bottle.style.transform='translate3d('+(x-15)+'px,'+(y-70)+'px,0) rotate(-12deg)';
-   const dx=x-previous.x,dy=y-previous.y,dist=Math.hypot(dx,dy);
-   if(dist>10&&t-last>17){
-    const count=Math.min(4,Math.floor(dist/11));
-    for(let j=0;j<count;j++){const p=(j+1)/(count+1);marks.push({x:previous.x+dx*p,y:previous.y+dy*p,created:t,angle:Math.atan2(dy,dx),width:8+Math.random()*4,color:colors[Math.floor(Math.random()*colors.length)]})}
-    previous={x,y};last=t;
-   }
-  }
+  if(!active||document.hidden){stop();return}
+  if(t-lastFrame<32){raf=requestAnimationFrame(frame);return}
+  lastFrame=t;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
   for(let i=marks.length-1;i>=0;i--){
-   const m=marks[i],age=(t-m.created)/660;
+   const m=marks[i],age=(t-m.time)/500;
    if(age>=1){marks.splice(i,1);continue}
    ctx.save();ctx.translate(m.x,m.y);ctx.rotate(m.angle);
-   ctx.globalAlpha=Math.pow(1-age,1.7)*.65;
-   ctx.fillStyle=m.color;
-   ctx.beginPath();ctx.ellipse(0,0,m.width,2.8,0,0,Math.PI*2);ctx.fill();
-   ctx.restore();
+   ctx.globalAlpha=(1-age)*.48;ctx.fillStyle=m.color;
+   ctx.beginPath();ctx.ellipse(0,0,m.width,2.4,0,0,Math.PI*2);ctx.fill();ctx.restore();
   }
-  if(marks.length>70)marks.splice(0,marks.length-70);
+  if(marks.length){raf=requestAnimationFrame(frame)}
+  else{raf=0;lastFrame=0}
  }
- raf=requestAnimationFrame(frame);
- fine.addEventListener('change',()=>{cancelAnimationFrame(raf);canvas.remove();bottle.remove();document.documentElement.classList.remove('foundation-trail-active')},{once:true});
+ function move(e){
+  if(!active||e.pointerType!=='mouse')return;
+  const x=e.clientX,y=e.clientY;
+  bottle.style.opacity='1';
+  bottle.style.transform='translate3d('+(x-15)+'px,'+(y-70)+'px,0) rotate(-12deg)';
+  const now=performance.now();
+  if(lastPoint&&now-lastMark>=45){
+   const dx=x-lastPoint.x,dy=y-lastPoint.y,dist=Math.hypot(dx,dy);
+   if(dist>14){
+    const count=Math.min(2,Math.floor(dist/22));
+    for(let j=0;j<count;j++){
+     const p=(j+1)/(count+1);
+     marks.push({x:lastPoint.x+dx*p,y:lastPoint.y+dy*p,time:now,angle:Math.atan2(dy,dx),width:7+Math.random()*3,color:colors[Math.floor(Math.random()*colors.length)]});
+    }
+    if(marks.length>24)marks.splice(0,marks.length-24);
+    if(!raf)raf=requestAnimationFrame(frame);
+   }
+   lastMark=now;lastPoint={x,y};
+  }else if(!lastPoint){lastPoint={x,y};lastMark=now}
+ }
+ addEventListener('pointermove',move,{passive:true});
+ document.addEventListener('mouseleave',stop);
+ addEventListener('blur',stop);
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)stop()});
+ fine.addEventListener('change',()=>{stop();active=false;document.documentElement.classList.remove('foundation-trail-active');canvas.remove();bottle.remove()},{once:true});
 })();
 </script>
 </body></html>
