@@ -226,11 +226,11 @@ nav .navlinks a[aria-current="page"]{color:#b8c0ff!important}
 
 <style id="foundation-trail-styles">
 @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
- html.foundation-trail-active,html.foundation-trail-active body{cursor:none!important}
- /* Keep the browser's real pointer on links and buttons so their clickable area is obvious. */
- html.foundation-trail-active a,html.foundation-trail-active button,
- html.foundation-trail-active [role="button"],html.foundation-trail-active input,
- html.foundation-trail-active select,html.foundation-trail-active textarea{cursor:pointer!important}
+ /* Keep the bottle visible over every clickable banner, card and button. */
+ html.foundation-trail-active,html.foundation-trail-active body,
+ html.foundation-trail-active body *:not(input):not(textarea):not(select){cursor:none!important}
+ html.foundation-trail-active input,html.foundation-trail-active textarea,
+ html.foundation-trail-active select{cursor:auto!important}
  #foundation-trail-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:2147483645;pointer-events:none}
  #foundation-cursor{position:fixed;top:0;left:0;width:30px;height:80px;z-index:2147483646;pointer-events:none;opacity:0;transform:translate3d(-100px,-100px,0) rotate(-12deg);filter:drop-shadow(1px 3px 5px #0008);will-change:transform}
  #foundation-cursor img{display:block;width:30px;height:80px;object-fit:contain;user-select:none}
@@ -250,7 +250,7 @@ nav .navlinks a[aria-current="page"]{color:#b8c0ff!important}
  const img=bottle.querySelector('img');
  let active=false,raf=0,lastFrame=0,lastPoint=null,lastStamp=0;
  const strokes=[];
- let onControl=false;
+
  const shade='#cfa080',highlight='#f0d1b7';
  function resize(){canvas.width=innerWidth;canvas.height=innerHeight;strokes.length=0}
  resize();addEventListener('resize',resize,{passive:true});
@@ -290,10 +290,8 @@ nav .navlinks a[aria-current="page"]{color:#b8c0ff!important}
  function move(e){
   if(!active||e.pointerType!=='mouse')return;
   const x=e.clientX,y=e.clientY,now=performance.now();
-  onControl=!!e.target.closest('a,button,[role="button"],input,select,textarea,label,summary');
-  bottle.style.opacity=onControl?'0':'1';
+  bottle.style.opacity='1';
   bottle.style.transform='translate3d('+(x-15)+'px,'+(y-80)+'px,0) rotate(-12deg)';
-  if(onControl){lastPoint=null;return}
   if(lastPoint){
    const dx=x-lastPoint.x,dy=y-lastPoint.y,dist=Math.hypot(dx,dy);
    if(dist>=9&&dist<105&&now-lastStamp>=38){
