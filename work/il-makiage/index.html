@@ -220,11 +220,12 @@ nav .navlinks a[aria-current="page"]{color:#b8c0ff!important}
  const ctx=canvas.getContext('2d',{alpha:true});
  if(!ctx){canvas.remove();bottle.remove();return}
  const img=bottle.querySelector('img');
- let active=false,raf=0,lastFrame=0,lastMark=0,lastPoint=null,marks=[];
- const colors=['#f0d4bc','#e4b38f','#cf9873','#b57857','#986244'];
- function resize(){canvas.width=innerWidth;canvas.height=innerHeight}
+ let active=false,raf=0,lastFrame=0,lastPoint=null,lastStamp=0;
+ const strokes=[];
+ const shade='#cfa080',highlight='#f0d1b7';
+ function resize(){canvas.width=innerWidth;canvas.height=innerHeight;strokes.length=0}
  resize();addEventListener('resize',resize,{passive:true});
- function stop(){if(raf)cancelAnimationFrame(raf);raf=0;marks=[];ctx.clearRect(0,0,canvas.width,canvas.height);lastPoint=null;lastFrame=0;bottle.style.opacity='0'}
+ function stop(){if(raf)cancelAnimationFrame(raf);raf=0;strokes.length=0;ctx.clearRect(0,0,canvas.width,canvas.height);lastPoint=null;lastFrame=0;bottle.style.opacity='0'}
  function ready(){if(!fine.matches||active)return;active=true;document.documentElement.classList.add('foundation-trail-active')}
  img.addEventListener('load',ready,{once:true});
  img.addEventListener('error',()=>{stop();document.documentElement.classList.remove('foundation-trail-active');canvas.remove();bottle.remove()},{once:true});
@@ -232,37 +233,46 @@ nav .navlinks a[aria-current="page"]{color:#b8c0ff!important}
  function frame(t){
   if(!active||document.hidden){stop();return}
   if(t-lastFrame<32){raf=requestAnimationFrame(frame);return}
-  lastFrame=t;
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  for(let i=marks.length-1;i>=0;i--){
-   const m=marks[i],age=(t-m.time)/500;
-   if(age>=1){marks.splice(i,1);continue}
-   ctx.save();ctx.translate(m.x,m.y);ctx.rotate(m.angle);
-   ctx.globalAlpha=(1-age)*.48;ctx.fillStyle=m.color;
-   ctx.beginPath();ctx.ellipse(0,0,m.width,2.4,0,0,Math.PI*2);ctx.fill();ctx.restore();
+  lastFrame=t;ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let i=strokes.length-1;i>=0;i--){
+   const p=strokes[i],age=(t-p.time)/520;
+   if(age>=1){strokes.splice(i,1);continue}
+   const alpha=Math.pow(1-age,1.5);
+   const dx=p.x2-p.x1,dy=p.y2-p.y1,len=Math.hypot(dx,dy);
+   if(len<1)continue;
+   const nx=-dy/len,ny=dx/len;
+   ctx.globalAlpha=alpha*.68;
+   ctx.fillStyle=shade;
+   ctx.beginPath();
+   ctx.moveTo(p.x1+nx*p.width*.40,p.y1+ny*p.width*.40);
+   ctx.quadraticCurveTo((p.x1+p.x2)/2+nx*p.width*.62,(p.y1+p.y2)/2+ny*p.width*.62,p.x2+nx*.45,p.y2+ny*.45);
+   ctx.quadraticCurveTo(p.x2-nx*.35,p.y2-ny*.35,(p.x1+p.x2)/2-nx*p.width*.49,(p.y1+p.y2)/2-ny*p.width*.49);
+   ctx.quadraticCurveTo(p.x1-nx*p.width*.35,p.y1-ny*p.width*.35,p.x1+nx*p.width*.40,p.y1+ny*p.width*.40);
+   ctx.fill();
+   ctx.globalAlpha=alpha*.35;
+   ctx.strokeStyle=highlight;ctx.lineWidth=1.1;ctx.lineCap='round';
+   ctx.beginPath();ctx.moveTo(p.x1+nx*p.width*.15,p.y1+ny*p.width*.15);
+   ctx.quadraticCurveTo((p.x1+p.x2)/2+nx*p.width*.3,(p.y1+p.y2)/2+ny*p.width*.3,p.x2-nx*.3,p.y2-ny*.3);ctx.stroke();
   }
-  if(marks.length){raf=requestAnimationFrame(frame)}
+  ctx.globalAlpha=1;
+  if(strokes.length)raf=requestAnimationFrame(frame);
   else{raf=0;lastFrame=0}
  }
  function move(e){
   if(!active||e.pointerType!=='mouse')return;
-  const x=e.clientX,y=e.clientY;
+  const x=e.clientX,y=e.clientY,now=performance.now();
   bottle.style.opacity='1';
   bottle.style.transform='translate3d('+(x-15)+'px,'+(y-70)+'px,0) rotate(-12deg)';
-  const now=performance.now();
-  if(lastPoint&&now-lastMark>=45){
+  if(lastPoint){
    const dx=x-lastPoint.x,dy=y-lastPoint.y,dist=Math.hypot(dx,dy);
-   if(dist>14){
-    const count=Math.min(2,Math.floor(dist/22));
-    for(let j=0;j<count;j++){
-     const p=(j+1)/(count+1);
-     marks.push({x:lastPoint.x+dx*p,y:lastPoint.y+dy*p,time:now,angle:Math.atan2(dy,dx),width:7+Math.random()*3,color:colors[Math.floor(Math.random()*colors.length)]});
-    }
-    if(marks.length>24)marks.splice(0,marks.length-24);
+   if(dist>=9&&dist<105&&now-lastStamp>=38){
+    strokes.push({x1:lastPoint.x,y1:lastPoint.y,x2:x,y2:y,width:Math.min(9,4.8+dist*.035),time:now});
+    if(strokes.length>12)strokes.splice(0,strokes.length-12);
     if(!raf)raf=requestAnimationFrame(frame);
+    lastStamp=now;
    }
-   lastMark=now;lastPoint={x,y};
-  }else if(!lastPoint){lastPoint={x,y};lastMark=now}
+  }
+  lastPoint={x,y};
  }
  addEventListener('pointermove',move,{passive:true});
  document.addEventListener('mouseleave',stop);
