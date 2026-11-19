@@ -133,6 +133,44 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
  #ilm-page-curtain.is-visible{opacity:1;pointer-events:auto}
 }
 @media(prefers-reduced-motion:reduce){#ilm-page-curtain{display:none}}
+</style><style id="shade-game-styles">
+.shade-game-section{background:#0b0b0c}
+.shade-game-header{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:35px}
+.shade-game-header h2{margin:14px 0 0;font-size:clamp(56px,8vw,124px)}
+.shade-game-kicker,.shade-game-top,.shade-game-footer,.shade-game-target>span,.shade-game-instruction,.shade-game-results>span{font-weight:900;letter-spacing:.1em;font-size:12px}
+.shade-game-kicker{color:#eac5b0}
+.shade-game-header>p{font-size:clamp(14px,1.5vw,19px);font-weight:900;line-height:1.4;margin:0 0 5px;max-width:330px}
+.shade-game-header>p span{font-weight:400;color:#bdb7b1}
+.shade-game{background:#161414;border:1px solid #51453f;padding:clamp(20px,3vw,45px)}
+.shade-game-top{display:flex;justify-content:space-between;gap:20px;color:#d0c8c2;padding-bottom:22px;border-bottom:1px solid #574741}
+.shade-game-target{text-align:center;padding:clamp(24px,3.5vw,48px) 15px;background:#211b1a;margin-top:25px}
+.shade-game-target>span{color:#bcb2a9;display:block}
+.shade-game-target svg{display:block;width:min(100%,460px);height:auto;margin:8px auto 0}
+.shade-game-instruction{margin:30px 0 15px}
+.shade-game-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(9px,2vw,24px)}
+.shade-game-choice{border:0;background:none;color:#f1f1ec;cursor:pointer;min-width:0;padding:0;text-align:center;font:900 12px/1.3 Archivo,Arial,sans-serif;letter-spacing:.05em}
+.shade-game-choice span{display:flex;aspect-ratio:1;align-items:center;justify-content:center;border:3px solid transparent;outline:1px solid #60544f;outline-offset:-1px;margin-bottom:13px;transition:border-color .15s,transform .15s}
+.shade-game-choice:not(:disabled):hover span{transform:translateY(-4px)}
+.shade-game-choice:focus-visible{outline:3px solid #fff;outline-offset:6px}
+.shade-game-choice.correct span{border-color:#d8f36a}
+.shade-game-choice.wrong span{border-color:#fff}
+.shade-game-choice:disabled{cursor:default}
+.shade-game-choice .shade-game-check{font-size:clamp(24px,4vw,48px);color:#161313;text-shadow:0 0 12px #ffffff77}
+.shade-game-feedback{min-height:36px;margin-top:28px;font-weight:900;letter-spacing:.03em}
+.shade-game-feedback.success{color:#d8f36a}
+.shade-game-action,.shade-game-real-quiz{display:inline-flex;align-items:center;justify-content:center;border:2px solid #f1f1ec;background:#f1f1ec;color:#0b0b0c;font:900 13px/1.3 Archivo,Arial,sans-serif;letter-spacing:.05em;text-transform:uppercase;padding:15px 25px;cursor:pointer;text-decoration:none;transition:background .2s,color .2s}
+.shade-game-action:hover,.shade-game-real-quiz:hover{background:#0b0b0c;color:#f1f1ec}
+.shade-game-action[hidden],.shade-game-results[hidden],.shade-game-play[hidden]{display:none!important}
+.shade-game-results{text-align:center;padding:clamp(35px,6vw,90px) 15px}
+.shade-game-results>span{color:#c5b8ae}
+.shade-game-results strong{display:block;font-size:clamp(82px,14vw,180px);font-weight:900;line-height:1.05;margin:15px 0}
+.shade-game-results h3{font-size:clamp(34px,5vw,70px)}
+.shade-game-results p{color:#bdb7b1;margin:20px 0 35px}
+.shade-game-footer{border-top:1px solid #574741;color:#aaa09a;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-top:30px;padding-top:22px;font-size:10px}
+.shade-game-real-quiz{margin-top:24px;background:transparent;color:#f1f1ec}
+.shade-game-real-quiz:hover{background:#f1f1ec;color:#0b0b0c}
+@media(max-width:650px){.shade-game-header{display:block}.shade-game-header>p{margin-top:20px}.shade-game-options{gap:8px}.shade-game-choice{font-size:10px}.shade-game-choice span{border-width:2px;margin-bottom:8px}.shade-game-footer{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.shade-game-choice span,.shade-game-action,.shade-game-real-quiz{transition:none}}
 </style></head>
 <body><nav><a href="../../../" aria-label="Return to Lidiia Demchenko home" class="site-logo"><img src="../../../assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="../../../#work" aria-current="page">WORK</a><a href="../../../journal/">JOURNAL</a><a href="../../../contact/">CONTACT</a></div></nav><div class="portfolio-breadcrumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="../../../">Home</a></li><li><a href="../../../#work">WORK</a></li><li><a href="../">IL MAKIAGE</a></li><li><span aria-current="page">PowerMatch Quiz</span></li></ol></div>
 <main><header class="hero powermatch-hero"><div class="powermatch-hero__copy"><h1>Foundation <span class="powermatch-word">PowerMatch</span> Quiz</h1></div><div class="hero-art powermatch-hero__art"><img src="../../../assets/IL%20MAKIAGE_bunddle.png" alt="IL MAKIAGE foundation shade range with makeup flowing over stacked bottles" loading="eager" decoding="async" fetchpriority="high"></div></header>
@@ -143,6 +181,32 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
   <figure><img src="../../../assets/2_quiz.png" alt="PowerMatch foundation quiz — second screen" loading="lazy" decoding="async"></figure>
   <figure><img src="../../../assets/3_quiz.png" alt="PowerMatch foundation quiz — third screen" loading="lazy" decoding="async"></figure>
 </div></section>
+<section class="content shade-game-section" id="shade-game" aria-labelledby="shade-game-title">
+<div class="shade-game-header">
+ <div><span class="shade-game-kicker">POWERMATCH / COLOR CHALLENGE</span><h2 id="shade-game-title">THE SHADE<br>GAME.</h2></div>
+ <p>FOUR SHADES. ONE EXACT MATCH.<br><span>Can you spot the right foundation color?</span></p>
+</div>
+<div class="shade-game" role="group" aria-label="Find the matching foundation shade game">
+ <div class="shade-game-top"><span id="shade-round">ROUND 01 / 03</span><span id="shade-score">SCORE 00</span></div>
+ <div class="shade-game-play" id="shade-game-play">
+  <div class="shade-game-target">
+   <span>TARGET SHADE</span>
+   <svg viewBox="0 0 460 155" aria-hidden="true" preserveAspectRatio="xMidYMid meet"><path id="shade-game-swatch" d="M28 113 C112 58 157 117 242 80 S358 90 432 40" stroke="#D9A782" stroke-width="35" stroke-linecap="round" fill="none"/><path d="M32 104 C120 71 166 108 245 76 S370 88 422 41" stroke="#fff1df" stroke-width="3" opacity=".42" fill="none" stroke-linecap="round"/></svg>
+  </div>
+  <p class="shade-game-instruction">WHICH ONE IS THE EXACT MATCH?</p>
+  <div class="shade-game-options" id="shade-game-options" aria-label="Four selectable shade colors"></div>
+  <div class="shade-game-feedback" id="shade-game-feedback" aria-live="polite"></div>
+  <button class="shade-game-action" id="shade-game-next" type="button" hidden>NEXT SHADE</button>
+ </div>
+ <div class="shade-game-results" id="shade-game-results" hidden aria-live="polite">
+   <span>THE RESULTS ARE IN</span><strong id="shade-game-final-score">0 / 3</strong><h3 id="shade-game-final-title">SHADE MASTER.</h3>
+   <p>Every shade tells a different story.</p>
+   <button class="shade-game-action" type="button" id="shade-game-restart">PLAY AGAIN</button>
+ </div>
+ <div class="shade-game-footer"><span>AN INTERACTIVE BEAUTY COLOR EXPERIMENT</span><span>DEMONSTRATION SHADES / NOT A REAL SHADE MATCH</span></div>
+</div>
+<a class="shade-game-real-quiz" href="https://www.ilmakiage.com/powermatch-quiz/" target="_blank" rel="noopener noreferrer">TRY THE REAL POWERMATCH</a>
+</section>
 <section class="content quiz-more" id="explore-other-quizzes">
 <h2>EXPLORE OTHER QUIZZES.</h2>
 <div class="quiz-more__grid">
@@ -180,5 +244,53 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
   setTimeout(()=>{location.assign(next.href)},290);
  });
  addEventListener('pageshow',()=>{leaving=false;curtain.classList.remove('is-visible')});
+})();
+</script><script id="shade-game-script">
+(()=>{
+ const game=document.getElementById('shade-game');if(!game)return;
+ const rounds=[
+  {target:'#D9A782',options:['#C58D6D','#D9A782','#E0B394','#B98565'],correct:1},
+  {target:'#A36B50',options:['#A97459','#996248','#A36B50','#AC7559'],correct:2},
+  {target:'#E3B99B',options:['#E3B99B','#E6BDA0','#DFB494','#E9C2A5'],correct:0}
+ ];
+ let round=0,score=0,answered=false;
+ const $=id=>document.getElementById(id);
+ const roundEl=$('shade-round'),scoreEl=$('shade-score'),swatch=$('shade-game-swatch'),options=$('shade-game-options'),feedback=$('shade-game-feedback'),next=$('shade-game-next'),play=$('shade-game-play'),results=$('shade-game-results');
+ function render(){
+  answered=false;next.hidden=true;feedback.textContent='';feedback.className='shade-game-feedback';
+  roundEl.textContent='ROUND '+String(round+1).padStart(2,'0')+' / 03';
+  scoreEl.textContent='SCORE '+String(score).padStart(2,'0');
+  swatch.setAttribute('stroke',rounds[round].target);
+  options.replaceChildren();
+  rounds[round].options.forEach((color,i)=>{
+   const button=document.createElement('button');button.type='button';button.className='shade-game-choice';button.setAttribute('aria-label','Shade option '+(i+1));button.innerHTML='<span></span><b>0'+(i+1)+'</b>';
+   button.firstElementChild.style.backgroundColor=color;
+   button.addEventListener('click',()=>choose(i));
+   options.appendChild(button);
+  });
+ }
+ function choose(index){
+  if(answered)return;answered=true;
+  const correct=rounds[round].correct;
+  if(index===correct)score++;
+  [...options.children].forEach((button,i)=>{
+   button.disabled=true;
+   if(i===correct){button.classList.add('correct');button.firstElementChild.textContent='✓'}
+   else if(i===index)button.classList.add('wrong');
+  });
+  feedback.textContent=index===correct?'PERFECT MATCH!':'NOT QUITE — THE CORRECT SHADE IS HIGHLIGHTED.';
+  feedback.classList.toggle('success',index===correct);
+  scoreEl.textContent='SCORE '+String(score).padStart(2,'0');
+  next.hidden=false;next.textContent=round===rounds.length-1?'SEE YOUR RESULTS':'NEXT SHADE';
+ }
+ next.addEventListener('click',()=>{
+  if(!answered)return;
+  if(round<rounds.length-1){round++;render();return}
+  play.hidden=true;results.hidden=false;
+  $('shade-game-final-score').textContent=score+' / '+rounds.length;
+  $('shade-game-final-title').textContent=score===3?'SHADE MASTER.':score===2?'BEAUTY EXPERT.':'SHADE EXPLORER.';
+ });
+ $('shade-game-restart').addEventListener('click',()=>{round=0;score=0;play.hidden=false;results.hidden=true;render()});
+ render();
 })();
 </script></body></html>
