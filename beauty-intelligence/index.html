@@ -47,6 +47,9 @@ footer{padding:24px clamp(18px,5vw,82px);display:flex;justify-content:space-betw
 .story-media--typographic strong{font-size:clamp(38px,4.5vw,76px);line-height:.9;letter-spacing:-.07em;font-weight:900}
 .editorial-disclaimer{font-size:12px;color:var(--muted);margin:24px 0 0;max-width:700px}
 .story{cursor:default}
+.hero-art{width:100%;overflow:hidden;background:#181819;line-height:0}
+.hero-art img{display:block;width:100%;height:clamp(235px,32vw,520px);object-fit:cover;object-position:center}
+@media(max-width:600px){.hero-art img{height:auto;aspect-ratio:16/10;object-fit:cover}.hero{gap:30px}}
 </style>
 </head>
 <body>
@@ -55,6 +58,7 @@ footer{padding:24px clamp(18px,5vw,82px);display:flex;justify-content:space-betw
 <main>
 <header class="hero">
 <div><p class="kicker">Independent research / Digital beauty commerce</p><h1>BEAUTY.<br><em>SEARCH.</em><br>COMMERCE.</h1></div>
+<div class="hero-art"><img src="/assets/shades_sugar.png" alt="An editorial arrangement of foundation shades on dark marble" width="1280" height="720" fetchpriority="high" decoding="async"></div>
 <div class="hero-bottom"><p>How beauty brands are discovered, experienced and shopped. Exploring the intersection of search, AI, merchandising and digital brand strategy.</p><span class="hero-index">BEAUTY INTELLIGENCE<br>BY LIDIIA DEMCHENKO</span></div>
 </header>
 <div class="marquee"><span>01 / SEARCH VISIBILITY</span><span>02 / AI DISCOVERY</span><span>03 / DIGITAL MERCHANDISING</span><span>04 / BRAND STRATEGY</span></div>
