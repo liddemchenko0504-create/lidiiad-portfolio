@@ -124,7 +124,16 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
 .quiz-more__image{display:block;aspect-ratio:auto;min-height:0;border:0;background:transparent;overflow:hidden}
 .quiz-more__image img{position:static;inset:auto;display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain;background:transparent}
 @media(max-width:700px){.quiz-more__image{aspect-ratio:auto}.quiz-more__image img{width:100%;height:auto;object-fit:contain}}
-</style><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://lidiiad.tech/"},{"@type":"ListItem","position":2,"name":"WORK","item":"https://lidiiad.tech/#work"},{"@type":"ListItem","position":3,"name":"IL MAKIAGE","item":"https://lidiiad.tech/work/il-makiage/"},{"@type":"ListItem","position":4,"name":"PowerMatch Quiz","item":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/#webpage","url":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/","name":"Foundation PowerMatch Quiz — Lidiia Demchenko","description":"A guided foundation shade-matching journey connecting customer answers to a suitable complexion product.","inLanguage":"en","isPartOf":{"@id":"https://lidiiad.tech/#website"},"mainEntity":{"@id":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/#case-study"}},{"@type":"CreativeWork","@id":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/#case-study","name":"Foundation PowerMatch Quiz — Lidiia Demchenko","description":"A guided foundation shade-matching journey connecting customer answers to a suitable complexion product.","url":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/","inLanguage":"en","creator":{"@id":"https://lidiiad.tech/#person"},"genre":"Portfolio case study"}]}</script></head>
+</style><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://lidiiad.tech/"},{"@type":"ListItem","position":2,"name":"WORK","item":"https://lidiiad.tech/#work"},{"@type":"ListItem","position":3,"name":"IL MAKIAGE","item":"https://lidiiad.tech/work/il-makiage/"},{"@type":"ListItem","position":4,"name":"PowerMatch Quiz","item":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/#webpage","url":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/","name":"Foundation PowerMatch Quiz — Lidiia Demchenko","description":"A guided foundation shade-matching journey connecting customer answers to a suitable complexion product.","inLanguage":"en","isPartOf":{"@id":"https://lidiiad.tech/#website"},"mainEntity":{"@id":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/#case-study"}},{"@type":"CreativeWork","@id":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/#case-study","name":"Foundation PowerMatch Quiz — Lidiia Demchenko","description":"A guided foundation shade-matching journey connecting customer answers to a suitable complexion product.","url":"https://lidiiad.tech/work/il-makiage/powermatch-quiz/","inLanguage":"en","creator":{"@id":"https://lidiiad.tech/#person"},"genre":"Portfolio case study"}]}</script><style id="ilm-page-transition-style">
+/* Lightweight intra-project page transition */
+@media (prefers-reduced-motion:no-preference){
+ body{animation:ilmPageEnter .42s ease-out both}
+ @keyframes ilmPageEnter{from{opacity:0}to{opacity:1}}
+ #ilm-page-curtain{position:fixed;inset:0;background:#0b0b0c;opacity:0;pointer-events:none;z-index:2147483647;transition:opacity .29s ease-in-out}
+ #ilm-page-curtain.is-visible{opacity:1;pointer-events:auto}
+}
+@media(prefers-reduced-motion:reduce){#ilm-page-curtain{display:none}}
+</style></head>
 <body><nav><a href="../../../" aria-label="Return to Lidiia Demchenko home" class="site-logo"><img src="../../../assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="../../../#work" aria-current="page">WORK</a><a href="../../../journal/">JOURNAL</a><a href="../../../contact/">CONTACT</a></div></nav><div class="portfolio-breadcrumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="../../../">Home</a></li><li><a href="../../../#work">WORK</a></li><li><a href="../">IL MAKIAGE</a></li><li><span aria-current="page">PowerMatch Quiz</span></li></ol></div>
 <main><header class="hero powermatch-hero"><div class="powermatch-hero__copy"><h1>Foundation <span class="powermatch-word">PowerMatch</span> Quiz</h1></div><div class="hero-art powermatch-hero__art"><img src="../../../assets/IL%20MAKIAGE_bunddle.png" alt="IL MAKIAGE foundation shade range with makeup flowing over stacked bottles" loading="eager" decoding="async" fetchpriority="high"></div></header>
 <section class="content"><h2>PERSONALIZED PRODUCT DISCOVERY</h2><p class="intro">A guided foundation shade-matching journey connecting customer answers to a suitable complexion product.</p><figure class="customer-journey-visual"><img src="../../../assets/Customer_journey.png" alt="Illustrated PowerMatch customer journey from discovering foundation to completing the shade quiz and receiving a personalized result" loading="lazy" decoding="async"></figure></section>
@@ -155,4 +164,21 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
 </main><footer class="copyright-footer">© 2026 Lidiia Demchenko</footer>
 <style>img{-webkit-user-drag:none;user-select:none;-webkit-user-select:none}</style>
 <script>document.addEventListener("contextmenu",function(e){if(e.target.closest&&e.target.closest("img"))e.preventDefault()});document.addEventListener("dragstart",function(e){if(e.target.closest&&e.target.closest("img"))e.preventDefault()});</script>
-</body></html>
+<script id="ilm-page-transition-script">
+(()=>{
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ if(reduced.matches)return;
+ const curtain=document.createElement('div');curtain.id='ilm-page-curtain';curtain.setAttribute('aria-hidden','true');document.body.appendChild(curtain);
+ let leaving=false;
+ document.addEventListener('click',e=>{
+  if(leaving||e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+  const a=e.target.closest('a[href]');if(!a||a.hasAttribute('download')||(a.target&&a.target!=='_self'))return;
+  const next=new URL(a.href,location.href);
+  if(next.origin!==location.origin||!next.pathname.startsWith('/work/il-makiage/'))return;
+  if(next.pathname===location.pathname&&next.search===location.search)return;
+  e.preventDefault();leaving=true;curtain.classList.add('is-visible');
+  setTimeout(()=>{location.assign(next.href)},290);
+ });
+ addEventListener('pageshow',()=>{leaving=false;curtain.classList.remove('is-visible')});
+})();
+</script></body></html>
