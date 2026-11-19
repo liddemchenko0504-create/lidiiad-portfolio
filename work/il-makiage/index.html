@@ -200,15 +200,12 @@ nav .navlinks a[aria-current="page"]{color:#b8c0ff!important}
 
 <style id="foundation-trail-styles">
 @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
-  html.foundation-trail-active,html.foundation-trail-active body,
-  html.foundation-trail-active a,html.foundation-trail-active button,
-  html.foundation-trail-active [role="button"] {cursor:none!important}
-  #foundation-trail-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:2147483645;pointer-events:none}
-  #foundation-cursor{position:fixed;top:0;left:0;width:31px;height:58px;z-index:2147483646;pointer-events:none;opacity:0;transform:translate3d(-100px,-100px,0) rotate(-16deg);filter:drop-shadow(1px 3px 5px #0008);will-change:transform}
-  #foundation-cursor .bottle-cap{position:absolute;top:0;left:6px;width:19px;height:17px;border-radius:2px 2px 1px 1px;background:linear-gradient(90deg,#0e0e0f,#414044 42%,#141415 80%);border:1px solid #858184}
-  #foundation-cursor .bottle-neck{position:absolute;top:15px;left:10px;width:11px;height:6px;background:#ddd2c6}
-  #foundation-cursor .bottle-body{position:absolute;top:20px;left:3px;width:25px;height:35px;border:1px solid #f3ded1;border-radius:3px 3px 5px 5px;background:linear-gradient(90deg,#b98263 0%,#eac5a7 30%,#c59270 66%,#97664d 100%);box-shadow:inset -3px 0 4px #40271b45,inset 2px 0 4px #fff6}
-  #foundation-cursor .bottle-label{position:absolute;top:31px;left:5px;width:21px;background:#f1ece6;color:#171416;text-align:center;font:900 4px/1.3 Arial,sans-serif;letter-spacing:-.1px;padding:4px 0}
+ html.foundation-trail-active,html.foundation-trail-active body,
+ html.foundation-trail-active a,html.foundation-trail-active button,
+ html.foundation-trail-active [role="button"] {cursor:none!important}
+ #foundation-trail-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:2147483645;pointer-events:none}
+ #foundation-cursor{position:fixed;top:0;left:0;width:30px;height:80px;z-index:2147483646;pointer-events:none;opacity:0;transform:translate3d(-100px,-100px,0) rotate(-12deg);filter:drop-shadow(1px 3px 5px #0008);will-change:transform}
+ #foundation-cursor img{display:block;width:30px;height:80px;object-fit:contain;user-select:none}
 }
 </style>
 <script id="foundation-trail-script">
@@ -218,16 +215,19 @@ nav .navlinks a[aria-current="page"]{color:#b8c0ff!important}
  const canvas=document.createElement('canvas');
  canvas.id='foundation-trail-canvas';canvas.setAttribute('aria-hidden','true');
  const bottle=document.createElement('div');bottle.id='foundation-cursor';bottle.setAttribute('aria-hidden','true');
- bottle.innerHTML='<span class="bottle-cap"></span><span class="bottle-neck"></span><span class="bottle-body"></span><span class="bottle-label">FOUNDATION</span>';
+ bottle.innerHTML='<img src="/assets/foundation_bottle_cursor_96x256.png" alt="" width="30" height="80" draggable="false">';
  document.body.append(canvas,bottle);
  const ctx=canvas.getContext('2d',{alpha:true});
  if(!ctx){canvas.remove();bottle.remove();return}
- document.documentElement.classList.add('foundation-trail-active');
+ const bottleImage=bottle.querySelector('img');
+ bottleImage.addEventListener('load',()=>document.documentElement.classList.add('foundation-trail-active'),{once:true});
+ bottleImage.addEventListener('error',()=>{canvas.remove();bottle.remove()},{once:true});
+ if(bottleImage.complete&&bottleImage.naturalWidth)document.documentElement.classList.add('foundation-trail-active');
  let w=innerWidth,h=innerHeight,x=-100,y=-100,targetX=-100,targetY=-100,visible=false,previous=null,last=0,raf=0;
  const marks=[],colors=['#f0d4bc','#e4b38f','#cf9873','#b57857','#986244'];
  function resize(){w=innerWidth;h=innerHeight;const d=Math.min(devicePixelRatio||1,2);canvas.width=Math.ceil(w*d);canvas.height=Math.ceil(h*d);ctx.setTransform(d,0,0,d,0,0)}
  resize();addEventListener('resize',resize,{passive:true});
- function move(e){targetX=e.clientX;targetY=e.clientY;visible=true;bottle.style.opacity='1';if(!previous){x=targetX;y=targetY;previous={x,y}}}
+ function move(e){if(!bottleImage.complete||!bottleImage.naturalWidth)return;targetX=e.clientX;targetY=e.clientY;visible=true;bottle.style.opacity='1';if(!previous){x=targetX;y=targetY;previous={x,y}}}
  function hide(){visible=false;bottle.style.opacity='0';previous=null}
  addEventListener('pointermove',e=>{if(e.pointerType==='mouse')move(e)},{passive:true});
  document.addEventListener('mouseleave',hide);
@@ -237,7 +237,7 @@ nav .navlinks a[aria-current="page"]{color:#b8c0ff!important}
   ctx.clearRect(0,0,w,h);
   if(visible){
    x+=(targetX-x)*.52;y+=(targetY-y)*.52;
-   bottle.style.transform='translate3d('+(x-15)+'px,'+(y-51)+'px,0) rotate(-16deg)';
+   bottle.style.transform='translate3d('+(x-15)+'px,'+(y-70)+'px,0) rotate(-12deg)';
    const dx=x-previous.x,dy=y-previous.y,dist=Math.hypot(dx,dy);
    if(dist>10&&t-last>17){
     const count=Math.min(4,Math.floor(dist/11));
