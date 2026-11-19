@@ -137,6 +137,22 @@ footer.copyright-footer{display:flex;justify-content:center;align-items:center;t
  #ilm-page-curtain.is-visible{opacity:1;pointer-events:auto}
 }
 @media(prefers-reduced-motion:reduce){#ilm-page-curtain{display:none}}
+</style><style id="seo-scanner-cursor-style">
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+ html.seo-scanner-enabled,html.seo-scanner-enabled body,html.seo-scanner-enabled body *:not(input):not(textarea):not(select){cursor:none!important}
+ #seo-scanner-cursor{position:fixed;left:0;top:0;width:34px;height:34px;z-index:2147483646;pointer-events:none;opacity:0;transform:translate3d(-100px,-100px,0);transition:width .18s ease,height .18s ease,opacity .12s ease;will-change:transform}
+ #seo-scanner-cursor::before{content:"";position:absolute;inset:0;background:
+ linear-gradient(#d8f36a,#d8f36a) left top/11px 2px no-repeat,
+ linear-gradient(#d8f36a,#d8f36a) left top/2px 11px no-repeat,
+ linear-gradient(#d8f36a,#d8f36a) right top/11px 2px no-repeat,
+ linear-gradient(#d8f36a,#d8f36a) right top/2px 11px no-repeat,
+ linear-gradient(#d8f36a,#d8f36a) left bottom/11px 2px no-repeat,
+ linear-gradient(#d8f36a,#d8f36a) left bottom/2px 11px no-repeat,
+ linear-gradient(#d8f36a,#d8f36a) right bottom/11px 2px no-repeat,
+ linear-gradient(#d8f36a,#d8f36a) right bottom/2px 11px no-repeat}
+ #seo-scanner-cursor::after{content:"";position:absolute;top:50%;left:50%;width:3px;height:3px;border-radius:50%;background:#d8f36a;transform:translate(-50%,-50%)}
+ #seo-scanner-cursor.is-scanning{width:48px;height:48px}
+}
 </style></head><body>
 <nav><a class="site-logo" href="../../../" aria-label="Home"><img src="../../../assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="../../../#work" aria-current="page">WORK</a><a href="../../../journal/">JOURNAL</a><a href="../../../contact/">CONTACT</a></div></nav><div class="portfolio-breadcrumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="../../../">Home</a></li><li><a href="../../../#work">WORK</a></li><li><a href="../">IL MAKIAGE</a></li><li><span aria-current="page">SEO Optimization</span></li></ol></div>
 <main><header class="hero seo-hero"><div class="seo-hero__copy"><h1>SEO<br>OPTIMIZATION.</h1><p>Connecting technical search foundations, product content and site architecture to a more discoverable shopping experience.</p></div><div class="seo-hero__visual"><img src="../../../assets/google_seo.png" alt="Illustrative Google search results for IL MAKIAGE foundation, PowerMatch quiz and concealer" loading="eager" decoding="async" fetchpriority="high"></div></header>
@@ -186,5 +202,26 @@ document.querySelectorAll('.seo-carousel').forEach(carousel=>{
   setTimeout(()=>{location.assign(next.href)},290);
  });
  addEventListener('pageshow',()=>{leaving=false;curtain.classList.remove('is-visible')});
+})();
+</script><script id="seo-scanner-cursor-script">
+(()=>{
+ const mq=matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)');
+ if(!mq.matches)return;
+ const scanner=document.createElement('div');scanner.id='seo-scanner-cursor';scanner.setAttribute('aria-hidden','true');document.body.appendChild(scanner);
+ document.documentElement.classList.add('seo-scanner-enabled');
+ function move(e){
+  if(e.pointerType!=='mouse')return;
+  const scanning=!!e.target.closest('.area,.seo-carousel,.seo-showcase__figure,.seo-case-studies,a,button');
+  const size=scanning?48:34;
+  scanner.classList.toggle('is-scanning',scanning);
+  scanner.style.opacity='1';
+  scanner.style.transform='translate3d('+(e.clientX-size/2)+'px,'+(e.clientY-size/2)+'px,0)';
+ }
+ const hide=()=>{scanner.style.opacity='0'};
+ addEventListener('pointermove',move,{passive:true});
+ document.addEventListener('mouseleave',hide);
+ addEventListener('blur',hide);
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)hide()});
+ mq.addEventListener('change',()=>{scanner.remove();document.documentElement.classList.remove('seo-scanner-enabled')},{once:true});
 })();
 </script></body></html>
