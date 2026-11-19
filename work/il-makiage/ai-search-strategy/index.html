@@ -89,7 +89,16 @@ header.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.75fr);ali
 @media(max-width:750px){.conversational-discovery-example img{width:100%;height:auto}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Strategy for a Beauty Brand: AI Search & LLM Visibility","description":"An independent strategy for AI-powered beauty discovery, product content and ethical first-party data collection.","author":{"@type":"Person","name":"Lidiia Demchenko"},"image":"https://lidiiad.tech/assets/Android%20Holding%20Holographic%20Foundation%20Bottle.png","mainEntityOfPage":{"@id":"https://lidiiad.tech/work/il-makiage/ai-search-strategy/"},"about":[{"@type":"Thing","name":"Generative Engine Optimization"},{"@type":"Thing","name":"Beauty e-commerce"},{"@type":"Thing","name":"Foundation shade-matching quiz"}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://lidiiad.tech/"},{"@type":"ListItem","position":2,"name":"Work","item":"https://lidiiad.tech/#work"},{"@type":"ListItem","position":3,"name":"IL MAKIAGE","item":"https://lidiiad.tech/work/il-makiage/"},{"@type":"ListItem","position":4,"name":"Strategy for a Beauty Brand","item":"https://lidiiad.tech/work/il-makiage/ai-search-strategy/"}]}]}</script>
-</head><body>
+<style id="ilm-page-transition-style">
+/* Lightweight intra-project page transition */
+@media (prefers-reduced-motion:no-preference){
+ body{animation:ilmPageEnter .42s ease-out both}
+ @keyframes ilmPageEnter{from{opacity:0}to{opacity:1}}
+ #ilm-page-curtain{position:fixed;inset:0;background:#0b0b0c;opacity:0;pointer-events:none;z-index:2147483647;transition:opacity .29s ease-in-out}
+ #ilm-page-curtain.is-visible{opacity:1;pointer-events:auto}
+}
+@media(prefers-reduced-motion:reduce){#ilm-page-curtain{display:none}}
+</style></head><body>
 <nav><a href="../../../" class="site-logo" aria-label="Home"><img src="/assets/portfolio-logo-white.png" alt="Lidiia Demchenko portfolio logo" width="400" height="106"></a><div class="navlinks"><a href="../../../#work" aria-current="page">WORK</a><a href="../../../journal/">JOURNAL</a><a href="../../../contact/">CONTACT</a></div></nav>
 <div class="breadcrumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="../../../">Home</a></li><li><a href="../../../#work">Work</a></li><li><a href="../">IL MAKIAGE</a></li><li><span aria-current="page">Strategy for a Beauty Brand</span></li></ol></div>
 <main>
@@ -133,4 +142,21 @@ header.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.75fr);ali
 </ul><p class="note">Independent portfolio concept by Lidiia Demchenko. IL MAKIAGE is used as an illustrative brand context; this article does not represent an official initiative or an internal performance report.</p></section>
 <section class="section"><a href="../#projects" class="back">BACK TO PROJECTS</a></section>
 </main><footer>© 2026 Lidiia Demchenko</footer>
-</body></html>
+<script id="ilm-page-transition-script">
+(()=>{
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ if(reduced.matches)return;
+ const curtain=document.createElement('div');curtain.id='ilm-page-curtain';curtain.setAttribute('aria-hidden','true');document.body.appendChild(curtain);
+ let leaving=false;
+ document.addEventListener('click',e=>{
+  if(leaving||e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+  const a=e.target.closest('a[href]');if(!a||a.hasAttribute('download')||(a.target&&a.target!=='_self'))return;
+  const next=new URL(a.href,location.href);
+  if(next.origin!==location.origin||!next.pathname.startsWith('/work/il-makiage/'))return;
+  if(next.pathname===location.pathname&&next.search===location.search)return;
+  e.preventDefault();leaving=true;curtain.classList.add('is-visible');
+  setTimeout(()=>{location.assign(next.href)},290);
+ });
+ addEventListener('pageshow',()=>{leaving=false;curtain.classList.remove('is-visible')});
+})();
+</script></body></html>
