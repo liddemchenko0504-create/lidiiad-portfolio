@@ -234,6 +234,16 @@ body:has(#my-projects:target) .navlinks a[href="#my-projects"]{color:#b8c0ff}
  .about-skills__marquee-track{animation:none!important;will-change:auto}
  .about-skills__logos--marquee{overflow-x:auto!important}
 }
+</style><style id="about-projects-spacing-fix">
+/* Tight visual transition from CORE SKILLS to MY PROJECTS. */
+.about-section{padding-bottom:0}
+.about-skills{padding-bottom:clamp(12px,2vw,24px)}
+.brand-work>h2{padding-top:clamp(18px,2.5vw,34px)}
+@media(max-width:760px){
+ .about-section{padding-bottom:0}
+ .about-skills{padding-bottom:8px}
+ .brand-work>h2{padding-top:18px}
+}
 </style></head>
 <body>
 <nav><a href="#top" aria-label="Lidiia Demchenko homepage" class="site-logo"><img src="assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="#my-projects">MY PROJECTS</a><a href="journal/">JOURNAL</a><a href="contact/">CONTACT</a></div></nav>
