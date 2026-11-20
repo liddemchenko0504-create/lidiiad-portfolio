@@ -203,6 +203,11 @@ body:has(#work:target) .navlinks a[href="#work"]{color:#b8c0ff}
 .about-section__heading{border-bottom:0!important}
 .about-skills__group h4{margin-top:0}
 @media(max-width:650px){.about-section{border-top:0!important}.about-section__heading{border-bottom:0!important}.about-skills__group h4{margin-top:0}}
+</style><style id="about-skills-logos-style">
+.about-skills__logos{display:flex;align-items:center;gap:clamp(16px,2.3vw,30px);flex-wrap:wrap;margin-top:25px;min-height:50px}
+.about-skills__logos img{display:block;width:auto;max-width:120px;height:45px;object-fit:contain}
+.about-skills__logos img.about-skills__logo--wide{width:110px;height:auto;max-height:45px}
+@media(max-width:650px){.about-skills__logos{gap:18px;margin-top:20px}.about-skills__logos img{height:39px}.about-skills__logos img.about-skills__logo--wide{width:95px;max-height:39px}}
 </style></head>
 <body>
 <nav><a href="#top" aria-label="Lidiia Demchenko homepage" class="site-logo"><img src="assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="#about">ABOUT ME</a><a href="#work">WORK</a><a href="journal/">JOURNAL</a><a href="contact/">CONTACT</a></div></nav>
@@ -229,8 +234,8 @@ body:has(#work:target) .navlinks a[href="#work"]{color:#b8c0ff}
   <div class="about-skills" aria-labelledby="about-skills-title">
     <div class="about-skills__intro"><h3 id="about-skills-title">CORE<br>SKILLS.</h3></div>
     <div class="about-skills__grid">
-      <div class="about-skills__group"><h4>E-COMMERCE &amp; MERCHANDISING</h4><p>Magento 1/2 · Product &amp; category pages · Catalog management · Global launches · Localization · Storefront QA</p></div>
-      <div class="about-skills__group"><h4>SEO &amp; SEARCH</h4><p>Technical &amp; on-page SEO · Keyword mapping · Screaming Frog · Ahrefs · Google Search Console · AI search strategy</p></div>
+      <div class="about-skills__group"><h4>E-COMMERCE &amp; MERCHANDISING</h4><p>Magento 1/2 · Product &amp; category pages · Catalog management · Global launches · Localization · Storefront QA</p><div class="about-skills__logos" aria-label="E-commerce tools"><img src="assets/magento-logo-icon-hd-png-701751694968127smfdayuwdf.png" alt="Magento" width="48" height="48" loading="lazy" decoding="async"></div></div>
+      <div class="about-skills__group"><h4>SEO &amp; SEARCH</h4><p>Technical &amp; on-page SEO · Keyword mapping · Screaming Frog · Ahrefs · Google Search Console · AI search strategy</p><div class="about-skills__logos" aria-label="SEO tools"><img class="about-skills__logo--wide" src="assets/Ahrefs-Logo-2010.png" alt="Ahrefs" width="120" height="48" loading="lazy" decoding="async"><img src="assets/screaming_frog_seo_spider_macos_bigsur_icon_189769.webp" alt="Screaming Frog SEO Spider" width="48" height="48" loading="lazy" decoding="async"><img src="assets/google-search-console-icon-free-png.png" alt="Google Search Console" width="48" height="48" loading="lazy" decoding="async"></div></div>
       <div class="about-skills__group"><h4>ANALYTICS &amp; OPTIMIZATION</h4><p>GA4 · Looker Studio · SQL · Optimizely · Content QA · Conversion-focused merchandising</p></div>
       <div class="about-skills__group"><h4>CONTENT &amp; COLLABORATION</h4><p>Beauty campaigns · Digital content operations · Figma · Canva · Klaviyo · Cross-functional delivery</p></div>
     </div>
