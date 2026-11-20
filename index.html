@@ -197,6 +197,12 @@ body:has(#work:target) .navlinks a[href="#work"]{color:#b8c0ff}
 .about-skills__group h4{font-size:clamp(18px,2.1vw,29px);line-height:1.08;letter-spacing:-.03em;font-weight:900;margin:26px 0 14px}
 .about-skills__group p{font-size:clamp(14px,1.2vw,17px);line-height:1.5;color:#c3c2c5;margin:0;max-width:540px}
 @media(max-width:650px){.about-skills__intro{align-items:start}.about-skills__grid{grid-template-columns:1fr}.about-skills__intro h3{font-size:clamp(34px,10vw,57px)}.about-skills__intro>span{font-size:9px;text-align:right}.about-skills__group h4{margin-top:18px}}
+</style><style id="about-editorial-cleanup">
+/* Uninterrupted About heading: remove the two extra dividers on all viewports. */
+.about-section{border-top:0!important}
+.about-section__heading{border-bottom:0!important}
+.about-skills__group h4{margin-top:0}
+@media(max-width:650px){.about-section{border-top:0!important}.about-section__heading{border-bottom:0!important}.about-skills__group h4{margin-top:0}}
 </style></head>
 <body>
 <nav><a href="#top" aria-label="Lidiia Demchenko homepage" class="site-logo"><img src="assets/portfolio-logo-white.png" alt="Lidiia Demchenko" width="400" height="106"></a><div class="navlinks"><a href="#about">ABOUT ME</a><a href="#work">WORK</a><a href="journal/">JOURNAL</a><a href="contact/">CONTACT</a></div></nav>
@@ -221,12 +227,12 @@ body:has(#work:target) .navlinks a[href="#work"]{color:#b8c0ff}
     </div>
   </div>
   <div class="about-skills" aria-labelledby="about-skills-title">
-    <div class="about-skills__intro"><h3 id="about-skills-title">CORE<br>SKILLS.</h3><span>SELECTED EXPERTISE / TOOLS</span></div>
+    <div class="about-skills__intro"><h3 id="about-skills-title">CORE<br>SKILLS.</h3></div>
     <div class="about-skills__grid">
-      <div class="about-skills__group"><span class="about-skills__number">01 / COMMERCE</span><h4>E-COMMERCE &amp; MERCHANDISING</h4><p>Magento 1/2 · Product &amp; category pages · Catalog management · Global launches · Localization · Storefront QA</p></div>
-      <div class="about-skills__group"><span class="about-skills__number">02 / DISCOVERY</span><h4>SEO &amp; SEARCH</h4><p>Technical &amp; on-page SEO · Keyword mapping · Screaming Frog · Ahrefs · Google Search Console · AI search strategy</p></div>
-      <div class="about-skills__group"><span class="about-skills__number">03 / INSIGHTS</span><h4>ANALYTICS &amp; OPTIMIZATION</h4><p>GA4 · Looker Studio · SQL · Optimizely · Content QA · Conversion-focused merchandising</p></div>
-      <div class="about-skills__group"><span class="about-skills__number">04 / CREATIVE</span><h4>CONTENT &amp; COLLABORATION</h4><p>Beauty campaigns · Digital content operations · Figma · Canva · Klaviyo · Cross-functional delivery</p></div>
+      <div class="about-skills__group"><h4>E-COMMERCE &amp; MERCHANDISING</h4><p>Magento 1/2 · Product &amp; category pages · Catalog management · Global launches · Localization · Storefront QA</p></div>
+      <div class="about-skills__group"><h4>SEO &amp; SEARCH</h4><p>Technical &amp; on-page SEO · Keyword mapping · Screaming Frog · Ahrefs · Google Search Console · AI search strategy</p></div>
+      <div class="about-skills__group"><h4>ANALYTICS &amp; OPTIMIZATION</h4><p>GA4 · Looker Studio · SQL · Optimizely · Content QA · Conversion-focused merchandising</p></div>
+      <div class="about-skills__group"><h4>CONTENT &amp; COLLABORATION</h4><p>Beauty campaigns · Digital content operations · Figma · Canva · Klaviyo · Cross-functional delivery</p></div>
     </div>
   </div>
 
