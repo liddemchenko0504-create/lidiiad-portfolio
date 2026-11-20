@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="232" viewBox="0 0 96 232">
+<defs>
+ <linearGradient id="shell" x1="0" x2="1"><stop offset="0" stop-color="#170839"/><stop offset=".12" stop-color="#7b39dc"/><stop offset=".34" stop-color="#bc80ff"/><stop offset=".5" stop-color="#50239c"/><stop offset=".75" stop-color="#240b53"/><stop offset=".88" stop-color="#8349d2"/><stop offset="1" stop-color="#0f071f"/></linearGradient>
+ <linearGradient id="cap" x1="0" x2=".9" y1=".4" y2=".1"><stop offset="0" stop-color="#25104e"/><stop offset=".25" stop-color="#8c55e6"/><stop offset=".45" stop-color="#ddbcff"/><stop offset=".65" stop-color="#632daf"/><stop offset=".92" stop-color="#1b0d3d"/></linearGradient>
+ <linearGradient id="glow" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".1"/><stop offset=".33" stop-color="#fff" stop-opacity=".48"/><stop offset=".47" stop-color="#fff" stop-opacity="0"/><stop offset=".8" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+</defs>
+<rect x="8" y="3" width="80" height="226" rx="40" fill="url(#shell)" stroke="#120923" stroke-width="2"/>
+<path d="M8 44C8 21 25 3 48 3s40 18 40 41v43H8z" fill="url(#cap)"/>
+<path d="M8 87H88" stroke="#0b061b" stroke-width="3"/><path d="M10 90H86" stroke="#a077e0" stroke-opacity=".6"/>
+<rect x="15" y="9" width="65" height="213" rx="32" fill="url(#glow)" opacity=".7"/>
+<path d="M20 30Q25 14 48 12" stroke="#e9caff" stroke-opacity=".56" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M19 103v92" stroke="#d8aaff" stroke-opacity=".35" stroke-width="5" fill="none" stroke-linecap="round"/>
+<g transform="translate(50 151) rotate(-90)"><text x="0" y="0" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" fill="#fff" letter-spacing="-.6">SpoiledChild</text></g>
+</svg>
