@@ -81,8 +81,9 @@ button:disabled{opacity:.55;cursor:wait}
 #report .country-card--es::before{background:linear-gradient(151deg,transparent 32%,#8f8f8f 32% 36%,transparent 36%),linear-gradient(25deg,#e9e9e9 0 38%,#b1b1b1 38% 54%,#f0f0f0 54% 100%)}
 #report .country-card--it::before{background:radial-gradient(ellipse 36% 90% at 76% 113%,#858585 0 52%,transparent 53%),linear-gradient(118deg,#ededed 0 32%,#bababa 32% 42%,#f0f0f0 42% 100%)}
 #report .country-card strong{display:block;font-size:clamp(27px,3vw,48px);font-weight:900;letter-spacing:-.055em;line-height:1;text-transform:uppercase;position:relative}
-#report .country-card:hover,#report .country-card:focus-visible{transform:translateY(-4px);outline:2px solid #111;outline-offset:3px}
-#report .country-card:focus-visible{outline-width:3px}
+@media (hover:hover) and (pointer:fine){#report .country-card:hover{transform:translateY(-4px);outline:2px solid #111;outline-offset:3px}}
+#report .country-card:focus-visible{transform:translateY(-4px);outline:3px solid #111;outline-offset:3px}
+@media (hover:none){#report .country-card:hover:not(:focus-visible){transform:none;outline:none}}
 #report .proposal-hero .proposal-description{margin:0}
 @media(max-width:800px){#report .proposal-hero{margin:0 -20px;padding:24px 20px 45px!important}#report .country-cards{grid-template-columns:1fr;gap:10px}#report .country-card{min-height:160px}#report .proposal-logo{width:190px}#report .proposal-hero .proposal-header{margin-bottom:39px}}
 </style>
@@ -138,7 +139,7 @@ function renderReportCountryHero(root){
  const row=document.createElement('div');row.className='country-cards';
  const countries=[['fr','FRANCE','https://archicgi.com/fr/'],['es','SPAIN','https://archicgi.com/es/'],['it','ITALY','https://archicgi.com/it/']];
  for(const [key,name,url] of countries){
-   const link=document.createElement('a');link.className='country-card country-card--'+key;link.href=url;link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label','Visit ArchiCGI '+name+' website (opens in new tab)');
+   const link=document.createElement('a');link.className='country-card country-card--'+key;link.href=url;link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label','Visit ArchiCGI '+name+' website (opens in new tab)');link.addEventListener('click',event=>{if(event.detail>0)link.blur();});
    const label=document.createElement('strong');label.textContent=name;link.append(label);row.append(link);
  }
  intro.append(row);
