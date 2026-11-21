@@ -65,8 +65,38 @@ button:disabled{opacity:.55;cursor:wait}
 .hero-brand-logo{display:block;width:min(550px,83vw);height:auto;max-height:160px;object-fit:contain;object-position:left center}
 .hero-brand h1{margin:0}
 @media(max-width:800px){.hero-brand-logo{width:min(450px,85vw);max-height:125px}}
+.prepared-for-logo{display:inline-flex;align-items:center;gap:16px;flex-wrap:wrap}.prepared-for-logo>span{font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}.prepared-for-logo img{display:block;max-width:min(220px,58vw);max-height:64px;width:auto;height:auto;object-fit:contain}
 </style>
 </head><body><main><div id="gate"><div class="hero-film" aria-hidden="true"><video autoplay muted loop playsinline preload="none" poster="https://archicgi.com/wp-content/uploads/2026/03/waterfront-hotel-resort-exterior-3d-rendering-.webp"><source src="/assets/Photorealistic-3D-Animation-SnapYT.App.mp4" type="video/mp4"></video></div><div class="gate-inner"><div class="hero-brand"><img class="hero-brand-logo" src="/assets/bfc9f7d1-1d7f-4ffc-8612-e29fc8500981.png" alt="ArchiCGI" width="800" height="230"><h1><em>BEYOND<br>SEARCH.</em></h1></div><p class="lead">An international organic growth proposal for France, Spain and Italy.</p><form id="unlock"><label for="password">Access password</label><input id="password" type="password" required autocomplete="off" placeholder="Enter password"><button id="submit" type="submit">OPEN RESEARCH</button><p id="error" role="alert"></p></form><p class="small">Private research prepared for review. Encrypted content unlocks in your browser; no password is transmitted to this site.</p></div></div><div id="report"></div></main><script>
+function cleanResearchPresentation(root){
+ const logo='/assets/bfc9f7d1-1d7f-4ffc-8612-e29fc8500981.png';
+ const removeExact=[/^INDEPENDENT RESEARCH\s*[·•-]\s*21 NOVEMBER 2026$/i,/^Prepared by Lidiia Demchenko\s*[·•-]\s*Public-source research only\s*[·•-]\s*No access to Google Search Console or GA4$/i,/^P[1-3]\s*[·•-]\s*.+$/i];
+ // Edit only individual text nodes, preserving surrounding report content.
+ const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+ const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+ for(const node of nodes){
+  const raw=node.nodeValue||'',trimmed=raw.trim();
+  if(!trimmed)continue;
+  if(removeExact.some(rx=>rx.test(trimmed))){node.nodeValue='';continue;}
+  if(/^0[1-9]\s*(?:\/|—|–|·)\s*$/.test(trimmed)){node.nodeValue='';continue;}
+  if(/^PREPARED FOR\s+ARCHICGI\s+REVIEW$/i.test(trimmed)){
+   const wrap=document.createElement('span');wrap.className='prepared-for-logo';
+   const caption=document.createElement('span');caption.textContent='PREPARED FOR';
+   const img=document.createElement('img');img.src=logo;img.alt='ArchiCGI';img.loading='lazy';
+   wrap.append(caption,img);node.replaceWith(wrap);continue;
+  }
+  let updated=raw
+   .replace(/INDEPENDENT RESEARCH\s*[·•-]\s*21 NOVEMBER 2026/gi,'')
+   .replace(/Prepared by Lidiia Demchenko\s*[·•-]\s*Public-source research only\s*[·•-]\s*No access to Google Search Console or GA4/gi,'')
+   .replace(/\b0[1-9]\s*\/\s*(?=[A-Za-z])/g,'')
+   .replace(/\bP[1-3]\s*[·•-]\s*(?:VALIDATE|AUDIT|REVIEW|OPTIMIZE|IMPLEMENT|TEST|MONITOR|MEASURE)\b/gi,'');
+  if(updated!==raw)node.nodeValue=updated;
+ }
+ // Remove blank presentation-only labels without disturbing cards/sections.
+ for(const el of [...root.querySelectorAll('span,p,small,div')]){
+  if(el.children.length===0&&!el.textContent.trim()&&el.className!=='')el.remove();
+ }
+}
 const dec=b=>Uint8Array.from(atob(b),c=>c.charCodeAt(0));
-document.getElementById('unlock').addEventListener('submit',async e=>{e.preventDefault();const btn=document.getElementById('submit'),error=document.getElementById('error');btn.disabled=true;error.textContent='';try{if(!crypto.subtle||!('DecompressionStream'in window))throw Error('This browser does not support secure document unlocking. Please use an updated browser.');const res=await fetch('./report.enc',{cache:'no-store'});if(!res.ok)throw Error('Encrypted report unavailable.');const x=await res.json();const password=document.getElementById('password').value;const secret=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveKey']);const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:dec(x.salt),iterations:x.iterations,hash:'SHA-256'},secret,{name:'AES-GCM',length:256},false,['decrypt']);const decrypted=await crypto.subtle.decrypt({name:'AES-GCM',iv:dec(x.iv)},key,dec(x.data));const stream=new Blob([decrypted]).stream().pipeThrough(new DecompressionStream('gzip'));const text=await new Response(stream).text();document.getElementById('report').innerHTML=text;document.getElementById('gate').style.display='none';document.getElementById('report').style.display='block';document.getElementById('password').value='';window.scrollTo(0,0);}catch(err){error.textContent=err.name==='OperationError'?'Incorrect password. Please try again.':err.message||'Could not unlock report.';}finally{btn.disabled=false;}});
+document.getElementById('unlock').addEventListener('submit',async e=>{e.preventDefault();const btn=document.getElementById('submit'),error=document.getElementById('error');btn.disabled=true;error.textContent='';try{if(!crypto.subtle||!('DecompressionStream'in window))throw Error('This browser does not support secure document unlocking. Please use an updated browser.');const res=await fetch('./report.enc',{cache:'no-store'});if(!res.ok)throw Error('Encrypted report unavailable.');const x=await res.json();const password=document.getElementById('password').value;const secret=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveKey']);const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:dec(x.salt),iterations:x.iterations,hash:'SHA-256'},secret,{name:'AES-GCM',length:256},false,['decrypt']);const decrypted=await crypto.subtle.decrypt({name:'AES-GCM',iv:dec(x.iv)},key,dec(x.data));const stream=new Blob([decrypted]).stream().pipeThrough(new DecompressionStream('gzip'));const text=await new Response(stream).text();document.getElementById('report').innerHTML=text;cleanResearchPresentation(document.getElementById('report'));document.getElementById('gate').style.display='none';document.getElementById('report').style.display='block';document.getElementById('password').value='';window.scrollTo(0,0);}catch(err){error.textContent=err.name==='OperationError'?'Incorrect password. Please try again.':err.message||'Could not unlock report.';}finally{btn.disabled=false;}});
 </script></body></html>
