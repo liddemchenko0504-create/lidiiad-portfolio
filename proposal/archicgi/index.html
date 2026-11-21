@@ -66,6 +66,25 @@ button:disabled{opacity:.55;cursor:wait}
 .hero-brand h1{margin:0}
 @media(max-width:800px){.hero-brand-logo{width:min(450px,85vw);max-height:125px}}
 .prepared-for-logo{display:inline-flex;align-items:center;gap:16px;flex-wrap:wrap}.prepared-for-logo>span{font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}.prepared-for-logo img{display:block;max-width:min(220px,58vw);max-height:64px;width:auto;height:auto;object-fit:contain}
+
+/* REPORT HERO: LIGHT EDITORIAL COUNTRY SELECTOR */
+#report .proposal-hero{background:#f5f5f3;color:#101012;margin:0 calc(-1 * clamp(22px,5vw,90px));padding:36px clamp(22px,5vw,90px) 70px!important;border-bottom:1px solid #a4a4a3}
+#report .proposal-hero .proposal-header{display:flex;align-items:center;padding-bottom:25px;border-bottom:1px solid #969696;margin-bottom:clamp(40px,5vw,65px)}
+#report .proposal-logo{display:block;max-width:235px;width:35vw;height:auto;max-height:73px;object-fit:contain;object-position:left center;filter:brightness(0)}
+#report .proposal-hero h1{color:#0d0d0f;font-size:clamp(44px,6.3vw,102px);line-height:.98;margin:0 0 22px;max-width:1160px;letter-spacing:-.072em}
+#report .proposal-hero p,#report .proposal-hero .lead{color:#4d4d4d!important;font-size:clamp(16px,1.5vw,21px);line-height:1.65;max-width:850px;text-transform:none;letter-spacing:normal;font-weight:400}
+#report .country-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:36px}
+#report .country-card{isolation:isolate;display:flex;position:relative;flex-direction:column;align-items:flex-start;justify-content:center;min-height:245px;padding:clamp(20px,3vw,38px);overflow:hidden;text-decoration:none!important;background:#e8e8e8;border:0;color:#111!important;transition:transform .2s ease}
+#report .country-card::before{content:"";position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;filter:grayscale(1)}
+#report .country-card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(247,247,247,.94) 0%,rgba(247,247,247,.70) 52%,rgba(247,247,247,.10) 100%)}
+#report .country-card--fr::before{background-image:url('/assets/architectural-rendering-chalet-lounge-interior.png');background-position:58% center}
+#report .country-card--es::before{background:linear-gradient(151deg,transparent 32%,#8f8f8f 32% 36%,transparent 36%),linear-gradient(25deg,#e9e9e9 0 38%,#b1b1b1 38% 54%,#f0f0f0 54% 100%)}
+#report .country-card--it::before{background:radial-gradient(ellipse 36% 90% at 76% 113%,#858585 0 52%,transparent 53%),linear-gradient(118deg,#ededed 0 32%,#bababa 32% 42%,#f0f0f0 42% 100%)}
+#report .country-card strong{display:block;font-size:clamp(27px,3vw,48px);font-weight:900;letter-spacing:-.055em;line-height:1;text-transform:uppercase;position:relative}
+#report .country-card:hover,#report .country-card:focus-visible{transform:translateY(-4px);outline:2px solid #111;outline-offset:3px}
+#report .country-card:focus-visible{outline-width:3px}
+#report .proposal-hero .proposal-description{margin:0}
+@media(max-width:800px){#report .proposal-hero{margin:0 -20px;padding:24px 20px 45px!important}#report .country-cards{grid-template-columns:1fr;gap:10px}#report .country-card{min-height:160px}#report .proposal-logo{width:190px}#report .proposal-hero .proposal-header{margin-bottom:39px}}
 </style>
 </head><body><main><div id="gate"><div class="hero-film" aria-hidden="true"><video autoplay muted loop playsinline preload="none" poster="https://archicgi.com/wp-content/uploads/2026/03/waterfront-hotel-resort-exterior-3d-rendering-.webp"><source src="/assets/Photorealistic-3D-Animation-SnapYT.App.mp4" type="video/mp4"></video></div><div class="gate-inner"><div class="hero-brand"><img class="hero-brand-logo" src="/assets/bfc9f7d1-1d7f-4ffc-8612-e29fc8500981.png" alt="ArchiCGI" width="800" height="230"><h1><em>BEYOND<br>SEARCH.</em></h1></div><p class="lead">An international organic growth proposal for France, Spain and Italy.</p><form id="unlock"><label for="password">Access password</label><input id="password" type="password" required autocomplete="off" placeholder="Enter password"><button id="submit" type="submit">OPEN RESEARCH</button><p id="error" role="alert"></p></form><p class="small">Private research prepared for review. Encrypted content unlocks in your browser; no password is transmitted to this site.</p></div></div><div id="report"></div></main><script>
 function cleanResearchPresentation(root){
@@ -97,6 +116,33 @@ function cleanResearchPresentation(root){
   if(el.children.length===0&&!el.textContent.trim()&&el.className!=='')el.remove();
  }
 }
+
+function renderReportCountryHero(root){
+ const intro=root.querySelector('section.intro')||[...root.querySelectorAll('section')].find(e=>/INTERNATIONAL ORGANIC GROWTH/i.test(e.textContent.slice(0,250)));
+ if(!intro || intro.classList.contains('proposal-hero'))return;
+ const title=[...intro.querySelectorAll('h1,h2')].find(e=>/INTERNATIONAL ORGANIC GROWTH/i.test(e.textContent))||intro.querySelector('h1,h2');
+ if(!title)return;
+ intro.classList.add('proposal-hero');
+ // Explicit proposal header: logo only, no company-site navigation.
+ const header=document.createElement('div');header.className='proposal-header';
+ const img=document.createElement('img');img.className='proposal-logo';img.src='/assets/bfc9f7d1-1d7f-4ffc-8612-e29fc8500981.png';img.alt='ArchiCGI';img.width=520;img.height=150;
+ header.append(img);intro.insertBefore(header,intro.firstChild);
+ title.textContent='INTERNATIONAL ORGANIC GROWTH';
+ // Keep the research subtitle directly below the heading.
+ const description=[...intro.querySelectorAll('p')].find(p=>/preliminary|evidence-led SEO proposal|architectural visualization search demand/i.test(p.textContent));
+ if(description){description.classList.add('proposal-description');title.after(description)}
+ // No region codes and no arrows; country cards link to the actual localized websites.
+ for(const node of [...intro.querySelectorAll('p,span,small')]){
+  if(node!==description && node.children.length===0 && /^(?:FRANCE\s*\/\s*SPAIN\s*\/\s*ITALY|FR|ES|IT)$/i.test(node.textContent.trim()))node.remove();
+ }
+ const row=document.createElement('div');row.className='country-cards';
+ const countries=[['fr','FRANCE','https://archicgi.com/fr/'],['es','SPAIN','https://archicgi.com/es/'],['it','ITALY','https://archicgi.com/it/']];
+ for(const [key,name,url] of countries){
+   const link=document.createElement('a');link.className='country-card country-card--'+key;link.href=url;link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label','Visit ArchiCGI '+name+' website (opens in new tab)');
+   const label=document.createElement('strong');label.textContent=name;link.append(label);row.append(link);
+ }
+ intro.append(row);
+}
 const dec=b=>Uint8Array.from(atob(b),c=>c.charCodeAt(0));
-document.getElementById('unlock').addEventListener('submit',async e=>{e.preventDefault();const btn=document.getElementById('submit'),error=document.getElementById('error');btn.disabled=true;error.textContent='';try{if(!crypto.subtle||!('DecompressionStream'in window))throw Error('This browser does not support secure document unlocking. Please use an updated browser.');const res=await fetch('./report.enc',{cache:'no-store'});if(!res.ok)throw Error('Encrypted report unavailable.');const x=await res.json();const password=document.getElementById('password').value;const secret=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveKey']);const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:dec(x.salt),iterations:x.iterations,hash:'SHA-256'},secret,{name:'AES-GCM',length:256},false,['decrypt']);const decrypted=await crypto.subtle.decrypt({name:'AES-GCM',iv:dec(x.iv)},key,dec(x.data));const stream=new Blob([decrypted]).stream().pipeThrough(new DecompressionStream('gzip'));const text=await new Response(stream).text();document.getElementById('report').innerHTML=text;cleanResearchPresentation(document.getElementById('report'));document.getElementById('gate').style.display='none';document.getElementById('report').style.display='block';document.getElementById('password').value='';window.scrollTo(0,0);}catch(err){error.textContent=err.name==='OperationError'?'Incorrect password. Please try again.':err.message||'Could not unlock report.';}finally{btn.disabled=false;}});
+document.getElementById('unlock').addEventListener('submit',async e=>{e.preventDefault();const btn=document.getElementById('submit'),error=document.getElementById('error');btn.disabled=true;error.textContent='';try{if(!crypto.subtle||!('DecompressionStream'in window))throw Error('This browser does not support secure document unlocking. Please use an updated browser.');const res=await fetch('./report.enc',{cache:'no-store'});if(!res.ok)throw Error('Encrypted report unavailable.');const x=await res.json();const password=document.getElementById('password').value;const secret=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveKey']);const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:dec(x.salt),iterations:x.iterations,hash:'SHA-256'},secret,{name:'AES-GCM',length:256},false,['decrypt']);const decrypted=await crypto.subtle.decrypt({name:'AES-GCM',iv:dec(x.iv)},key,dec(x.data));const stream=new Blob([decrypted]).stream().pipeThrough(new DecompressionStream('gzip'));const text=await new Response(stream).text();document.getElementById('report').innerHTML=text;cleanResearchPresentation(document.getElementById('report'));renderReportCountryHero(document.getElementById('report'));document.getElementById('gate').style.display='none';document.getElementById('report').style.display='block';document.getElementById('password').value='';window.scrollTo(0,0);}catch(err){error.textContent=err.name==='OperationError'?'Incorrect password. Please try again.':err.message||'Could not unlock report.';}finally{btn.disabled=false;}});
 </script></body></html>
