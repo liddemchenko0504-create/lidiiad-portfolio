@@ -86,6 +86,46 @@ button:disabled{opacity:.55;cursor:wait}
 @media (hover:none){#report .country-card:hover:not(:focus-visible){transform:none;outline:none}}
 #report .proposal-hero .proposal-description{margin:0}
 @media(max-width:800px){#report .proposal-hero{margin:0 -20px;padding:24px 20px 45px!important}#report .country-cards{grid-template-columns:1fr;gap:10px}#report .country-card{min-height:160px}#report .proposal-logo{width:190px}#report .proposal-hero .proposal-header{margin-bottom:39px}}
+
+/* Responsive proposal hero photography: desktop and mobile source files in /assets. */
+#report .proposal-hero{padding:0 clamp(22px,5vw,90px) 70px!important}
+#report .proposal-hero-visual{
+  position:relative;isolation:isolate;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-start;
+  min-height:clamp(570px,53vw,750px);
+  margin:0 calc(-1 * clamp(22px,5vw,90px));
+  padding:clamp(30px,3.6vw,58px) clamp(22px,5vw,90px) 72px;
+  background:#eee5dc;
+}
+#report .proposal-hero-picture{position:absolute;inset:0;z-index:-2;display:block;pointer-events:none}
+#report .proposal-hero-picture img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+#report .proposal-hero-visual::before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(249,244,238,.79) 0%,rgba(249,244,238,.46) 35%,rgba(249,244,238,0) 70%);
+}
+#report .proposal-hero-visual .proposal-header{
+  position:relative;z-index:1;margin-bottom:clamp(48px,6vw,92px);
+  padding-bottom:0;border-bottom:0;
+}
+#report .proposal-hero-visual .proposal-copy{position:relative;z-index:1;max-width:min(54vw,730px)}
+#report .proposal-hero-visual h1{max-width:100%;font-size:clamp(45px,6.2vw,94px);margin-bottom:24px}
+#report .proposal-hero-visual .proposal-description{max-width:590px;color:#282625!important;line-height:1.55}
+#report .proposal-hero .country-cards{margin-top:32px}
+@media(max-width:800px){
+  #report .proposal-hero{margin:0 -20px;padding:0 20px 45px!important}
+  #report .proposal-hero-visual{
+    margin:0 -20px;padding:26px 20px 36px;
+    min-height:clamp(670px,177vw,840px);
+  }
+  #report .proposal-hero-visual::before{
+    background:linear-gradient(180deg,rgba(250,246,240,.57) 0%,rgba(250,246,240,.24) 40%,rgba(250,246,240,0) 67%);
+  }
+  #report .proposal-hero-visual .proposal-header{margin-bottom:clamp(33px,8vw,52px)}
+  #report .proposal-hero-visual .proposal-copy{max-width:100%}
+  #report .proposal-hero-visual h1{font-size:clamp(41px,10vw,62px);letter-spacing:-.072em;margin-bottom:22px}
+  #report .proposal-hero-visual .proposal-description{max-width:350px;font-size:clamp(15px,3.8vw,18px);line-height:1.5}
+  #report .proposal-hero .country-cards{margin-top:24px}
+}
 </style>
 </head><body><main><div id="gate"><div class="hero-film" aria-hidden="true"><video autoplay muted loop playsinline preload="none" poster="https://archicgi.com/wp-content/uploads/2026/03/waterfront-hotel-resort-exterior-3d-rendering-.webp"><source src="/assets/Photorealistic-3D-Animation-SnapYT.App.mp4" type="video/mp4"></video></div><div class="gate-inner"><div class="hero-brand"><img class="hero-brand-logo" src="/assets/bfc9f7d1-1d7f-4ffc-8612-e29fc8500981.png" alt="ArchiCGI" width="800" height="230"><h1><em>BEYOND<br>SEARCH.</em></h1></div><p class="lead">An international organic growth proposal for France, Spain and Italy.</p><form id="unlock"><label for="password">Access password</label><input id="password" type="password" required autocomplete="off" placeholder="Enter password"><button id="submit" type="submit">OPEN RESEARCH</button><p id="error" role="alert"></p></form><p class="small">Private research prepared for review. Encrypted content unlocks in your browser; no password is transmitted to this site.</p></div></div><div id="report"></div></main><script>
 function cleanResearchPresentation(root){
@@ -136,6 +176,16 @@ function renderReportCountryHero(root){
  for(const node of [...intro.querySelectorAll('p,span,small')]){
   if(node!==description && node.children.length===0 && /^(?:FRANCE\s*\/\s*SPAIN\s*\/\s*ITALY|FR|ES|IT)$/i.test(node.textContent.trim()))node.remove();
  }
+ // Keep heading and subtitle as accessible HTML above orientation-specific photography.
+ const heroVisual=document.createElement('div');heroVisual.className='proposal-hero-visual';
+ const picture=document.createElement('picture');picture.className='proposal-hero-picture';
+ const mobileSource=document.createElement('source');mobileSource.media='(max-width: 800px)';mobileSource.srcset='/assets/HP-mob.png';
+ const heroImage=document.createElement('img');heroImage.src='/assets/HP-desk.png';heroImage.alt='';heroImage.decoding='async';heroImage.loading='eager';heroImage.setAttribute('fetchpriority','high');
+ picture.append(mobileSource,heroImage);
+ const copy=document.createElement('div');copy.className='proposal-copy';
+ copy.append(title);if(description)copy.append(description);
+ heroVisual.append(picture,header,copy);
+ intro.insertBefore(heroVisual,intro.firstChild);
  const row=document.createElement('div');row.className='country-cards';
  const countries=[['fr','FRANCE','https://archicgi.com/fr/'],['es','SPAIN','https://archicgi.com/es/'],['it','ITALY','https://archicgi.com/it/']];
  for(const [key,name,url] of countries){
