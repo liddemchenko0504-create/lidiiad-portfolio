@@ -126,8 +126,131 @@ button:disabled{opacity:.55;cursor:wait}
   #report .proposal-hero-visual .proposal-description{max-width:350px;font-size:clamp(15px,3.8vw,18px);line-height:1.5}
   #report .proposal-hero .country-cards{margin-top:24px}
 }
+
+/* 01 / Executive Perspective — editorial strategy brief */
+#report section.business-opportunity{
+  --bo-ink:#191917;--bo-muted:#55544f;--bo-line:#c9c5bc;--bo-paper:#f4f1eb;
+  background:var(--bo-paper);color:var(--bo-ink);
+  margin:0 calc(-1 * clamp(22px,5vw,90px));
+  padding:clamp(70px,7vw,116px) clamp(22px,5vw,90px) clamp(80px,8vw,132px)!important;
+  border-bottom:1px solid #b9b5ad;
+}
+#report .business-opportunity .bo-kicker{display:flex;align-items:center;gap:15px;margin-bottom:clamp(38px,5vw,70px);font-size:11px;font-weight:800;letter-spacing:.17em;color:#3f3d39;text-transform:uppercase}
+#report .business-opportunity .bo-kicker-number{font-family:Georgia,serif;font-size:23px;line-height:1;font-style:italic;letter-spacing:-.04em;font-weight:400;color:#8d7661}
+#report .business-opportunity .bo-kicker-rule{flex:1;height:1px;background:var(--bo-line);max-width:170px}
+#report .business-opportunity .bo-intro{display:grid;grid-template-columns:minmax(0,1.07fr) minmax(0,.93fr);column-gap:clamp(44px,7vw,125px);align-items:start;padding-bottom:clamp(52px,6vw,100px)}
+#report .business-opportunity h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:clamp(55px,6.4vw,106px);line-height:.98;letter-spacing:-.068em;text-transform:none;color:var(--bo-ink);margin:0 0 30px;max-width:780px}
+#report .business-opportunity h2 em{display:block;font-weight:400;font-style:italic;color:#746758}
+#report .business-opportunity .bo-deck{font-size:clamp(19px,2.1vw,27px);line-height:1.34;letter-spacing:-.025em;font-weight:500;color:#242320;max-width:565px;margin:0}
+#report .business-opportunity .bo-intro-copy{padding-top:10px}
+#report .business-opportunity .bo-intro-copy p{font-size:clamp(16px,1.3vw,19px);line-height:1.75;color:var(--bo-muted);margin:0 0 24px;max-width:680px}
+#report .business-opportunity .bo-thesis{display:grid;grid-template-columns:minmax(120px,.22fr) 1fr;gap:30px;padding:32px 0 40px;border-top:1px solid var(--bo-ink);border-bottom:1px solid var(--bo-line);align-items:start}
+#report .business-opportunity .bo-side-label{font-size:10px;letter-spacing:.18em;font-weight:800;text-transform:uppercase;color:#756b60}
+#report .business-opportunity .bo-thesis p{font-family:Georgia,'Times New Roman',serif;font-size:clamp(25px,3vw,46px);line-height:1.18;letter-spacing:-.045em;color:var(--bo-ink);font-weight:400;margin:0;max-width:1040px}
+#report .business-opportunity .bo-thesis strong{font-weight:400}
+#report .business-opportunity .bo-levers-header{display:flex;justify-content:space-between;align-items:center;gap:20px;margin:clamp(55px,6vw,92px) 0 22px}
+#report .business-opportunity .bo-levers-header h3{margin:0;color:var(--bo-ink);font-size:clamp(13px,1.25vw,16px);letter-spacing:.14em;line-height:1.4;font-weight:800}
+#report .business-opportunity .bo-levers-header span{font-family:Georgia,serif;font-size:15px;font-style:italic;color:#857667}
+#report .business-opportunity .bo-levers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--bo-line);border-bottom:1px solid var(--bo-line)}
+#report .business-opportunity .bo-lever{padding:clamp(24px,3vw,43px) clamp(14px,2.4vw,35px) clamp(34px,4vw,62px);min-width:0}
+#report .business-opportunity .bo-lever:first-child{padding-left:0}
+#report .business-opportunity .bo-lever:last-child{padding-right:0}
+#report .business-opportunity .bo-lever+.bo-lever{border-left:1px solid var(--bo-line)}
+#report .business-opportunity .bo-lever-index{font-family:Georgia,serif;font-size:clamp(35px,4vw,59px);line-height:1;letter-spacing:-.06em;font-weight:400;color:#a89987;display:block;margin-bottom:42px}
+#report .business-opportunity .bo-lever h4{font-family:Archivo,Arial,sans-serif;font-size:clamp(19px,1.8vw,27px);line-height:1.18;letter-spacing:-.045em;font-weight:800;color:var(--bo-ink);margin:0 0 18px;max-width:360px}
+#report .business-opportunity .bo-lever p{font-size:clamp(14px,1.14vw,16px);line-height:1.7;color:var(--bo-muted);margin:0}
+#report .business-opportunity .bo-outcome{background:#1d1c1b;color:#f1eee8;margin-top:clamp(66px,7.2vw,112px);padding:clamp(30px,4.3vw,67px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,100px)}
+#report .business-opportunity .bo-outcome .bo-side-label{color:#b6a895}
+#report .business-opportunity .bo-outcome h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(31px,3.8vw,58px);text-transform:none;line-height:1.08;letter-spacing:-.055em;font-weight:400;margin:24px 0 0;color:#f5f1ea}
+#report .business-opportunity .bo-outcome h3 em{font-weight:400}
+#report .business-opportunity .bo-outcome-intro{color:#f1eee8!important;font-size:clamp(17px,1.5vw,22px);line-height:1.48;margin:0 0 28px;max-width:590px}
+#report .business-opportunity .bo-outcome-subhead{color:#c2b5a4;font-size:11px;letter-spacing:.15em;text-transform:uppercase;font-weight:800;margin:0 0 13px}
+#report .business-opportunity .bo-outcome ul{margin:0;padding:0;list-style:none}
+#report .business-opportunity .bo-outcome li{font-size:clamp(14px,1.17vw,17px);color:#e7e2dc;line-height:1.5;padding:12px 0 12px 23px;position:relative;border-top:1px solid #4a4540}
+#report .business-opportunity .bo-outcome li:before{content:"";width:6px;height:6px;position:absolute;left:0;top:22px;background:#c3aa8c}
+#report .business-opportunity .bo-method{font-size:12px;line-height:1.65;color:#67635c;margin:24px 0 0;max-width:1100px}
+@media(max-width:800px){
+ #report section.business-opportunity{margin:0 -20px;padding:64px 20px 76px!important}
+ #report .business-opportunity .bo-kicker{gap:10px;font-size:10px;margin-bottom:42px}
+ #report .business-opportunity .bo-kicker-rule{max-width:48px}
+ #report .business-opportunity .bo-intro{display:block;padding-bottom:38px}
+ #report .business-opportunity h2{font-size:clamp(48px,11.5vw,75px);margin-bottom:24px}
+ #report .business-opportunity .bo-deck{font-size:21px;line-height:1.35;margin-bottom:32px}
+ #report .business-opportunity .bo-intro-copy p{font-size:16px;margin-bottom:18px}
+ #report .business-opportunity .bo-thesis{display:block;padding:23px 0 30px}
+ #report .business-opportunity .bo-thesis .bo-side-label{display:block;margin-bottom:18px}
+ #report .business-opportunity .bo-thesis p{font-size:clamp(26px,6.4vw,38px)}
+ #report .business-opportunity .bo-levers-header{margin:56px 0 18px}
+ #report .business-opportunity .bo-levers-header h3{font-size:13px}
+ #report .business-opportunity .bo-levers{display:block}
+ #report .business-opportunity .bo-lever,#report .business-opportunity .bo-lever:first-child,#report .business-opportunity .bo-lever:last-child{padding:25px 0 30px}
+ #report .business-opportunity .bo-lever+.bo-lever{border-left:0;border-top:1px solid var(--bo-line)}
+ #report .business-opportunity .bo-lever-index{font-size:36px;margin-bottom:22px}
+ #report .business-opportunity .bo-lever h4{font-size:23px;margin-bottom:12px;max-width:none}
+ #report .business-opportunity .bo-lever p{font-size:15px}
+ #report .business-opportunity .bo-outcome{display:block;margin-top:63px;padding:28px 24px 34px}
+ #report .business-opportunity .bo-outcome h3{font-size:36px;margin:15px 0 30px}
+ #report .business-opportunity .bo-outcome-intro{font-size:18px}
+ #report .business-opportunity .bo-method{font-size:11px;line-height:1.65;margin-top:23px}
+}
+
 </style>
-</head><body><main><div id="gate"><div class="hero-film" aria-hidden="true"><video autoplay muted loop playsinline preload="none" poster="https://archicgi.com/wp-content/uploads/2026/03/waterfront-hotel-resort-exterior-3d-rendering-.webp"><source src="/assets/Photorealistic-3D-Animation-SnapYT.App.mp4" type="video/mp4"></video></div><div class="gate-inner"><div class="hero-brand"><img class="hero-brand-logo" src="/assets/bfc9f7d1-1d7f-4ffc-8612-e29fc8500981.png" alt="ArchiCGI" width="800" height="230"><h1><em>BEYOND<br>SEARCH.</em></h1></div><p class="lead">An international organic growth proposal for France, Spain and Italy.</p><form id="unlock"><label for="password">Access password</label><input id="password" type="password" required autocomplete="off" placeholder="Enter password"><button id="submit" type="submit">OPEN RESEARCH</button><p id="error" role="alert"></p></form><p class="small">Private research prepared for review. Encrypted content unlocks in your browser; no password is transmitted to this site.</p></div></div><div id="report"></div></main><script>
+</head><body><main><div id="gate"><div class="hero-film" aria-hidden="true"><video autoplay muted loop playsinline preload="none" poster="https://archicgi.com/wp-content/uploads/2026/03/waterfront-hotel-resort-exterior-3d-rendering-.webp"><source src="/assets/Photorealistic-3D-Animation-SnapYT.App.mp4" type="video/mp4"></video></div><div class="gate-inner"><div class="hero-brand"><img class="hero-brand-logo" src="/assets/bfc9f7d1-1d7f-4ffc-8612-e29fc8500981.png" alt="ArchiCGI" width="800" height="230"><h1><em>BEYOND<br>SEARCH.</em></h1></div><p class="lead">An international organic growth proposal for France, Spain and Italy.</p><form id="unlock"><label for="password">Access password</label><input id="password" type="password" required autocomplete="off" placeholder="Enter password"><button id="submit" type="submit">OPEN RESEARCH</button><p id="error" role="alert"></p></form><p class="small">Private research prepared for review. Encrypted content unlocks in your browser; no password is transmitted to this site.</p></div></div><div id="report"></div></main>
+<template id="business-opportunity-template">
+<section class="business-opportunity" id="business-opportunity" aria-labelledby="business-opportunity-title">
+  <div class="bo-kicker"><span class="bo-kicker-number">01</span><span>Executive Perspective</span><span class="bo-kicker-rule" aria-hidden="true"></span></div>
+  <div class="bo-intro">
+    <div class="bo-intro-title">
+      <h2 id="business-opportunity-title">The Business <em>Opportunity</em></h2>
+      <p class="bo-deck">From International Search Visibility to Qualified B2B Demand.</p>
+    </div>
+    <div class="bo-intro-copy">
+      <p>ArchiCGI has already established a strong commercial foundation: an extensive architectural visualization portfolio, scalable production capabilities, clearly defined services, and localized websites for France, Spain, and Italy.</p>
+      <p>The next opportunity is to connect these existing strengths with the way architects, real estate developers, and interior designers search for visualization partners in their local markets.</p>
+    </div>
+  </div>
+  <div class="bo-thesis">
+    <span class="bo-side-label">The Objective</span>
+    <p><strong>The objective is not simply more organic traffic. It is more qualified project opportunities generated through organic search.</strong></p>
+  </div>
+  <div class="bo-levers-header"><h3>Three Strategic Growth Levers</h3><span>01 — 03</span></div>
+  <div class="bo-levers">
+    <article class="bo-lever">
+      <span class="bo-lever-index">01</span>
+      <h4>Capture High-Intent Local Demand</h4>
+      <p>Identify commercial search opportunities across France, Spain, and Italy, align localized service pages with buyer intent, and prioritize keywords that indicate a real need for architectural visualization services.</p>
+    </article>
+    <article class="bo-lever">
+      <span class="bo-lever-index">02</span>
+      <h4>Connect Discovery with Conversion</h4>
+      <p>Strengthen the journey from Google search to project inquiry through relevant landing pages, clear service positioning, project examples, pricing transparency, and measurable conversion paths.</p>
+    </article>
+    <article class="bo-lever">
+      <span class="bo-lever-index">03</span>
+      <h4>Build Sustainable Search Authority</h4>
+      <p>Use ArchiCGI's existing expertise, project portfolio, client experience, and industry knowledge to strengthen topical relevance, build credibility, and expand visibility across traditional and AI-assisted search.</p>
+    </article>
+  </div>
+  <div class="bo-outcome">
+    <div>
+      <span class="bo-side-label">The Commercial Objective</span>
+      <h3>Build a scalable <em>international SEO framework.</em></h3>
+    </div>
+    <div>
+      <p class="bo-outcome-intro">Build a scalable international SEO framework that connects search demand with qualified B2B inquiries.</p>
+      <p class="bo-outcome-subhead">What success should look like:</p>
+      <ul>
+        <li>Increased non-branded organic visibility across priority markets.</li>
+        <li>More relevant traffic to commercial service pages.</li>
+        <li>Higher numbers of qualified inquiries attributable to organic search.</li>
+        <li>Clear reporting from search performance to lead generation and commercial outcomes.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="bo-method"><em>This proposal identifies strategic opportunities based on publicly available information. Search performance baselines, market demand estimates, and financial forecasts require validation using Google Search Console, GA4, keyword research, and CRM data.</em></p>
+</section>
+</template>
+<script>
 function cleanResearchPresentation(root){
  const logo='/assets/bfc9f7d1-1d7f-4ffc-8612-e29fc8500981.png';
  const removeExact=[/^INDEPENDENT RESEARCH\s*[·•-]\s*21 NOVEMBER 2026$/i,/^Prepared by Lidiia Demchenko\s*[·•-]\s*Public-source research only\s*[·•-]\s*No access to Google Search Console or GA4$/i,/^P[1-3]\s*[·•-]\s*.+$/i];
@@ -156,6 +279,19 @@ function cleanResearchPresentation(root){
  for(const el of [...root.querySelectorAll('span,p,small,div')]){
   if(el.children.length===0&&!el.textContent.trim()&&el.className!=='')el.remove();
  }
+}
+
+
+function renderBusinessOpportunity(root){
+ const template=document.getElementById('business-opportunity-template');
+ if(!template || root.querySelector('.business-opportunity'))return;
+ const section=template.content.firstElementChild.cloneNode(true);
+ const sections=[...root.querySelectorAll('section')];
+ // Replace the existing executive summary, avoiding a duplicate Executive Perspective.
+ const previous=sections.find(el=>!el.classList.contains('intro')&&!el.classList.contains('proposal-hero') && /EXECUTIVE PERSPECTIVE|THE OPPORTUNITY IN SHORT/i.test(el.textContent.slice(0,650)));
+ if(previous){previous.replaceWith(section);return;}
+ const intro=root.querySelector('section.proposal-hero,section.intro');
+ if(intro){intro.after(section)}else{root.prepend(section)}
 }
 
 function renderReportCountryHero(root){
@@ -195,7 +331,7 @@ function renderReportCountryHero(root){
  intro.append(row);
 }
 const dec=b=>Uint8Array.from(atob(b),c=>c.charCodeAt(0));
-document.getElementById('unlock').addEventListener('submit',async e=>{e.preventDefault();const btn=document.getElementById('submit'),error=document.getElementById('error');btn.disabled=true;error.textContent='';try{if(!crypto.subtle||!('DecompressionStream'in window))throw Error('This browser does not support secure document unlocking. Please use an updated browser.');const res=await fetch('./report.enc',{cache:'no-store'});if(!res.ok)throw Error('Encrypted report unavailable.');const x=await res.json();const password=document.getElementById('password').value;const secret=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveKey']);const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:dec(x.salt),iterations:x.iterations,hash:'SHA-256'},secret,{name:'AES-GCM',length:256},false,['decrypt']);const decrypted=await crypto.subtle.decrypt({name:'AES-GCM',iv:dec(x.iv)},key,dec(x.data));const stream=new Blob([decrypted]).stream().pipeThrough(new DecompressionStream('gzip'));const text=await new Response(stream).text();document.getElementById('report').innerHTML=text;cleanResearchPresentation(document.getElementById('report'));renderReportCountryHero(document.getElementById('report'));document.getElementById('gate').style.display='none';document.getElementById('report').style.display='block';try{sessionStorage.setItem('archicgi-tab-pass',password)}catch(e){}document.getElementById('password').value='';window.scrollTo(0,0);}catch(err){try{sessionStorage.removeItem('archicgi-tab-pass')}catch(e){}error.textContent=err.name==='OperationError'?'Incorrect password. Please try again.':err.message||'Could not unlock report.';}finally{btn.disabled=false;}});
+document.getElementById('unlock').addEventListener('submit',async e=>{e.preventDefault();const btn=document.getElementById('submit'),error=document.getElementById('error');btn.disabled=true;error.textContent='';try{if(!crypto.subtle||!('DecompressionStream'in window))throw Error('This browser does not support secure document unlocking. Please use an updated browser.');const res=await fetch('./report.enc',{cache:'no-store'});if(!res.ok)throw Error('Encrypted report unavailable.');const x=await res.json();const password=document.getElementById('password').value;const secret=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveKey']);const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:dec(x.salt),iterations:x.iterations,hash:'SHA-256'},secret,{name:'AES-GCM',length:256},false,['decrypt']);const decrypted=await crypto.subtle.decrypt({name:'AES-GCM',iv:dec(x.iv)},key,dec(x.data));const stream=new Blob([decrypted]).stream().pipeThrough(new DecompressionStream('gzip'));const text=await new Response(stream).text();document.getElementById('report').innerHTML=text;cleanResearchPresentation(document.getElementById('report'));renderReportCountryHero(document.getElementById('report'));renderBusinessOpportunity(document.getElementById('report'));document.getElementById('gate').style.display='none';document.getElementById('report').style.display='block';try{sessionStorage.setItem('archicgi-tab-pass',password)}catch(e){}document.getElementById('password').value='';window.scrollTo(0,0);}catch(err){try{sessionStorage.removeItem('archicgi-tab-pass')}catch(e){}error.textContent=err.name==='OperationError'?'Incorrect password. Please try again.':err.message||'Could not unlock report.';}finally{btn.disabled=false;}});
 
 // Remember successful access for this browser tab only; closing the tab clears it.
 try{const saved=sessionStorage.getItem('archicgi-tab-pass');if(saved){document.getElementById('password').value=saved;document.getElementById('unlock').requestSubmit();}}catch(e){}
