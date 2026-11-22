@@ -304,8 +304,23 @@ button:disabled{opacity:.55;cursor:wait}
   }
 }
 
+
+/* Persistent bilingual language selector, shared by the access screen and report */
+#site-lang-switch{position:fixed;top:16px;right:clamp(16px,3vw,46px);z-index:100;display:flex;align-items:center;gap:0;background:rgba(9,9,10,.88);border:1px solid #555358;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:3px}
+#site-lang-switch button{display:block;width:auto;min-height:33px;margin:0;padding:7px 11px;border:0;background:transparent;color:#a9a7ab;font:800 11px/1 Archivo,Arial,sans-serif;letter-spacing:.12em;cursor:pointer;transition:background .2s,color .2s}
+#site-lang-switch button[aria-pressed="true"]{background:#f5f3ee;color:#09090a}
+#site-lang-switch button:focus-visible{outline:2px solid #f5f3ee;outline-offset:2px}
+#site-lang-switch button:hover:not([aria-pressed="true"]){color:#fff}
+html[lang="uk"] #report .proposal-hero-visual h1{font-size:clamp(39px,5.6vw,88px);overflow-wrap:break-word}
+html[lang="uk"] #report .business-opportunity h2{font-size:clamp(42px,5.6vw,88px)}
+@media(max-width:800px){
+ #site-lang-switch{top:11px;right:12px}
+ #site-lang-switch button{min-height:32px;padding:6px 9px;font-size:10px}
+ html[lang="uk"] #report .proposal-hero-visual h1{font-size:clamp(36px,9.1vw,56px)}
+ html[lang="uk"] #report .business-opportunity h2{font-size:clamp(36px,9vw,56px)}
+}
 </style>
-</head><body><main><div id="gate"><div class="hero-film" aria-hidden="true"><video autoplay muted loop playsinline preload="none" poster="https://archicgi.com/wp-content/uploads/2026/03/waterfront-hotel-resort-exterior-3d-rendering-.webp"><source src="/assets/Photorealistic-3D-Animation-SnapYT.App.mp4" type="video/mp4"></video></div><div class="gate-inner"><div class="hero-brand"><img class="hero-brand-logo" src="/assets/bfc9f7d1-1d7f-4ffc-8612-e29fc8500981.png" alt="ArchiCGI" width="800" height="230"><h1><em>BEYOND<br>SEARCH.</em></h1></div><p class="lead">An international organic growth proposal for France, Spain and Italy.</p><form id="unlock"><label for="password">Access password</label><input id="password" type="password" required autocomplete="off" placeholder="Enter password"><button id="submit" type="submit">OPEN RESEARCH</button><p id="error" role="alert"></p></form><p class="small">Private research prepared for review. Encrypted content unlocks in your browser; no password is transmitted to this site.</p></div></div><div id="report"></div></main>
+</head><body><nav id="site-lang-switch" aria-label="Мова / Language"><button type="button" data-ui-lang="en" aria-pressed="true" lang="en">EN</button><button type="button" data-ui-lang="uk" aria-pressed="false" lang="uk">УКР</button></nav><main><div id="gate"><div class="hero-film" aria-hidden="true"><video autoplay muted loop playsinline preload="none" poster="https://archicgi.com/wp-content/uploads/2026/03/waterfront-hotel-resort-exterior-3d-rendering-.webp"><source src="/assets/Photorealistic-3D-Animation-SnapYT.App.mp4" type="video/mp4"></video></div><div class="gate-inner"><div class="hero-brand"><img class="hero-brand-logo" src="/assets/bfc9f7d1-1d7f-4ffc-8612-e29fc8500981.png" alt="ArchiCGI" width="800" height="230"><h1><em>BEYOND<br>SEARCH.</em></h1></div><p class="lead">An international organic growth proposal for France, Spain and Italy.</p><form id="unlock"><label for="password">Access password</label><input id="password" type="password" required autocomplete="off" placeholder="Enter password"><button id="submit" type="submit">OPEN RESEARCH</button><p id="error" role="alert"></p></form><p class="small">Private research prepared for review. Encrypted content unlocks in your browser; no password is transmitted to this site.</p></div></div><div id="report"></div></main>
 <template id="business-opportunity-template">
 <section class="business-opportunity" id="business-opportunity" aria-labelledby="business-opportunity-title">
   <div class="bo-kicker"><span class="bo-kicker-number">01</span><span>Executive Perspective</span><span class="bo-kicker-rule" aria-hidden="true"></span></div>
@@ -365,6 +380,120 @@ button:disabled{opacity:.55;cursor:wait}
 </section>
 </template>
 <script>
+
+/* Local bilingual interface: never send the decrypted private report to translation services. */
+const UK_TRANSLATIONS={
+  "BEYOND": "ПОЗА",
+  "SEARCH.": "ПОШУКОМ.",
+  "An international organic growth proposal for France, Spain and Italy.": "Пропозиція зі зростання органічного пошуку на ринках Франції, Іспанії та Італії.",
+  "Access password": "Пароль доступу",
+  "OPEN RESEARCH": "ВІДКРИТИ ДОСЛІДЖЕННЯ",
+  "Private research prepared for review. Encrypted content unlocks in your browser; no password is transmitted to this site.": "Приватний звіт для ознайомлення. Зашифрований вміст відкривається у вашому браузері — пароль не передається сайту.",
+  "INTERNATIONAL ORGANIC GROWTH": "МІЖНАРОДНЕ ОРГАНІЧНЕ ЗРОСТАННЯ",
+  "A preliminary, evidence-led SEO proposal for ArchiCGI — connecting localized architectural visualization search demand with qualified B2B leads.": "Попередня SEO-пропозиція для ArchiCGI на основі доступних даних: поєднати локальний попит на архітектурну візуалізацію з якісними B2B-зверненнями.",
+  "FRANCE": "ФРАНЦІЯ",
+  "SPAIN": "ІСПАНІЯ",
+  "ITALY": "ІТАЛІЯ",
+  "Executive Perspective": "Стратегічний огляд",
+  "The Business": "БІЗНЕСОВІ",
+  "Opportunity": "МОЖЛИВОСТІ",
+  "From International Search Visibility to Qualified B2B Demand.": "Від міжнародної пошукової видимості до якісного B2B-попиту.",
+  "ArchiCGI has already established a strong commercial foundation: an extensive architectural visualization portfolio, scalable production capabilities, clearly defined services, and localized websites for France, Spain, and Italy.": "ArchiCGI уже має міцну комерційну основу: велике портфоліо архітектурної візуалізації, можливості масштабування виробництва, чітко визначені послуги та локалізовані сайти для Франції, Іспанії й Італії.",
+  "The next opportunity is to connect these existing strengths with the way architects, real estate developers, and interior designers search for visualization partners in their local markets.": "Наступна можливість — поєднати ці переваги з тим, як архітектори, девелопери та дизайнери інтер’єрів шукають партнерів із візуалізації на своїх локальних ринках.",
+  "The Objective": "Мета",
+  "The objective is not simply more organic traffic. It is more qualified project opportunities generated through organic search.": "Мета — не просто збільшити органічний трафік, а залучати більше якісних проєктних можливостей через органічний пошук.",
+  "Three Strategic Growth Levers": "Три стратегічні важелі зростання",
+  "Capture High-Intent Local Demand": "ЗАЛУЧАТИ ЛОКАЛЬНИЙ ПОПИТ ІЗ ВИСОКИМ НАМІРОМ",
+  "Identify commercial search opportunities across France, Spain, and Italy, align localized service pages with buyer intent, and prioritize keywords that indicate a real need for architectural visualization services.": "Визначити комерційні пошукові можливості у Франції, Іспанії та Італії, узгодити локалізовані сторінки послуг із намірами клієнтів і надати пріоритет запитам, що вказують на реальну потребу в архітектурній візуалізації.",
+  "Connect Discovery with Conversion": "ПЕРЕТВОРЮВАТИ ПОШУК НА КОНВЕРСІЇ",
+  "Strengthen the journey from Google search to project inquiry through relevant landing pages, clear service positioning, project examples, pricing transparency, and measurable conversion paths.": "Покращити шлях від пошуку Google до заявки на проєкт завдяки релевантним посадковим сторінкам, чіткому позиціонуванню послуг, прикладам робіт, прозорості цін і вимірюваним конверсійним сценаріям.",
+  "Build Sustainable Search Authority": "РОЗВИВАТИ СТАЛИЙ ПОШУКОВИЙ АВТОРИТЕТ",
+  "Use ArchiCGI's existing expertise, project portfolio, client experience, and industry knowledge to strengthen topical relevance, build credibility, and expand visibility across traditional and AI-assisted search.": "Використати експертизу ArchiCGI, портфоліо, досвід співпраці з клієнтами та галузеві знання, щоб посилити тематичну релевантність, довіру й видимість у традиційному пошуку та пошуку з ШІ.",
+  "The Commercial Objective": "Комерційна мета",
+  "Build a scalable": "ПОБУДУВАТИ МАСШТАБОВАНУ",
+  "international SEO framework.": "МІЖНАРОДНУ SEO-СИСТЕМУ.",
+  "Build a scalable international SEO framework that connects search demand with qualified B2B inquiries.": "Побудувати масштабовану міжнародну SEO-систему, яка перетворює пошуковий попит на якісні B2B-звернення.",
+  "What success should look like:": "Як оцінюватимемо успіх:",
+  "Increased non-branded organic visibility across priority markets.": "Зростання органічної видимості за небрендовими запитами на пріоритетних ринках.",
+  "More relevant traffic to commercial service pages.": "Більше релевантного трафіку на комерційні сторінки послуг.",
+  "Higher numbers of qualified inquiries attributable to organic search.": "Більше кваліфікованих звернень, отриманих через органічний пошук.",
+  "Clear reporting from search performance to lead generation and commercial outcomes.": "Прозора звітність: від пошукових показників до генерації лідів і комерційних результатів.",
+  "This proposal identifies strategic opportunities based on publicly available information. Search performance baselines, market demand estimates, and financial forecasts require validation using Google Search Console, GA4, keyword research, and CRM data.": "Ця пропозиція окреслює стратегічні можливості на основі відкритих даних. Початкові показники пошуку, оцінки попиту та фінансові прогнози потребують перевірки за допомогою Google Search Console, GA4, дослідження ключових слів і даних CRM.",
+  "MARKET INTELLIGENCE": "АНАЛІЗ РИНКІВ",
+  "Market Intelligence": "Аналіз ринків",
+  "WHAT THE AUDIT ACTUALLY FOUND": "ЩО ВИЯВИВ АУДИТ",
+  "What the Audit Actually Found": "Що виявив аудит",
+  "TECHNICAL BASELINE": "ТЕХНІЧНА ОСНОВА",
+  "Technical baseline": "Технічна основа",
+  "INDEXING & VISIBILITY": "ІНДЕКСАЦІЯ ТА ВИДИМІСТЬ",
+  "Indexing & visibility": "Індексація та видимість",
+  "RECOMMENDED IMPLEMENTATION BACKLOG": "РЕКОМЕНДОВАНИЙ ПЛАН ВПРОВАДЖЕННЯ",
+  "Recommended Implementation Backlog": "Рекомендований план впровадження",
+  "MEASUREMENT FRAMEWORK": "СИСТЕМА ВИМІРЮВАННЯ",
+  "Measurement Framework": "Система вимірювання",
+  "HOW WE'LL TRACK IMPACT": "ЯК ОЦІНЮВАТИМЕМО ВПЛИВ",
+  "How We’ll Track Impact": "Як оцінюватимемо вплив",
+  "Organic visibility": "Органічна видимість",
+  "Organic traffic": "Органічний трафік",
+  "Lead quality": "Якість лідів",
+  "Business impact": "Вплив на бізнес",
+  "SEO RECOMMENDATIONS": "SEO-РЕКОМЕНДАЦІЇ",
+  "FRANCE / SPAIN / ITALY": "ФРАНЦІЯ / ІСПАНІЯ / ІТАЛІЯ",
+  "PREPARED FOR": "ПІДГОТОВЛЕНО ДЛЯ",
+  "Incorrect password. Please try again.": "Неправильний пароль. Спробуйте ще раз.",
+  "Encrypted report unavailable.": "Зашифрований звіт тимчасово недоступний.",
+  "This browser does not support secure document unlocking. Please use an updated browser.": "Цей браузер не підтримує безпечне відкриття документа. Скористайтеся оновленим браузером.",
+  "Could not unlock report.": "Не вдалося відкрити звіт."
+};
+const originalLanguageNodes=new WeakMap();
+let currentLanguage='en';
+try{if(localStorage.getItem('archicgi-language')==='uk')currentLanguage='uk'}catch(e){}
+const normalizeTranslationKey=value=>value.replace(/\s+/g,' ').trim();
+function translateVisibleArea(area){
+ if(!area)return;
+ const walk=document.createTreeWalker(area,NodeFilter.SHOW_TEXT);
+ const nodes=[];
+ while(walk.nextNode())nodes.push(walk.currentNode);
+ for(const node of nodes){
+  if(!node.parentNode||/^(SCRIPT|STYLE)$/i.test(node.parentNode.nodeName))continue;
+  if(!originalLanguageNodes.has(node))originalLanguageNodes.set(node,node.nodeValue);
+  const original=originalLanguageNodes.get(node);
+  const key=normalizeTranslationKey(original);
+  const translated=UK_TRANSLATIONS[key];
+  if(currentLanguage==='uk'&&translated){
+   const prefix=original.match(/^\s*/)?.[0]||'';
+   const suffix=original.match(/\s*$/)?.[0]||'';
+   node.nodeValue=prefix+translated+suffix;
+  }else{node.nodeValue=original}
+ }
+}
+function applyLanguage(){
+ document.documentElement.lang=currentLanguage;
+ document.title=currentLanguage==='uk'?'ArchiCGI · Міжнародне SEO-дослідження':'ArchiCGI · Private International SEO Research';
+ for(const button of document.querySelectorAll('#site-lang-switch [data-ui-lang]')){
+  button.setAttribute('aria-pressed',String(button.dataset.uiLang===currentLanguage));
+ }
+ translateVisibleArea(document.getElementById('gate'));
+ translateVisibleArea(document.getElementById('report'));
+ const input=document.getElementById('password');
+ if(input)input.placeholder=currentLanguage==='uk'?'Введіть пароль':'Enter password';
+ const figure=document.querySelector('#report .bo-map-static-image');
+ if(figure)figure.alt=currentLanguage==='uk'?'Рельєфна карта Європи: Францію, Іспанію та Італію виділено білим кольором.':'Relief map of Europe with France, Spain and Italy highlighted in white against dark neighboring countries.';
+ for(const anchor of document.querySelectorAll('#report .country-card')){
+  const code=anchor.classList.contains('country-card--fr')?'fr':anchor.classList.contains('country-card--es')?'es':'it';
+  const names={fr:['France','Франції'],es:['Spain','Іспанії'],it:['Italy','Італії']};
+  anchor.setAttribute('aria-label',currentLanguage==='uk'?'Відкрити сайт ArchiCGI для '+names[code][1]+' у новій вкладці':'Visit ArchiCGI '+names[code][0]+' website (opens in new tab)');
+ }
+}
+for(const button of document.querySelectorAll('#site-lang-switch [data-ui-lang]')){
+ button.addEventListener('click',()=>{
+  currentLanguage=button.dataset.uiLang;
+  try{localStorage.setItem('archicgi-language',currentLanguage)}catch(e){}
+  applyLanguage();
+ });
+}
+applyLanguage();
+
 function cleanResearchPresentation(root){
  const logo='/assets/bfc9f7d1-1d7f-4ffc-8612-e29fc8500981.png';
  const removeExact=[/^INDEPENDENT RESEARCH\s*[·•-]\s*21 NOVEMBER 2026$/i,/^Prepared by Lidiia Demchenko\s*[·•-]\s*Public-source research only\s*[·•-]\s*No access to Google Search Console or GA4$/i,/^P[1-3]\s*[·•-]\s*.+$/i];
@@ -447,7 +576,7 @@ function renderReportCountryHero(root){
  intro.append(row);
 }
 const dec=b=>Uint8Array.from(atob(b),c=>c.charCodeAt(0));
-document.getElementById('unlock').addEventListener('submit',async e=>{e.preventDefault();const btn=document.getElementById('submit'),error=document.getElementById('error');btn.disabled=true;error.textContent='';try{if(!crypto.subtle||!('DecompressionStream'in window))throw Error('This browser does not support secure document unlocking. Please use an updated browser.');const res=await fetch('./report.enc',{cache:'no-store'});if(!res.ok)throw Error('Encrypted report unavailable.');const x=await res.json();const password=document.getElementById('password').value;const secret=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveKey']);const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:dec(x.salt),iterations:x.iterations,hash:'SHA-256'},secret,{name:'AES-GCM',length:256},false,['decrypt']);const decrypted=await crypto.subtle.decrypt({name:'AES-GCM',iv:dec(x.iv)},key,dec(x.data));const stream=new Blob([decrypted]).stream().pipeThrough(new DecompressionStream('gzip'));const text=await new Response(stream).text();document.getElementById('report').innerHTML=text;cleanResearchPresentation(document.getElementById('report'));renderReportCountryHero(document.getElementById('report'));renderBusinessOpportunity(document.getElementById('report'));document.getElementById('gate').style.display='none';document.getElementById('report').style.display='block';try{sessionStorage.setItem('archicgi-tab-pass',password)}catch(e){}document.getElementById('password').value='';window.scrollTo(0,0);}catch(err){try{sessionStorage.removeItem('archicgi-tab-pass')}catch(e){}error.textContent=err.name==='OperationError'?'Incorrect password. Please try again.':err.message||'Could not unlock report.';}finally{btn.disabled=false;}});
+document.getElementById('unlock').addEventListener('submit',async e=>{e.preventDefault();const btn=document.getElementById('submit'),error=document.getElementById('error');btn.disabled=true;error.textContent='';try{if(!crypto.subtle||!('DecompressionStream'in window))throw Error('This browser does not support secure document unlocking. Please use an updated browser.');const res=await fetch('./report.enc',{cache:'no-store'});if(!res.ok)throw Error('Encrypted report unavailable.');const x=await res.json();const password=document.getElementById('password').value;const secret=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveKey']);const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:dec(x.salt),iterations:x.iterations,hash:'SHA-256'},secret,{name:'AES-GCM',length:256},false,['decrypt']);const decrypted=await crypto.subtle.decrypt({name:'AES-GCM',iv:dec(x.iv)},key,dec(x.data));const stream=new Blob([decrypted]).stream().pipeThrough(new DecompressionStream('gzip'));const text=await new Response(stream).text();document.getElementById('report').innerHTML=text;cleanResearchPresentation(document.getElementById('report'));renderReportCountryHero(document.getElementById('report'));renderBusinessOpportunity(document.getElementById('report'));applyLanguage();document.getElementById('gate').style.display='none';document.getElementById('report').style.display='block';try{sessionStorage.setItem('archicgi-tab-pass',password)}catch(e){}document.getElementById('password').value='';window.scrollTo(0,0);}catch(err){try{sessionStorage.removeItem('archicgi-tab-pass')}catch(e){}error.textContent=err.name==='OperationError'?'Incorrect password. Please try again.':err.message||'Could not unlock report.';applyLanguage();}finally{btn.disabled=false;}});
 
 // Remember successful access for this browser tab only; closing the tab clears it.
 try{const saved=sessionStorage.getItem('archicgi-tab-pass');if(saved){document.getElementById('password').value=saved;document.getElementById('unlock').requestSubmit();}}catch(e){}
