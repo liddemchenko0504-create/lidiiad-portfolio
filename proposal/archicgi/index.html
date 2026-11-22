@@ -283,53 +283,22 @@ button:disabled{opacity:.55;cursor:wait}
 }
 
 
-/* INTERNATIONAL OPPORTUNITY MAP — responsive image, no simulated SVG overlays */
+/* INTERNATIONAL OPPORTUNITY MAP — clean responsive static relief map */
 #report .business-opportunity .bo-opportunity-map--image{
- margin:0 0 clamp(52px,6.5vw,94px);
- width:100%;
- max-width:100%;
- padding:0;
- background:#080808;
- border:0;
- overflow:hidden;
-}
-#report .business-opportunity .bo-map-image-link{
- display:block;
- width:100%;
- line-height:0;
- text-decoration:none;
- cursor:zoom-in;
-}
-#report .business-opportunity .bo-map-image-link:focus-visible{
- outline:2px solid #f5f3ee;
- outline-offset:-2px;
+  margin:0 0 clamp(52px,6.5vw,94px);
+  width:100%;max-width:100%;
+  padding:0;border:0;overflow:hidden;
+  background:#080808;
 }
 #report .business-opportunity .bo-map-static-image{
- display:block;
- width:100%;
- max-width:100%;
- height:auto;
- object-fit:contain;
- background:#080808;
-}
-#report .business-opportunity .bo-map-image-caption{
- display:none;
- margin:12px 0 0;
- font:700 10px/1.5 Archivo,Arial,sans-serif;
- color:var(--muted);
- letter-spacing:.12em;
- text-transform:uppercase;
- text-align:center;
+  display:block;width:100%;max-width:100%;height:auto;
+  object-fit:contain;background:#080808;
 }
 @media(max-width:800px){
- #report .business-opportunity .bo-opportunity-map--image{
-  width:calc(100% + 40px);
-  max-width:none;
-  margin-left:-20px;
-  margin-right:-20px;
-  margin-bottom:52px;
- }
- #report .business-opportunity .bo-map-image-caption{display:block}
+  #report .business-opportunity .bo-opportunity-map--image{
+    width:calc(100% + 40px);max-width:none;
+    margin-left:-20px;margin-right:-20px;margin-bottom:52px;
+  }
 }
 
 </style>
@@ -349,10 +318,7 @@ button:disabled{opacity:.55;cursor:wait}
   </div>
 
   <figure class="bo-opportunity-map bo-opportunity-map--image">
-    <a class="bo-map-image-link" href="/assets/%D0%9A%D0%B0%D1%80%D1%82%D0%B0%20%D0%BC%D0%B5%D0%B6%D0%B4%D1%83%D0%BD%D0%B0%D1%80%D0%BE%D0%B4%D0%BD%D1%8B%D1%85%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B5%D0%B8%CC%86%20%D0%95%D0%B2%D1%80%D0%BE%D0%BF%D1%8B.png" target="_blank" rel="noopener" aria-label="Open full-size International Opportunity Map (France, Spain and Italy)">
-      <img class="bo-map-static-image" src="/assets/%D0%9A%D0%B0%D1%80%D1%82%D0%B0%20%D0%BC%D0%B5%D0%B6%D0%B4%D1%83%D0%BD%D0%B0%D1%80%D0%BE%D0%B4%D0%BD%D1%8B%D1%85%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B5%D0%B8%CC%86%20%D0%95%D0%B2%D1%80%D0%BE%D0%BF%D1%8B.png" alt="International Opportunity Map of Europe. France, Spain and Italy are highlighted, with country-specific architectural CGI and localized search opportunities." loading="lazy" decoding="async">
-    </a>
-    <figcaption class="bo-map-image-caption">Tap the map to view full size</figcaption>
+    <img class="bo-map-static-image" src="/assets/%D0%A0%D0%B5%D0%BB%D1%8C%D0%B5%D1%84%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%B0%D1%80%D1%82%D0%B0%20%D0%95%D0%B2%D1%80%D0%BE%D0%BF%D1%8B_%20%D0%A4%D1%80%D0%B0%D0%BD%D1%86%D0%B8%D1%8F,%20%D0%98%D1%81%D0%BF%D0%B0%D0%BD%D0%B8%D1%8F%20%D0%B8%20%D0%98%D1%82%D0%B0%D0%BB%D0%B8%D1%8F%20%D1%81%D0%B8%D1%8F%D1%8E%D1%82.png" alt="Relief map of Europe with France, Spain and Italy highlighted in white against dark neighboring countries." loading="lazy" decoding="async">
   </figure>
   <div class="bo-thesis">
     <span class="bo-side-label">The Objective</span>
