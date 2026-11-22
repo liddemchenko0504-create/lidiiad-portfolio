@@ -127,71 +127,159 @@ button:disabled{opacity:.55;cursor:wait}
   #report .proposal-hero .country-cards{margin-top:24px}
 }
 
-/* 01 / Executive Perspective — editorial strategy brief */
+/* 01 / EXECUTIVE PERSPECTIVE — consistent with existing monochrome ArchiCGI report */
 #report section.business-opportunity{
-  --bo-ink:#191917;--bo-muted:#55544f;--bo-line:#c9c5bc;--bo-paper:#f4f1eb;
-  background:var(--bo-paper);color:var(--bo-ink);
-  margin:0 calc(-1 * clamp(22px,5vw,90px));
-  padding:clamp(70px,7vw,116px) clamp(22px,5vw,90px) clamp(80px,8vw,132px)!important;
-  border-bottom:1px solid #b9b5ad;
+  --bo-ink:var(--white);--bo-muted:var(--muted);--bo-line:var(--rule);
+  --bo-paper:var(--paper);
+  background:transparent;color:var(--bo-ink);
+  margin:0;
+  padding:clamp(72px,8vw,130px) 0!important;
+  border-bottom:1px solid var(--rule);
 }
-#report .business-opportunity .bo-kicker{display:flex;align-items:center;gap:15px;margin-bottom:clamp(38px,5vw,70px);font-size:11px;font-weight:800;letter-spacing:.17em;color:#3f3d39;text-transform:uppercase}
-#report .business-opportunity .bo-kicker-number{font-family:Georgia,serif;font-size:23px;line-height:1;font-style:italic;letter-spacing:-.04em;font-weight:400;color:#8d7661}
-#report .business-opportunity .bo-kicker-rule{flex:1;height:1px;background:var(--bo-line);max-width:170px}
-#report .business-opportunity .bo-intro{display:grid;grid-template-columns:minmax(0,1.07fr) minmax(0,.93fr);column-gap:clamp(44px,7vw,125px);align-items:start;padding-bottom:clamp(52px,6vw,100px)}
-#report .business-opportunity h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:clamp(55px,6.4vw,106px);line-height:.98;letter-spacing:-.068em;text-transform:none;color:var(--bo-ink);margin:0 0 30px;max-width:780px}
-#report .business-opportunity h2 em{display:block;font-weight:400;font-style:italic;color:#746758}
-#report .business-opportunity .bo-deck{font-size:clamp(19px,2.1vw,27px);line-height:1.34;letter-spacing:-.025em;font-weight:500;color:#242320;max-width:565px;margin:0}
-#report .business-opportunity .bo-intro-copy{padding-top:10px}
-#report .business-opportunity .bo-intro-copy p{font-size:clamp(16px,1.3vw,19px);line-height:1.75;color:var(--bo-muted);margin:0 0 24px;max-width:680px}
-#report .business-opportunity .bo-thesis{display:grid;grid-template-columns:minmax(120px,.22fr) 1fr;gap:30px;padding:32px 0 40px;border-top:1px solid var(--bo-ink);border-bottom:1px solid var(--bo-line);align-items:start}
-#report .business-opportunity .bo-side-label{font-size:10px;letter-spacing:.18em;font-weight:800;text-transform:uppercase;color:#756b60}
-#report .business-opportunity .bo-thesis p{font-family:Georgia,'Times New Roman',serif;font-size:clamp(25px,3vw,46px);line-height:1.18;letter-spacing:-.045em;color:var(--bo-ink);font-weight:400;margin:0;max-width:1040px}
-#report .business-opportunity .bo-thesis strong{font-weight:400}
-#report .business-opportunity .bo-levers-header{display:flex;justify-content:space-between;align-items:center;gap:20px;margin:clamp(55px,6vw,92px) 0 22px}
-#report .business-opportunity .bo-levers-header h3{margin:0;color:var(--bo-ink);font-size:clamp(13px,1.25vw,16px);letter-spacing:.14em;line-height:1.4;font-weight:800}
-#report .business-opportunity .bo-levers-header span{font-family:Georgia,serif;font-size:15px;font-style:italic;color:#857667}
-#report .business-opportunity .bo-levers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--bo-line);border-bottom:1px solid var(--bo-line)}
-#report .business-opportunity .bo-lever{padding:clamp(24px,3vw,43px) clamp(14px,2.4vw,35px) clamp(34px,4vw,62px);min-width:0}
+#report .business-opportunity .bo-kicker{
+  display:flex;align-items:center;gap:14px;margin:0 0 clamp(32px,4.5vw,64px);
+  color:var(--white);font:800 11px/1.5 Archivo,Arial,sans-serif;
+  letter-spacing:.18em;text-transform:uppercase
+}
+#report .business-opportunity .bo-kicker-number{
+  font:800 12px/1.5 Archivo,Arial,sans-serif;letter-spacing:.14em;color:var(--white)
+}
+#report .business-opportunity .bo-kicker-rule{flex:1;height:1px;background:var(--rule);max-width:170px}
+#report .business-opportunity .bo-intro{
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  column-gap:clamp(38px,6vw,110px);align-items:start;
+  padding-bottom:clamp(45px,5vw,84px)
+}
+#report .business-opportunity h2{
+  font:900 clamp(43px,6vw,93px)/1.02 Archivo,Arial,sans-serif;
+  letter-spacing:-.064em;text-transform:uppercase;color:var(--white);
+  margin:0 0 24px;max-width:800px
+}
+#report .business-opportunity h2 em{
+  display:block;font:inherit;font-style:normal;color:var(--white)
+}
+#report .business-opportunity .bo-deck{
+  font:500 clamp(18px,2vw,25px)/1.45 Archivo,Arial,sans-serif;
+  letter-spacing:-.02em;color:var(--white);max-width:640px;margin:0
+}
+#report .business-opportunity .bo-intro-copy{padding-top:7px}
+#report .business-opportunity .bo-intro-copy p{
+  font-size:clamp(15px,1.25vw,18px);line-height:1.75;color:#c7c4c1;
+  margin:0 0 23px;max-width:680px
+}
+#report .business-opportunity .bo-thesis{
+  display:grid;grid-template-columns:minmax(115px,.22fr) 1fr;
+  gap:clamp(20px,4vw,60px);padding:32px 0 40px;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  align-items:start
+}
+#report .business-opportunity .bo-side-label{
+  font:800 11px/1.6 Archivo,Arial,sans-serif;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--muted)
+}
+#report .business-opportunity .bo-thesis p{
+  font:600 clamp(24px,2.9vw,42px)/1.22 Archivo,Arial,sans-serif;
+  letter-spacing:-.045em;color:var(--white);
+  margin:0;max-width:1050px
+}
+#report .business-opportunity .bo-thesis strong{font-weight:700}
+#report .business-opportunity .bo-levers-header{
+  display:flex;justify-content:space-between;align-items:center;gap:20px;
+  margin:clamp(52px,6vw,88px) 0 22px
+}
+#report .business-opportunity .bo-levers-header h3{
+  font:800 clamp(16px,1.6vw,22px)/1.3 Archivo,Arial,sans-serif;
+  letter-spacing:-.02em;text-transform:uppercase;color:var(--white);margin:0
+}
+#report .business-opportunity .bo-levers-header span{
+  font:700 11px/1.5 Archivo,Arial,sans-serif;
+  letter-spacing:.12em;color:var(--muted)
+}
+#report .business-opportunity .bo-levers{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)
+}
+#report .business-opportunity .bo-lever{
+  padding:clamp(24px,3vw,42px) clamp(14px,2.4vw,35px) clamp(35px,4vw,58px);
+  min-width:0
+}
 #report .business-opportunity .bo-lever:first-child{padding-left:0}
 #report .business-opportunity .bo-lever:last-child{padding-right:0}
-#report .business-opportunity .bo-lever+.bo-lever{border-left:1px solid var(--bo-line)}
-#report .business-opportunity .bo-lever-index{font-family:Georgia,serif;font-size:clamp(35px,4vw,59px);line-height:1;letter-spacing:-.06em;font-weight:400;color:#a89987;display:block;margin-bottom:42px}
-#report .business-opportunity .bo-lever h4{font-family:Archivo,Arial,sans-serif;font-size:clamp(19px,1.8vw,27px);line-height:1.18;letter-spacing:-.045em;font-weight:800;color:var(--bo-ink);margin:0 0 18px;max-width:360px}
-#report .business-opportunity .bo-lever p{font-size:clamp(14px,1.14vw,16px);line-height:1.7;color:var(--bo-muted);margin:0}
-#report .business-opportunity .bo-outcome{background:#1d1c1b;color:#f1eee8;margin-top:clamp(66px,7.2vw,112px);padding:clamp(30px,4.3vw,67px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,100px)}
-#report .business-opportunity .bo-outcome .bo-side-label{color:#b6a895}
-#report .business-opportunity .bo-outcome h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(31px,3.8vw,58px);text-transform:none;line-height:1.08;letter-spacing:-.055em;font-weight:400;margin:24px 0 0;color:#f5f1ea}
-#report .business-opportunity .bo-outcome h3 em{font-weight:400}
-#report .business-opportunity .bo-outcome-intro{color:#f1eee8!important;font-size:clamp(17px,1.5vw,22px);line-height:1.48;margin:0 0 28px;max-width:590px}
-#report .business-opportunity .bo-outcome-subhead{color:#c2b5a4;font-size:11px;letter-spacing:.15em;text-transform:uppercase;font-weight:800;margin:0 0 13px}
+#report .business-opportunity .bo-lever+.bo-lever{border-left:1px solid var(--rule)}
+#report .business-opportunity .bo-lever-index{
+  display:block;margin-bottom:clamp(25px,3vw,43px);
+  font:900 clamp(32px,4vw,58px)/1 Archivo,Arial,sans-serif;
+  letter-spacing:-.06em;color:#777579
+}
+#report .business-opportunity .bo-lever h4{
+  font:800 clamp(20px,1.9vw,27px)/1.2 Archivo,Arial,sans-serif;
+  letter-spacing:-.045em;text-transform:uppercase;color:var(--white);
+  margin:0 0 18px;max-width:360px
+}
+#report .business-opportunity .bo-lever p{
+  font-size:clamp(14px,1.14vw,16px);line-height:1.7;
+  color:#b6b4b4;margin:0
+}
+#report .business-opportunity .bo-outcome{
+  background:var(--paper);border:1px solid #252427;color:var(--white);
+  margin-top:clamp(58px,7vw,104px);padding:clamp(26px,4vw,61px);
+  display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);
+  gap:clamp(30px,5vw,90px)
+}
+#report .business-opportunity .bo-outcome .bo-side-label{color:var(--muted)}
+#report .business-opportunity .bo-outcome h3{
+  font:900 clamp(29px,3.6vw,53px)/1.1 Archivo,Arial,sans-serif;
+  letter-spacing:-.055em;text-transform:uppercase;color:var(--white);
+  margin:24px 0 0
+}
+#report .business-opportunity .bo-outcome h3 em{
+  font:inherit;font-style:normal;color:var(--white)
+}
+#report .business-opportunity .bo-outcome-intro{
+  color:var(--white)!important;font-size:clamp(17px,1.5vw,22px);
+  line-height:1.5;margin:0 0 28px;max-width:590px
+}
+#report .business-opportunity .bo-outcome-subhead{
+  color:var(--muted);font-size:11px;letter-spacing:.15em;
+  text-transform:uppercase;font-weight:800;margin:0 0 14px
+}
 #report .business-opportunity .bo-outcome ul{margin:0;padding:0;list-style:none}
-#report .business-opportunity .bo-outcome li{font-size:clamp(14px,1.17vw,17px);color:#e7e2dc;line-height:1.5;padding:12px 0 12px 23px;position:relative;border-top:1px solid #4a4540}
-#report .business-opportunity .bo-outcome li:before{content:"";width:6px;height:6px;position:absolute;left:0;top:22px;background:#c3aa8c}
-#report .business-opportunity .bo-method{font-size:12px;line-height:1.65;color:#67635c;margin:24px 0 0;max-width:1100px}
+#report .business-opportunity .bo-outcome li{
+  font-size:clamp(14px,1.17vw,17px);color:#d0cecc;line-height:1.5;
+  padding:12px 0 12px 23px;position:relative;border-top:1px solid var(--rule)
+}
+#report .business-opportunity .bo-outcome li:before{
+  content:"";width:6px;height:6px;position:absolute;left:0;top:22px;background:var(--white)
+}
+#report .business-opportunity .bo-method{
+  font-size:12px;line-height:1.7;color:var(--muted);
+  margin:24px 0 0;max-width:1100px
+}
 @media(max-width:800px){
- #report section.business-opportunity{margin:0 -20px;padding:64px 20px 76px!important}
- #report .business-opportunity .bo-kicker{gap:10px;font-size:10px;margin-bottom:42px}
+ #report section.business-opportunity{margin:0;padding:65px 0!important}
+ #report .business-opportunity .bo-kicker{gap:10px;font-size:10px;margin-bottom:37px}
  #report .business-opportunity .bo-kicker-rule{max-width:48px}
  #report .business-opportunity .bo-intro{display:block;padding-bottom:38px}
- #report .business-opportunity h2{font-size:clamp(48px,11.5vw,75px);margin-bottom:24px}
- #report .business-opportunity .bo-deck{font-size:21px;line-height:1.35;margin-bottom:32px}
+ #report .business-opportunity h2{font-size:clamp(43px,11vw,65px);margin-bottom:24px}
+ #report .business-opportunity .bo-deck{font-size:20px;line-height:1.4;margin-bottom:32px}
  #report .business-opportunity .bo-intro-copy p{font-size:16px;margin-bottom:18px}
  #report .business-opportunity .bo-thesis{display:block;padding:23px 0 30px}
  #report .business-opportunity .bo-thesis .bo-side-label{display:block;margin-bottom:18px}
- #report .business-opportunity .bo-thesis p{font-size:clamp(26px,6.4vw,38px)}
- #report .business-opportunity .bo-levers-header{margin:56px 0 18px}
- #report .business-opportunity .bo-levers-header h3{font-size:13px}
+ #report .business-opportunity .bo-thesis p{font-size:clamp(25px,6.2vw,38px)}
+ #report .business-opportunity .bo-levers-header{margin:54px 0 18px}
+ #report .business-opportunity .bo-levers-header h3{font-size:17px}
  #report .business-opportunity .bo-levers{display:block}
- #report .business-opportunity .bo-lever,#report .business-opportunity .bo-lever:first-child,#report .business-opportunity .bo-lever:last-child{padding:25px 0 30px}
- #report .business-opportunity .bo-lever+.bo-lever{border-left:0;border-top:1px solid var(--bo-line)}
+ #report .business-opportunity .bo-lever,
+ #report .business-opportunity .bo-lever:first-child,
+ #report .business-opportunity .bo-lever:last-child{padding:25px 0 30px}
+ #report .business-opportunity .bo-lever+.bo-lever{border-left:0;border-top:1px solid var(--rule)}
  #report .business-opportunity .bo-lever-index{font-size:36px;margin-bottom:22px}
  #report .business-opportunity .bo-lever h4{font-size:23px;margin-bottom:12px;max-width:none}
  #report .business-opportunity .bo-lever p{font-size:15px}
- #report .business-opportunity .bo-outcome{display:block;margin-top:63px;padding:28px 24px 34px}
- #report .business-opportunity .bo-outcome h3{font-size:36px;margin:15px 0 30px}
+ #report .business-opportunity .bo-outcome{display:block;margin-top:60px;padding:27px 23px 32px}
+ #report .business-opportunity .bo-outcome h3{font-size:34px;margin:15px 0 27px}
  #report .business-opportunity .bo-outcome-intro{font-size:18px}
- #report .business-opportunity .bo-method{font-size:11px;line-height:1.65;margin-top:23px}
+ #report .business-opportunity .bo-method{font-size:11px;margin-top:23px}
 }
 
 </style>
