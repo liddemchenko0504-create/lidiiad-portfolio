@@ -282,6 +282,58 @@ button:disabled{opacity:.55;cursor:wait}
  #report .business-opportunity .bo-method{font-size:11px;margin-top:23px}
 }
 
+
+/* INTERNATIONAL OPPORTUNITY MAP — monochrome, real geography and paired hover/tap states */
+#report .business-opportunity .bo-opportunity-map{margin:0 0 clamp(52px,6.5vw,94px);padding:0 0 28px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);color:var(--white)}
+#report .business-opportunity .bo-map-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:21px 0 12px}
+#report .business-opportunity .bo-map-heading h3{margin:0;font:800 11px/1.5 Archivo,Arial,sans-serif;letter-spacing:.14em;color:var(--white);text-transform:uppercase}
+#report .business-opportunity .bo-map-heading span{font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+#report .business-opportunity .bo-map-layout{display:grid;grid-template-columns:minmax(180px,.88fr) minmax(300px,1.65fr) minmax(180px,.88fr);gap:clamp(15px,2vw,34px);align-items:center;min-height:390px}
+#report .business-opportunity .bo-map-cards{display:flex;flex-direction:column;gap:18px;align-self:center}
+#report .business-opportunity .bo-market-card{display:block;position:relative;margin:0;width:100%;min-height:137px;padding:20px;outline-offset:3px;box-shadow:none;background:#121213;color:var(--white);border:1px solid #3d3d40;text-align:left;cursor:pointer;font:inherit;letter-spacing:normal;text-transform:none;transition:border-color .22s ease,background .22s ease,box-shadow .22s ease}
+#report .business-opportunity .bo-market-card:hover,#report .business-opportunity .bo-market-card.is-active,#report .business-opportunity .bo-market-card:focus-visible{background:#222224;border-color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.18) inset}
+#report .business-opportunity .bo-market-card:focus-visible{outline:2px solid #fff}
+#report .business-opportunity .bo-market-card-header{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:18px}
+#report .business-opportunity .bo-market-card-header strong{font-size:clamp(20px,2vw,30px);font-weight:900;line-height:1.05;letter-spacing:-.05em}
+#report .business-opportunity .bo-market-card-header>span{font-size:9px;letter-spacing:.13em;color:#98989c}
+#report .business-opportunity .bo-market-card-subtitle{display:block;font-size:10px;font-weight:800;letter-spacing:.12em;line-height:1.4;margin-bottom:9px;color:#dedee0}
+#report .business-opportunity .bo-market-card-detail{display:block;font-size:12px;line-height:1.65;font-weight:400;letter-spacing:0;color:#aaa9ae}
+#report .business-opportunity .bo-map-canvas{min-width:0;align-self:center}
+#report .business-opportunity .bo-europe-svg{display:block;width:100%;height:auto;overflow:visible;max-width:700px;margin:0 auto}
+#report .business-opportunity .bo-map-land{fill:#242428;stroke:#4d4d52;stroke-width:1.25;stroke-linejoin:round}
+#report .business-opportunity .bo-map-country{fill:#55555b;stroke:#77777b;stroke-width:1.9;stroke-linejoin:round;cursor:pointer;outline:none;transition:fill .23s ease,stroke .23s ease,filter .23s ease}
+#report .business-opportunity .bo-map-country.is-active,#report .business-opportunity .bo-map-country:hover,#report .business-opportunity .bo-map-country:focus-visible{fill:#f5f3ee;stroke:#fff;filter:drop-shadow(0 0 10px rgba(255,255,255,.26))}
+#report .business-opportunity .bo-map-country:focus-visible{stroke-width:3.5}
+#report .business-opportunity .bo-map-caption{font-size:11px;line-height:1.4;text-align:center;color:#a4a3a5;margin:6px 0 0}
+#report .business-opportunity .bo-map-focus{display:flex;align-items:baseline;gap:23px;border-top:1px solid var(--rule);padding:19px 0 0;margin:14px 0 0;max-width:none}
+#report .business-opportunity .bo-map-focus span{flex-shrink:0;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.16em}
+#report .business-opportunity .bo-map-focus strong{font-size:clamp(14px,1.3vw,18px);font-weight:600;line-height:1.4;color:var(--white)}
+@media(max-width:950px){
+ #report .business-opportunity .bo-map-layout{grid-template-columns:1fr 1fr;gap:16px;min-height:0}
+ #report .business-opportunity .bo-map-canvas{grid-column:1/-1;grid-row:1}
+ #report .business-opportunity .bo-map-cards--left{grid-column:1;grid-row:2}
+ #report .business-opportunity .bo-map-cards--right{grid-column:2;grid-row:2;align-self:start}
+ #report .business-opportunity .bo-europe-svg{max-width:570px}
+}
+@media(max-width:560px){
+ #report .business-opportunity .bo-map-heading{align-items:flex-start;flex-direction:column;gap:3px}
+ #report .business-opportunity .bo-map-layout{display:flex;flex-direction:column;align-items:stretch;gap:13px}
+ #report .business-opportunity .bo-map-canvas{order:0}
+ #report .business-opportunity .bo-map-cards--left{order:1}
+ #report .business-opportunity .bo-map-cards--right{order:2}
+ #report .business-opportunity .bo-map-cards{gap:12px}
+ #report .business-opportunity .bo-market-card{min-height:0;padding:15px 17px}
+ #report .business-opportunity .bo-market-card-header{margin-bottom:9px}
+ #report .business-opportunity .bo-market-card-header strong{font-size:23px}
+ #report .business-opportunity .bo-map-focus{display:block;padding:17px 0 0}
+ #report .business-opportunity .bo-map-focus span{display:block;margin-bottom:9px}
+ #report .business-opportunity .bo-map-focus strong{font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){
+ #report .business-opportunity .bo-map-country,
+ #report .business-opportunity .bo-market-card{transition:none}
+}
+
 </style>
 </head><body><main><div id="gate"><div class="hero-film" aria-hidden="true"><video autoplay muted loop playsinline preload="none" poster="https://archicgi.com/wp-content/uploads/2026/03/waterfront-hotel-resort-exterior-3d-rendering-.webp"><source src="/assets/Photorealistic-3D-Animation-SnapYT.App.mp4" type="video/mp4"></video></div><div class="gate-inner"><div class="hero-brand"><img class="hero-brand-logo" src="/assets/bfc9f7d1-1d7f-4ffc-8612-e29fc8500981.png" alt="ArchiCGI" width="800" height="230"><h1><em>BEYOND<br>SEARCH.</em></h1></div><p class="lead">An international organic growth proposal for France, Spain and Italy.</p><form id="unlock"><label for="password">Access password</label><input id="password" type="password" required autocomplete="off" placeholder="Enter password"><button id="submit" type="submit">OPEN RESEARCH</button><p id="error" role="alert"></p></form><p class="small">Private research prepared for review. Encrypted content unlocks in your browser; no password is transmitted to this site.</p></div></div><div id="report"></div></main>
 <template id="business-opportunity-template">
@@ -296,6 +348,44 @@ button:disabled{opacity:.55;cursor:wait}
       <p>ArchiCGI has already established a strong commercial foundation: an extensive architectural visualization portfolio, scalable production capabilities, clearly defined services, and localized websites for France, Spain, and Italy.</p>
       <p>The next opportunity is to connect these existing strengths with the way architects, real estate developers, and interior designers search for visualization partners in their local markets.</p>
     </div>
+  </div>
+
+  <div class="bo-opportunity-map" aria-labelledby="bo-opportunity-map-heading">
+    <div class="bo-map-heading"><h3 id="bo-opportunity-map-heading">International Opportunity Map</h3><span>Priority markets / FR · ES · IT</span></div>
+    <div class="bo-map-layout">
+      <div class="bo-map-cards bo-map-cards--left">
+        <button class="bo-market-card is-active" type="button" data-map-market="france" aria-pressed="true">
+          <span class="bo-market-card-header"><strong>FRANCE</strong><span>01 / FR</span></span>
+          <span class="bo-market-card-subtitle">LOCAL SEARCH DEMAND</span>
+          <span class="bo-market-card-detail">Align commercial service pages with French-language search intent.</span>
+        </button>
+        <button class="bo-market-card" type="button" data-map-market="spain" aria-pressed="false">
+          <span class="bo-market-card-header"><strong>SPAIN</strong><span>02 / ES</span></span>
+          <span class="bo-market-card-subtitle">MARKET VISIBILITY</span>
+          <span class="bo-market-card-detail">Connect localized CGI services with relevant Spanish-language queries.</span>
+        </button>
+      </div>
+      <div class="bo-map-canvas">
+        <!-- Europe silhouettes from Natural Earth public-domain country boundaries, simplified for web. -->
+        <svg class="bo-europe-svg" viewBox="0 0 568 352" role="group" aria-labelledby="bo-europe-title bo-europe-desc" xmlns="http://www.w3.org/2000/svg">
+          <title id="bo-europe-title">Interactive Europe opportunity map</title>
+          <desc id="bo-europe-desc">Choose France, Spain, or Italy on this map or the adjacent cards to highlight a priority SEO market.</desc>
+          <path class="bo-map-land" d="M567,263 L542,251 L559,242 L553,238 L567,235Z M559,234 L559,230 L567,227 L567,233Z M567,208 L528,201 L525,195 L516,195 L518,190 L511,185 L490,187 L485,178 L500,175 L479,162 L480,155 L451,149 L442,137 L446,134 L443,125 L461,113 L450,108 L487,86 L471,79 L476,73 L466,66 L473,58 L461,48 L471,40 L454,34 L456,28 L494,20 L567,35 L567,55 L505,50 L522,57 L524,71 L546,77 L541,68 L548,64 L567,69Z M393,166 L360,165 L377,158 L393,161Z M510,242 L530,250 L541,249 L512,260 L506,258 L509,253 L497,251ZM483,23 L456,28 L460,21 L447,17 L430,20 L414,31 L377,25 L364,28 L363,34 L342,32 L340,38 L329,37 L295,68 L299,71 L295,75 L284,75 L277,83 L278,96 L285,101 L281,112 L268,124 L261,118 L239,129 L225,131 L210,126 L203,94 L262,71 L308,39 L355,21 L396,17 L412,9 L451,8 L485,15 L471,17ZM268,124 L285,101 L278,96 L277,83 L284,75 L295,75 L299,71 L295,68 L329,37 L340,38 L342,32 L363,34 L364,28 L371,27 L402,38 L406,56 L387,59 L377,66 L378,71 L341,87 L333,100 L351,112 L341,123 L330,125 L320,149 L307,149 L301,156 L288,156ZM451,149 L480,155 L479,162 L500,175 L485,178 L490,187 L481,188 L477,194 L421,189 L402,192 L401,170 L423,167 L433,154ZM481,188 L511,185 L518,190 L516,195 L525,195 L528,201 L567,208 L567,227 L559,234 L524,242 L524,247 L489,238 L479,239 L467,251 L457,251 L452,249 L459,240 L471,240 L457,224 L444,221 L416,228 L393,227 L386,222 L394,216 L391,212 L406,203 L402,192 L421,189 L477,194ZM399,167 L404,182 L398,183 L407,200 L391,212 L394,216 L381,212 L362,214 L338,203 L323,203 L310,196 L300,179 L301,171 L338,161ZM331,228 L325,228 L321,238 L306,240 L280,234 L268,237 L251,234 L256,230 L288,231 L288,223 L295,217 L303,220 L313,216 L331,220ZM392,224 L375,241 L347,247 L323,236 L331,224 L341,228 L372,220ZM437,222 L461,227 L471,240 L459,240 L452,249 L451,237ZM450,245 L467,253 L458,255 L455,266 L441,262 L395,265 L393,258 L381,256 L366,243 L397,225 L416,228 L435,224 L451,237ZM434,158 L423,167 L401,170 L393,161 L377,158 L375,150 L416,147ZM447,139 L451,149 L433,154 L416,147 L375,150 L381,137 L391,134 L399,141 L408,141 L410,134 L419,132ZM449,118 L442,137 L410,134 L411,128 L400,126 L400,120ZM303,176 L310,196 L281,204 L295,217 L288,223 L288,231 L230,229 L236,216 L216,212 L214,189 L223,186 L226,172 L237,174 L244,169 L241,160 L256,160 L267,169 L284,165ZM390,263 L441,262 L455,266 L446,277 L449,282 L440,281 L419,289 L395,288 L389,279 L396,271ZM430,348 L414,349 L401,345 L403,341Z M375,293 L434,286 L429,293 L404,294 L411,300 L392,298 L407,323 L397,320 L400,325 L393,326 L398,334 L390,335 L382,330 L365,304ZM564,332 L543,331 L537,340 L533,336 L537,332 L521,331 L514,336 L477,332 L468,337 L446,332 L431,318 L437,310 L430,306 L442,297 L458,296 L463,289 L483,291 L508,282 L526,282 L567,291Z M440,281 L460,289 L432,299 L429,293 L434,286 L429,284ZM374,295 L365,304 L357,298 L356,280 L361,276 L369,280ZM330,241 L351,245 L357,252 L353,255 L321,252 L318,256 L347,277 L321,268 L309,253 L296,253ZM241,227 L261,240 L228,246 L214,242 L222,230ZM212,206 L216,212 L211,211ZM216,199 L211,211 L196,208 L177,196 L203,193ZM226,177 L220,189 L214,189 L216,199 L203,193 L185,194 L200,178 L215,174ZM57,281 L78,283 L81,288 L70,304 L75,319 L66,331 L55,330 L55,317 L48,313ZM85,177 L77,186 L43,190 L52,180 L46,170 L69,159 L69,169 L83,170ZM249,161 L237,155 L236,145 L263,134 L259,142 L267,146Z M286,154 L279,162 L266,152 L282,149ZM83,170 L69,169 L69,159 L89,164Z M117,175 L118,169 L111,163 L95,159 L96,152 L90,157 L84,143 L96,126 L118,126 L106,136 L129,135 L116,151 L127,151 L155,179 L168,181 L161,190 L165,195 L156,200 L88,205 L113,193 L93,188 L105,185 L99,180 L101,174ZM4,65 L0,67 L0,62ZM298,240 L323,236 L327,240 L314,250 L297,249ZM454,34 L471,40 L461,48 L473,58 L466,66 L476,73 L471,79 L487,86 L483,91 L450,108 L395,114 L378,106 L380,97 L375,88 L380,83 L422,65 L402,53 L402,38 L371,27 L414,31 L430,20 L447,17 L460,21ZM391,215 L384,223 L372,220 L341,228 L330,221 L357,211 L381,212ZM303,196 L338,203 L352,212 L331,220 L313,216 L303,220 L284,211 L281,204ZM348,276 L318,256 L321,252 L357,255 L358,267ZM395,282 L395,288 L382,292 L375,293 L369,287 L378,280ZM351,245 L366,243 L381,256 L393,258 L390,263 L396,271 L391,278 L381,280 L383,276 L373,270 L367,274 L355,268 L360,263ZM367,274 L357,283 L347,277 L355,268ZM371,283 L365,276 L371,271 L383,276Z"/>
+          <path class="bo-map-country is-active" d="M196,208 L236,216 L230,229 L214,238 L223,244 L229,266 L220,271 L183,272 L182,278 L169,279 L129,269 L137,244 L118,230 L102,226 L101,219 L133,220 L129,209 L139,213 L164,206 L167,198 L177,196Z M250,273 L252,281 L249,288 L241,280Z" data-map-market="france" tabindex="0" role="button" aria-label="Highlight France" aria-pressed="true"><title>France</title></path>
+          <path class="bo-map-country" d="M69,325 L75,319 L70,304 L81,288 L61,279 L53,283 L49,272 L64,266 L129,269 L153,277 L182,278 L182,283 L172,289 L158,291 L147,307 L151,313 L127,332 L103,332 L92,339Z" data-map-market="spain" tabindex="0" role="button" aria-label="Highlight Spain" aria-pressed="false"><title>Spain</title></path>
+          <path class="bo-map-country" d="M223,244 L280,234 L298,240 L299,248 L282,250 L285,262 L312,282 L320,282 L320,286 L346,297 L346,303 L330,297 L326,303 L334,306 L332,311 L322,320 L318,320 L322,311 L315,300 L270,279 L259,264 L245,260 L229,266 L231,262 L225,261Z M316,317 L311,333 L283,323 L284,318Z M248,289 L255,296 L253,309 L244,311 L237,292Z" data-map-market="italy" tabindex="0" role="button" aria-label="Highlight Italy" aria-pressed="false"><title>Italy</title></path>
+        </svg>
+        <p class="bo-map-caption">Select a country to explore the market focus.</p>
+      </div>
+      <div class="bo-map-cards bo-map-cards--right">
+        <button class="bo-market-card" type="button" data-map-market="italy" aria-pressed="false">
+          <span class="bo-market-card-header"><strong>ITALY</strong><span>03 / IT</span></span>
+          <span class="bo-market-card-subtitle">COMMERCIAL RELEVANCE</span>
+          <span class="bo-market-card-detail">Strengthen discovery for architectural rendering and visualization services.</span>
+        </button>
+      </div>
+    </div>
+    <p class="bo-map-focus" aria-live="polite"><span>MARKET FOCUS</span><strong data-market-readout>France — Localized commercial search intent</strong></p>
   </div>
   <div class="bo-thesis">
     <span class="bo-side-label">The Objective</span>
@@ -370,10 +460,51 @@ function cleanResearchPresentation(root){
 }
 
 
+
+function initOpportunityMap(section){
+ const controls=[...section.querySelectorAll('[data-map-market]')];
+ const readout=section.querySelector('[data-market-readout]');
+ const labels={
+   france:'France — Localized commercial search intent',
+   spain:'Spain — Spanish-language service discovery',
+   italy:'Italy — Architectural CGI and rendering queries'
+ };
+ let selected='france';
+ function highlight(market){
+   if(!labels[market])return;
+   for(const el of controls){
+     const active=el.dataset.mapMarket===market;
+     el.classList.toggle('is-active',active);
+     el.setAttribute('aria-pressed',String(active));
+   }
+   if(readout)readout.textContent=labels[market];
+ }
+ const hoverCapable=typeof window.matchMedia==='function' && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+ for(const el of controls){
+   const market=el.dataset.mapMarket;
+   if(hoverCapable){
+     el.addEventListener('pointerenter',()=>highlight(market));
+     el.addEventListener('pointerleave',()=>highlight(selected));
+   }
+   el.addEventListener('focus',()=>highlight(market));
+   el.addEventListener('blur',()=>highlight(selected));
+   el.addEventListener('click',()=>{selected=market;highlight(selected)});
+   if(el.localName==='path'){
+     el.addEventListener('keydown',e=>{
+       if(e.key==='Enter'||e.key===' '){
+         e.preventDefault();selected=market;highlight(selected);
+       }
+     });
+   }
+ }
+ highlight(selected);
+}
+
 function renderBusinessOpportunity(root){
  const template=document.getElementById('business-opportunity-template');
  if(!template || root.querySelector('.business-opportunity'))return;
  const section=template.content.firstElementChild.cloneNode(true);
+ initOpportunityMap(section);
  const sections=[...root.querySelectorAll('section')];
  // Replace the existing executive summary, avoiding a duplicate Executive Perspective.
  const previous=sections.find(el=>!el.classList.contains('intro')&&!el.classList.contains('proposal-hero') && /EXECUTIVE PERSPECTIVE|THE OPPORTUNITY IN SHORT/i.test(el.textContent.slice(0,650)));
