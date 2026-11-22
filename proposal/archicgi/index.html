@@ -447,6 +447,7 @@ const UK_TRANSLATIONS={
 };
 const originalLanguageNodes=new WeakMap();
 let currentLanguage='en';
+let lastUnlockError='';
 try{if(localStorage.getItem('archicgi-language')==='uk')currentLanguage='uk'}catch(e){}
 const normalizeTranslationKey=value=>value.replace(/\s+/g,' ').trim();
 function translateVisibleArea(area){
@@ -455,7 +456,7 @@ function translateVisibleArea(area){
  const nodes=[];
  while(walk.nextNode())nodes.push(walk.currentNode);
  for(const node of nodes){
-  if(!node.parentNode||/^(SCRIPT|STYLE)$/i.test(node.parentNode.nodeName))continue;
+  if(!node.parentNode||/^(SCRIPT|STYLE)$/i.test(node.parentNode.nodeName)||node.parentNode.id==='error')continue;
   if(!originalLanguageNodes.has(node))originalLanguageNodes.set(node,node.nodeValue);
   const original=originalLanguageNodes.get(node);
   const key=normalizeTranslationKey(original);
@@ -475,6 +476,8 @@ function applyLanguage(){
  }
  translateVisibleArea(document.getElementById('gate'));
  translateVisibleArea(document.getElementById('report'));
+ const errorNotice=document.getElementById('error');
+ if(errorNotice)errorNotice.textContent=currentLanguage==='uk'?(UK_TRANSLATIONS[lastUnlockError]||lastUnlockError):lastUnlockError;
  const input=document.getElementById('password');
  if(input)input.placeholder=currentLanguage==='uk'?'Введіть пароль':'Enter password';
  const figure=document.querySelector('#report .bo-map-static-image');
@@ -576,7 +579,7 @@ function renderReportCountryHero(root){
  intro.append(row);
 }
 const dec=b=>Uint8Array.from(atob(b),c=>c.charCodeAt(0));
-document.getElementById('unlock').addEventListener('submit',async e=>{e.preventDefault();const btn=document.getElementById('submit'),error=document.getElementById('error');btn.disabled=true;error.textContent='';try{if(!crypto.subtle||!('DecompressionStream'in window))throw Error('This browser does not support secure document unlocking. Please use an updated browser.');const res=await fetch('./report.enc',{cache:'no-store'});if(!res.ok)throw Error('Encrypted report unavailable.');const x=await res.json();const password=document.getElementById('password').value;const secret=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveKey']);const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:dec(x.salt),iterations:x.iterations,hash:'SHA-256'},secret,{name:'AES-GCM',length:256},false,['decrypt']);const decrypted=await crypto.subtle.decrypt({name:'AES-GCM',iv:dec(x.iv)},key,dec(x.data));const stream=new Blob([decrypted]).stream().pipeThrough(new DecompressionStream('gzip'));const text=await new Response(stream).text();document.getElementById('report').innerHTML=text;cleanResearchPresentation(document.getElementById('report'));renderReportCountryHero(document.getElementById('report'));renderBusinessOpportunity(document.getElementById('report'));applyLanguage();document.getElementById('gate').style.display='none';document.getElementById('report').style.display='block';try{sessionStorage.setItem('archicgi-tab-pass',password)}catch(e){}document.getElementById('password').value='';window.scrollTo(0,0);}catch(err){try{sessionStorage.removeItem('archicgi-tab-pass')}catch(e){}error.textContent=err.name==='OperationError'?'Incorrect password. Please try again.':err.message||'Could not unlock report.';applyLanguage();}finally{btn.disabled=false;}});
+document.getElementById('unlock').addEventListener('submit',async e=>{e.preventDefault();const btn=document.getElementById('submit'),error=document.getElementById('error');btn.disabled=true;lastUnlockError='';error.textContent='';try{if(!crypto.subtle||!('DecompressionStream'in window))throw Error('This browser does not support secure document unlocking. Please use an updated browser.');const res=await fetch('./report.enc',{cache:'no-store'});if(!res.ok)throw Error('Encrypted report unavailable.');const x=await res.json();const password=document.getElementById('password').value;const secret=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveKey']);const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:dec(x.salt),iterations:x.iterations,hash:'SHA-256'},secret,{name:'AES-GCM',length:256},false,['decrypt']);const decrypted=await crypto.subtle.decrypt({name:'AES-GCM',iv:dec(x.iv)},key,dec(x.data));const stream=new Blob([decrypted]).stream().pipeThrough(new DecompressionStream('gzip'));const text=await new Response(stream).text();document.getElementById('report').innerHTML=text;cleanResearchPresentation(document.getElementById('report'));renderReportCountryHero(document.getElementById('report'));renderBusinessOpportunity(document.getElementById('report'));applyLanguage();document.getElementById('gate').style.display='none';document.getElementById('report').style.display='block';try{sessionStorage.setItem('archicgi-tab-pass',password)}catch(e){}document.getElementById('password').value='';window.scrollTo(0,0);}catch(err){try{sessionStorage.removeItem('archicgi-tab-pass')}catch(e){}lastUnlockError=err.name==='OperationError'?'Incorrect password. Please try again.':err.message||'Could not unlock report.';applyLanguage();}finally{btn.disabled=false;}});
 
 // Remember successful access for this browser tab only; closing the tab clears it.
 try{const saved=sessionStorage.getItem('archicgi-tab-pass');if(saved){document.getElementById('password').value=saved;document.getElementById('unlock').requestSubmit();}}catch(e){}
