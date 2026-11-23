@@ -511,6 +511,7 @@
           explanation(r)) : null,
         h('div', { class: 'dl-card-actions' },
           briefButton(p.id),
+          window.discoveryMedia ? window.discoveryMedia.button(p.id) : null,
           canOpen ? null : h('button', { type: 'button', class: 'dl-btn dl-btn--ghost dl-show', onclick: () => showInGraph(p.id) }, t('s.showGraph')),
           !canOpen && safeUrl(p.url) ? h('a', { class: 'dl-btn dl-btn--ghost dl-ext', href: safeUrl(p.url), target: '_blank', rel: 'noopener noreferrer' },
             t(pub.pageRedirectsTo ? 's.viewPortfolio' : 's.viewArchi')) : null)));
@@ -808,5 +809,7 @@
     text: briefText
   };
   document.addEventListener('discovery:ready', ready);
+  // the clip list arrives after the first render: add the "Watch the animation" buttons once it is known
+  document.addEventListener('discovery:media', () => { if (view) paintResults(); });
   ready();
 })();

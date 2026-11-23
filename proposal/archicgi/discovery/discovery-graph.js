@@ -650,6 +650,7 @@
               indexed === false ? h('p', { class: 'dl-note', id: 'dl-detail-na' }, I.t('d.notIndexed', { n: D.count() })) : null));
           }
         }
+        { const w = window.discoveryMedia && window.discoveryMedia.button(p.id, 'dl-tag dl-watch'); if (w) parts.push(h('div', { class: 'dl-detail-actions' }, w)); }
         parts.push(h('h2', {}, p.label));
 
         // Published by ArchiCGI (verbatim)
@@ -753,6 +754,7 @@
     if (initial) select(initial);
 
     /* ----- language change: relabel in place (filter, selection and viewport are kept) ----- */
+    document.addEventListener('discovery:media', () => refreshPanel());
     document.addEventListener('discovery:lang', () => {
       cy.batch(() => {
         cy.nodes('.facet').forEach(n => { n.data('label', I.tag(n.data('name'))); });

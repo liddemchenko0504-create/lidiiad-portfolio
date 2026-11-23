@@ -1,0 +1,141 @@
+{
+ "hero": {
+  "desktop": "https://archicgi.com/wp-content/uploads/media-extra-size/3d-rendering-services-showreel-web.mp4",
+  "mobile": "https://archicgi.com/wp-content/uploads/media-extra-size/3d-rendering-services-showreel-web-mobile.mp4",
+  "poster": "https://archicgi.com/cdn-cgi/image/width=1920,format=auto,quality=82/wp-content/uploads/2026/11/3d-rendering-services-showreel-first-frame.webp",
+  "title": "13 Real-World CGI Cases",
+  "page": "https://archicgi.com/"
+ },
+ "items": [
+  {
+   "id": "skyscrapers-web720",
+   "kind": "animation",
+   "title": "3D architectural animation of a skyscraper development",
+   "src": "https://archicgi.com/wp-content/uploads/2026/08/architectural-animation-for-skyscrapers-web720.mp4",
+   "poster": "https://archicgi.com/cdn-cgi/image/width=1280,format=auto,quality=82/wp-content/uploads/2026/09/architectural-animation-services-skyscraper-facades.webp",
+   "page": "https://archicgi.com/architectural-animation/"
+  },
+  {
+   "id": "penthouse-ottawa",
+   "kind": "animation",
+   "title": "3D Walkthrough for a Penthouse in Ottawa, Canada",
+   "src": "https://archicgi.com/wp-content/uploads/2026/09/real-estate-3d-walkthrough-interior-penthouse-ottawa.mp4",
+   "poster": "https://archicgi.com/cdn-cgi/image/width=1280,format=auto,quality=82/wp-content/uploads/2026/09/architectural-animation-company-penthouse-dining-ottawa.webp",
+   "page": "https://archicgi.com/architectural-animation/",
+   "project": "acgi-17871"
+  },
+  {
+   "id": "cabins-on-stilts",
+   "kind": "animation",
+   "title": "Structural architectural animation for cabins on stilts (Terra by Steni)",
+   "src": "https://archicgi.com/wp-content/uploads/2026/09/architecture-animations-cabins-on-stilts-terra-by-steni.mp4",
+   "poster": "https://archicgi.com/cdn-cgi/image/width=1280,format=auto,quality=82/wp-content/uploads/2026/09/architectural-animation-service-cabins-on-stilts.webp",
+   "page": "https://archicgi.com/architectural-animation/"
+  },
+  {
+   "id": "land-subdivision",
+   "kind": "animation",
+   "title": "Site integration animation: land subdivision with real drone footage",
+   "src": "https://archicgi.com/wp-content/uploads/2026/09/animation-in-architecture-land-subdivision-drone-footage.mp4",
+   "poster": "https://archicgi.com/cdn-cgi/image/width=1280,format=auto,quality=82/wp-content/uploads/2026/09/architectural-3d-animation-land-subdivision-aerial.webp",
+   "page": "https://archicgi.com/architectural-animation/"
+  },
+  {
+   "id": "cg-room-tour-01",
+   "kind": "animation",
+   "title": "CG room tour: 3D architectural animation of an interior",
+   "src": "https://archicgi.com/wp-content/uploads/2026/09/3d-architectural-animation-cg-room-tour-01.mp4",
+   "poster": "https://archicgi.com/cdn-cgi/image/width=960,format=auto,quality=80/wp-content/uploads/2026/09/3d-interior-animation-room-tour-bare-shell-unit.webp",
+   "page": "https://archicgi.com/architectural-animation/"
+  },
+  {
+   "id": "cg-room-tour-02",
+   "kind": "animation",
+   "title": "CG room tour: architectural walkthrough animation",
+   "src": "https://archicgi.com/wp-content/uploads/2026/09/3d-architectural-animation-cg-room-tour-02.mp4",
+   "poster": "https://archicgi.com/cdn-cgi/image/width=960,format=auto,quality=80/wp-content/uploads/2026/09/interior-design-animation-room-tour-kitchen-and-dining.webp",
+   "page": "https://archicgi.com/architectural-animation/"
+  },
+  {
+   "id": "pittsburgh-northside",
+   "kind": "animation",
+   "title": "3D Animation of a Townhome Development in Pittsburgh’s Northside",
+   "yt": "CdjtXPiOLmE",
+   "poster": "https://archicgi.com/cdn-cgi/image/width=960,format=auto,quality=80/wp-content/uploads/2026/11/pittsburgh-northside-aerial-townhome-3d-animation-VC5I2292.webp",
+   "page": "https://archicgi.com/3d-visualization-portfolio/",
+   "project": "acgi-52121"
+  },
+  {
+   "id": "amenity-showcase",
+   "kind": "tour",
+   "title": "Amenity showcase inside an immersive 3D property tour",
+   "src": "https://archicgi.com/wp-content/uploads/2026/09/3d-amenity-showcase-for-a-property-immersive-tour.mp4",
+   "poster": "https://archicgi.com/cdn-cgi/image/width=1280,format=auto,quality=82/wp-content/uploads/2026/09/3d-amenity-showcase-for-a-property-immersive-tour-still.webp",
+   "page": "https://archicgi.com/immersive-3d-tours/"
+  },
+  {
+   "id": "explore-apartments",
+   "kind": "tour",
+   "title": "Explore apartments and customise interior styles",
+   "src": "https://archicgi.com/wp-content/uploads/2026/09/immersive-3d-tour-explore-apartments-and-customise-interior-styles.mp4",
+   "poster": "https://archicgi.com/cdn-cgi/image/width=1280,format=auto,quality=82/wp-content/uploads/2026/09/immersive-3d-tour-explore-apartments-and-customise-interior-styles-still.webp",
+   "page": "https://archicgi.com/immersive-3d-tours/"
+  },
+  {
+   "id": "day-to-night",
+   "kind": "tour",
+   "title": "Day-to-night lighting in a 3D real estate tour",
+   "src": "https://archicgi.com/wp-content/uploads/2026/09/3d-real-estate-tour-day-to-night-lighting.mp4",
+   "poster": "https://archicgi.com/cdn-cgi/image/width=1280,format=auto,quality=82/wp-content/uploads/2026/09/3d-real-estate-tour-day-to-night-lighting-still.webp",
+   "page": "https://archicgi.com/immersive-3d-tours/"
+  },
+  {
+   "id": "unit-availability",
+   "kind": "tour",
+   "title": "Unit availability panel in a 3D virtual tour",
+   "src": "https://archicgi.com/wp-content/uploads/2026/09/3d-virtual-tours-for-real-estate-unit-availability-panel.mp4",
+   "poster": "https://archicgi.com/cdn-cgi/image/width=1280,format=auto,quality=82/wp-content/uploads/2026/09/3d-virtual-tours-for-real-estate-unit-availability-panel-still.webp",
+   "page": "https://archicgi.com/immersive-3d-tours/"
+  },
+  {
+   "id": "community-aerial-view",
+   "kind": "platform",
+   "title": "Interactive site plan: community aerial view",
+   "src": "https://archicgi.com/wp-content/uploads/2026/09/interactive-real-estate-platform-community-aerial-view.mp4",
+   "poster": "https://archicgi.com/cdn-cgi/image/width=1280,format=auto,quality=82/wp-content/uploads/2026/09/community-aerial-view-in-an-interactive-site-plan-still.webp",
+   "page": "https://archicgi.com/interactive-real-estate-platform/"
+  },
+  {
+   "id": "interior-tour-bedroom",
+   "kind": "platform",
+   "title": "Interactive interior tour: bedroom",
+   "src": "https://archicgi.com/wp-content/uploads/2026/09/interactive-real-estate-platform-interior-tour-bedroom.mp4",
+   "poster": "https://archicgi.com/cdn-cgi/image/width=1280,format=auto,quality=82/wp-content/uploads/2026/09/interactive-interior-tour-bedroom-still.webp",
+   "page": "https://archicgi.com/interactive-real-estate-platform/"
+  },
+  {
+   "id": "unit-finder-tower",
+   "kind": "platform",
+   "title": "Multifamily unit finder with a tower and unit list",
+   "src": "https://archicgi.com/wp-content/uploads/2026/11/multifamily-unit-finder-tower-w-unit-list.mp4",
+   "poster": "https://archicgi.com/cdn-cgi/image/width=1280,format=auto,quality=82/wp-content/uploads/2026/11/unit-finder-tower-w-unit-list-still.webp",
+   "page": "https://archicgi.com/interactive-real-estate-platform/"
+  },
+  {
+   "id": "amenities-pool-and-clubhouse",
+   "kind": "platform",
+   "title": "Interactive site plan: pool and clubhouse amenities",
+   "src": "https://archicgi.com/wp-content/uploads/2026/09/interactive-site-plan-amenities-pool-and-clubhouse.mp4",
+   "poster": "https://archicgi.com/cdn-cgi/image/width=1280,format=auto,quality=82/wp-content/uploads/2026/09/amenities-hotspot-pool-and-clubhouse-still.webp",
+   "page": "https://archicgi.com/interactive-real-estate-platform/"
+  }
+ ],
+ "compare": {
+  "title": "Aerial 3D animation: drone footage before and after CG blending",
+  "before": "https://archicgi.com/wp-content/uploads/2026/09/aerial-3d-architectural-animation-before-cg-blending.mp4",
+  "after": "https://archicgi.com/wp-content/uploads/2026/09/aerial-3d-architectural-animation-after-cg-blending.mp4",
+  "beforePoster": "https://archicgi.com/cdn-cgi/image/width=960,format=auto,quality=80/wp-content/uploads/2026/09/3d-architecture-animation-before-cg-blending-empty-plot.webp",
+  "afterPoster": "https://archicgi.com/cdn-cgi/image/width=960,format=auto,quality=80/wp-content/uploads/2026/09/architectural-3d-animation-companies-after-cg-blending.webp",
+  "page": "https://archicgi.com/architectural-animation/"
+ }
+}
