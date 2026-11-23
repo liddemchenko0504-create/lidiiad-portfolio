@@ -432,30 +432,44 @@ body.lab:not(.lab-has-query, .lab-has-project-link)::before {
   clip-path: inset(50%);
 }
 
-/* Compact submit control on the search entry screen. The button text names the icon. */
+/* The leading magnifier submits the search and keeps its localized button label. */
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-search-row {
   flex-direction: row;
   align-items: center;
-  background: rgba(20, 20, 21, .68);
+  padding-inline: 4px 12px;
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 14px;
+  background: rgba(38, 38, 40, .78);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-search-row input {
+  min-height: 48px;
+  padding: 0;
+  font: 17px system-ui, sans-serif;
 }
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go {
+  order: -1;
   position: relative;
   flex: 0 0 44px;
   min-height: 44px;
-  margin-inline-end: 8px;
   padding: 0;
-  color: var(--ink);
-  border-radius: 50%;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--mute);
   font-size: 0;
 }
-.lab:not(.lab-has-query, .lab-has-project-link) :is(.dl-search-go, .dl-example) {
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go:hover {
+  color: var(--ink);
+}
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-example {
   border: 1px solid rgba(255, 255, 255, .24);
   background: rgba(255, 255, 255, .13);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14);
 }
-.lab:not(.lab-has-query, .lab-has-project-link) :is(.dl-search-go, .dl-example):hover {
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-example:hover {
   border-color: rgba(255, 255, 255, .45);
   background: rgba(255, 255, 255, .24);
 }
@@ -475,7 +489,7 @@ body.lab:not(.lab-has-query, .lab-has-project-link)::before {
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go::after {
   top: 24px;
   left: 24px;
-  width: 9px;
+  width: 8px;
   height: 2px;
   background: currentColor;
   transform: rotate(45deg);
