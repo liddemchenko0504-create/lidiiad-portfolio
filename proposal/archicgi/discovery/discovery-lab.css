@@ -396,13 +396,12 @@ body.lab:not(.lab-has-query, .lab-has-project-link)::before {
 }
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-example {
   min-height: 44px;
-  padding: 5px 10px;
-  border: 1px solid var(--line-2);
-  background: var(--surface);
+  padding: 5px 14px;
+  border-radius: 22px;
+  color: var(--ink);
   text-align: left;
   text-decoration: none;
 }
-.lab:not(.lab-has-query, .lab-has-project-link) .dl-example:hover { border-color: var(--ink); }
 .lab:not(.lab-has-query, .lab-has-project-link) #dl-lang { margin-left: auto; }
 .lab:not(.lab-has-query, .lab-has-project-link) .lab-main { padding-bottom: 0; }
 .lab:not(.lab-has-query, .lab-has-project-link) .lab-intro {
@@ -446,15 +445,18 @@ body.lab:not(.lab-has-query, .lab-has-project-link)::before {
   margin-inline-end: 8px;
   padding: 0;
   color: var(--ink);
-  border: 1px solid rgba(255, 255, 255, .24);
   border-radius: 50%;
+  font-size: 0;
+}
+.lab:not(.lab-has-query, .lab-has-project-link) :is(.dl-search-go, .dl-example) {
+  border: 1px solid rgba(255, 255, 255, .24);
   background: rgba(255, 255, 255, .13);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14);
-  font-size: 0;
 }
-.lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go:hover {
+.lab:not(.lab-has-query, .lab-has-project-link) :is(.dl-search-go, .dl-example):hover {
+  border-color: rgba(255, 255, 255, .45);
   background: rgba(255, 255, 255, .24);
 }
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go::before,
