@@ -272,10 +272,10 @@ body.lab {
 .source { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--mute); font-size: 13px; line-height: 1.7; }
 .source-credit { margin: 0; }
 .source-links { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 4px 0 0; }
-.source-links a, .source-about summary { color: var(--ink); text-underline-offset: 3px; }
-.source-about { margin-top: 8px; max-width: 72ch; }
-.source-about summary { width: fit-content; cursor: pointer; text-decoration: underline; }
-.source-about p { margin: 8px 0 0; overflow-wrap: anywhere; }
+.source-links a, .source-more { color: var(--ink); text-underline-offset: 3px; }
+.source-more { padding: 0; border: 0; background: none; font: inherit; text-decoration: underline; cursor: pointer; }
+.source-notes { margin: 8px 0 0; max-width: 72ch; }
+.source-notes[hidden] { display: none; }
 
 /* =====================================================================
  * Render viewer: render on the left, strip of similar details under it, actions on the right
