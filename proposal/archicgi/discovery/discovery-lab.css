@@ -689,3 +689,11 @@ body.lab:not(.lab-has-query, .lab-has-project-link)::before { opacity: 0; }   /*
   .dl-m-playmark { width: 48px; height: 48px; margin: -24px 0 0 -24px; } .dl-m-playmark::before { left: 18px; top: 14px; border-left-width: 13px; border-top-width: 10px; border-bottom-width: 10px; }
 }
 @media (prefers-reduced-motion: reduce) { .lab-hero-video, .dl-m-thumb img { transition: none; } }
+
+/* Start screen: a smaller send arrow, and a logo that is not a link (nothing to click away to) */
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-search-form .dl-search-go {
+  flex: 0 0 36px; width: 36px; height: 36px; min-height: 36px; padding: 0; margin-right: 4px; background-clip: border-box; box-shadow: none;
+}
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go::before { top: 13px; left: 14px; width: 7px; height: 7px; border-top-width: 1.5px; border-left-width: 1.5px; }
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go::after { top: 13px; left: 17.25px; width: 1.5px; height: 10px; }
+.lab:not(.lab-has-query, .lab-has-project-link) .lab-brand { pointer-events: none; cursor: default; }
