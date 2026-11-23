@@ -432,11 +432,12 @@ body.lab:not(.lab-has-query, .lab-has-project-link)::before {
   clip-path: inset(50%);
 }
 
-/* The leading magnifier submits the search and keeps its localized button label. */
+/* The arrow button submits the search and keeps its localized label. */
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-search-row {
   flex-direction: row;
   align-items: center;
-  padding-inline: 4px 12px;
+  gap: 8px;
+  padding-inline: 14px 4px;
   border: 1px solid rgba(255, 255, 255, .22);
   border-radius: 14px;
   background: rgba(38, 38, 40, .78);
@@ -449,18 +450,17 @@ body.lab:not(.lab-has-query, .lab-has-project-link)::before {
   font: 17px system-ui, sans-serif;
 }
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go {
-  order: -1;
   position: relative;
   flex: 0 0 44px;
   min-height: 44px;
   padding: 0;
-  border-radius: 10px;
-  background: transparent;
-  color: var(--mute);
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
   font-size: 0;
 }
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go:hover {
-  color: var(--ink);
+  background: #fff;
 }
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-example {
   border: 1px solid rgba(255, 255, 255, .24);
@@ -479,19 +479,19 @@ body.lab:not(.lab-has-query, .lab-has-project-link)::before {
   position: absolute;
 }
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go::before {
-  top: 13px;
-  left: 13px;
-  width: 14px;
-  height: 14px;
-  border: 2px solid currentColor;
-  border-radius: 50%;
+  top: 14px;
+  left: 16px;
+  width: 12px;
+  height: 12px;
+  border-top: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+  transform: rotate(45deg);
 }
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go::after {
-  top: 24px;
-  left: 24px;
-  width: 8px;
-  height: 2px;
+  top: 14px;
+  left: 21px;
+  width: 2px;
+  height: 16px;
+  border-radius: 1px;
   background: currentColor;
-  transform: rotate(45deg);
-  transform-origin: left center;
 }
