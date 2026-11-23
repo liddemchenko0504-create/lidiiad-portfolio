@@ -320,8 +320,12 @@
       h('button', { type: 'button', 'aria-label': 'Zoom arrière', onclick: () => zoomBy(1 / 1.3) }, '\u2212'),
       h('button', { type: 'button', 'aria-label': 'Réinitialiser la vue', onclick: fitView }, 'Tout'));
     els.stage.append(hint, controls, buildLegend());
-    const dropHint = () => { hint.remove(); cy.off('viewport', dropHint); };
-    cy.on('viewport', dropHint);
+    // Remove the hint on the first real user interaction (not on the programmatic initial fit)
+    const dropHint = () => {
+      hint.remove();
+      ['pointerdown', 'wheel'].forEach(t => els.stage.removeEventListener(t, dropHint, true));
+    };
+    ['pointerdown', 'wheel'].forEach(t => els.stage.addEventListener(t, dropHint, { capture: true, passive: true }));
 
     /* ----- legend ----- */
     function buildLegend() {
