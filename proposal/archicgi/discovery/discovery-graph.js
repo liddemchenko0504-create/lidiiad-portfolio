@@ -346,7 +346,9 @@
     const fsBtn = h('button', { type: 'button', class: 'dl-fs', onclick: () => (isFull() ? exitFull() : enterFull()) });
     const zoomIn = h('button', { type: 'button', onclick: () => zoomBy(1.3) }, '+');
     const zoomOut = h('button', { type: 'button', onclick: () => zoomBy(1 / 1.3) }, '\u2212');
-    const resetBtn = h('button', { type: 'button', onclick: fitView });
+    const resetBtn = h('button', { type: 'button', onclick: () => {
+      if (scopeIds !== null) fitScope(false); else fitView();
+    } });
     const controls = h('div', { class: 'dl-controls', role: 'group' }, fsBtn, zoomIn, zoomOut, resetBtn);
     function labelControls() {
       controls.setAttribute('aria-label', I.t('g.controls'));
@@ -481,7 +483,7 @@
     }
     function select(id) {
       const node = cy.getElementById(id);
-      if (!node.nonempty() || node.hasClass('out') || node.hasClass('sector')) return;
+      if (node.empty() || node.hasClass('out') || node.hasClass('gone') || node.hasClass('sector')) return;
       selectedId = id;
       highlight(node, true);
       renderPanel(node);
@@ -546,17 +548,17 @@
       if (animate && !reduceMotion) cy.animate({ zoom: z, pan }, { duration: 280, complete: clampPan });
       else { cy.viewport({ zoom: z, pan }); clampPan(); }
     }
-    // recompute the scope from the browser state; optionally move the camera
-    function syncScope(fit) {
-      const m = browseMatches();
-      scopeIds = m ? new Set(m.map(p => p.id)) : null;
+    // Use the same projects in the browser list and in the graph.
+    function syncScope(matches, fit) {
+      scopeIds = matches ? new Set(matches.map(p => p.id)) : null;
       applyScope();
       if (fit) fitScope(true);
     }
     function applyFilter(id) {
       activeFilter = id;
       selectedId = null;
-      syncScope(browseMatches() !== null);      // the camera only moves when the browser narrows the graph
+      const matches = browseMatches();
+      syncScope(matches, matches !== null);
       [...els.filters.children].forEach(b => b.setAttribute('aria-pressed', String(b.dataset.id === id)));
       renderPanel(null);
     }
@@ -657,7 +659,7 @@
         BROWSE.q = ''; BROWSE.f = {}; BROWSE.page = 0; input.value = ''; selects.forEach(l => { l.querySelector('select').value = ''; }); paint(); input.focus(); } }, I.t('g.bReset'));
       function paint(fit) {
         const hits = browseMatches();
-        syncScope(fit !== false && fit !== 'init');
+        syncScope(hits, fit !== false && fit !== 'init');
         reset.hidden = !hits;
         list.replaceChildren(); pager.replaceChildren();
         if (!hits) { count.textContent = I.t('g.bStart', { n: model.projects.length }); return; }
@@ -810,7 +812,8 @@
         lastW = w; lastH = hh;
         cy.resize();
         const { prevZoom, prevPan } = updateLimits();
-        if (!wasFit) { cy.viewport({ zoom: Math.max(cy.minZoom(), Math.min(cy.maxZoom(), prevZoom)), pan: prevPan }); }
+        if (scopeIds !== null && !selectedId) fitScope(false);
+        else if (!wasFit) cy.viewport({ zoom: Math.max(cy.minZoom(), Math.min(cy.maxZoom(), prevZoom)), pan: prevPan });
         clampPan();
       });
     });
@@ -843,8 +846,8 @@
     function showProject(id) {
       const n = cy.getElementById(id);
       if (!n.nonempty()) return false;
+      if (n.hasClass('gone')) { BROWSE.q = ''; BROWSE.f = {}; BROWSE.page = 0; syncScope(null, false); }
       if (n.hasClass('out')) applyFilter('all');
-      if (n.hasClass('gone')) { BROWSE.q = ''; BROWSE.f = {}; BROWSE.page = 0; syncScope(false); }
       select(id);
       return true;
     }

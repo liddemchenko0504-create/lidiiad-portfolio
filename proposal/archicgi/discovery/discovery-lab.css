@@ -43,7 +43,7 @@ body.lab {
 /* zero specificity: links inherit the text colour unless a component (button, link-button) sets its own */
 :where(body.lab) a { color: inherit; }
 :focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-.dl-visually-hidden, .dl-offscreen {
+.dl-visually-hidden {
   position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
@@ -226,7 +226,6 @@ body.lab {
 .dl-brief { display: grid; gap: 14px; align-content: start; }
 .dl-brief-head h2 { font-family: var(--font-head); font-weight: 600; font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase; margin: 0 0 8px; }
 .dl-brief-count { color: var(--mute); font-weight: 500; }
-.dl-brief-head p { margin: 0; color: var(--mute); font-size: 14px; line-height: 1.5; }
 .dl-brief textarea {
   width: 100%; resize: vertical; padding: 10px 12px; border: 1px solid var(--line-2); border-radius: 0;
   background: var(--surface); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.45;
@@ -246,12 +245,7 @@ body.lab {
 .dl-brief-item .dl-card-actions { margin: 0; gap: 0; }
 .dl-brief-item .dl-card-actions .dl-btn { min-height: 32px; padding: 0 8px; }
 .dl-brief-item .dl-card-actions .dl-btn:first-child { margin-right: 0; }
-.dl-brief-actions { display: flex; gap: 8px; }
-.dl-brief-actions #dl-copy { flex: 1; min-height: 46px; }
-.dl-copy-status { margin: 0; font-size: 14px; }
-.dl-copy-status:empty { display: none; }
-.dl-preview-box h3 { margin: 0; font-size: 13px; color: var(--mute); }
-.dl-preview { white-space: pre-wrap; word-break: break-word; font-family: var(--font-mono); font-size: 12px; line-height: 1.55; border: 1px solid var(--line); padding: 12px; margin: 8px 0 0; max-height: 360px; overflow: auto; }
+.dl-brief .dl-clear { justify-self: start; }
 
 /* ---------- graph section: same type and tokens ---------- */
 .dl { font-family: var(--font-body); }
@@ -356,6 +350,11 @@ body.lab {
   /* after a search, the chosen detail comes first on a phone */
   .dl-v-notice, .dl-v-hitinfo { order: -1; }
   .dl-v-hitinfo { border-top: 0; padding-top: 0; }
+}
+@media (min-width: 640px) and (max-width: 767px) {
+  .lab-head { gap: 12px; }
+  .lab-brand { width: 155px; }
+  .lab-nav { gap: 12px; }
 }
 @media (max-width: 639px) {
   :root { --head-h: 56px; }
