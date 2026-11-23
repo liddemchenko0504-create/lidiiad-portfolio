@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 2,
  "built": "2026-11-23",
  "model": "DINOv2 ViT-S/14 (facebookresearch/dinov2, Apache-2.0), patch embeddings",
  "layers": [
@@ -18,185 +18,14 @@
    "stride": 3
   }
  ],
- "pcaExplainedVariance": 0.7823,
+ "pcaExplainedVariance": 0.7161,
  "projects": [
   {
-   "id": "acgi-48664",
-   "gw": 44,
-   "gh": 29,
-   "scale": 0.0044263,
-   "image": "https://archicgi.com/wp-content/uploads/2026/09/modern-townhouse-exterior-3d-rendering-pittsburgh-EXB3NWZG-768x512.webp",
-   "width": 768,
-   "height": 512
-  },
-  {
-   "id": "acgi-37276",
-   "gw": 29,
-   "gh": 44,
-   "scale": 0.00467237,
-   "image": "https://archicgi.com/wp-content/uploads/2026/03/architectural-rendering-modern-urban-townhouse-F4SBWS4B-768x1152.webp",
-   "width": 768,
-   "height": 1152
-  },
-  {
-   "id": "acgi-51553",
+   "id": "acgi-50538",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00492987,
-   "image": "https://archicgi.com/wp-content/uploads/2026/11/transitional-brick-house-exterior-3d-rendering-DE34CAY9-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-51552",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.00433203,
-   "image": "https://archicgi.com/wp-content/uploads/2026/11/lab-building-entrance-architectural-visualization-manchester-Q6YU45NZ-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-37289",
-   "gw": 27,
-   "gh": 48,
-   "scale": 0.00437474,
-   "image": "https://archicgi.com/wp-content/uploads/2026/03/new-york-townhouse-facade-architectural-rendering-KIVH53LQ-768x1365.webp",
-   "width": 768,
-   "height": 1365
-  },
-  {
-   "id": "acgi-35817",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.00412268,
-   "image": "https://archicgi.com/wp-content/uploads/2025/11/exterior-cgi-modern-mountain-home-8QLL4THE-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-52130",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.00428541,
-   "image": "https://archicgi.com/wp-content/uploads/2026/11/forest-cabin-footbridge-entrance-exterior-visualization-8ZD5YQNN-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-52117",
-   "gw": 44,
-   "gh": 29,
-   "scale": 0.00463908,
-   "image": "https://archicgi.com/wp-content/uploads/2026/11/red-brick-apartment-building-exterior-3d-rendering-brooklyn-4ZG8ABKG-768x512.webp",
-   "width": 768,
-   "height": 512
-  },
-  {
-   "id": "acgi-48670",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.0042617,
-   "image": "https://archicgi.com/wp-content/uploads/2026/09/ice-cream-parlor-facade-architectural-cgi-california-J9ETCQ16-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-52118",
-   "gw": 44,
-   "gh": 29,
-   "scale": 0.00466514,
-   "image": "https://archicgi.com/wp-content/uploads/2026/11/single-story-house-two-car-garage-exterior-rendering-W6NFLQNU-768x512.webp",
-   "width": 768,
-   "height": 512
-  },
-  {
-   "id": "acgi-51551",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.00441775,
-   "image": "https://archicgi.com/wp-content/uploads/2026/11/ice-cream-shop-storefront-exterior-rendering-livermore-california-5TF8HB56-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-48668",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.00497856,
-   "image": "https://archicgi.com/wp-content/uploads/2026/09/residential-complex-exterior-rendering-massachusetts-AS92YBZE-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-48653",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.0051865,
-   "image": "https://archicgi.com/wp-content/uploads/2026/09/multifamily-housing-exterior-cgi-kentucky-4LVDY1HX-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-48641",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.00456683,
-   "image": "https://archicgi.com/wp-content/uploads/2026/09/apartment-building-exterior-3d-visualization-massachusetts-AS92YBZE-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-46513",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.00448749,
-   "image": "https://archicgi.com/wp-content/uploads/2026/08/townhouse-community-street-view-3d-rendering-south-carolina-GPB43MVX-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-30598",
-   "gw": 44,
-   "gh": 29,
-   "scale": 0.00431856,
-   "image": "https://archicgi.com/wp-content/uploads/2025/05/3d-rendering-villa-CQN8DEYL-768x512.jpg",
-   "width": 768,
-   "height": 512
-  },
-  {
-   "id": "acgi-48643",
-   "gw": 29,
-   "gh": 44,
-   "scale": 0.00445759,
-   "image": "https://archicgi.com/wp-content/uploads/2026/09/brick-house-exterior-3d-rendering-toronto-PID2MWXB-768x1152.webp",
-   "width": 768,
-   "height": 1152
-  },
-  {
-   "id": "acgi-46515",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.00484831,
-   "image": "https://archicgi.com/wp-content/uploads/2026/08/multifamily-building-exterior-architectural-visualization-BMQ77WV4-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-46424",
-   "gw": 44,
-   "gh": 29,
-   "scale": 0.00470923,
-   "image": "https://archicgi.com/wp-content/uploads/2026/08/colonial-house-exterior-3d-rendering-WXBM2S7H-768x512.webp",
-   "width": 768,
-   "height": 512
-  },
-  {
-   "id": "acgi-46420",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.00475326,
-   "image": "https://archicgi.com/wp-content/uploads/2026/08/mediterranean-house-exterior-cgi-florida-WUF1HQ4H-768x432.webp",
+   "scale": 0.00437089,
+   "image": "https://archicgi.com/wp-content/uploads/2026/10/lake-como-villa-lily-pond-fire-pit-render-GT1WEETF-768x432.webp",
    "width": 768,
    "height": 432
   },
@@ -204,71 +33,143 @@
    "id": "acgi-37273",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00437301,
+   "scale": 0.00451467,
    "image": "https://archicgi.com/wp-content/uploads/2026/03/3d-rendering-house-southern-california-WZ9868TL-1-768x432.webp",
    "width": 768,
    "height": 432
   },
   {
-   "id": "acgi-30611",
+   "id": "acgi-50534",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00461253,
-   "image": "https://archicgi.com/wp-content/uploads/2025/05/cgi-house-terracotta-roof-Z4GXVD3T-768x432.jpg",
+   "scale": 0.00432571,
+   "image": "https://archicgi.com/wp-content/uploads/2026/10/lake-como-villa-garden-path-render-GT1WEETF-768x432.webp",
    "width": 768,
    "height": 432
   },
   {
-   "id": "acgi-52119",
+   "id": "acgi-46509",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00487368,
+   "image": "https://archicgi.com/wp-content/uploads/2026/11/cottage-resort-park-aerial-cg-animation-ontario-H46Y9SQW-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-48643",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00475326,
+   "image": "https://archicgi.com/wp-content/uploads/2026/09/brick-house-exterior-3d-rendering-toronto-PID2MWXB-768x1152.webp",
+   "width": 768,
+   "height": 1152
+  },
+  {
+   "id": "acgi-16544",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00462888,
+   "image": "https://archicgi.com/wp-content/uploads/2022/06/exterior-3d-render-stylish-residence-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-35824",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00452648,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/3d-render-beachfront-villas-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-48672",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00432513,
+   "image": "https://archicgi.com/wp-content/uploads/2026/09/tropical-villa-aerial-3d-visualization-18MSGIFI-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-50540",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00491117,
+   "image": "https://archicgi.com/wp-content/uploads/2026/10/lake-como-villa-aerial-cgi-GT1WEETF-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-10480",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00466852,
+   "image": "https://archicgi.com/wp-content/uploads/2020/08/architectural-rendering-house-in-austria-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-46424",
    "gw": 44,
    "gh": 29,
-   "scale": 0.00493308,
-   "image": "https://archicgi.com/wp-content/uploads/2026/11/arched-window-apartment-building-exterior-cgi-greenpoint-brooklyn-V23WHANM-768x512.webp",
+   "scale": 0.00474275,
+   "image": "https://archicgi.com/wp-content/uploads/2026/08/colonial-house-exterior-3d-rendering-WXBM2S7H-768x512.webp",
    "width": 768,
    "height": 512
   },
   {
-   "id": "acgi-51549",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.00489074,
-   "image": "https://archicgi.com/wp-content/uploads/2026/11/shingle-beach-house-exterior-cgi-long-beach-township-new-jersey-I3Q2FQAN-768x432.webp",
+   "id": "acgi-22976",
+   "gw": 31,
+   "gh": 42,
+   "scale": 0.00474349,
+   "image": "https://archicgi.com/wp-content/uploads/2023/07/exterior-cg-rendering-villa-429521-768x1024.jpg",
    "width": 768,
-   "height": 432
+   "height": 1024
   },
   {
    "id": "acgi-48678",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00454402,
+   "scale": 0.00488279,
    "image": "https://archicgi.com/wp-content/uploads/2026/09/waterfront-house-exterior-cgi-new-jersey-LDLGYLJ5-768x432.webp",
    "width": 768,
    "height": 432
   },
   {
-   "id": "acgi-48674",
+   "id": "acgi-30591",
+   "gw": 51,
+   "gh": 25,
+   "scale": 0.00493712,
+   "image": "https://archicgi.com/wp-content/uploads/2025/05/exterior-render-house-pool-SDJ1CXSS-768x384.jpg",
+   "width": 768,
+   "height": 384
+  },
+  {
+   "id": "acgi-50539",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00466195,
-   "image": "https://archicgi.com/wp-content/uploads/2026/09/shingle-style-house-exterior-rendering-new-jersey-LDLGYLJ5-768x432.webp",
+   "scale": 0.00463537,
+   "image": "https://archicgi.com/wp-content/uploads/2026/10/lake-como-neoclassical-villa-pool-rendering-GT1WEETF-768x432.webp",
    "width": 768,
    "height": 432
   },
   {
-   "id": "acgi-42011",
+   "id": "acgi-50535",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00477012,
-   "image": "https://archicgi.com/wp-content/uploads/2026/06/fitness-facility-exterior-architectural-visualization-U6WKRIRE-768x432.webp",
+   "scale": 0.00432482,
+   "image": "https://archicgi.com/wp-content/uploads/2026/10/lake-como-villa-lawn-lake-view-visualization-GT1WEETF-768x432.webp",
    "width": 768,
    "height": 432
   },
   {
-   "id": "acgi-37290",
+   "id": "acgi-51549",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00456826,
-   "image": "https://archicgi.com/wp-content/uploads/2026/03/residential-architectural-3d-visualization-north-carolina-LKHRBHGU-768x432.webp",
+   "scale": 0.0047827,
+   "image": "https://archicgi.com/wp-content/uploads/2026/11/shingle-beach-house-exterior-cgi-long-beach-township-new-jersey-I3Q2FQAN-768x432.webp",
    "width": 768,
    "height": 432
   },
@@ -276,26 +177,494 @@
    "id": "acgi-37288",
    "gw": 51,
    "gh": 25,
-   "scale": 0.0045829,
+   "scale": 0.00483926,
    "image": "https://archicgi.com/wp-content/uploads/2026/03/luxury-residential-exterior-3d-rendering-J4Z2EUFL-768x384.webp",
    "width": 768,
    "height": 384
   },
   {
-   "id": "acgi-37274",
+   "id": "acgi-30062",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00497374,
+   "image": "https://archicgi.com/wp-content/uploads/2025/03/3d-animation-house-aspen-N3EXYVCI-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30789",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00476902,
+   "image": "https://archicgi.com/wp-content/uploads/2025/06/3d-animation-residence-design-N2ZMZ86I-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-22848",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00450205,
+   "image": "https://archicgi.com/wp-content/uploads/2023/07/3D-Animation-of-a-Mansion-in-Connecticut-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-5885",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00480185,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/3d-architectural-rendering-estate-jacksonville-768x576.jpg",
+   "width": 768,
+   "height": 576
+  },
+  {
+   "id": "acgi-22755",
    "gw": 44,
    "gh": 29,
-   "scale": 0.00499018,
-   "image": "https://archicgi.com/wp-content/uploads/2026/03/architectural-3d-rendering-wedding-venue-michigan-1BMU7X83-768x512.webp",
+   "scale": 0.00411807,
+   "image": "https://archicgi.com/wp-content/uploads/2023/07/bird-view-rendering-canterbury-443976-768x512.jpg",
    "width": 768,
    "height": 512
+  },
+  {
+   "id": "acgi-13833",
+   "gw": 32,
+   "gh": 40,
+   "scale": 0.00482638,
+   "image": "https://archicgi.com/wp-content/uploads/2021/07/3d-exterior-render-for-a-comfortable-residence-1229x1536.jpg",
+   "width": 1229,
+   "height": 1536
+  },
+  {
+   "id": "acgi-5887",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00423354,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/3d-exterior-rendering-cottage-boston-768x512.jpg",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-5892",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00464658,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/3d-exterior-rendering-residential-countryside-area-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-22517",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00489207,
+   "image": "https://archicgi.com/wp-content/uploads/2023/06/residence-exterior-3d-rendering-UDU38L3K-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-5897",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00476107,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/3d-exterior-visualization-cottage-768x512.jpg",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-16210",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00480098,
+   "image": "https://archicgi.com/wp-content/uploads/2022/05/3d-exterior-visualization-home-utah-289738-1536x1152.jpg",
+   "width": 1536,
+   "height": 1152
+  },
+  {
+   "id": "acgi-22564",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00458639,
+   "image": "https://archicgi.com/wp-content/uploads/2023/06/architectural-rendering-residential-exterior-768x512.jpg",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-11401",
+   "gw": 36,
+   "gh": 36,
+   "scale": 0.00493213,
+   "image": "https://archicgi.com/wp-content/uploads/2020/11/Cg-rendering-gorgeous-greek-residence-sunset-768x768.jpg",
+   "width": 768,
+   "height": 768
+  },
+  {
+   "id": "acgi-28907",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0049272,
+   "image": "https://archicgi.com/wp-content/uploads/2024/09/exterior-3d-rendering-house-aspen-7NDZTKAB-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-25597",
+   "gw": 45,
+   "gh": 29,
+   "scale": 0.00465037,
+   "image": "https://archicgi.com/wp-content/uploads/2023/12/3d-render-mediterranean-style-villa-california-GHG4KTR7-768x484.jpg",
+   "width": 768,
+   "height": 484
+  },
+  {
+   "id": "acgi-22417",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00475815,
+   "image": "https://archicgi.com/wp-content/uploads/2023/06/3d-exterior-residence-california-409497-768x576.jpg",
+   "width": 768,
+   "height": 576
+  },
+  {
+   "id": "acgi-27528",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00479461,
+   "image": "https://archicgi.com/wp-content/uploads/2024/04/real-estate-cgi-QYWAI9PA-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-12834",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00483037,
+   "image": "https://archicgi.com/wp-content/uploads/2021/04/3d-rendering-for-house-exterior-design-1536x1024.jpg",
+   "width": 1536,
+   "height": 1024
+  },
+  {
+   "id": "acgi-10482",
+   "gw": 31,
+   "gh": 42,
+   "scale": 0.00498125,
+   "image": "https://archicgi.com/wp-content/uploads/2020/08/3d-rendering-house-in-austria-front-view-768x1024.jpg",
+   "width": 768,
+   "height": 1024
+  },
+  {
+   "id": "acgi-14870",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00494715,
+   "image": "https://archicgi.com/wp-content/uploads/2021/11/3d-render-modern-residence-1536x1152.jpg",
+   "width": 1536,
+   "height": 1152
+  },
+  {
+   "id": "acgi-16074",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00457079,
+   "image": "https://archicgi.com/wp-content/uploads/2022/05/3d-rendering-splendid-mansion-canada-302844-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-14097",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00482056,
+   "image": "https://archicgi.com/wp-content/uploads/2021/07/3d-rendering-two-story-house-1536x1024.jpg",
+   "width": 1536,
+   "height": 1024
+  },
+  {
+   "id": "acgi-6036",
+   "gw": 31,
+   "gh": 42,
+   "scale": 0.00465781,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/3d-rendering-villa-los-angeles-150742-1152x1536.jpg",
+   "width": 1152,
+   "height": 1536
+  },
+  {
+   "id": "acgi-6038",
+   "gw": 31,
+   "gh": 42,
+   "scale": 0.00453975,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/3d-rendering-villa-west-hollywood-150742-1152x1536.jpg",
+   "width": 1152,
+   "height": 1536
+  },
+  {
+   "id": "acgi-11408",
+   "gw": 36,
+   "gh": 36,
+   "scale": 0.00454284,
+   "image": "https://archicgi.com/wp-content/uploads/2020/11/3d-rendering-residence-greece-side-view-768x768.jpeg",
+   "width": 768,
+   "height": 768
+  },
+  {
+   "id": "acgi-22768",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00466508,
+   "image": "https://archicgi.com/wp-content/uploads/2023/07/mansion-exterior-visualization-connecticut-443976-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-16095",
+   "gw": 51,
+   "gh": 25,
+   "scale": 0.00506923,
+   "image": "https://archicgi.com/wp-content/uploads/2022/05/3d-rendering-sunbear-house-traverse-michigan-289724-1536x768.jpg",
+   "width": 1536,
+   "height": 768
+  },
+  {
+   "id": "acgi-28910",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00498407,
+   "image": "https://archicgi.com/wp-content/uploads/2024/09/barndominium-photorealistic-cgi-9J6C6KPR-768x432.png",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-22421",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00480567,
+   "image": "https://archicgi.com/wp-content/uploads/2023/06/house-3d-exterior-missouri-425894-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30497",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00479966,
+   "image": "https://archicgi.com/wp-content/uploads/2025/05/exterior-3d-rendering-house-ESYJR8SD-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-16965",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00465168,
+   "image": "https://archicgi.com/wp-content/uploads/2022/08/3d-exterior-rendering-mansion-california-r37ebpne-1024x1536.jpg",
+   "width": 1024,
+   "height": 1536
+  },
+  {
+   "id": "acgi-30082",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00493659,
+   "image": "https://archicgi.com/wp-content/uploads/2025/03/real-estate-exterior-3d-render-california-QYWAI9PA-768x576.jpg",
+   "width": 768,
+   "height": 576
+  },
+  {
+   "id": "acgi-25596",
+   "gw": 45,
+   "gh": 29,
+   "scale": 0.00434,
+   "image": "https://archicgi.com/wp-content/uploads/2023/12/cgi-mediterranean-style-villa-california-GHG4KTR7-768x484.jpg",
+   "width": 768,
+   "height": 484
+  },
+  {
+   "id": "acgi-30609",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0048393,
+   "image": "https://archicgi.com/wp-content/uploads/2025/05/rendering-victorian-house-8DZ22ADG-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-23102",
+   "gw": 46,
+   "gh": 28,
+   "scale": 0.00483709,
+   "image": "https://archicgi.com/wp-content/uploads/2023/07/3d-rendering-waterside-house-466562-768x471.jpg",
+   "width": 768,
+   "height": 471
+  },
+  {
+   "id": "acgi-4574",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00448121,
+   "image": "https://archicgi.com/wp-content/uploads/2019/12/3d-visualisation-villa-exterior-design152395-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-11400",
+   "gw": 36,
+   "gh": 36,
+   "scale": 0.00490162,
+   "image": "https://archicgi.com/wp-content/uploads/2020/11/3D-visualization-sleek-house-in-greece-768x768.jpg",
+   "width": 768,
+   "height": 768
+  },
+  {
+   "id": "acgi-11398",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0047852,
+   "image": "https://archicgi.com/wp-content/uploads/2020/11/3d-visualization-seashore-villa-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35771",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00376621,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/architectural-visualization-exterior-night-1-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-27520",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00451026,
+   "image": "https://archicgi.com/wp-content/uploads/2024/04/exterior-cgi-arizona-K8RI2AC5-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-22414",
+   "gw": 34,
+   "gh": 39,
+   "scale": 0.00458725,
+   "image": "https://archicgi.com/wp-content/uploads/2023/06/cgi-mansion-north-carolina-443309-768x886.jpg",
+   "width": 768,
+   "height": 886
   },
   {
    "id": "acgi-30589",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00465008,
+   "scale": 0.00457896,
    "image": "https://archicgi.com/wp-content/uploads/2025/05/3d-visualization-house-CYQEIXBQ-768x432.png",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-16960",
+   "gw": 33,
+   "gh": 39,
+   "scale": 0.00476246,
+   "image": "https://archicgi.com/wp-content/uploads/2022/08/3d-visualization-villa-los-angeles-s7djwnqi-1293x1536.jpg",
+   "width": 1293,
+   "height": 1536
+  },
+  {
+   "id": "acgi-16970",
+   "gw": 32,
+   "gh": 41,
+   "scale": 0.0043619,
+   "image": "https://archicgi.com/wp-content/uploads/2022/08/3d-rendering-waterside-residence-california-1190x1536.jpg",
+   "width": 1190,
+   "height": 1536
+  },
+  {
+   "id": "acgi-29408",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00473326,
+   "image": "https://archicgi.com/wp-content/uploads/2024/11/exterior-cgi-middle-east-aerial-view-768x432.png",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-25593",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00502557,
+   "image": "https://archicgi.com/wp-content/uploads/2023/12/architectural-cgi-residence-california-H1SK96YE-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-25604",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0047105,
+   "image": "https://archicgi.com/wp-content/uploads/2023/12/3d-rendering-villa-uk-6KX7Q7FW-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-23810",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00421156,
+   "image": "https://archicgi.com/wp-content/uploads/2023/08/architectural-animation-for-a-villa-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-5677",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00432556,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/architectural-render-house-exterior-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-22568",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00447265,
+   "image": "https://archicgi.com/wp-content/uploads/2023/06/architectural-3d-visualization-residential-exterior-project-768x512.jpg",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-6034",
+   "gw": 57,
+   "gh": 23,
+   "scale": 0.00455918,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/architectural-rendering-house-LA-150742-1536x614.jpg",
+   "width": 1536,
+   "height": 614
+  },
+  {
+   "id": "acgi-22753",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00454967,
+   "image": "https://archicgi.com/wp-content/uploads/2023/07/exterior-rendering-Canterbury-453501-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-5902",
+   "gw": 33,
+   "gh": 39,
+   "scale": 0.00475726,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/architectural-3d-visualisation-mansion-exterior-768x922.jpg",
+   "width": 768,
+   "height": 922
+  },
+  {
+   "id": "acgi-28912",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00439677,
+   "image": "https://archicgi.com/wp-content/uploads/2024/09/barndominium-exterior-3d-visualization-9J6C6KPR-768x432.png",
    "width": 768,
    "height": 432
   },
@@ -303,8 +672,242 @@
    "id": "acgi-28911",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00461931,
+   "scale": 0.00496384,
    "image": "https://archicgi.com/wp-content/uploads/2024/09/barndominium-front-view-3d-render-9J6C6KPR-768x432.png",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-28983",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00467962,
+   "image": "https://archicgi.com/wp-content/uploads/2024/09/barndominium-house-design-3D-animation-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35843",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00470798,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/render-beachfront-resort-villas-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-27523",
+   "gw": 50,
+   "gh": 26,
+   "scale": 0.00397868,
+   "image": "https://archicgi.com/wp-content/uploads/2024/04/house-exterior-cgi-DNK6DCAF-768x405.jpg",
+   "width": 768,
+   "height": 405
+  },
+  {
+   "id": "acgi-14706",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0044665,
+   "image": "https://archicgi.com/wp-content/uploads/2021/10/exterior-cg-visualization-irvin-homes-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-22419",
+   "gw": 51,
+   "gh": 25,
+   "scale": 0.00483403,
+   "image": "https://archicgi.com/wp-content/uploads/2023/06/exterior-rendering-house-north-carolina-438282-768x384.jpg",
+   "width": 768,
+   "height": 384
+  },
+  {
+   "id": "acgi-16971",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00499367,
+   "image": "https://archicgi.com/wp-content/uploads/2022/08/cgi-house-california-sunset-supv18lz-1536x1024.jpg",
+   "width": 1536,
+   "height": 1024
+  },
+  {
+   "id": "acgi-30611",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00489432,
+   "image": "https://archicgi.com/wp-content/uploads/2025/05/cgi-house-terracotta-roof-Z4GXVD3T-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-17865",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00374893,
+   "image": "https://archicgi.com/wp-content/uploads/2022/10/anim-01.jpg",
+   "width": 1024,
+   "height": 576
+  },
+  {
+   "id": "acgi-35740",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.0048317,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/cgi-cottage-exterior-visualization-768x512.webp",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-16209",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00496636,
+   "image": "https://archicgi.com/wp-content/uploads/2022/05/3d-exterior-render-house-utah-289739-1536x1152.jpg",
+   "width": 1536,
+   "height": 1152
+  },
+  {
+   "id": "acgi-16962",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00467717,
+   "image": "https://archicgi.com/wp-content/uploads/2022/08/exterior-render-gorgeous-property-california-sd1mbses-1536x1024.jpg",
+   "width": 1536,
+   "height": 1024
+  },
+  {
+   "id": "acgi-29857",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00489242,
+   "image": "https://archicgi.com/wp-content/uploads/2025/01/exterior-cgi-residence-aspen-colorado-6zpvgf1r-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-25592",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00500216,
+   "image": "https://archicgi.com/wp-content/uploads/2023/12/cgi-residence-california-H1SK96YE-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-16964",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00487907,
+   "image": "https://archicgi.com/wp-content/uploads/2022/08/3d-exterior-visualization-house-los-angeles-spqkppu7-1024x1536.jpg",
+   "width": 1024,
+   "height": 1536
+  },
+  {
+   "id": "acgi-16959",
+   "gw": 31,
+   "gh": 42,
+   "scale": 0.00467392,
+   "image": "https://archicgi.com/wp-content/uploads/2022/08/3d-rendering-home-los-angeles-13se95gx-1144x1536.jpg",
+   "width": 1144,
+   "height": 1536
+  },
+  {
+   "id": "acgi-5894",
+   "gw": 36,
+   "gh": 36,
+   "scale": 0.00486375,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/exterior-3d-rendering-mansion-768x768.jpg",
+   "width": 768,
+   "height": 768
+  },
+  {
+   "id": "acgi-29829",
+   "gw": 46,
+   "gh": 28,
+   "scale": 0.00498731,
+   "image": "https://archicgi.com/wp-content/uploads/2025/01/exterior-cgi-phoenix-arizona-residence-TY5W29VZ-768x480.jpg",
+   "width": 768,
+   "height": 480
+  },
+  {
+   "id": "acgi-29860",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00455378,
+   "image": "https://archicgi.com/wp-content/uploads/2025/01/lakeside-house-exterior-cgi-6IW62P76-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-22395",
+   "gw": 32,
+   "gh": 41,
+   "scale": 0.00458743,
+   "image": "https://archicgi.com/wp-content/uploads/2023/06/residential-exterior-3d-render-429495-768x1002.jpg",
+   "width": 768,
+   "height": 1002
+  },
+  {
+   "id": "acgi-35828",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00457757,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/3d-render-residential-houses-D1KM4H6I-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30057",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00506375,
+   "image": "https://archicgi.com/wp-content/uploads/2025/03/exterior-cgi-villa-dubai-TED9BZ8Z-768x512.jpg",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-51553",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00501079,
+   "image": "https://archicgi.com/wp-content/uploads/2026/11/transitional-brick-house-exterior-3d-rendering-DE34CAY9-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-37115",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00440363,
+   "image": "https://archicgi.com/wp-content/uploads/2026/02/exterior-3d-render-private-residence-83PX35N6-1-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-15267",
+   "gw": 32,
+   "gh": 40,
+   "scale": 0.00477084,
+   "image": "https://archicgi.com/wp-content/uploads/2022/01/exterior-rendering-residence-north-carolina-1229x1536.jpg",
+   "width": 1229,
+   "height": 1536
+  },
+  {
+   "id": "acgi-30058",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00497752,
+   "image": "https://archicgi.com/wp-content/uploads/2025/03/exterior-3d-render-villa-dubai-TED9BZ8Z-768x512.jpg",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-29826",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00486034,
+   "image": "https://archicgi.com/wp-content/uploads/2025/01/exterior-3d-rendering-residence-texas-52555GFM-768x432.jpg",
    "width": 768,
    "height": 432
   },
@@ -312,89 +915,377 @@
    "id": "acgi-37125",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00447069,
+   "scale": 0.00467924,
    "image": "https://archicgi.com/wp-content/uploads/2026/02/exterior-3d-rendering-residence-3WDQ9VGB-768x432.webp",
    "width": 768,
    "height": 432
   },
   {
-   "id": "acgi-37119",
+   "id": "acgi-10479",
+   "gw": 31,
+   "gh": 42,
+   "scale": 0.00497776,
+   "image": "https://archicgi.com/wp-content/uploads/2020/08/architectural-visualization-house-exterior-austria-768x1024.jpg",
+   "width": 768,
+   "height": 1024
+  },
+  {
+   "id": "acgi-17007",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00425419,
-   "image": "https://archicgi.com/wp-content/uploads/2026/02/exterior-cgi-high-end-commercial-building-EQXDDLW2-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-37108",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.00472612,
-   "image": "https://archicgi.com/wp-content/uploads/2026/02/exterior-cgi-residential-building-dhp7mgdv-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-35796",
-   "gw": 44,
-   "gh": 29,
-   "scale": 0.00476433,
-   "image": "https://archicgi.com/wp-content/uploads/2025/11/3d-render-modern-apartment-exterior-768x512.webp",
-   "width": 768,
-   "height": 512
-  },
-  {
-   "id": "acgi-35757",
-   "gw": 42,
-   "gh": 31,
-   "scale": 0.00463079,
-   "image": "https://archicgi.com/wp-content/uploads/2025/11/cgi-modern-townhouse-exterior-768x576.webp",
-   "width": 768,
-   "height": 576
-  },
-  {
-   "id": "acgi-35744",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.00477951,
-   "image": "https://archicgi.com/wp-content/uploads/2025/11/render-contemporary-building-exterior-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-35737",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.00473323,
-   "image": "https://archicgi.com/wp-content/uploads/2025/11/modern-apartment-complex-visualization-UR3ADKK4-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-30614",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.00417391,
-   "image": "https://archicgi.com/wp-content/uploads/2025/05/3d-render-modern-lodge-4NXGET9N-768x432.jpg",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-30609",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.0047617,
-   "image": "https://archicgi.com/wp-content/uploads/2025/05/rendering-victorian-house-8DZ22ADG-768x432.jpg",
-   "width": 768,
-   "height": 432
+   "scale": 0.0047898,
+   "image": "https://archicgi.com/wp-content/uploads/2022/08/exterior-render-residence-los-angeles-n2hrvlie-1536x864.jpg",
+   "width": 1536,
+   "height": 864
   },
   {
    "id": "acgi-30593",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00446597,
+   "scale": 0.00447556,
    "image": "https://archicgi.com/wp-content/uploads/2025/05/exterior-visual-elegant-residence-ZSML24WB-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-16961",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00505556,
+   "image": "https://archicgi.com/wp-content/uploads/2022/08/cgi-residence-los-angeles-l11vigju-1024x1536.jpg",
+   "width": 1024,
+   "height": 1536
+  },
+  {
+   "id": "acgi-22412",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00499692,
+   "image": "https://archicgi.com/wp-content/uploads/2023/06/barndominium-3d-exterior-missouri-425894-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30587",
+   "gw": 45,
+   "gh": 29,
+   "scale": 0.00495578,
+   "image": "https://archicgi.com/wp-content/uploads/2025/05/exterior-compact-home-I9BNNUPU-768x492.jpg",
+   "width": 768,
+   "height": 492
+  },
+  {
+   "id": "acgi-25760",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00478587,
+   "image": "https://archicgi.com/wp-content/uploads/2023/12/3d-exterior-residence-christmas-decor-CWUCV47U-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-16543",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00462443,
+   "image": "https://archicgi.com/wp-content/uploads/2022/06/exterior-cgi-minimalist-residence-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-35817",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00443395,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/exterior-cgi-modern-mountain-home-8QLL4THE-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-22422",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00489108,
+   "image": "https://archicgi.com/wp-content/uploads/2023/06/cg-exterior-residence-california-409497-768x576.jpg",
+   "width": 768,
+   "height": 576
+  },
+  {
+   "id": "acgi-25591",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00496972,
+   "image": "https://archicgi.com/wp-content/uploads/2023/12/exterior-cgi-residence-california-H1SK96YE-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-29824",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00477282,
+   "image": "https://archicgi.com/wp-content/uploads/2025/01/exterior-cgi-residence-texas-52555GFM-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30083",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00465735,
+   "image": "https://archicgi.com/wp-content/uploads/2025/03/real-estate-exterior-cgi-california-QYWAI9PA-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-46420",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0045446,
+   "image": "https://archicgi.com/wp-content/uploads/2026/08/mediterranean-house-exterior-cgi-florida-WUF1HQ4H-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-29407",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00497691,
+   "image": "https://archicgi.com/wp-content/uploads/2024/11/exterior-architecture-3d-rendering-middle-east-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-25681",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00466961,
+   "image": "https://archicgi.com/wp-content/uploads/2023/12/real-estate-exterior-3d-render-iq8zxmnt-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-17067",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00496809,
+   "image": "https://archicgi.com/wp-content/uploads/2022/08/exterior-cgi-two-story-house-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-48674",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00482132,
+   "image": "https://archicgi.com/wp-content/uploads/2026/09/shingle-style-house-exterior-rendering-new-jersey-LDLGYLJ5-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-52118",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00500569,
+   "image": "https://archicgi.com/wp-content/uploads/2026/11/single-story-house-two-car-garage-exterior-rendering-W6NFLQNU-768x512.webp",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-25595",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0048538,
+   "image": "https://archicgi.com/wp-content/uploads/2023/12/3d-render-residence-california-H1SK96YE-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-16963",
+   "gw": 32,
+   "gh": 41,
+   "scale": 0.00444995,
+   "image": "https://archicgi.com/wp-content/uploads/2022/08/exterior-cgi-cozy-house-california-cdbwkv5g-1191x1536.jpg",
+   "width": 1191,
+   "height": 1536
+  },
+  {
+   "id": "acgi-37284",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00496138,
+   "image": "https://archicgi.com/wp-content/uploads/2026/03/farm-house-exterior-render-1YC64NUD-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30598",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00477498,
+   "image": "https://archicgi.com/wp-content/uploads/2025/05/3d-rendering-villa-CQN8DEYL-768x512.jpg",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-25603",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00465712,
+   "image": "https://archicgi.com/wp-content/uploads/2023/12/3d-render-villa-uk-6KX7Q7FW-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-23100",
+   "gw": 46,
+   "gh": 28,
+   "scale": 0.00500761,
+   "image": "https://archicgi.com/wp-content/uploads/2023/07/modern-residence-3d-visualization-466562-768x465.jpg",
+   "width": 768,
+   "height": 465
+  },
+  {
+   "id": "acgi-25683",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0049616,
+   "image": "https://archicgi.com/wp-content/uploads/2023/12/exterior-3d-render-mansion-usa-iq8zxmnt-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-23105",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00492666,
+   "image": "https://archicgi.com/wp-content/uploads/2023/07/exterior-3d-render-residence-nighttime-466562-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-11410",
+   "gw": 31,
+   "gh": 41,
+   "scale": 0.00382957,
+   "image": "https://archicgi.com/wp-content/uploads/2020/11/3d-photoreal-visualization-seaside-residence-greece-768x1011.jpeg",
+   "width": 768,
+   "height": 1011
+  },
+  {
+   "id": "acgi-11391",
+   "gw": 36,
+   "gh": 36,
+   "scale": 0.00477189,
+   "image": "https://archicgi.com/wp-content/uploads/2020/11/photoreal-3d-visualization-seashore-residence-768x768.jpg",
+   "width": 768,
+   "height": 768
+  },
+  {
+   "id": "acgi-25886",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00465961,
+   "image": "https://archicgi.com/wp-content/uploads/2024/01/exterior-3d-render-WN2DPXRE-768x512.jpg",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-6040",
+   "gw": 31,
+   "gh": 42,
+   "scale": 0.00397008,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/photoreal-render-west-hollywood-architectural-project-150742-1152x1536.jpg",
+   "width": 1152,
+   "height": 1536
+  },
+  {
+   "id": "acgi-4384",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00474581,
+   "image": "https://archicgi.com/wp-content/uploads/2019/12/photoreal-render-villa-design150738-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-4388",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00493369,
+   "image": "https://archicgi.com/wp-content/uploads/2019/12/exterior-visualization-white-villa150738-768x1152.jpg",
+   "width": 768,
+   "height": 1152
+  },
+  {
+   "id": "acgi-28909",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00475053,
+   "image": "https://archicgi.com/wp-content/uploads/2024/09/barndominium-side-view-3d-visualization-9J6C6KPR-768x432.png",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-23096",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00494141,
+   "image": "https://archicgi.com/wp-content/uploads/2023/07/3d-render-cozy-residence-nighttime-466562-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-11399",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00487511,
+   "image": "https://archicgi.com/wp-content/uploads/2020/11/photoreslistic-cgi-seashore-residence-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-13832",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00489062,
+   "image": "https://archicgi.com/wp-content/uploads/2021/07/realistic-cgi-cozy-cottage-1536x1152.jpg",
+   "width": 1536,
+   "height": 1152
+  },
+  {
+   "id": "acgi-27530",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00503873,
+   "image": "https://archicgi.com/wp-content/uploads/2024/04/residence-exterior-cgi-58I5KG9T-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-27517",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00465114,
+   "image": "https://archicgi.com/wp-content/uploads/2024/04/estate-3d-render-I1FYY8EB-768x435.jpg",
+   "width": 768,
+   "height": 435
+  },
+  {
+   "id": "acgi-37112",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00477158,
+   "image": "https://archicgi.com/wp-content/uploads/2026/02/reaolistic-rendering-residence-with-garage-9Z6DUGGT-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-27529",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00501526,
+   "image": "https://archicgi.com/wp-content/uploads/2024/04/residence-exterior-3d-render-DWXIXDWI-768x432.jpg",
    "width": 768,
    "height": 432
   },
@@ -402,53 +1293,53 @@
    "id": "acgi-30544",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00447784,
+   "scale": 0.00479049,
    "image": "https://archicgi.com/wp-content/uploads/2025/05/3d-exterior-contemporary-residence-F25VHVKG-768x432.jpg",
    "width": 768,
    "height": 432
   },
   {
-   "id": "acgi-30535",
+   "id": "acgi-30618",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00462613,
-   "image": "https://archicgi.com/wp-content/uploads/2025/05/exterior-render-modern-cabin-E8CIRWZG-768x432.jpg",
+   "scale": 0.00473879,
+   "image": "https://archicgi.com/wp-content/uploads/2015/05/residence-exterior-visualization-9WF1LFBG-768x432.webp",
    "width": 768,
    "height": 432
   },
   {
-   "id": "acgi-30519",
-   "gw": 42,
-   "gh": 31,
-   "scale": 0.00504602,
-   "image": "https://archicgi.com/wp-content/uploads/2025/05/3d-image-townhouse-XNIKP9C5-768x576.jpg",
-   "width": 768,
-   "height": 576
-  },
-  {
-   "id": "acgi-30497",
+   "id": "acgi-37290",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00488319,
-   "image": "https://archicgi.com/wp-content/uploads/2025/05/exterior-3d-rendering-house-ESYJR8SD-768x432.jpg",
+   "scale": 0.00470241,
+   "image": "https://archicgi.com/wp-content/uploads/2026/03/residential-architectural-3d-visualization-north-carolina-LKHRBHGU-768x432.webp",
    "width": 768,
    "height": 432
   },
   {
-   "id": "acgi-30058",
-   "gw": 44,
-   "gh": 29,
-   "scale": 0.00453184,
-   "image": "https://archicgi.com/wp-content/uploads/2025/03/exterior-3d-render-villa-dubai-TED9BZ8Z-768x512.jpg",
+   "id": "acgi-5907",
+   "gw": 46,
+   "gh": 28,
+   "scale": 0.0046767,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/residential-exterior-render-villa-768x480.jpg",
    "width": 768,
-   "height": 512
+   "height": 480
   },
   {
-   "id": "acgi-29824",
+   "id": "acgi-35746",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00451169,
-   "image": "https://archicgi.com/wp-content/uploads/2025/01/exterior-cgi-residence-texas-52555GFM-768x432.jpg",
+   "scale": 0.00466905,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/cgi-suburban-house-visualization-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-37127",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00377051,
+   "image": "https://archicgi.com/wp-content/uploads/2026/02/top-view-3d-render-mountain-residence-8QLL4THE-768x432.webp",
    "width": 768,
    "height": 432
   },
@@ -456,89 +1347,377 @@
    "id": "acgi-28913",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00460496,
+   "scale": 0.00483087,
    "image": "https://archicgi.com/wp-content/uploads/2024/09/barndominium-exterior-3d-render-9J6C6KPR-768x432.png",
    "width": 768,
    "height": 432
   },
   {
-   "id": "acgi-48655",
+   "id": "acgi-29828",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00461178,
-   "image": "https://archicgi.com/wp-content/uploads/2026/09/ice-cream-shop-walk-up-counter-3d-rendering-california-HZZPQ8DR-768x432.webp",
+   "scale": 0.00404103,
+   "image": "https://archicgi.com/wp-content/uploads/2025/01/interior-3d-render-suite-texas-W8QDHDQ3-768x432.jpg",
    "width": 768,
    "height": 432
   },
   {
-   "id": "acgi-48635",
-   "gw": 44,
-   "gh": 30,
-   "scale": 0.00484782,
-   "image": "https://archicgi.com/wp-content/uploads/2026/09/ice-cream-shop-storefront-exterior-cgi-california-UH4MB19X-768x520.webp",
+   "id": "acgi-48666",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00438323,
+   "image": "https://archicgi.com/wp-content/uploads/2026/11/modern-villa-terrace-close-up-cgi-rendering-SZWTARES-768x432.webp",
    "width": 768,
-   "height": 520
+   "height": 432
+  },
+  {
+   "id": "acgi-4389",
+   "gw": 36,
+   "gh": 36,
+   "scale": 0.0032868,
+   "image": "https://archicgi.com/wp-content/uploads/2019/12/architectural-visuanlization-interior-design150738-768x768.jpg",
+   "width": 768,
+   "height": 768
+  },
+  {
+   "id": "acgi-8794",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00357793,
+   "image": "https://archicgi.com/wp-content/uploads/2020/05/168623-modern-living-room-interior-rendering-philadelphia-house-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-4395",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00362934,
+   "image": "https://archicgi.com/wp-content/uploads/2019/12/architectural-visualization-cozy-vacation-house-150738-1024x1536.jpg",
+   "width": 1024,
+   "height": 1536
+  },
+  {
+   "id": "acgi-35725",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00367478,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/render-island-interior-space-villas-768x576.webp",
+   "width": 768,
+   "height": 576
+  },
+  {
+   "id": "acgi-10475",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00393767,
+   "image": "https://archicgi.com/wp-content/uploads/2020/11/cg-visualization-house-austria-posh-interior-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-17845",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00402232,
+   "image": "https://archicgi.com/wp-content/uploads/2022/10/interior-cgi-large-living-room-vh3d8323-1536x864.png",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-4390",
+   "gw": 36,
+   "gh": 36,
+   "scale": 0.00403102,
+   "image": "https://archicgi.com/wp-content/uploads/2019/12/interior-rendering-stairs-scene150738-768x768.jpg",
+   "width": 768,
+   "height": 768
+  },
+  {
+   "id": "acgi-48639",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00493719,
+   "image": "https://archicgi.com/wp-content/uploads/2026/09/glamping-cabin-night-view-3d-rendering-australia-ST7C4HEB-768x513.webp",
+   "width": 768,
+   "height": 513
+  },
+  {
+   "id": "acgi-48660",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00443569,
+   "image": "https://archicgi.com/wp-content/uploads/2026/09/glamping-cabin-exterior-cgi-rural-australia-P1GM9WAD-768x513.webp",
+   "width": 768,
+   "height": 513
+  },
+  {
+   "id": "acgi-12833",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00466638,
+   "image": "https://archicgi.com/wp-content/uploads/2021/04/3d-render-for-lodge-by-the-lake-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-30614",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00481083,
+   "image": "https://archicgi.com/wp-content/uploads/2025/05/3d-render-modern-lodge-4NXGET9N-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-48676",
+   "gw": 50,
+   "gh": 26,
+   "scale": 0.00486256,
+   "image": "https://archicgi.com/wp-content/uploads/2026/09/glamping-resort-coastal-exterior-3d-visualization-australia-F89J6ULK-768x394.webp",
+   "width": 768,
+   "height": 394
+  },
+  {
+   "id": "acgi-52132",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00440217,
+   "image": "https://archicgi.com/wp-content/uploads/2026/11/forest-cabin-metal-roof-aerial-rendering-8ZD5YQNN-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-24727",
+   "gw": 35,
+   "gh": 37,
+   "scale": 0.00450972,
+   "image": "https://archicgi.com/wp-content/uploads/2023/09/exterior-3d-visualization-lodges-hyatt-new-york-state-exterior-3d-rendering-lodges-hyatt-new-york-state-69222-768x808.jpg",
+   "width": 768,
+   "height": 808
+  },
+  {
+   "id": "acgi-17088",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00466837,
+   "image": "https://archicgi.com/wp-content/uploads/2022/08/3d-visualization-cabin-flat-roof-317094-1536x1022.jpg",
+   "width": 1536,
+   "height": 1022
+  },
+  {
+   "id": "acgi-52129",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0044596,
+   "image": "https://archicgi.com/wp-content/uploads/2026/11/modern-forest-cabin-rocky-hillside-exterior-3d-rendering-8ZD5YQNN-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30535",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00490416,
+   "image": "https://archicgi.com/wp-content/uploads/2025/05/exterior-render-modern-cabin-E8CIRWZG-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-28850",
+   "gw": 43,
+   "gh": 30,
+   "scale": 0.00446236,
+   "image": "https://archicgi.com/wp-content/uploads/2024/09/cabin-exterior-3d-render-GIJTWZ4M-768x529.jpg",
+   "width": 768,
+   "height": 529
+  },
+  {
+   "id": "acgi-52131",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00413528,
+   "image": "https://archicgi.com/wp-content/uploads/2026/11/small-cabin-stone-chimney-shed-roof-exterior-cgi-8ZD5YQNN-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-52130",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00416935,
+   "image": "https://archicgi.com/wp-content/uploads/2026/11/forest-cabin-footbridge-entrance-exterior-visualization-8ZD5YQNN-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-16054",
+   "gw": 32,
+   "gh": 40,
+   "scale": 0.00343326,
+   "image": "https://archicgi.com/wp-content/uploads/2022/04/3d-visualization-chalet-interior-1229x1536.jpg",
+   "width": 1229,
+   "height": 1536
+  },
+  {
+   "id": "acgi-48664",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00483754,
+   "image": "https://archicgi.com/wp-content/uploads/2026/09/modern-townhouse-exterior-3d-rendering-pittsburgh-EXB3NWZG-768x512.webp",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-52121",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00439508,
+   "image": "https://archicgi.com/wp-content/uploads/2026/11/pittsburgh-northside-aerial-townhome-3d-animation-VC5I2292-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30519",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00478542,
+   "image": "https://archicgi.com/wp-content/uploads/2025/05/3d-image-townhouse-XNIKP9C5-768x576.jpg",
+   "width": 768,
+   "height": 576
+  },
+  {
+   "id": "acgi-46513",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00465511,
+   "image": "https://archicgi.com/wp-content/uploads/2026/08/townhouse-community-street-view-3d-rendering-south-carolina-GPB43MVX-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-48646",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00468492,
+   "image": "https://archicgi.com/wp-content/uploads/2026/09/townhouse-aerial-cgi-pittsburgh-EXB3NWZG-768x576.webp",
+   "width": 768,
+   "height": 576
+  },
+  {
+   "id": "acgi-37276",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00458815,
+   "image": "https://archicgi.com/wp-content/uploads/2026/03/architectural-rendering-modern-urban-townhouse-F4SBWS4B-768x1152.webp",
+   "width": 768,
+   "height": 1152
   },
   {
    "id": "acgi-37121",
    "gw": 48,
    "gh": 27,
-   "scale": 0.0047393,
+   "scale": 0.00486094,
    "image": "https://archicgi.com/wp-content/uploads/2026/02/exterior-3d-rendering-townhouse-4PBUV1RH-768x432.webp",
    "width": 768,
    "height": 432
   },
   {
-   "id": "acgi-37117",
-   "gw": 46,
-   "gh": 28,
-   "scale": 0.00499421,
-   "image": "https://archicgi.com/wp-content/uploads/2026/02/exterior-3d-render-mixed-use-property-B52L6KR5-768x480.webp",
+   "id": "acgi-35757",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.0048796,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/cgi-modern-townhouse-exterior-768x576.webp",
    "width": 768,
-   "height": 480
+   "height": 576
   },
   {
-   "id": "acgi-37115",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.0043798,
-   "image": "https://archicgi.com/wp-content/uploads/2026/02/exterior-3d-render-private-residence-83PX35N6-1-768x432.webp",
+   "id": "acgi-37289",
+   "gw": 27,
+   "gh": 48,
+   "scale": 0.00467672,
+   "image": "https://archicgi.com/wp-content/uploads/2026/03/new-york-townhouse-facade-architectural-rendering-KIVH53LQ-768x1365.webp",
    "width": 768,
-   "height": 432
+   "height": 1365
   },
   {
-   "id": "acgi-37112",
+   "id": "acgi-29830",
    "gw": 48,
    "gh": 27,
-   "scale": 0.0046067,
-   "image": "https://archicgi.com/wp-content/uploads/2026/02/reaolistic-rendering-residence-with-garage-9Z6DUGGT-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-35828",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.0049748,
-   "image": "https://archicgi.com/wp-content/uploads/2025/11/3d-render-residential-houses-D1KM4H6I-768x432.webp",
+   "scale": 0.00467973,
+   "image": "https://archicgi.com/wp-content/uploads/2025/01/cgi-townhome-charlotte-north-carolina-E6MC1XDS-768x432.jpg",
    "width": 768,
    "height": 432
   },
   {
-   "id": "acgi-35820",
+   "id": "acgi-35796",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.0047271,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/3d-render-modern-apartment-exterior-768x512.webp",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-51562",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00430032,
-   "image": "https://archicgi.com/wp-content/uploads/2025/11/render-city-commercial-building-768x432.webp",
+   "scale": 0.0044363,
+   "image": "https://archicgi.com/wp-content/uploads/2026/11/apartment-rooftop-pool-deck-aerial-3d-rendering-los-angeles-WRIXRDBZ-768x432.webp",
    "width": 768,
    "height": 432
   },
   {
-   "id": "acgi-35791",
+   "id": "acgi-35841",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00429563,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/3d-render-luxury-beachfront-pool-768x576.webp",
+   "width": 768,
+   "height": 576
+  },
+  {
+   "id": "acgi-52117",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00480136,
+   "image": "https://archicgi.com/wp-content/uploads/2026/11/red-brick-apartment-building-exterior-3d-rendering-brooklyn-4ZG8ABKG-768x512.webp",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-48641",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00403213,
-   "image": "https://archicgi.com/wp-content/uploads/2025/11/3d-for-solimar-towers-renovation-drive-way-768x432.webp",
+   "scale": 0.00467216,
+   "image": "https://archicgi.com/wp-content/uploads/2026/09/apartment-building-exterior-3d-visualization-massachusetts-AS92YBZE-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-48668",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00486116,
+   "image": "https://archicgi.com/wp-content/uploads/2026/09/residential-complex-exterior-rendering-massachusetts-AS92YBZE-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-42018",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00448082,
+   "image": "https://archicgi.com/wp-content/uploads/2026/06/multifamily-building-aerial-architectural-visualization-BMQ77WV4-768x512.webp",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-46515",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00465783,
+   "image": "https://archicgi.com/wp-content/uploads/2026/08/multifamily-building-exterior-architectural-visualization-BMQ77WV4-768x432.webp",
    "width": 768,
    "height": 432
   },
@@ -546,139 +1725,2209 @@
    "id": "acgi-35783",
    "gw": 44,
    "gh": 29,
-   "scale": 0.00449294,
+   "scale": 0.00461329,
    "image": "https://archicgi.com/wp-content/uploads/2025/11/3d-render-urban-apartment-visualization-768x512.webp",
    "width": 768,
    "height": 512
   },
   {
-   "id": "acgi-35776",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.00480868,
-   "image": "https://archicgi.com/wp-content/uploads/2025/11/architectural-exterior-realistic-render-UR3ADKK4-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-35763",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.00496834,
-   "image": "https://archicgi.com/wp-content/uploads/2025/11/architectural-visualization-residential-render-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-35759",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.00483462,
-   "image": "https://archicgi.com/wp-content/uploads/2025/11/cgi-residential-visualization-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-35746",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.00443837,
-   "image": "https://archicgi.com/wp-content/uploads/2025/11/cgi-suburban-house-visualization-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
-   "id": "acgi-35740",
-   "gw": 44,
-   "gh": 29,
-   "scale": 0.00465152,
-   "image": "https://archicgi.com/wp-content/uploads/2025/11/cgi-cottage-exterior-visualization-768x512.webp",
-   "width": 768,
-   "height": 512
-  },
-  {
-   "id": "acgi-35723",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.00456796,
-   "image": "https://archicgi.com/wp-content/uploads/2025/11/render-suburban-apartment-complex-768x432.webp",
-   "width": 768,
-   "height": 432
-  },
-  {
    "id": "acgi-35710",
    "gw": 42,
    "gh": 31,
-   "scale": 0.00466883,
+   "scale": 0.00477709,
    "image": "https://archicgi.com/wp-content/uploads/2025/11/render-urban-housing-complex-768x576.webp",
    "width": 768,
    "height": 576
   },
   {
-   "id": "acgi-30628",
-   "gw": 48,
-   "gh": 27,
-   "scale": 0.0046032,
-   "image": "https://archicgi.com/wp-content/uploads/2025/05/cg-render-underground-station-entrance-768x432.jpg",
+   "id": "acgi-25601",
+   "gw": 31,
+   "gh": 42,
+   "scale": 0.00458357,
+   "image": "https://archicgi.com/wp-content/uploads/2023/12/3d-rendering-condominium-california-WEISIGY8-768x1024.jpg",
    "width": 768,
-   "height": 432
+   "height": 1024
   },
   {
    "id": "acgi-30607",
    "gw": 48,
    "gh": 27,
-   "scale": 0.00447858,
+   "scale": 0.00456083,
    "image": "https://archicgi.com/wp-content/uploads/2025/05/visualization-urban-building-AFU78K73-768x432.jpg",
    "width": 768,
    "height": 432
   },
   {
+   "id": "acgi-17871",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00426697,
+   "image": "https://archicgi.com/wp-content/uploads/2022/10/anim-02.jpg",
+   "width": 1024,
+   "height": 576
+  },
+  {
+   "id": "acgi-48658",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00489431,
+   "image": "https://archicgi.com/wp-content/uploads/2026/09/coastal-multifamily-development-aerial-cgi-XAZ75J7Q-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-25149",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00504125,
+   "image": "https://archicgi.com/wp-content/uploads/2023/11/mid-rise-building-usa-eye-level-3d-rendering-s98b4y2s-768x1152.jpg",
+   "width": 768,
+   "height": 1152
+  },
+  {
+   "id": "acgi-35763",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00462064,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/architectural-visualization-residential-render-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-25137",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00456962,
+   "image": "https://archicgi.com/wp-content/uploads/2023/10/mid-rise-building-usa-exterior-3d-visualization-S98B4Y2S-768x1152.jpg",
+   "width": 768,
+   "height": 1152
+  },
+  {
+   "id": "acgi-25152",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00459132,
+   "image": "https://archicgi.com/wp-content/uploads/2023/11/close-up-3d-visualization-mid-rise-building-usa-s98b4y2s-768x1152.jpg",
+   "width": 768,
+   "height": 1152
+  },
+  {
+   "id": "acgi-25148",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0045679,
+   "image": "https://archicgi.com/wp-content/uploads/2023/11/close-up-3d-render-mid-rise-building-usa-s98b4y2s-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-25150",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00489867,
+   "image": "https://archicgi.com/wp-content/uploads/2023/11/mid-rise-building-usa-3d-visualization-s98b4y2s-768x1152.jpg",
+   "width": 768,
+   "height": 1152
+  },
+  {
+   "id": "acgi-37108",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00455624,
+   "image": "https://archicgi.com/wp-content/uploads/2026/02/exterior-cgi-residential-building-dhp7mgdv-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35776",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00451875,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/architectural-exterior-realistic-render-UR3ADKK4-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-25136",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00437341,
+   "image": "https://archicgi.com/wp-content/uploads/2023/10/mid-rise-building-usa-exterior-3d-render-S98B4Y2S-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-21615",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00472173,
+   "image": "https://archicgi.com/wp-content/uploads/2023/09/exterior-3d-rendering-building-vancouver-437630-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-52119",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00451126,
+   "image": "https://archicgi.com/wp-content/uploads/2026/11/arched-window-apartment-building-exterior-cgi-greenpoint-brooklyn-V23WHANM-768x512.webp",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-48653",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00488874,
+   "image": "https://archicgi.com/wp-content/uploads/2026/09/multifamily-housing-exterior-cgi-kentucky-4LVDY1HX-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35737",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00479105,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/modern-apartment-complex-visualization-UR3ADKK4-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-18838",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.0043612,
+   "image": "https://archicgi.com/wp-content/uploads/2022/12/cgi-apartment-building-new-york-352967-1024x1536.jpg",
+   "width": 1024,
+   "height": 1536
+  },
+  {
+   "id": "acgi-25147",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00481007,
+   "image": "https://archicgi.com/wp-content/uploads/2023/11/mid-rise-building-usa-exterior-cgi-s98b4y2s-768x1152.jpg",
+   "width": 768,
+   "height": 1152
+  },
+  {
+   "id": "acgi-35759",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00471415,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/cgi-residential-visualization-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35723",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00468547,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/render-suburban-apartment-complex-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-25146",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00442536,
+   "image": "https://archicgi.com/wp-content/uploads/2023/11/mid-rise-building-usa-eye-level-rendering-s98b4y2s-768x1152.jpg",
+   "width": 768,
+   "height": 1152
+  },
+  {
+   "id": "acgi-21605",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00404053,
+   "image": "https://archicgi.com/wp-content/uploads/2023/05/bedroom-interior-3d-render-vancouver-438208-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-51548",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0038076,
+   "image": "https://archicgi.com/wp-content/uploads/2026/11/condo-living-room-interior-3d-visualization-fisher-island-RGKXKQNI-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-42020",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00442191,
+   "image": "https://archicgi.com/wp-content/uploads/2026/06/penthouse-terrace-oceanfront-architectural-visualization-I64GZ1EQ-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-22608",
+   "gw": 45,
+   "gh": 29,
+   "scale": 0.00440079,
+   "image": "https://archicgi.com/wp-content/uploads/2023/07/architectural-visualization-urban-redevelopment-project-768x498.jpg",
+   "width": 768,
+   "height": 498
+  },
+  {
+   "id": "acgi-30622",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00445944,
+   "image": "https://archicgi.com/wp-content/uploads/2025/05/aerial-visualization-residential-community-L6YDTUSB-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30541",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00447822,
+   "image": "https://archicgi.com/wp-content/uploads/2025/05/3d-animation-beachfront-сommunity-9LB2Z7XM-2-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35788",
+   "gw": 45,
+   "gh": 29,
+   "scale": 0.00438785,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/3d-render-suburban-development-768x496.webp",
+   "width": 768,
+   "height": 496
+  },
+  {
+   "id": "acgi-35807",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00423829,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/render-suburban-community-aerial-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30075",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00436107,
+   "image": "https://archicgi.com/wp-content/uploads/2025/03/community-exterior-aerial-cgi-turks-and-caicos-4PNZLSDF-768x431.jpg",
+   "width": 768,
+   "height": 431
+  },
+  {
+   "id": "acgi-35765",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00474355,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/cgi-aerial-village-visualization-768x512.webp",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-35834",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00441908,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/cgi-suburban-housing-exterior2-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-22605",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00417906,
+   "image": "https://archicgi.com/wp-content/uploads/2023/07/urban-redevelopment-exterior-3d-visualization-432091-768x512.jpg",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-22604",
+   "gw": 45,
+   "gh": 29,
+   "scale": 0.00456622,
+   "image": "https://archicgi.com/wp-content/uploads/2023/07/cgi-urban-redevelopment-425173-768x501.jpg",
+   "width": 768,
+   "height": 501
+  },
+  {
+   "id": "acgi-35731",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00445221,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/render-architectural-community-overview-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-46416",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00466633,
+   "image": "https://archicgi.com/wp-content/uploads/2026/11/subdivision-site-plan-aerial-architectural-3d-animation-PWQ774KA-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35814",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00475693,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/3d-render-resort-pool-area-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-37278",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00400176,
+   "image": "https://archicgi.com/wp-content/uploads/2026/03/architectural-visualization-luxury-resort-courtyard-pool-area-UFN5XRFI-768x1152.webp",
+   "width": 768,
+   "height": 1152
+  },
+  {
+   "id": "acgi-30774",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00460902,
+   "image": "https://archicgi.com/wp-content/uploads/2025/06/lifestyle-render-resort-pool-FM8RAPAD-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-24726",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00454263,
+   "image": "https://archicgi.com/wp-content/uploads/2023/09/poolhouse-exterior-3d-rendering-hyatt-new-york-state-69222-768x512.jpg",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-16538",
+   "gw": 51,
+   "gh": 25,
+   "scale": 0.0046573,
+   "image": "https://archicgi.com/wp-content/uploads/2022/06/architectural-rendering-hotel-complex-malta-349037-1536x768.jpg",
+   "width": 1536,
+   "height": 768
+  },
+  {
+   "id": "acgi-16539",
+   "gw": 51,
+   "gh": 25,
+   "scale": 0.00449745,
+   "image": "https://archicgi.com/wp-content/uploads/2022/06/3d-rendering-real-estate-malta-349037-1536x768.jpg",
+   "width": 1536,
+   "height": 768
+  },
+  {
+   "id": "acgi-16535",
+   "gw": 51,
+   "gh": 25,
+   "scale": 0.00384479,
+   "image": "https://archicgi.com/wp-content/uploads/2022/06/exterior-3d-render-hotel-complex-malta-349037-1536x768.jpg",
+   "width": 1536,
+   "height": 768
+  },
+  {
+   "id": "acgi-16537",
+   "gw": 51,
+   "gh": 25,
+   "scale": 0.00431445,
+   "image": "https://archicgi.com/wp-content/uploads/2022/06/exterior-cgi-hotel-complex-malta-349037-1536x768.jpg",
+   "width": 1536,
+   "height": 768
+  },
+  {
+   "id": "acgi-6446",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00480813,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/architectural-visualization-city-hotel-155607-1536x1152.jpg",
+   "width": 1536,
+   "height": 1152
+  },
+  {
+   "id": "acgi-16540",
+   "gw": 51,
+   "gh": 25,
+   "scale": 0.00419109,
+   "image": "https://archicgi.com/wp-content/uploads/2022/06/architectural-3d-visualization-large-hotel-1536x768.jpg",
+   "width": 1536,
+   "height": 768
+  },
+  {
+   "id": "acgi-14708",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00466324,
+   "image": "https://archicgi.com/wp-content/uploads/2021/10/exterior-cgi-hotel-design-1536x1152.jpg",
+   "width": 1536,
+   "height": 1152
+  },
+  {
+   "id": "acgi-16536",
+   "gw": 51,
+   "gh": 25,
+   "scale": 0.00411551,
+   "image": "https://archicgi.com/wp-content/uploads/2022/06/exterior-render-commercial-real-estate-malta-349037-1536x768.jpg",
+   "width": 1536,
+   "height": 768
+  },
+  {
+   "id": "acgi-30782",
+   "gw": 51,
+   "gh": 25,
+   "scale": 0.00493438,
+   "image": "https://archicgi.com/wp-content/uploads/2025/06/lifestyle-render-resort-bar-FM8RAPAD-768x384.jpg",
+   "width": 768,
+   "height": 384
+  },
+  {
+   "id": "acgi-30772",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00462959,
+   "image": "https://archicgi.com/wp-content/uploads/2025/06/lifestyle-render-resort-beach-X6Z7VW6D-768x512.jpg",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-35742",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00414973,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/cgi-urban-hotel-visualization-768x576.webp",
+   "width": 768,
+   "height": 576
+  },
+  {
+   "id": "acgi-18849",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00332551,
+   "image": "https://archicgi.com/wp-content/uploads/2022/12/photoreal-cgi-zanzibar-hotel-suite-355679-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-27562",
+   "gw": 36,
+   "gh": 36,
+   "scale": 0.00320998,
+   "image": "https://archicgi.com/wp-content/uploads/2024/04/hotel-room-close-up-3d-render-MAIJH5MD-768x768.jpg",
+   "width": 768,
+   "height": 768
+  },
+  {
+   "id": "acgi-35801",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00402355,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/3d-render-resort-suite-768x576.webp",
+   "width": 768,
+   "height": 576
+  },
+  {
+   "id": "acgi-30785",
+   "gw": 51,
+   "gh": 25,
+   "scale": 0.00406749,
+   "image": "https://archicgi.com/wp-content/uploads/2025/06/render-resort-kitchen-FM8RAPAD-768x384.jpg",
+   "width": 768,
+   "height": 384
+  },
+  {
+   "id": "acgi-30776",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00332144,
+   "image": "https://archicgi.com/wp-content/uploads/2025/06/lifestyle-render-resort-kitchen-FM8RAPAD-768x512.jpg",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-30779",
+   "gw": 51,
+   "gh": 25,
+   "scale": 0.00357753,
+   "image": "https://archicgi.com/wp-content/uploads/2025/06/lifestyle-render-resort-restaurant-FM8RAPAD-768x384.jpg",
+   "width": 768,
+   "height": 384
+  },
+  {
+   "id": "acgi-19328",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00368366,
+   "image": "https://archicgi.com/wp-content/uploads/2022/12/cg-visualization-stylish-hotel-lobby-jk2dm15f-1024x1536.jpg",
+   "width": 1024,
+   "height": 1536
+  },
+  {
+   "id": "acgi-19326",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.0041646,
+   "image": "https://archicgi.com/wp-content/uploads/2022/12/3d-rendering-spacious-hotel-lobby-6h1i8sbg-1536x1024.jpg",
+   "width": 1536,
+   "height": 1024
+  },
+  {
+   "id": "acgi-19320",
+   "gw": 38,
+   "gh": 34,
+   "scale": 0.00449487,
+   "image": "https://archicgi.com/wp-content/uploads/2022/12/cg-rendering-stylish-hotel-lobby-ze4uvdtu-1536x1405.jpg",
+   "width": 1536,
+   "height": 1405
+  },
+  {
+   "id": "acgi-19321",
+   "gw": 31,
+   "gh": 42,
+   "scale": 0.00426848,
+   "image": "https://archicgi.com/wp-content/uploads/2022/12/3d-render-luxury-hotel-lobby-467elq14-1152x1536.jpg",
+   "width": 1152,
+   "height": 1536
+  },
+  {
+   "id": "acgi-48662",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00422021,
+   "image": "https://archicgi.com/wp-content/uploads/2026/09/hotel-lobby-interior-3d-visualization-dubai-SEA1BKXF-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-19313",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.0038639,
+   "image": "https://archicgi.com/wp-content/uploads/2022/12/3d-rendering-hotel-lobby-design-sf9aterl-1024x1536.jpg",
+   "width": 1024,
+   "height": 1536
+  },
+  {
+   "id": "acgi-19327",
+   "gw": 34,
+   "gh": 38,
+   "scale": 0.0036514,
+   "image": "https://archicgi.com/wp-content/uploads/2022/12/cgi-chic-hotel-lobby-bhf9gwdm-1406x1536.jpg",
+   "width": 1406,
+   "height": 1536
+  },
+  {
+   "id": "acgi-19325",
+   "gw": 31,
+   "gh": 42,
+   "scale": 0.00403691,
+   "image": "https://archicgi.com/wp-content/uploads/2022/12/architectural-cgi-hotel-lobby-interior-t7fgpdni-1152x1536.jpg",
+   "width": 1152,
+   "height": 1536
+  },
+  {
+   "id": "acgi-19322",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00413835,
+   "image": "https://archicgi.com/wp-content/uploads/2022/12/architectural-rendering-luxurious-hotel-lobby-y2nizhl6-1018x1536.jpg",
+   "width": 1018,
+   "height": 1536
+  },
+  {
+   "id": "acgi-5878",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0045173,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/architectural-project-visualization-restaurant-exterior-8bdhxwam-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-48655",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00485577,
+   "image": "https://archicgi.com/wp-content/uploads/2026/09/ice-cream-shop-walk-up-counter-3d-rendering-california-HZZPQ8DR-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-48670",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00418347,
+   "image": "https://archicgi.com/wp-content/uploads/2026/09/ice-cream-parlor-facade-architectural-cgi-california-J9ETCQ16-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-15273",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00408427,
+   "image": "https://archicgi.com/wp-content/uploads/2022/01/exterior-cgi-restaurant-new-york-1024x1536.jpg",
+   "width": 1024,
+   "height": 1536
+  },
+  {
+   "id": "acgi-48635",
+   "gw": 44,
+   "gh": 30,
+   "scale": 0.00425761,
+   "image": "https://archicgi.com/wp-content/uploads/2026/09/ice-cream-shop-storefront-exterior-cgi-california-UH4MB19X-768x520.webp",
+   "width": 768,
+   "height": 520
+  },
+  {
+   "id": "acgi-51551",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00401431,
+   "image": "https://archicgi.com/wp-content/uploads/2026/11/ice-cream-shop-storefront-exterior-rendering-livermore-california-5TF8HB56-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-51559",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00395959,
+   "image": "https://archicgi.com/wp-content/uploads/2026/11/church-lobby-coffee-bar-interior-rendering-UF16AMMH-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-51550",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00372927,
+   "image": "https://archicgi.com/wp-content/uploads/2026/11/restaurant-dining-room-interior-cgi-johannesburg-WT1WR2LY-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-27053",
+   "gw": 31,
+   "gh": 42,
+   "scale": 0.0039302,
+   "image": "https://archicgi.com/wp-content/uploads/2024/03/bar-design-cg-visualization-68R3UFJM-768x1024.jpg",
+   "width": 768,
+   "height": 1024
+  },
+  {
+   "id": "acgi-12887",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00407499,
+   "image": "https://archicgi.com/wp-content/uploads/2021/04/3d-rendering-aba-restaurant-miami-bal-harbour-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-27055",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00357056,
+   "image": "https://archicgi.com/wp-content/uploads/2024/03/gastrobar-3d-rendering-L8XDIMT8-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-27048",
+   "gw": 32,
+   "gh": 41,
+   "scale": 0.00352423,
+   "image": "https://archicgi.com/wp-content/uploads/2024/03/luxurious-bar-rendering-82DCFEVP-768x996.jpg",
+   "width": 768,
+   "height": 996
+  },
+  {
+   "id": "acgi-27050",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00354995,
+   "image": "https://archicgi.com/wp-content/uploads/2024/03/luxury-restaurant-visualization-BLK428T9-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-4538",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00382535,
+   "image": "https://archicgi.com/wp-content/uploads/2019/12/interior-3d-render-for-a-beer-restaurant131218-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35735",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00394937,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/render-contemporary-cafe-space-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-37283",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00424184,
+   "image": "https://archicgi.com/wp-content/uploads/2026/03/interior-3d-rendering-restaurant-london-I8W67HWK-768x576.webp",
+   "width": 768,
+   "height": 576
+  },
+  {
+   "id": "acgi-16061",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00422267,
+   "image": "https://archicgi.com/wp-content/uploads/2022/04/3d-visualization-chic-wine-bar-285538-1024x1536.jpeg",
+   "width": 1024,
+   "height": 1536
+  },
+  {
+   "id": "acgi-27052",
+   "gw": 27,
+   "gh": 48,
+   "scale": 0.00387602,
+   "image": "https://archicgi.com/wp-content/uploads/2024/03/classy-restaurant-cg-t2eccn7t-768x1365.jpg",
+   "width": 768,
+   "height": 1365
+  },
+  {
+   "id": "acgi-48650",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00349486,
+   "image": "https://archicgi.com/wp-content/uploads/2026/09/restaurant-bar-interior-cgi-malta-3GTE4PKY-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-19809",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00377859,
+   "image": "https://archicgi.com/wp-content/uploads/2023/01/3d-interior-render-cozy-restaurant-62926-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-27049",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00378361,
+   "image": "https://archicgi.com/wp-content/uploads/2024/03/stylish-restaurant-photoreal-cg-XX7Q6V7I-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-5876",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00395604,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/restaurant-interior-rendering-project-152384-768x1152.jpg",
+   "width": 768,
+   "height": 1152
+  },
+  {
+   "id": "acgi-17883",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00401609,
+   "image": "https://archicgi.com/wp-content/uploads/2022/10/anim-05.jpg",
+   "width": 1024,
+   "height": 576
+  },
+  {
+   "id": "acgi-14080",
+   "gw": 31,
+   "gh": 41,
+   "scale": 0.00459918,
+   "image": "https://archicgi.com/wp-content/uploads/2021/07/3d-rendering-office-building-1160x1536.jpg",
+   "width": 1160,
+   "height": 1536
+  },
+  {
    "id": "acgi-30605",
    "gw": 51,
    "gh": 25,
-   "scale": 0.00486154,
+   "scale": 0.00487139,
    "image": "https://archicgi.com/wp-content/uploads/2025/05/3d-visualization-three-story-building-R7MZMCBX-768x384.jpg",
    "width": 768,
    "height": 384
   },
   {
-   "id": "acgi-30591",
-   "gw": 51,
-   "gh": 25,
-   "scale": 0.00471013,
-   "image": "https://archicgi.com/wp-content/uploads/2025/05/exterior-render-house-pool-SDJ1CXSS-768x384.jpg",
-   "width": 768,
-   "height": 384
+   "id": "acgi-14084",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00466795,
+   "image": "https://archicgi.com/wp-content/uploads/2021/07/architectural-3d-render-for-commercial-space-1536x864.jpg",
+   "width": 1536,
+   "height": 864
   },
   {
-   "id": "acgi-30587",
-   "gw": 45,
-   "gh": 29,
-   "scale": 0.00464028,
-   "image": "https://archicgi.com/wp-content/uploads/2025/05/exterior-compact-home-I9BNNUPU-768x492.jpg",
+   "id": "acgi-6042",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00471738,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/architectural-rendering-business-center-france-h1lzsrn4-768x433.jpg",
    "width": 768,
-   "height": 492
+   "height": 433
   },
   {
-   "id": "acgi-30509",
+   "id": "acgi-51552",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00437292,
+   "image": "https://archicgi.com/wp-content/uploads/2026/11/lab-building-entrance-architectural-visualization-manchester-Q6YU45NZ-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-4402",
+   "gw": 28,
+   "gh": 47,
+   "scale": 0.00441293,
+   "image": "https://archicgi.com/wp-content/uploads/2019/12/atmospheric-cg-rendering-project-2xb7fhd1-768x1283.jpg",
+   "width": 768,
+   "height": 1283
+  },
+  {
+   "id": "acgi-35715",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0044043,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/render-north-high-tech-park-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-5851",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00420184,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/commercial-design-render-150741-1024x1536.jpg",
+   "width": 1024,
+   "height": 1536
+  },
+  {
+   "id": "acgi-5841",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00500542,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/commercial-design-render-factory-150741-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-5646",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00450623,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/commercial-exterior-render-office-center-768x426.jpg",
+   "width": 768,
+   "height": 426
+  },
+  {
+   "id": "acgi-5865",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.0044712,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/commercial-exterior-rendering-project-768x1152.jpg",
+   "width": 768,
+   "height": 1152
+  },
+  {
+   "id": "acgi-14734",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00472351,
+   "image": "https://archicgi.com/wp-content/uploads/2021/10/cg-exterior-rendering-office-building-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-14678",
+   "gw": 32,
+   "gh": 41,
+   "scale": 0.00457825,
+   "image": "https://archicgi.com/wp-content/uploads/2021/09/exterior-3d-rendering-public-building-1184x1536.jpg",
+   "width": 1184,
+   "height": 1536
+  },
+  {
+   "id": "acgi-37117",
    "gw": 46,
    "gh": 28,
-   "scale": 0.00510755,
-   "image": "https://archicgi.com/wp-content/uploads/2025/05/photoreal-exterior-R7MZMCBX-768x480.jpg",
+   "scale": 0.00496228,
+   "image": "https://archicgi.com/wp-content/uploads/2026/02/exterior-3d-render-mixed-use-property-B52L6KR5-768x480.webp",
    "width": 768,
    "height": 480
+  },
+  {
+   "id": "acgi-17596",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00458478,
+   "image": "https://archicgi.com/wp-content/uploads/2022/09/3d-visualization-modern-building-155612-1024x1536.jpg",
+   "width": 1024,
+   "height": 1536
+  },
+  {
+   "id": "acgi-35820",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00469296,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/render-city-commercial-building-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-37119",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00449365,
+   "image": "https://archicgi.com/wp-content/uploads/2026/02/exterior-cgi-high-end-commercial-building-EQXDDLW2-768x432.webp",
+   "width": 768,
+   "height": 432
   },
   {
    "id": "acgi-30288",
    "gw": 46,
    "gh": 28,
-   "scale": 0.00462827,
+   "scale": 0.0048245,
    "image": "https://archicgi.com/wp-content/uploads/2025/04/exterior-cgi-mixed-use-building-YZXEE24E-768x480.jpg",
    "width": 768,
    "height": 480
+  },
+  {
+   "id": "acgi-17597",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00430479,
+   "image": "https://archicgi.com/wp-content/uploads/2022/09/modern-exterior-design-3d-render-155612-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-30509",
+   "gw": 46,
+   "gh": 28,
+   "scale": 0.00474925,
+   "image": "https://archicgi.com/wp-content/uploads/2025/05/photoreal-exterior-R7MZMCBX-768x480.jpg",
+   "width": 768,
+   "height": 480
+  },
+  {
+   "id": "acgi-5693",
+   "gw": 45,
+   "gh": 29,
+   "scale": 0.00453296,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/vray-exterior-render-skyscraper-83292-768x496.jpg",
+   "width": 768,
+   "height": 496
+  },
+  {
+   "id": "acgi-5695",
+   "gw": 52,
+   "gh": 25,
+   "scale": 0.00461112,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/vray-exterior-rendering-business-center-83292-768x372.jpg",
+   "width": 768,
+   "height": 372
+  },
+  {
+   "id": "acgi-5883",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00382802,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/interior-3d-rendering-business-center-hall-152364-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-16071",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00394357,
+   "image": "https://archicgi.com/wp-content/uploads/2022/04/photorealistic-cgi-vienna-office-lobby-300509-1536x864.jpeg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-25599",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00477831,
+   "image": "https://archicgi.com/wp-content/uploads/2023/12/3d-rendering-golf-course-los-angeles-E8THB8CZ-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-25598",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00452406,
+   "image": "https://archicgi.com/wp-content/uploads/2023/12/3d-visualization-golf-course-los-angeles-E8THB8CZ-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35804",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00468485,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/3d-render-children-park-design-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-42011",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00451531,
+   "image": "https://archicgi.com/wp-content/uploads/2026/06/fitness-facility-exterior-architectural-visualization-U6WKRIRE-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-25600",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00485083,
+   "image": "https://archicgi.com/wp-content/uploads/2023/12/3d-render-golf-course-los-angeles-E8THB8CZ-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-16067",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0046977,
+   "image": "https://archicgi.com/wp-content/uploads/2022/04/medical-centre-exterior-rendering-284829-1536x864.jpeg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-6410",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00503026,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/3d-rendering-church-architectural-concept-155608-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-6419",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00302367,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/3d-visualization-bridge-155613-1536x1024.jpg",
+   "width": 1536,
+   "height": 1024
+  },
+  {
+   "id": "acgi-37274",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00494017,
+   "image": "https://archicgi.com/wp-content/uploads/2026/03/architectural-3d-rendering-wedding-venue-michigan-1BMU7X83-768x512.webp",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-17872",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00398647,
+   "image": "https://archicgi.com/wp-content/uploads/2022/10/anim-03.jpg",
+   "width": 1024,
+   "height": 576
+  },
+  {
+   "id": "acgi-6416",
+   "gw": 32,
+   "gh": 40,
+   "scale": 0.00429239,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/architectural-visualization-bridge-155613-1229x1536.jpg",
+   "width": 1229,
+   "height": 1536
+  },
+  {
+   "id": "acgi-30628",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00466791,
+   "image": "https://archicgi.com/wp-content/uploads/2025/05/cg-render-underground-station-entrance-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35744",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00486726,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/render-contemporary-building-exterior-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-18857",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00444639,
+   "image": "https://archicgi.com/wp-content/uploads/2022/12/exterior-3d-render-clubhouse-florida-353259-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-37226",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00488472,
+   "image": "https://archicgi.com/wp-content/uploads/2026/03/3d-animation-entertainment-center-new-jersey-T6RG3KZ4-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-17948",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00376265,
+   "image": "https://archicgi.com/wp-content/uploads/2022/10/3d-render-theater-interior-dge7qsl5-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-46414",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00410455,
+   "image": "https://archicgi.com/wp-content/uploads/2026/08/event-center-interior-3d-rendering-3X78BV56-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-22606",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00424459,
+   "image": "https://archicgi.com/wp-content/uploads/2023/07/architectural-3d-render-museum-interior-442936-768x512.jpg",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-22610",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00415882,
+   "image": "https://archicgi.com/wp-content/uploads/2023/11/architectural-cg-render-library-interior-442937-768x512.jpg",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-35793",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00375513,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/3d-towers-renovation-gym-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-18948",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00467164,
+   "image": "https://archicgi.com/wp-content/uploads/2022/12/logistics-warehouse-animation.jpg",
+   "width": 1024,
+   "height": 576
+  },
+  {
+   "id": "acgi-5847",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00441384,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/factory-design-rendering-150741-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-37295",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00483822,
+   "image": "https://archicgi.com/wp-content/uploads/2026/03/factory-exterior-animation-8I2Y65LK-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-19016",
+   "gw": 43,
+   "gh": 30,
+   "scale": 0.00331482,
+   "image": "https://archicgi.com/wp-content/uploads/2022/12/3d-render-port-fueling-station-california-419405-1536x1085.jpg",
+   "width": 1536,
+   "height": 1085
+  },
+  {
+   "id": "acgi-35791",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00432782,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/3d-for-solimar-towers-renovation-drive-way-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-5872",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00456343,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/architectural-cg-visualization-skyscrapers-stormy-152372-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-4554",
+   "gw": 30,
+   "gh": 43,
+   "scale": 0.00457685,
+   "image": "https://archicgi.com/wp-content/uploads/2019/12/architectural-render-skyscraper-exterior-768x1097.jpg",
+   "width": 768,
+   "height": 1097
+  },
+  {
+   "id": "acgi-4558",
+   "gw": 30,
+   "gh": 43,
+   "scale": 0.00469004,
+   "image": "https://archicgi.com/wp-content/uploads/2019/12/exterior-render-skyscraper-presentation-768x1097.jpg",
+   "width": 768,
+   "height": 1097
+  },
+  {
+   "id": "acgi-4536",
+   "gw": 30,
+   "gh": 43,
+   "scale": 0.00444695,
+   "image": "https://archicgi.com/wp-content/uploads/2019/12/exterior-rendering-skyscraper-design-768x1097.jpg",
+   "width": 768,
+   "height": 1097
+  },
+  {
+   "id": "acgi-4589",
+   "gw": 32,
+   "gh": 40,
+   "scale": 0.00454441,
+   "image": "https://archicgi.com/wp-content/uploads/2019/12/architectural-visualisatio-brilliant-design-concept-150744-1230x1536.jpg",
+   "width": 1230,
+   "height": 1536
+  },
+  {
+   "id": "acgi-17850",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.0044132,
+   "image": "https://archicgi.com/wp-content/uploads/2022/10/3d-rendering-city-park-s39kss1m-1025x1536.jpg",
+   "width": 1025,
+   "height": 1536
+  },
+  {
+   "id": "acgi-22607",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00431561,
+   "image": "https://archicgi.com/wp-content/uploads/2023/07/urban-redevelopment-garden-3d-visualization-432094-768x576.jpg",
+   "width": 768,
+   "height": 576
+  },
+  {
+   "id": "acgi-35721",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00471035,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/render-modern-beachfront-pool-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30084",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00467171,
+   "image": "https://archicgi.com/wp-content/uploads/2025/03/terrace-3d-visualization-I1FYY8EB-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-13834",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00432659,
+   "image": "https://archicgi.com/wp-content/uploads/2021/07/3d-visualization-for-a-terrace-with-a-seaview-1536x864.jpeg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-48648",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00487242,
+   "image": "https://archicgi.com/wp-content/uploads/2026/09/rooftop-terrace-architectural-visualization-pittsburgh-H64FYM3E-768x512.webp",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-35781",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00459834,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/3d-render-luxury-terrace-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-50536",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00448647,
+   "image": "https://archicgi.com/wp-content/uploads/2026/10/lake-como-villa-garden-terrace-cgi-GT1WEETF-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-17950",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00464142,
+   "image": "https://archicgi.com/wp-content/uploads/2022/10/3d-visualization-rooftop-terrace-1536x1024.jpg",
+   "width": 1536,
+   "height": 1024
+  },
+  {
+   "id": "acgi-37109",
+   "gw": 47,
+   "gh": 27,
+   "scale": 0.00483713,
+   "image": "https://archicgi.com/wp-content/uploads/2026/02/3d-render-terrace-tuikm8h3-768x442.webp",
+   "width": 768,
+   "height": 442
+  },
+  {
+   "id": "acgi-29853",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0042605,
+   "image": "https://archicgi.com/wp-content/uploads/2025/01/stylish-rooftop-terrace-3d-animation-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-37161",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00467563,
+   "image": "https://archicgi.com/wp-content/uploads/2026/03/3d-animation-exterior-interior-building-751WGPVK-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-37228",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00453233,
+   "image": "https://archicgi.com/wp-content/uploads/2026/02/3d-animation-real-estate-development-SL8ERJD4-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-37231",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00471733,
+   "image": "https://archicgi.com/wp-content/uploads/2026/03/3d-animation-residential-property-VX6HM2BK-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35836",
+   "gw": 36,
+   "gh": 36,
+   "scale": 0.00507139,
+   "image": "https://archicgi.com/wp-content/uploads/2026/03/view_3-768x768.webp",
+   "width": 768,
+   "height": 768
+  },
+  {
+   "id": "acgi-17206",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00459323,
+   "image": "https://archicgi.com/wp-content/uploads/2022/09/3d-exterior-building-nyc-313108-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-18837",
+   "gw": 46,
+   "gh": 28,
+   "scale": 0.00485959,
+   "image": "https://archicgi.com/wp-content/uploads/2022/12/modern-exterior-cgi-367104-1536x960.jpg",
+   "width": 1536,
+   "height": 960
+  },
+  {
+   "id": "acgi-22648",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00451352,
+   "image": "https://archicgi.com/wp-content/uploads/2019/12/3d-model-integration-into-a-drone-footage-based-animation-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35733",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00448509,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/render-luxury-outdoor-space-768x576.webp",
+   "width": 768,
+   "height": 576
+  },
+  {
+   "id": "acgi-35754",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0044134,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/3d-render-tropical-lounge-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-14095",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00471718,
+   "image": "https://archicgi.com/wp-content/uploads/2021/07/3d-rendering-stylish-exterior-design-1024x1536.jpg",
+   "width": 1024,
+   "height": 1536
+  },
+  {
+   "id": "acgi-17849",
+   "gw": 31,
+   "gh": 42,
+   "scale": 0.00479039,
+   "image": "https://archicgi.com/wp-content/uploads/2022/10/city-view-3d-rendering-l1s9eysk-1152x1536.jpg",
+   "width": 1152,
+   "height": 1536
+  },
+  {
+   "id": "acgi-27527",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00489101,
+   "image": "https://archicgi.com/wp-content/uploads/2024/04/real-estate-cgi-california-UXAVMPQY-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-29409",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00459813,
+   "image": "https://archicgi.com/wp-content/uploads/2024/11/3d-rendering-middle-east-seaside-view-768x432.png",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-4576",
+   "gw": 51,
+   "gh": 25,
+   "scale": 0.00468831,
+   "image": "https://archicgi.com/wp-content/uploads/2019/12/architectural-visualization-exterior-design-image-150740-1536x768.jpg",
+   "width": 1536,
+   "height": 768
+  },
+  {
+   "id": "acgi-16075",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00467153,
+   "image": "https://archicgi.com/wp-content/uploads/2022/05/3d-visualization-luxurious-property-canada-295278-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-17593",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00488807,
+   "image": "https://archicgi.com/wp-content/uploads/2022/09/cg-visualization-architectural-complex-155612-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-17833",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00361683,
+   "image": "https://archicgi.com/wp-content/uploads/2022/10/3d-rendering-night-city-k2y7wlgv-1024x1536.jpg",
+   "width": 1024,
+   "height": 1536
+  },
+  {
+   "id": "acgi-17851",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.0041137,
+   "image": "https://archicgi.com/wp-content/uploads/2022/10/city-view-3d-visualization-is9vbipx-1024x1536.jpg",
+   "width": 1024,
+   "height": 1536
+  },
+  {
+   "id": "acgi-21781",
+   "gw": 36,
+   "gh": 36,
+   "scale": 0.00458415,
+   "image": "https://archicgi.com/wp-content/uploads/2023/05/exterior-3d-render-property-canada-445889-768x768.jpg",
+   "width": 768,
+   "height": 768
+  },
+  {
+   "id": "acgi-16069",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0048307,
+   "image": "https://archicgi.com/wp-content/uploads/2022/04/aerial-render-rec-zone-chicago-284254-1536x864.jpeg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-21779",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00425466,
+   "image": "https://archicgi.com/wp-content/uploads/2023/05/canada-bird-view-visualisation-445889-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-6168",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00455474,
+   "image": "https://archicgi.com/wp-content/uploads/2019/01/architectural-rendering-luxembourg-project-night-150739-1536x863.jpg",
+   "width": 1536,
+   "height": 863
+  },
+  {
+   "id": "acgi-4585",
+   "gw": 40,
+   "gh": 32,
+   "scale": 0.00460681,
+   "image": "https://archicgi.com/wp-content/uploads/2019/12/architectural-rendering-mesmerizing-project-150744-1536x1230.jpg",
+   "width": 1536,
+   "height": 1230
+  },
+  {
+   "id": "acgi-6161",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00471336,
+   "image": "https://archicgi.com/wp-content/uploads/2019/01/architectural-rendering-luxembourg-150739-1536x863.jpg",
+   "width": 1536,
+   "height": 863
+  },
+  {
+   "id": "acgi-35729",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00455244,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/architectural-visualization-modern-exterior-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35769",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00478895,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/architectural-visualization-street-view-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35832",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00432701,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/render-seaside-urban-view-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35812",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00457345,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/cgi-modern-seaside-exterior-768x576.webp",
+   "width": 768,
+   "height": 576
+  },
+  {
+   "id": "acgi-35751",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00347634,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/cgi-modern-lobby-exterior-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-25762",
+   "gw": 36,
+   "gh": 36,
+   "scale": 0.0038678,
+   "image": "https://archicgi.com/wp-content/uploads/2023/12/3d-render-building-facade-christmas-decor-CWUCV47U-768x768.jpg",
+   "width": 768,
+   "height": 768
+  },
+  {
+   "id": "acgi-25589",
+   "gw": 30,
+   "gh": 43,
+   "scale": 0.00464463,
+   "image": "https://archicgi.com/wp-content/uploads/2023/12/3d-visualization-birmingham-renovation-project-QWDEIA8V-768x1097.jpg",
+   "width": 768,
+   "height": 1097
+  },
+  {
+   "id": "acgi-17595",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00487977,
+   "image": "https://archicgi.com/wp-content/uploads/2022/09/3d-rendering-architectural-complex-155612-1536x864.jpg",
+   "width": 1536,
+   "height": 864
+  },
+  {
+   "id": "acgi-21782",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00490191,
+   "image": "https://archicgi.com/wp-content/uploads/2023/05/exterior-cgi-real-estate-canada-445889-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-6148",
+   "gw": 39,
+   "gh": 33,
+   "scale": 0.00492984,
+   "image": "https://archicgi.com/wp-content/uploads/2020/01/exterior-visualization-project-colorado-155610-1536x1281.jpg",
+   "width": 1536,
+   "height": 1281
+  },
+  {
+   "id": "acgi-30538",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00488638,
+   "image": "https://archicgi.com/wp-content/uploads/2025/05/exterior-visualization-building-CTTMI8VS-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-27521",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00493107,
+   "image": "https://archicgi.com/wp-content/uploads/2024/04/exterior-rendering-arizona-SBG716VT-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-25160",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00388783,
+   "image": "https://archicgi.com/wp-content/uploads/2023/11/halloween-themed-real-estate-3d-render-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-17852",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00457216,
+   "image": "https://archicgi.com/wp-content/uploads/2022/10/exterior-cgi-city-cloudy-day-1024x1536.jpg",
+   "width": 1024,
+   "height": 1536
+  },
+  {
+   "id": "acgi-17834",
+   "gw": 31,
+   "gh": 42,
+   "scale": 0.0041418,
+   "image": "https://archicgi.com/wp-content/uploads/2022/10/exterior-3d-render-urban-view-4lul74qe-1152x1536.jpg",
+   "width": 1152,
+   "height": 1536
+  },
+  {
+   "id": "acgi-27526",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00495493,
+   "image": "https://archicgi.com/wp-content/uploads/2024/06/real-estate-cg-visualization-EWVIBC2W-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-37298",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00486978,
+   "image": "https://archicgi.com/wp-content/uploads/2026/03/real-estate-marketing-animation-9RN23PX5-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-28774",
+   "gw": 46,
+   "gh": 28,
+   "scale": 0.00477906,
+   "image": "https://archicgi.com/wp-content/uploads/2024/08/exterior-cgi-house-FGP28K2J-768x480.jpg",
+   "width": 768,
+   "height": 480
+  },
+  {
+   "id": "acgi-35748",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00468055,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/cgi-street-gallery-visualization-768x576.webp",
+   "width": 768,
+   "height": 576
+  },
+  {
+   "id": "acgi-21803",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00358035,
+   "image": "https://archicgi.com/wp-content/uploads/2023/05/bedroom-rendering-montreal-project-433540-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-27513",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00376319,
+   "image": "https://archicgi.com/wp-content/uploads/2024/04/bedroom-interior-cgi-LX4PDND3-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30624",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00362561,
+   "image": "https://archicgi.com/wp-content/uploads/2025/05/rendering-cozy-bedroom-interior-8CLK81EQ-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-21808",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0039472,
+   "image": "https://archicgi.com/wp-content/uploads/2023/05/bedroom-rendering-montreal-development-433540-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35767",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00367841,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/cgi-beachfront-bedroom-interior-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35713",
+   "gw": 42,
+   "gh": 31,
+   "scale": 0.00390001,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/cgi-luxury-bedroom-visualization-768x576.webp",
+   "width": 768,
+   "height": 576
+  },
+  {
+   "id": "acgi-8807",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00389803,
+   "image": "https://archicgi.com/wp-content/uploads/2020/05/168623-dining-area-interior-rendering-philadelphia-house-768x1154.jpg",
+   "width": 768,
+   "height": 1154
+  },
+  {
+   "id": "acgi-26713",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00356655,
+   "image": "https://archicgi.com/wp-content/uploads/2024/02/kitchen-3d-visual-8ETSM9IB-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-21609",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00391449,
+   "image": "https://archicgi.com/wp-content/uploads/2023/05/kitchen-interior-3d-visualization-vancouver-438208-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30077",
+   "gw": 46,
+   "gh": 28,
+   "scale": 0.00381225,
+   "image": "https://archicgi.com/wp-content/uploads/2025/03/kitchen-interior-cgi-SWHN6T3Z-768x461.jpg",
+   "width": 768,
+   "height": 461
+  },
+  {
+   "id": "acgi-21606",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00356961,
+   "image": "https://archicgi.com/wp-content/uploads/2023/05/kitchen-interior-3d-rendering-vancouver-438208-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-46511",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00414592,
+   "image": "https://archicgi.com/wp-content/uploads/2026/08/kitchen-dining-room-interior-architectural-visualization-52QFDPHC-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-46422",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00352346,
+   "image": "https://archicgi.com/wp-content/uploads/2026/08/building-lobby-interior-3d-visualization-4DNXPXIZ-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35761",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00378478,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/cgi-modern-lobby-entrance-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-27511",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00367762,
+   "image": "https://archicgi.com/wp-content/uploads/2024/04/bathroom-interior-cgi-HYV5CRB8-768x512.jpg",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-17949",
+   "gw": 32,
+   "gh": 40,
+   "scale": 0.00429058,
+   "image": "https://archicgi.com/wp-content/uploads/2022/10/3d-render-luxury-bathroom-aii6d1k2-1229x1536.jpg",
+   "width": 1229,
+   "height": 1536
+  },
+  {
+   "id": "acgi-25718",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00378109,
+   "image": "https://archicgi.com/wp-content/uploads/2023/12/interior-3d-render-bathroom-TYW6XWTD-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-37123",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00396869,
+   "image": "https://archicgi.com/wp-content/uploads/2026/02/master-bathroom-interior-3d-rendering-5QLB5MZC-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-21608",
+   "gw": 29,
+   "gh": 44,
+   "scale": 0.00377971,
+   "image": "https://archicgi.com/wp-content/uploads/2023/05/bathroom-interior-3d-render-vancouver-768x1152.jpg",
+   "width": 768,
+   "height": 1152
+  },
+  {
+   "id": "acgi-37105",
+   "gw": 36,
+   "gh": 36,
+   "scale": 0.00400711,
+   "image": "https://archicgi.com/wp-content/uploads/2026/02/dining-room-interior-cgi-57bc2pff-768x768.webp",
+   "width": 768,
+   "height": 768
+  },
+  {
+   "id": "acgi-37292",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00375408,
+   "image": "https://archicgi.com/wp-content/uploads/2026/03/interior-3d-rendering-dining-room-VKRWFHSM-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-37132",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00433098,
+   "image": "https://archicgi.com/wp-content/uploads/2026/02/interior-cgi-dining-room-YMHRQQQ6-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30076",
+   "gw": 46,
+   "gh": 28,
+   "scale": 0.00422742,
+   "image": "https://archicgi.com/wp-content/uploads/2025/03/dining-room-interior-3d-rendering-JMJGMKEW-768x461.jpg",
+   "width": 768,
+   "height": 461
+  },
+  {
+   "id": "acgi-10929",
+   "gw": 36,
+   "gh": 36,
+   "scale": 0.00361393,
+   "image": "https://archicgi.com/wp-content/uploads/2020/09/3D-interior-render-of-neo-empire-style-room-768x768.jpg",
+   "width": 768,
+   "height": 768
+  },
+  {
+   "id": "acgi-24406",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00358016,
+   "image": "https://archicgi.com/wp-content/uploads/2023/09/residential-rendering-new-york-q5akmu95-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-21805",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00381923,
+   "image": "https://archicgi.com/wp-content/uploads/2023/05/interior-rendering-townhouse-canada-433540-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30616",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00393638,
+   "image": "https://archicgi.com/wp-content/uploads/2025/05/rendering-rustic-living-room-YI1J4F5Y-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-29825",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0038308,
+   "image": "https://archicgi.com/wp-content/uploads/2025/01/3d-rendering-living-room-austin-texas-9PHHFDXD-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-25882",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00383731,
+   "image": "https://archicgi.com/wp-content/uploads/2024/01/living-room-cgi-NH39IASL-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35779",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00379752,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/3d-solimar-renovation-entertaining-room-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30081",
+   "gw": 46,
+   "gh": 28,
+   "scale": 0.00408023,
+   "image": "https://archicgi.com/wp-content/uploads/2025/03/living-room-interior-cgi-JMJGMKEW-768x461.jpg",
+   "width": 768,
+   "height": 461
+  },
+  {
+   "id": "acgi-30078",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00402517,
+   "image": "https://archicgi.com/wp-content/uploads/2025/03/living-room-interio-3d-render-4E4WPDZM-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30620",
+   "gw": 43,
+   "gh": 30,
+   "scale": 0.00356333,
+   "image": "https://archicgi.com/wp-content/uploads/2025/05/interior-render-drawing-room-6PH1VEBF-768x543.jpg",
+   "width": 768,
+   "height": 543
+  },
+  {
+   "id": "acgi-24419",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00373452,
+   "image": "https://archicgi.com/wp-content/uploads/2023/09/house-interior-visualization-new-york-q5akmu95-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30079",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00433421,
+   "image": "https://archicgi.com/wp-content/uploads/2025/03/living-room-interior-3d-rendering-MU5SFJXV-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30080",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00370393,
+   "image": "https://archicgi.com/wp-content/uploads/2025/03/living-room-interior-3d-visualization-MU5SFJXV-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-24418",
+   "gw": 36,
+   "gh": 36,
+   "scale": 0.00363379,
+   "image": "https://archicgi.com/wp-content/uploads/2023/09/interior-rendering-new-york-real-estate-project-q5akmu95-768x786.jpg",
+   "width": 768,
+   "height": 786
+  },
+  {
+   "id": "acgi-42015",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00439109,
+   "image": "https://archicgi.com/wp-content/uploads/2026/06/living-room-interior-architectural-visualization-TZDX8MKT-768x512.webp",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-46418",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00365178,
+   "image": "https://archicgi.com/wp-content/uploads/2026/08/living-room-interior-render-768x432.webp",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-35719",
+   "gw": 44,
+   "gh": 29,
+   "scale": 0.00365037,
+   "image": "https://archicgi.com/wp-content/uploads/2025/11/cgi-modern-livingroom-visualization-768x512.webp",
+   "width": 768,
+   "height": 512
+  },
+  {
+   "id": "acgi-8796",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00364257,
+   "image": "https://archicgi.com/wp-content/uploads/2020/05/168623-stylish-studio-interior-render-philadelphia-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30595",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.00387001,
+   "image": "https://archicgi.com/wp-content/uploads/2025/05/photoreal-interior-living-room-5QLB5MZC-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-24422",
+   "gw": 31,
+   "gh": 42,
+   "scale": 0.00373243,
+   "image": "https://archicgi.com/wp-content/uploads/2023/09/atmospheric-interior-visualization-nyc-q5akmu95-768x1024.jpg",
+   "width": 768,
+   "height": 1024
+  },
+  {
+   "id": "acgi-25885",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0035653,
+   "image": "https://archicgi.com/wp-content/uploads/2024/01/interior-cgi-close-up-view-NH39IASL-768x432.jpg",
+   "width": 768,
+   "height": 432
+  },
+  {
+   "id": "acgi-30061",
+   "gw": 48,
+   "gh": 27,
+   "scale": 0.0036767,
+   "image": "https://archicgi.com/wp-content/uploads/2025/03/social-lounge-interior-3d-animation-NAJYDSE6-768x432.jpg",
+   "width": 768,
+   "height": 432
   }
  ],
- "fragments": 30526,
+ "fragments": 181369,
  "files": {
   "embeddings": "fragments.bin",
   "color": "fragments-color.bin",
@@ -688,18 +3937,18 @@
  "scoring": {
   "lambda": 0.006,
   "levels": {
-   "close": 0.72,
-   "related": 0.62
+   "close": 0.76,
+   "related": 0.66
   },
   "minClose": 3,
   "formula": "cosine(embedding) - lambda * DeltaE76(Lab)"
  },
  "calibration": {
   "bestOtherProjectSimilarity": {
-   "p25": 0.7555,
-   "p50": 0.802,
-   "p75": 0.844,
-   "p90": 0.8885
+   "p25": 0.7835,
+   "p50": 0.8287,
+   "p75": 0.8645,
+   "p90": 0.8946
   },
   "note": "Best score of a random fragment (sky and lawn included) against other projects."
  }

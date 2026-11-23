@@ -61,7 +61,7 @@
       'footer.text': 'Prototype indépendant · 434 projets du portfolio public d’ArchiCGI · Images © ArchiCGI · Relevé du 23\u00a0novembre\u00a02026',
       'footer.source': 'Page française', 'footer.portfolio': 'Portfolio complet',
       'footer.about': 'À propos des données',
-      'footer.notes': 'Titres, images, liens et catégories viennent d’ArchiCGI, tels que publiés : 438 entrées, dont 4 paires d’images identiques regroupées. Les filtres, le graphe et la recherche reposent sur un classement éditorial du prototype. La recherche de détails compare votre sélection à 30\u00a0526 fragments de 73 façades (DINOv2, tools/build_detail_index.py).',
+      'footer.notes': 'Titres, images, liens et catégories viennent d’ArchiCGI, tels que publiés : 438 entrées, dont 4 paires d’images identiques regroupées. Les filtres, le graphe et la recherche reposent sur un classement éditorial du prototype. La recherche de détails compare votre sélection à 181\u00a0369 fragments de 434 projets (DINOv2, tools/build_detail_index.py).',
 
       // graph
       'g.error': 'Impossible d’afficher le graphe. Consultez la console du navigateur pour le détail.',
@@ -204,7 +204,7 @@
       'footer.text': 'Independent prototype · 434 projects from ArchiCGI’s public portfolio · Images © ArchiCGI · Snapshot of 23 November 2026',
       'footer.source': 'French portfolio page', 'footer.portfolio': 'Full portfolio',
       'footer.about': 'About the data',
-      'footer.notes': 'Titles, images, links and categories come from ArchiCGI, as published: 438 entries, with 4 pairs of identical images merged. Filters, graph and search use this prototype’s own editorial classification. Detail search compares your selection with 30,526 fragments from 73 façades (DINOv2, tools/build_detail_index.py).',
+      'footer.notes': 'Titles, images, links and categories come from ArchiCGI, as published: 438 entries, with 4 pairs of identical images merged. Filters, graph and search use this prototype’s own editorial classification. Detail search compares your selection with 181,369 fragments from 434 projects (DINOv2, tools/build_detail_index.py).',
 
       'g.error': 'The graph could not be displayed. See the browser console for details.',
       'g.hint': 'Drag to move. Pinch or scroll to zoom.',

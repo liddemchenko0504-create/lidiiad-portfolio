@@ -5,9 +5,10 @@ The page needs only the files it writes to `../details/`; no model runs in the b
 
 ## What it does
 
-1. Reads the curated subset in `facade-set.json`: projects whose render shows a facade large in frame,
-   at eye level. Each one was checked by eye on a contact sheet. Aerial views, gardens, pools,
-   interiors and tiny buildings were left out.
+1. Reads the projects to index. With `--all` (the current build) that is every project with an image. Without it,
+   the curated subset in `facade-set.json`: 73 renders whose facade is large in frame at eye level, each checked by
+   eye. Interiors, aerial views and gardens are included in the full build, so a match can be an interior detail
+   (a wall, a ceiling) as well as a facade.
 2. Downloads each catalogue render (the same `image` URL as in `graph-data.json`, 768 px wide) and runs
    **DINOv2 ViT-S/14** on it. It keeps one embedding per 14×14 px patch (about 48×27 patches per render),
    L2-normalised and reduced with PCA (384 → 64 dimensions). It also keeps each patch's mean colour in CIELAB.
@@ -31,24 +32,26 @@ are set in `index.json` → `scoring`:
 
 | Band | Score |
 |---|---|
-| Very close | ≥ 0.72 |
-| Close | 0.62 – 0.72 |
-| Distant | below 0.62 |
+| Very close | ≥ 0.76 |
+| Close | 0.66 – 0.76 |
+| Distant | below 0.66 |
 
 When fewer than 3 results reach "close", the page says that few close details exist.
 
-Current build: **73 projects, 30,526 fragments**, about 8.5 MB in total. Of that, 6.2 MB is per-render
-maps (around 85 KB each, loaded on demand) and 2.3 MB is fragments (loaded once).
+Current build: **all 434 projects, 181,369 fragments** (`--all`), about 51 MB in total. Of that, about 37 MB is
+per-render maps (around 85 KB each, loaded on demand) and 14 MB is fragments (loaded once, on the first search).
+The score bands are `close` ≥ 0.76 and `related` ≥ 0.66 (raised from 0.72 / 0.62 when the pool grew from 73 to 434
+projects, which lifts the best-match baseline by about 0.03).
 
 ## Rebuild or extend
 
 ```bash
 pip install torch timm pillow numpy scikit-learn
 curl -LO https://dl.fbaipublicfiles.com/dinov2/dinov2_vits14/dinov2_vits14_pretrain.pth
-python3 proposal/archicgi/discovery/tools/build_detail_index.py --weights dinov2_vits14_pretrain.pth
+python3 proposal/archicgi/discovery/tools/build_detail_index.py --all --weights dinov2_vits14_pretrain.pth
 ```
 
-* **Extend the subset.** Add `{"id": "acgi-…", "title": "…"}` entries to `facade-set.json`, then rerun.
+* **Curated subset.** Drop `--all` to index only `facade-set.json`. To change that subset, add `{"id": "acgi-…", "title": "…"}` entries to `facade-set.json`, then rerun.
   The ids come from `graph-data.json`. Check the renders by eye first: the index is only as good as the
   facades it contains.
 * **Weights.** DINOv2 ViT-S/14, Apache-2.0. The script checks the sha256 before loading. The weights are

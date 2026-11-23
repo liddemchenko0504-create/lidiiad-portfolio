@@ -50,7 +50,8 @@
     }
     return idxPromise;
   }
-  const bin = f => fetch(BASE + f).then(r => { if (!r.ok) throw new Error(f + ' ' + r.status); return r.arrayBuffer(); });
+  // the version in the URL keeps browsers from pairing a cached old fragments.bin with a newer index.json
+  const bin = f => fetch(BASE + f + '?v=' + encodeURIComponent((idx.version || 1) + '-' + (idx.fragments || 0))).then(r => { if (!r.ok) throw new Error(f + ' ' + r.status); return r.arrayBuffer(); });
   function loadFragments() {
     if (!fragPromise) {
       fragPromise = loadIndex().then(() => Promise.all([bin(idx.files.embeddings), bin(idx.files.color), bin(idx.files.meta)]))

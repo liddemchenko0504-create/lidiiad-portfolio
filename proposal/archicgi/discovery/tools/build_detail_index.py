@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the facade-detail index for the Discovery Lab ("Find similar details").
 
-For every project listed in facade-set.json:
+For every project listed in facade-set.json (or every project with an image when run with --all):
   1. download the catalogue render (the same `image` URL the page shows),
   2. run DINOv2 ViT-S/14 and keep its patch embeddings (one vector per 14x14 px patch),
   3. L2-normalise each patch vector and project it with a PCA fitted on all patches (384 -> DIMS),
@@ -30,7 +30,7 @@ Requirements: torch, timm, pillow, numpy, scikit-learn.
 Weights: https://dl.fbaipublicfiles.com/dinov2/dinov2_vits14/dinov2_vits14_pretrain.pth
 (Apache-2.0, sha256 below). They are not stored in the repository.
 """
-import argparse, hashlib, io, json, os, struct, sys, urllib.request
+import argparse, hashlib, io, json, os, struct, sys, urllib.parse, urllib.request
 from datetime import date
 
 import numpy as np
@@ -46,7 +46,7 @@ DIMS = 64                         # PCA dimensions kept
 LAYERS = [11]                     # ViT blocks whose patch tokens are used (0-based). Tested [8, 11] and
                                   # [5, 8, 11]: they did not separate wood from glass better and blurred glass.
 LAMBDA = 0.006                    # weight of the colour difference (per CIELAB Delta E unit)
-LEVELS = {'close': 0.72, 'related': 0.62}   # score bands shown in the page; fewer than MIN_CLOSE
+LEVELS = {'close': 0.76, 'related': 0.66}   # score bands shown in the page; fewer than MIN_CLOSE
 MIN_CLOSE = 3                               # results >= 'related' -> "few close details"
 WINDOWS = [(4, 2), (7, 3)]        # (window size in patches, stride)
 MEAN = np.array([0.485, 0.456, 0.406], dtype=np.float32)
@@ -80,6 +80,7 @@ def fetch(url, cache):
     os.makedirs(cache, exist_ok=True)
     path = os.path.join(cache, hashlib.sha1(url.encode()).hexdigest() + os.path.splitext(url)[1])
     if not os.path.exists(path):
+        url = urllib.parse.quote(url, safe="%/:?=&+@~#,;!$'()*[]")   # some catalogue URLs contain non-ASCII letters
         req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Discovery Lab index builder)'})
         with urllib.request.urlopen(req, timeout=60) as r, open(path, 'wb') as f:
             f.write(r.read())
@@ -148,14 +149,18 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--weights', required=True, help='dinov2_vits14_pretrain.pth (' + WEIGHTS_URL + ')')
     ap.add_argument('--layers', default=','.join(map(str, LAYERS)), help='ViT blocks to use, e.g. 8,11')
+    ap.add_argument('--all', action='store_true', help='index every project of graph-data.json that has an image (ignores facade-set.json)')
     ap.add_argument('--out', default=None, help='output directory (default: ../details)')
     ap.add_argument('--cache', default=os.path.join(os.environ.get('TMPDIR', '/tmp'), 'discovery-facade-cache'))
     args = ap.parse_args()
 
     from sklearn.decomposition import PCA
     data = json.load(open(os.path.join(LAB, 'graph-data.json'), encoding='utf-8'))
-    subset = json.load(open(os.path.join(HERE, 'facade-set.json'), encoding='utf-8'))['projects']
     by_id = {p['id']: p for p in data['projects']}
+    if args.all:
+        subset = [{'id': p['id']} for p in data['projects'] if p.get('image')]
+    else:
+        subset = json.load(open(os.path.join(HERE, 'facade-set.json'), encoding='utf-8'))['projects']
     missing = [s['id'] for s in subset if s['id'] not in by_id or not by_id[s['id']].get('image')]
     if missing:
         sys.exit('projects missing from graph-data.json or without image: ' + ', '.join(missing))
@@ -218,7 +223,7 @@ def main():
     calib = {k: round(float(np.percentile(best, v)), 4) for k, v in (('p25', 25), ('p50', 50), ('p75', 75), ('p90', 90))}
 
     meta = {
-        'version': 1,
+        'version': 2,
         'built': date.today().isoformat(),
         'model': 'DINOv2 ViT-S/14 (facebookresearch/dinov2, Apache-2.0), patch embeddings',
         'layers': layers,
