@@ -553,6 +553,17 @@
             h('img', { src: p.image, alt: p.imageAlt || p.label, loading: 'lazy', decoding: 'async',
               onerror: e => { const f = e.target.closest('figure'); if (f) f.remove(); } }),   // unreachable image: show no figure
             p.credit ? h('figcaption', {}, p.credit) : null));
+          // full-size render + search for similar details (discovery-details.js)
+          const D = window.discoveryDetails;
+          if (D) {
+            const indexed = D.isIndexed(p.id);
+            parts.push(h('div', { class: 'dl-detail-actions' },
+              h('button', { type: 'button', class: 'dl-tag dl-enlarge', onclick: () => D.open(p.id) }, I.t('d.enlarge')),
+              h('button', { type: 'button', class: 'dl-tag dl-find-details', disabled: indexed === false ? '' : null,
+                'aria-describedby': indexed === false ? 'dl-detail-na' : null,
+                onclick: () => D.open(p.id, { select: true }) }, I.t('d.find')),
+              indexed === false ? h('p', { class: 'dl-note', id: 'dl-detail-na' }, I.t('d.notIndexed', { n: D.count() })) : null));
+          }
         }
         parts.push(h('h2', {}, p.label));
 

@@ -379,8 +379,31 @@
       detail);
   }
 
+  // whole-frame items (no region) vs. detail items (a region of the render, added from the detail search)
+  const isWhole = it => !it.region;
+  const validRegion = r => r && [r.x, r.y, r.w, r.h].every(v => typeof v === 'number' && v >= 0 && v <= 1) && r.w > 0 && r.h > 0;
+  const sameRegion = (a, b) => ['x', 'y', 'w', 'h'].every(k => Math.abs(a[k] - b[k]) < 1e-4);
+  const pct = v => Math.round(v * 100);
+  const zoneText = r => t('b.zone', { x0: pct(r.x), x1: pct(r.x + r.w), y0: pct(r.y), y1: pct(r.y + r.h) });
+  function detailLink(it) {
+    try {
+      const u = new URL(location.href);
+      if (!/^https?:$/.test(u.protocol)) return '';
+      u.search = ''; u.hash = 'detail=' + it.id + ':' + ['x', 'y', 'w', 'h'].map(k => it.region[k].toFixed(4)).join(',');
+      return u.toString();
+    } catch (_) { return ''; }
+  }
+  // crop of a render shown with CSS only (no canvas, works with images served without CORS)
+  function cropBox(src, r, cls) {
+    const el = h('div', { class: cls, role: 'img' });
+    el.style.backgroundImage = 'url("' + String(src).replace(/["\\]/g, '') + '")';
+    el.style.backgroundSize = (100 / r.w) + '% ' + (100 / r.h) + '%';
+    el.style.backgroundPosition = (r.w < 1 ? (r.x / (1 - r.w)) * 100 : 0) + '% ' + (r.h < 1 ? (r.y / (1 - r.h)) * 100 : 0) + '%';
+    return el;
+  }
+
   function briefButton(id) {
-    const on = brief.items.some(i => i.id === id);
+    const on = brief.items.some(i => i.id === id && isWhole(i));
     return h('button', { type: 'button', class: 'dl-tag dl-add', 'data-brief-id': id, 'aria-pressed': String(on),
       onclick: () => toggle(id) }, t(on ? 's.inBrief' : 's.addBrief'));
   }
@@ -401,6 +424,8 @@
         h('div', { class: 'dl-card-actions' },
           h('button', { type: 'button', class: 'dl-tag dl-show', onclick: () => showInGraph(p.id) }, t('s.showGraph')),
           briefButton(p.id),
+          window.discoveryDetails && p.image ? h('button', { type: 'button', class: 'dl-tag dl-enlarge',
+            onclick: () => window.discoveryDetails.open(p.id) }, t('d.enlarge')) : null,
           safeUrl(p.url) ? h('a', { class: 'dl-tag dl-ext', href: safeUrl(p.url), target: '_blank', rel: 'noopener noreferrer' },
             t(pub.pageRedirectsTo ? 's.viewPortfolio' : 's.viewArchi')) : null)));
   }
@@ -472,16 +497,31 @@
   }
 
   // ---- brief ----
-  function toggle(id) {
-    const i = brief.items.findIndex(x => x.id === id);
-    if (i >= 0) brief.items.splice(i, 1);
-    else if (byId.has(id)) brief.items.push({ id, takes: [], note: '' });
+  function changed() {
     save(); renderBrief(); syncButtons();
     if (api) api.refreshPanel();
+    document.dispatchEvent(new CustomEvent('discovery:brief'));
   }
+  function toggle(id) {
+    const i = brief.items.findIndex(x => x.id === id && isWhole(x));
+    if (i >= 0) brief.items.splice(i, 1);
+    else if (byId.has(id)) brief.items.push({ id, takes: [], note: '' });
+    changed();
+  }
+  // a found fragment: project id + region in [0, 1] image coordinates
+  function addDetail(id, region) {
+    if (!byId.has(id) || !validRegion(region)) return -1;
+    const r = { x: +region.x.toFixed(4), y: +region.y.toFixed(4), w: +region.w.toFixed(4), h: +region.h.toFixed(4) };
+    let k = brief.items.findIndex(x => x.id === id && x.region && sameRegion(x.region, r));
+    if (k < 0) { brief.items.push({ id, region: r, takes: [], note: '' }); k = brief.items.length - 1; }
+    changed();
+    return k;
+  }
+  const hasDetail = (id, region) => brief.items.some(x => x.id === id && x.region && sameRegion(x.region, region));
+  function removeAt(k) { brief.items.splice(k, 1); changed(); }
   function syncButtons() {
     document.querySelectorAll('.dl-add[data-brief-id]').forEach(b => {
-      const on = brief.items.some(i => i.id === b.dataset.briefId);
+      const on = brief.items.some(i => i.id === b.dataset.briefId && isWhole(i));
       b.setAttribute('aria-pressed', String(on));
       b.textContent = t(on ? 's.inBrief' : 's.addBrief');
     });
@@ -493,7 +533,7 @@
   const copyBtn = h('button', { type: 'button', class: 'dl-link', id: 'dl-copy', onclick: () => copyBrief() });
   const clearBtn = h('button', { type: 'button', class: 'dl-link dl-link--alt', onclick: () => {
     if (!brief.items.length) return;
-    brief.items = []; save(); renderBrief(); syncButtons(); if (api) api.refreshPanel();
+    brief.items = []; changed();
   } });
   const copyStatus = h('p', { class: 'dl-copy-status', role: 'status', 'aria-live': 'polite' });
   const preview = h('pre', { class: 'dl-preview', id: 'dl-brief-preview' });
@@ -531,11 +571,18 @@
       const note = h('textarea', { rows: '2', class: 'dl-brief-note', id: 'dl-note-' + idx, placeholder: t('b.notePh') });
       note.value = it.note || '';
       note.addEventListener('input', () => { it.note = note.value; save(); renderPreview(); });
-      briefList.append(h('li', { class: 'dl-brief-item', 'data-id': p.id },
-        p.thumb ? h('img', { src: p.thumb, alt: '', loading: 'lazy', width: 72, height: 72 }) : h('div', { class: 'dl-card-noimg' }, t('s.noImage')),
+      const det = it.region ? it.region : null;
+      const thumb = det && p.image ? cropBox(p.image, det, 'dl-brief-crop')
+        : p.thumb ? h('img', { src: p.thumb, alt: '', loading: 'lazy', width: 72, height: 72 }) : h('div', { class: 'dl-card-noimg' }, t('s.noImage'));
+      if (det) thumb.setAttribute('aria-label', t('b.detailOf', { title: p.label }));
+      briefList.append(h('li', { class: 'dl-brief-item' + (det ? ' is-detail' : ''), 'data-id': p.id,
+        'data-region': det ? [det.x, det.y, det.w, det.h].join(',') : null },
+        thumb,
         h('div', { class: 'dl-brief-body' },
+          det ? h('p', { class: 'dl-badge' }, t('b.detailBadge')) : null,
           h('h3', {}, (idx + 1) + '. ', safeUrl(p.url) ? h('a', { href: safeUrl(p.url), target: '_blank', rel: 'noopener noreferrer' }, p.label) : p.label),
-          h('p', { class: 'dl-note' }, t('b.source') + (pub.categories && pub.categories.length ? ' · ' + pub.categories.join(', ') : '')),
+          h('p', { class: 'dl-note' }, t('b.source') + (pub.categories && pub.categories.length ? ' · ' + pub.categories.join(', ') : '') +
+            (det ? ' · ' + zoneText(det) : '')),
           h('div', { class: 'dl-takes', role: 'group', 'aria-label': t('b.takesGroup') },
             h('span', { class: 'dl-note' }, t('b.takes')),
             TAKES.map(id => h('button', { type: 'button', class: 'dl-tag dl-take', 'data-take': id, 'aria-pressed': String(it.takes.includes(id)),
@@ -547,8 +594,10 @@
               } }, t('take.' + id)))),
           h('label', { for: 'dl-note-' + idx, class: 'dl-visually-hidden' }, t('b.noteFor', { title: p.label })), note,
           h('div', { class: 'dl-card-actions' },
+            det && window.discoveryDetails ? h('button', { type: 'button', class: 'dl-tag dl-open-detail',
+              onclick: () => window.discoveryDetails.open(p.id, { highlight: det }) }, t('b.viewDetail')) : null,
             h('button', { type: 'button', class: 'dl-tag', onclick: () => showInGraph(p.id) }, t('s.showGraph')),
-            h('button', { type: 'button', class: 'dl-tag', onclick: () => toggle(p.id) }, t('b.remove'))))));
+            h('button', { type: 'button', class: 'dl-tag dl-remove', onclick: () => removeAt(idx) }, t('b.remove'))))));
     });
     copyBtn.disabled = !brief.items.length;
     renderPreview();
@@ -566,6 +615,11 @@
       const takes = TAKES.filter(id => it.takes.includes(id)).map(id => t('take.' + id).toLowerCase());
       L.push('');
       L.push((i + 1) + '. ' + p.label);
+      if (it.region) {
+        L.push(t('bt.detail') + zoneText(it.region));
+        const link = detailLink(it);
+        if (link) L.push(t('bt.detailLink') + link);
+      }
       L.push(t('bt.takes') + (takes.length ? takes.join(', ') : t('bt.unspecified')));
       if ((it.note || '').trim()) L.push(t('bt.note') + it.note.trim().replace(/\s*\n\s*/g, ' '));
       L.push(t('bt.source') + (p.url || ''));
@@ -617,7 +671,7 @@
     if (api || !window.discoveryGraph || !window.discoveryGraph.projects) return;
     api = window.discoveryGraph;
     byId = new Map(api.projects.map(p => [p.id, p]));
-    brief.items = brief.items.filter(i => byId.has(i.id) && Array.isArray(i.takes));
+    brief.items = brief.items.filter(i => byId.has(i.id) && Array.isArray(i.takes) && (!i.region || validRegion(i.region)));
     status.textContent = '';
     renderBrief();
     api.refreshPanel();
@@ -626,8 +680,9 @@
     if (q || lastQuery) { input.value = q || lastQuery; run(input.value); }
   }
   window.discoveryBrief = {
-    has: id => brief.items.some(i => i.id === id),
-    toggle,
+    has: id => brief.items.some(i => i.id === id && isWhole(i)),
+    toggle, addDetail, hasDetail, cropBox, zoneText,
+    get items() { return brief.items.map(x => Object.assign({}, x)); },
     search: q => (api ? search(q, api.projects) : null),
     text: briefText
   };
