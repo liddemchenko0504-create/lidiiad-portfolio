@@ -1,0 +1,217 @@
+{
+  "groups": {
+    "project": {
+      "label": "Projets",
+      "shape": "ellipse",
+      "fill": "paper",
+      "size": 76,
+      "line": "solid"
+    },
+    "typology": {
+      "label": "Typologie",
+      "shape": "rectangle",
+      "fill": "ink",
+      "size": 18,
+      "line": "solid"
+    },
+    "view": {
+      "label": "Vue",
+      "shape": "round-rectangle",
+      "fill": "paper",
+      "size": 20,
+      "line": "dashed"
+    },
+    "style": {
+      "label": "Style",
+      "shape": "diamond",
+      "fill": "paper",
+      "size": 22,
+      "line": "dotted"
+    },
+    "material": {
+      "label": "Matériaux",
+      "shape": "hexagon",
+      "fill": "mute",
+      "size": 22,
+      "line": "solid"
+    },
+    "lighting": {
+      "label": "Lumière",
+      "shape": "triangle",
+      "fill": "ink",
+      "size": 20,
+      "line": "dashed"
+    },
+    "context": {
+      "label": "Contexte",
+      "shape": "round-rectangle",
+      "fill": "mute",
+      "size": 20,
+      "line": "dotted"
+    }
+  },
+  "filters": [
+    {
+      "id": "residentiel",
+      "label": "Résidentiel"
+    },
+    {
+      "id": "hospitalite",
+      "label": "Hospitalité"
+    },
+    {
+      "id": "interieur",
+      "label": "Intérieur"
+    },
+    {
+      "id": "exterieur",
+      "label": "Extérieur"
+    }
+  ],
+  "projects": [
+    {
+      "id": "p-1",
+      "label": "Maison au bord de l’eau",
+      "url": "https://archicgi.com/fr/",
+      "image": "",
+      "thumb": "",
+      "imageAlt": "",
+      "credit": "",
+      "filters": [
+        "residentiel",
+        "exterieur"
+      ],
+      "facets": {
+        "typology": [
+          "Résidentiel"
+        ],
+        "view": [
+          "Extérieur"
+        ],
+        "context": [
+          "Eau"
+        ]
+      }
+    },
+    {
+      "id": "p-2",
+      "label": "Salon avec cheminée",
+      "url": "https://archicgi.com/fr/",
+      "image": "",
+      "thumb": "",
+      "imageAlt": "",
+      "credit": "",
+      "filters": [
+        "residentiel",
+        "interieur"
+      ],
+      "facets": {
+        "typology": [
+          "Résidentiel"
+        ],
+        "view": [
+          "Intérieur"
+        ],
+        "context": [
+          "Éclairage"
+        ]
+      }
+    },
+    {
+      "id": "p-3",
+      "label": "Maison de montagne",
+      "url": "https://archicgi.com/fr/",
+      "image": "",
+      "thumb": "",
+      "imageAlt": "",
+      "credit": "",
+      "filters": [
+        "residentiel",
+        "exterieur"
+      ],
+      "facets": {
+        "typology": [
+          "Résidentiel"
+        ],
+        "view": [
+          "Extérieur"
+        ],
+        "context": [
+          "Montagne"
+        ]
+      }
+    },
+    {
+      "id": "p-4",
+      "label": "Bar de restaurant",
+      "url": "https://archicgi.com/fr/",
+      "image": "",
+      "thumb": "",
+      "imageAlt": "",
+      "credit": "",
+      "filters": [
+        "hospitalite",
+        "interieur"
+      ],
+      "facets": {
+        "typology": [
+          "Hospitalité"
+        ],
+        "view": [
+          "Intérieur"
+        ],
+        "context": [
+          "Éclairage"
+        ]
+      }
+    },
+    {
+      "id": "p-5",
+      "label": "Maison contemporaine",
+      "url": "https://archicgi.com/fr/",
+      "image": "",
+      "thumb": "",
+      "imageAlt": "",
+      "credit": "",
+      "filters": [
+        "residentiel",
+        "exterieur"
+      ],
+      "facets": {
+        "typology": [
+          "Résidentiel"
+        ],
+        "view": [
+          "Extérieur"
+        ],
+        "context": [
+          "Contemporain"
+        ]
+      }
+    },
+    {
+      "id": "p-6",
+      "label": "Salon de chalet",
+      "url": "https://archicgi.com/fr/",
+      "image": "",
+      "thumb": "",
+      "imageAlt": "",
+      "credit": "",
+      "filters": [
+        "residentiel",
+        "interieur"
+      ],
+      "facets": {
+        "typology": [
+          "Résidentiel"
+        ],
+        "view": [
+          "Intérieur"
+        ],
+        "context": [
+          "Montagne"
+        ]
+      }
+    }
+  ]
+}
