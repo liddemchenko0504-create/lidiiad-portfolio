@@ -502,9 +502,6 @@
       const missing = out.perConcept.filter(x => x.n === 0).map(x => cLabel(x.c));
       results.append(h('p', { class: 'dl-nomatch' }, missing.length ? t('s.missing', { list: missing.join(', ') }) : t('s.neverTogether')));
     }
-    const legendLine = h('p', { class: 'dl-note dl-legend-line' }, t('s.legend'),
-      h('span', { class: 'dl-src dl-src--pub' }, 'ArchiCGI'), ' ' + t('s.legendPub'),
-      h('span', { class: 'dl-src dl-src--ed' }, t('s.edShort')), ' ' + t('s.legendEd'));
     const grid = h('div', { class: 'dl-cards' });
     results.append(grid);
     const more = h('button', { type: 'button', class: 'dl-more', onclick: () => step() });
@@ -520,7 +517,6 @@
     function step() { draw(Math.min(out.results.length, drawn + RESULTS_STEP)); }
     draw(Math.min(out.results.length, Math.max(view.shown, RESULTS_STEP)));
     if (out.results.length > drawn) results.append(more);
-    results.append(legendLine);
   }
 
   function showInGraph(id) {
