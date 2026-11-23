@@ -20,9 +20,14 @@
     fitPadding: 48,
     ringProjectMin: 170,    // px (model space)
     ringProjectPerNode: 38,
+    projectsPerRing: 72,    // above this, projects are spread over concentric rings
+    ringMinArc: 96,         // px of arc between neighbours on one ring (node is 76)
+    ringStep: 120,          // px between concentric project rings
     ringGap: 240,           // distance between project ring and facet ring
     sectorGap: 0.14,        // radians between facet sectors
-    staggerBelowArc: 84     // px of arc per facet below which labels alternate radius
+    staggerBelowArc: 84,    // px of arc per facet below which labels alternate radius
+    listStep: 40,           // panel lists show this many items, then "show more"
+    denseEdges: 300         // above this many edges, edges are drawn fainter
   };
 
   const root = document.getElementById('discovery-graph');
@@ -102,8 +107,14 @@
   function computeLayout(model) {
     const TAU = Math.PI * 2;
     const n = Math.max(1, model.projects.length);
-    const Rp = Math.max(CONFIG.ringProjectMin, n * CONFIG.ringProjectPerNode);
-    const Rf = Rp + CONFIG.ringGap;
+    // Small sets: one ring, as before. Large sets: the same angular order, alternated over
+    // K concentric rings so the graph stays compact enough to read at the fit zoom.
+    const K = Math.max(1, Math.ceil(n / CONFIG.projectsPerRing));
+    const Rp = K === 1
+      ? Math.max(CONFIG.ringProjectMin, n * CONFIG.ringProjectPerNode)
+      : Math.max(CONFIG.ringProjectMin, (Math.ceil(n / K) * CONFIG.ringMinArc) / TAU);
+    const RpOuter = Rp + (K - 1) * CONFIG.ringStep;
+    const Rf = RpOuter + CONFIG.ringGap;
     const pos = {};
     const polar = (a, r) => ({ x: r * Math.cos(a), y: r * Math.sin(a) });
     const wrap = a => { while (a > Math.PI) a -= TAU; while (a <= -Math.PI) a += TAU; return a; };
@@ -112,7 +123,7 @@
     model.projects.forEach((p, i) => {
       const a = -Math.PI / 2 + (TAU * i) / n;
       pAngle.set(p.id, a);
-      pos[p.id] = n === 1 ? { x: 0, y: 0 } : polar(a, Rp);
+      pos[p.id] = n === 1 ? { x: 0, y: 0 } : polar(a, Rp + (i % K) * CONFIG.ringStep);
     });
 
     const neighborsOf = new Map();
@@ -149,7 +160,9 @@
       cursor += span + CONFIG.sectorGap;
     });
 
-    return { pos, sectors };
+    // >1 when the graph is larger than the original single-ring prototype: labels scale with it
+    const scale = Math.max(1, Rf / 900);
+    return { pos, sectors, scale, dense: K > 1 };
   }
 
   /* =====================================================================
@@ -194,31 +207,39 @@
 
     /* ----- style ----- */
     const gs = g => model.groups[g] || {};
+    const S = layout.scale;                       // 1 for the original small graph
+    const edgeOpacity = model.edges.length > CONFIG.denseEdges ? 0.14 : 0.3;
     const style = [
       { selector: 'node', style: {
-          'font-family': font, 'font-size': 10, color: INK, 'text-wrap': 'wrap',
-          'text-max-width': 96, 'text-valign': 'bottom', 'text-halign': 'center',
-          'text-margin-y': 6, 'min-zoomed-font-size': 8, label: 'data(label)',
-          'border-color': INK, 'border-width': 1.5, 'background-color': PAPER,
+          'font-family': font, 'font-size': 10 * S, color: INK, 'text-wrap': 'wrap',
+          'text-max-width': 96 * S, 'text-valign': 'bottom', 'text-halign': 'center',
+          'text-margin-y': 6 * S, 'min-zoomed-font-size': 8, label: 'data(label)',
+          'border-color': INK, 'border-width': 1.5 * S, 'background-color': PAPER,
           'transition-property': 'opacity, border-width', 'transition-duration': reduceMotion ? 0 : 120
       } },
       { selector: 'node.project', style: {
           shape: gs('project').shape || 'ellipse',
           width: gs('project').size || 76, height: gs('project').size || 76,
-          'border-width': 2, 'font-size': 12, 'font-weight': 600, 'text-max-width': 130,
+          'border-width': 2, 'font-size': 12, 'font-weight': 600,
+          'text-max-width': layout.dense ? 104 : 130, 'text-margin-y': 6,
+          // dense graphs: project titles appear once zoomed in enough for them not to collide
+          'min-zoomed-font-size': layout.dense ? 12 : 8,
           'text-background-color': PAPER, 'text-background-opacity': 0.9, 'text-background-padding': 3,
           'z-index': 20
       } },
       { selector: 'node.project.has-image', style: {
-          'background-image': 'data(image)', 'background-fit': 'cover', 'background-clip': 'node'
+          'background-image': 'data(image)', 'background-fit': 'cover', 'background-clip': 'node',
+          // ArchiCGI images are served without CORS headers; load them as plain images
+          // (the canvas is never read back, so a tainted canvas is fine)
+          'background-image-crossorigin': 'null'
       } },
       { selector: 'node.sector', style: {
           width: 1, height: 1, 'background-opacity': 0, 'border-width': 0, color: MUTE,
-          'font-size': 11, 'text-valign': 'center', 'text-margin-y': 0, 'min-zoomed-font-size': 6,
-          events: 'no', 'z-index': 1
+          'font-size': 11 * (S > 1 ? S * 2.4 : 1), 'text-valign': 'center', 'text-margin-y': 0,
+          'min-zoomed-font-size': 6, events: 'no', 'z-index': 1
       } },
       { selector: 'edge', style: {
-          'curve-style': 'straight', width: 0.75, 'line-color': INK, opacity: 0.3,
+          'curve-style': 'straight', width: 0.75 * S, 'line-color': INK, opacity: edgeOpacity,
           events: 'no', 'z-index': 2,
           'transition-property': 'opacity, width', 'transition-duration': reduceMotion ? 0 : 120
       } }
@@ -226,7 +247,7 @@
     model.facetGroups.forEach(g => {
       const d = gs(g);
       style.push({ selector: 'node.' + g, style: {
-        shape: d.shape || 'ellipse', width: d.size || 20, height: d.size || 20,
+        shape: d.shape || 'ellipse', width: (d.size || 20) * S, height: (d.size || 20) * S,
         'background-color': FILL[d.fill] || PAPER, 'z-index': 10
       } });
       style.push({ selector: 'edge.' + g, style: { 'line-style': d.line || 'solid' } });
@@ -234,7 +255,7 @@
     style.push(
       { selector: 'node.dim', style: { opacity: 0.14 } },
       { selector: 'edge.dim', style: { opacity: 0.05 } },
-      { selector: 'edge.hl',  style: { opacity: 1, width: 1.75, 'z-index': 15 } },
+      { selector: 'edge.hl',  style: { opacity: 1, width: 1.75 * S, 'z-index': 15 } },
       { selector: 'node.sel', style: { 'border-width': 4 } },
       { selector: 'node.out', style: { opacity: 0.07, events: 'no' } },
       { selector: 'edge.out', style: { opacity: 0.03 } }
@@ -424,40 +445,88 @@
      * 6. PANEL
      * ================================================================= */
     const nodeButton = n => h('button', { type: 'button', class: 'dl-tag', onclick: () => select(n.id()) }, n.data('label'));
+    const extLink = (url, text, cls) => safeUrl(url)
+      ? h('a', { class: cls, href: safeUrl(url), target: '_blank', rel: 'noopener noreferrer' }, text) : null;
+    const plural = (k, one, many) => k + ' ' + (k > 1 ? many : one);
+
+    // Long lists (hundreds of projects) are revealed in steps instead of all at once
+    function nodeList(nodes) {
+      const ul = h('ul', {});
+      let shown = 0;
+      const more = h('button', { type: 'button', class: 'dl-more', onclick: () => step() });
+      function step() {
+        nodes.slice(shown, shown + CONFIG.listStep).forEach(n => ul.append(h('li', {}, nodeButton(n))));
+        shown = Math.min(nodes.length, shown + CONFIG.listStep);
+        const rest = nodes.length - shown;
+        if (rest > 0) more.textContent = 'Afficher ' + Math.min(rest, CONFIG.listStep) + ' de plus (' + rest + ' restants)';
+        else more.remove();
+      }
+      step();
+      return nodes.length > CONFIG.listStep ? [ul, more] : [ul];
+    }
 
     function renderPanel(node) {
       els.panel.replaceChildren();
       if (!node) {
         const visible = model.projects.filter(p => activeFilter === 'all' || (p.filters || []).includes(activeFilter));
+        const f = model.filters.find(x => x.id === activeFilter);
         els.panel.append(
           h('h2', {}, 'Sélectionnez un projet.'),
-          h('p', {}, 'Les connexions relient les exemples de la page française aux catégories éditoriales de ce prototype.'),
-          h('ul', {}, visible.map(p => h('li', {}, nodeButton(cy.getElementById(p.id))))));
+          h('p', {}, plural(visible.length, 'projet', 'projets') + (f ? ' · ' + f.label : '') +
+            ' du portfolio public d’ArchiCGI. Les connexions relient chaque projet aux catégories éditoriales de ce prototype.'),
+          ...nodeList(visible.map(p => cy.getElementById(p.id))));
         return;
       }
       const back = h('button', { type: 'button', class: 'dl-back', onclick: clearSelection }, 'Retour à la liste');
       if (node.hasClass('project')) {
         const p = model.projectById.get(node.id());
+        const pub = p.published || {};
         const parts = [back];
         if (p.image) {
           parts.push(h('figure', {},
-            h('img', { src: p.image, alt: p.imageAlt || p.label, loading: 'lazy', decoding: 'async' }),
+            h('img', { src: p.image, alt: p.imageAlt || p.label, loading: 'lazy', decoding: 'async',
+              onerror: e => { const f = e.target.closest('figure'); if (f) f.remove(); } }),   // unreachable image: show no figure
             p.credit ? h('figcaption', {}, p.credit) : null));
         }
         parts.push(h('h2', {}, p.label));
-        model.activeGroups.forEach(g => {
+
+        // Published by ArchiCGI (verbatim)
+        const src = h('div', { class: 'dl-published' }, h('h3', {}, 'Publié par ArchiCGI'));
+        if (pub.categories && pub.categories.length) {
+          src.append(h('p', {}, 'Catégorie du portfolio : ' + pub.categories.join(', ')));
+        }
+        if (pub.frCaption) {
+          src.append(h('p', {}, 'Sur la page française : « ' + pub.frCaption + ' »'));
+        }
+        if (pub.alsoPublishedAs && pub.alsoPublishedAs.length) {
+          src.append(h('p', {}, 'Même image aussi publiée sous :'),
+            h('ul', {}, pub.alsoPublishedAs.map(d => h('li', {}, extLink(d.pageUrl, d.title, 'dl-tag') || d.title))));
+        }
+        if (pub.pageRedirectsTo) {
+          src.append(h('p', {}, 'La page du projet renvoie vers le portfolio, où l’image est publiée.'));
+        }
+        if (src.children.length > 1) parts.push(src);     // only when the record carries published details
+
+        // Editorial classification (this prototype)
+        const ed = model.activeGroups.map(g => {
           const items = node.neighborhood('node.' + g).toArray().sort((a, b) => a.data('label').localeCompare(b.data('label'), 'fr'));
-          if (items.length) parts.push(h('h3', {}, model.groups[g].label), h('ul', {}, items.map(n => h('li', {}, nodeButton(n)))));
-        });
-        if (safeUrl(p.url)) parts.push(h('a', { class: 'dl-link', href: safeUrl(p.url), target: '_blank', rel: 'noopener noreferrer' }, 'Voir sur ArchiCGI'));
-        els.panel.append(...parts);
+          return items.length ? [h('h3', {}, model.groups[g].label), h('ul', {}, items.map(n => h('li', {}, nodeButton(n))))] : [];
+        }).flat();
+        if (ed.length) {
+          parts.push(h('div', { class: 'dl-editorial' },
+            h('p', { class: 'dl-note' }, 'Classification éditoriale — déduite du titre et de la description publiés, pas une donnée ArchiCGI.'),
+            ...ed));
+        }
+        parts.push(extLink(p.url, pub.pageRedirectsTo ? 'Voir dans le portfolio ArchiCGI' : 'Voir le projet sur ArchiCGI', 'dl-link'));
+        if (pub.frPage) parts.push(extLink(pub.frPage, 'Voir sur la page française', 'dl-link dl-link--alt'));
+        els.panel.append(...parts.filter(Boolean));
       } else {
-        const items = node.neighborhood('node.project').toArray();
+        const items = node.neighborhood('node.project').not('.out').toArray();
         els.panel.append(back,
-          h('h3', {}, model.groups[node.data('kind')].label),
+          h('h3', {}, model.groups[node.data('kind')].label + ' · catégorie éditoriale'),
           h('h2', {}, node.data('label')),
-          h('p', {}, items.length + (items.length > 1 ? ' projets liés' : ' projet lié')),
-          h('ul', {}, items.map(n => h('li', {}, nodeButton(n)))));
+          h('p', {}, plural(items.length, 'projet lié', 'projets liés')),
+          ...nodeList(items));
       }
     }
 

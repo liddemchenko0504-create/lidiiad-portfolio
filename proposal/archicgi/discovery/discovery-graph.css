@@ -132,7 +132,21 @@
 }
 .dl-tag:hover, .dl-back:hover { background: var(--dl-line); }
 .dl-link { background: var(--dl-ink); color: var(--dl-paper); margin-top: 16px; }
+.dl-link + .dl-link { margin-left: 8px; }
+.dl-link--alt { background: var(--dl-paper); color: var(--dl-ink); }
 .dl-back { border-color: var(--dl-line); margin-bottom: 16px; }
+.dl-more {
+  font: inherit; font-size: 13px; margin-top: 10px; padding: 8px 12px; min-height: 40px; width: 100%;
+  background: transparent; color: var(--dl-ink); border: 1px dashed var(--dl-line); border-radius: 0; cursor: pointer;
+}
+.dl-more:hover { background: var(--dl-line); }
+
+/* Published (ArchiCGI) vs editorial (prototype) information */
+.dl-published { border-left: 2px solid var(--dl-ink); padding-left: 12px; margin: 4px 0 18px; }
+.dl-published h3 { margin-top: 0; }
+.dl-published p { margin-bottom: 6px; }
+.dl-editorial { border-left: 2px dashed var(--dl-mute); padding-left: 12px; }
+.dl-note { font-size: 12px !important; color: var(--dl-mute); margin-bottom: 4px !important; }
 
 .dl :focus-visible { outline: 2px solid var(--dl-ink); outline-offset: 2px; }
 .dl-stage :focus-visible { outline-color: var(--dl-ink); }
@@ -168,4 +182,4 @@
 }
 /* ArchiCGI dark editorial palette */
 .dl{--dl-ink:#f3f1ed;--dl-paper:#111113;--dl-mute:#a5a5a5;--dl-line:#414143}
-.dl-stage{background:#111113}.dl-chip:hover,.dl-tag:hover,.dl-back:hover,.dl-controls button:hover{background:#29292b}.dl-chip[aria-pressed="true"]{background:#f3f1ed;color:#111113}.dl-chip[aria-pressed="true"]:hover{background:#f3f1ed;color:#111113}.dl-link{background:#f3f1ed;color:#111113}
+.dl-stage{background:#111113}.dl-chip:hover,.dl-tag:hover,.dl-back:hover,.dl-more:hover,.dl-controls button:hover{background:#29292b}.dl-link--alt{background:#111113;color:#f3f1ed}.dl-chip[aria-pressed="true"]{background:#f3f1ed;color:#111113}.dl-chip[aria-pressed="true"]:hover{background:#f3f1ed;color:#111113}.dl-link{background:#f3f1ed;color:#111113}
