@@ -1,0 +1,298 @@
+{
+ "description": "Facade subset for the detail-similarity index. Each project was checked by eye on a contact sheet: exterior, eye-level, the facade large in frame (no aerial views, gardens, pools or interiors). Add ids here and rerun build_detail_index.py to extend the index.",
+ "checked": "2026-11-23",
+ "projects": [
+  {
+   "id": "acgi-48664",
+   "title": "Exterior 3D Rendering of Modern Townhouse in Pittsburgh"
+  },
+  {
+   "id": "acgi-37276",
+   "title": "Architectural Rendering of a Modern Urban Townhouse"
+  },
+  {
+   "id": "acgi-51553",
+   "title": "Exterior 3D Rendering of Transitional Brick House"
+  },
+  {
+   "id": "acgi-51552",
+   "title": "Architectural Visualization of Lab Building Entrance in Manchester"
+  },
+  {
+   "id": "acgi-37289",
+   "title": "New York Townhouse Facade Architectural 3D Rendering"
+  },
+  {
+   "id": "acgi-35817",
+   "title": "Exterior CGI of a Modern Mountain Home"
+  },
+  {
+   "id": "acgi-52130",
+   "title": "Exterior Visualization of Forest Cabin with Footbridge Entrance"
+  },
+  {
+   "id": "acgi-52117",
+   "title": "Exterior 3D Rendering of Red Brick Apartment Building in Brooklyn"
+  },
+  {
+   "id": "acgi-48670",
+   "title": "Architectural CGI of Ice Cream Parlor Facade in California"
+  },
+  {
+   "id": "acgi-52118",
+   "title": "Exterior Rendering of Single-Story House with Two-Car Garage"
+  },
+  {
+   "id": "acgi-51551",
+   "title": "Exterior Rendering of Ice Cream Shop Storefront in Livermore, California"
+  },
+  {
+   "id": "acgi-48668",
+   "title": "Exterior Rendering of Residential Complex in Massachusetts"
+  },
+  {
+   "id": "acgi-48653",
+   "title": "Exterior CGI of Multifamily Housing in Kentucky"
+  },
+  {
+   "id": "acgi-48641",
+   "title": "Exterior 3D Visualization of Apartment Building in Massachusetts"
+  },
+  {
+   "id": "acgi-46513",
+   "title": "3D Rendering of Townhouse Community Street View in South Carolina"
+  },
+  {
+   "id": "acgi-30598",
+   "title": "Front View 3D Rendering of a Mediterranean-style Villa"
+  },
+  {
+   "id": "acgi-48643",
+   "title": "Exterior 3D Rendering of Brick House in Toronto"
+  },
+  {
+   "id": "acgi-46515",
+   "title": "Multifamily Building Exterior Architectural Visualization"
+  },
+  {
+   "id": "acgi-46424",
+   "title": "Colonial House Exterior 3D Rendering"
+  },
+  {
+   "id": "acgi-46420",
+   "title": "Exterior CGI of Mediterranean House in Florida"
+  },
+  {
+   "id": "acgi-37273",
+   "title": "3D Rendering of a House in Southern California"
+  },
+  {
+   "id": "acgi-30611",
+   "title": "CGI of a Mediterranean-Style House with White Stucco Walls and Terracotta Roof"
+  },
+  {
+   "id": "acgi-52119",
+   "title": "Exterior CGI of Apartment Building with Arched Windows in Greenpoint, Brooklyn"
+  },
+  {
+   "id": "acgi-51549",
+   "title": "Exterior CGI of Shingle-Style Beach House in Long Beach Township, New Jersey"
+  },
+  {
+   "id": "acgi-48678",
+   "title": "Exterior CGI of Waterfront House in New Jersey"
+  },
+  {
+   "id": "acgi-48674",
+   "title": "Exterior Rendering of Shingle-Style House in New Jersey"
+  },
+  {
+   "id": "acgi-42011",
+   "title": "Fitness Facility Exterior Architectural Visualization"
+  },
+  {
+   "id": "acgi-37290",
+   "title": "Residential Architectural 3D Visualization in North Carolina"
+  },
+  {
+   "id": "acgi-37288",
+   "title": "Luxury Residential Exterior 3D Rendering"
+  },
+  {
+   "id": "acgi-37274",
+   "title": "Architectural 3D Rendering of a Wedding Venue in Michigan"
+  },
+  {
+   "id": "acgi-30589",
+   "title": "3D Visualization of a Two-Story Timber House in Florida"
+  },
+  {
+   "id": "acgi-28911",
+   "title": "Barndominium Exterior Front View CGI"
+  },
+  {
+   "id": "acgi-37125",
+   "title": "Exterior 3D Visualization of a Sleek Residence"
+  },
+  {
+   "id": "acgi-37119",
+   "title": "Exterior CGI of a High-end Commercial Building"
+  },
+  {
+   "id": "acgi-37108",
+   "title": "Exterior 3D Render of a Modern Residential Building"
+  },
+  {
+   "id": "acgi-35796",
+   "title": "Community Park CGI"
+  },
+  {
+   "id": "acgi-35757",
+   "title": "Modern Townhouse Exterior CGI"
+  },
+  {
+   "id": "acgi-35744",
+   "title": "Clubhouse Building Exterior CGI"
+  },
+  {
+   "id": "acgi-35737",
+   "title": "Modern Apartment Complex Visualization"
+  },
+  {
+   "id": "acgi-30614",
+   "title": "3D Render of a Modern Mountain Lodge"
+  },
+  {
+   "id": "acgi-30609",
+   "title": "3D Rendering of a Victorian-Style House"
+  },
+  {
+   "id": "acgi-30593",
+   "title": "Exterior CG Visual of an Elegant Residence"
+  },
+  {
+   "id": "acgi-30544",
+   "title": "Rear 3D View of a Contemporary Residence"
+  },
+  {
+   "id": "acgi-30535",
+   "title": "Exterior CG Render of a Modern Cabin"
+  },
+  {
+   "id": "acgi-30519",
+   "title": "3D Image of a Contemporary Townhouse"
+  },
+  {
+   "id": "acgi-30497",
+   "title": "3D Rendering of a Contemporary Twin-Gable House"
+  },
+  {
+   "id": "acgi-30058",
+   "title": "Exterior 3D Visualization of a Luxurious Villa in Dubai"
+  },
+  {
+   "id": "acgi-29824",
+   "title": "Exterior CGI of a Splendid Residence in Austin, Texas"
+  },
+  {
+   "id": "acgi-28913",
+   "title": "Wooden Barndominium Exterior 3D Render"
+  },
+  {
+   "id": "acgi-48655",
+   "title": "3D Rendering of Walk-Up Ice Cream Shop in California"
+  },
+  {
+   "id": "acgi-48635",
+   "title": "Exterior CGI of Ice Cream Shop Storefront in California"
+  },
+  {
+   "id": "acgi-37121",
+   "title": "Exterior 3D Rendering of a Townhouse"
+  },
+  {
+   "id": "acgi-37117",
+   "title": "Exterior 3D Rendering of a Mixed-use Property"
+  },
+  {
+   "id": "acgi-37115",
+   "title": "Exterior 3D View of a Private Residence"
+  },
+  {
+   "id": "acgi-37112",
+   "title": "Realistic CGI of a Residence with a Garage"
+  },
+  {
+   "id": "acgi-35828",
+   "title": "Exterior 3D Rendering of a Townhome"
+  },
+  {
+   "id": "acgi-35820",
+   "title": "Exterior CGI of a Commercial Building"
+  },
+  {
+   "id": "acgi-35791",
+   "title": "3D Render for Solimar Towers Renovation Project"
+  },
+  {
+   "id": "acgi-35783",
+   "title": "3D Render of an Urban Apartment Building"
+  },
+  {
+   "id": "acgi-35776",
+   "title": "Exterior CGI of a Condominium"
+  },
+  {
+   "id": "acgi-35763",
+   "title": "Architectural Visualization of a Condominium"
+  },
+  {
+   "id": "acgi-35759",
+   "title": "Residential Building 3D Visualization"
+  },
+  {
+   "id": "acgi-35746",
+   "title": "Suburban House 3D Visualization"
+  },
+  {
+   "id": "acgi-35740",
+   "title": "Cottage Exterior 3D Visualization"
+  },
+  {
+   "id": "acgi-35723",
+   "title": "Residential Community CGI"
+  },
+  {
+   "id": "acgi-35710",
+   "title": "3D Render of an Urban Housing Complex"
+  },
+  {
+   "id": "acgi-30628",
+   "title": "CG Render of London Bridge Underground Station Entrance"
+  },
+  {
+   "id": "acgi-30607",
+   "title": "3D Visualization of Urban Apartment Building"
+  },
+  {
+   "id": "acgi-30605",
+   "title": "3D Visualization of a Three-Story Mixed-use Building"
+  },
+  {
+   "id": "acgi-30591",
+   "title": "Exterior Render of a House with a Pool"
+  },
+  {
+   "id": "acgi-30587",
+   "title": "Exterior CGI of a Compact Two-Story Home"
+  },
+  {
+   "id": "acgi-30509",
+   "title": "Photoreal Exterior CGI of a Commercial Building"
+  },
+  {
+   "id": "acgi-30288",
+   "title": "Exterior CGI of a Mixed-use Building in Charlotte, North Carolina"
+  }
+ ]
+}
