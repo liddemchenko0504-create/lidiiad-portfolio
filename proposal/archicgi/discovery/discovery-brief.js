@@ -37,7 +37,9 @@
   // one regex for a list of terms; the last word may take a plural / feminine ending
   const termRx = terms => new RegExp('\\b(?:' + terms.map(t => norm(t).split(' ').map(esc).join(' ') + '(?:s|es|x|e)?')
     .join('|') + ')\\b', 'g');
-  const plural = (k, one, many) => k + ' ' + (k > 1 ? many : one);
+  // Interface language (discovery-i18n.js); search itself understands French and English whatever the interface
+  const I = window.discoveryI18n || { lang: 'fr', t: k => k, tag: x => x, group: (k, f) => f || k, filter: (i, f) => f || i,
+    quote: x => '\u00ab\u00a0' + x + '\u00a0\u00bb' };
 
   /* =====================================================================
    * 1. LEXICON — what a phrase means in the catalogue
@@ -47,10 +49,17 @@
    *    near: tags that come close (partial match)
    *    cat: ArchiCGI portfolio category that satisfies it
    * ===================================================================== */
+  // kinds of criteria (keys are stable; names are shown in the interface language)
   const DIM = {
     typology: 'type de bâtiment', inout: 'intérieur / extérieur', camera: 'angle de vue', context: 'environnement',
     lighting: 'lumière', style: 'style', material: 'matériau', space: 'espace', media: 'média', place: 'lieu', text: 'texte'
   };
+  const DIM_EN = {
+    typology: 'building type', inout: 'interior / exterior', camera: 'camera angle', context: 'surroundings',
+    lighting: 'light', style: 'style', material: 'material', space: 'space', media: 'media', place: 'place', text: 'text'
+  };
+  const DIM_FEM = new Set(['lighting']);                 // French agreement: « lumière non renseignée »
+  const dimName = d => (I.lang === 'en' ? DIM_EN : DIM)[d] || d;
   // how much each kind of criterion weighs in the ranking: the subject first, then its setting
   const DIM_WEIGHT = { typology: 1.6, inout: 1.2, context: 1.2, place: 1.2, camera: 1, lighting: 1, space: 1, media: 1, text: 1, style: 0.8, material: 0.8 };
   const EXCLUSIVE = new Set(['typology', 'inout', 'camera', 'lighting', 'media']);
@@ -181,13 +190,33 @@
       ['Pittsburgh', 'pittsburgh', 'pittsburgh'], ['Philadelphie', 'philadelphie', 'philadelphia'], ['Brooklyn', 'brooklyn', 'brooklyn'],
       ['New Jersey', 'new jersey', 'new jersey'], ['Chicago', 'chicago', 'chicago'], ['Massachusetts', 'massachusetts', 'massachusetts'],
       ['Turks-et-Caïcos', 'turks et caicos', 'turks and caicos'], ['Zanzibar', 'zanzibar', 'zanzibar']]
-      .map(([label, fr, en]) => C('place:' + fr, 'place', label, [], [fr, ...en.split('|')], en.split('|'))),
+      .map(([label, fr, en]) => C('place:' + fr, 'place', label, [], [fr, ...en.split('|')], en.split('|'), { en: placeEn(en) })),
   ];
+  // English names of the criteria (French names are the `label` above)
+  const CONCEPT_EN = {
+    house: 'House', cabin: 'Cabin or chalet', townhouse: 'Townhouse', apartment: 'Apartment building', district: 'Neighbourhood or development',
+    hotel: 'Hotel or resort', restaurant: 'Restaurant or bar', office: 'Office or retail', public: 'Public or leisure building',
+    industrial: 'Industrial building', tower: 'Tower or skyscraper', exterior: 'Exterior view', interior: 'Interior view',
+    aerial: 'Aerial view', eye: 'Eye-level view', closeup: 'Close-up', water: 'By the water', sea: 'Seaside', lake: 'Lake or river',
+    mountain: 'Mountains', forest: 'Forest or nature', city: 'In the city', suburb: 'Suburb', tropical: 'Tropical',
+    snow: 'Snow or winter', autumn: 'Autumn', dusk: 'Dusk', night: 'Night', day: 'Daylight', modern: 'Contemporary',
+    mediterranean: 'Mediterranean', classic: 'Classic', rustic: 'Rustic', luxury: 'High-end', brick: 'Brick', wood: 'Wood',
+    stone: 'Stone', glass: 'Glass', stucco: 'Render', siding: 'Siding', marble: 'Marble', metal: 'Metal', concrete: 'Concrete',
+    pool: 'Pool', terrace: 'Terrace', garden: 'Garden', living: 'Living room', bedroom: 'Bedroom', kitchen: 'Kitchen',
+    dining: 'Dining room', bathroom: 'Bathroom', lobby: 'Lobby', animation: '3D animation'
+  };
+  function placeEn(en) {
+    const w = en.split('|')[0];
+    return w.length <= 3 ? w.toUpperCase() : w.replace(/\b[a-z]/g, m => m.toUpperCase()).replace(/\b(And|Of)\b/g, m => m.toLowerCase());
+  }
+  // a criterion's name in the interface language; free words are quoted as typed
+  const cLabel = c => (c.free ? I.quote(c.word) : I.lang === 'en' ? (c.en || CONCEPT_EN[c.id] || c.label) : c.label);
   // "sea" and "lake" are more specific than "water"; "bois" alone is wood, "en bois" too
   const STOP = new Set(norm('le la les l un une des de du d au aux a à en et ou avec sans sur sous dans pour par vers depuis tres plutot ' +
     'qui que avec style type vue vues image images rendu rendus visuel visuels perspective perspectives projet projets reference references ' +
     'photo cgi 3d je cherche voudrais veux besoin quelque chose comme genre ' +
-    'the an of in on at with and or for by from to near some like view render rendering image visualization project').split(' '));
+    'the an of in on at with and or for by from to near some like view render rendering image visualization project ' +
+    'looking want need something picture shot please show me').split(' '));
   LEXICON.forEach(c => { c.qRx = termRx(c.q); c.tRx = termRx(c.t); });
 
   /* =====================================================================
@@ -219,7 +248,7 @@
     rest.split(' ').filter(w => w.length >= 3 && !STOP.has(w) && !/^\d+$/.test(w)).forEach(w => {
       const rx = termRx([w]);
       const n = projects.filter(p => textOf(p).some(([, s]) => { rx.lastIndex = 0; return rx.test(s); })).length;
-      if (n) concepts.push({ id: 'free:' + w, dim: 'text', label: '« ' + w + ' »', tags: [], tRx: rx, free: true });
+      if (n) concepts.push({ id: 'free:' + w, dim: 'text', word: w, label: w, tags: [], tRx: rx, free: true });
       else unknown.push(w);
     });
     concepts.sort((a, b) => Object.keys(DIM).indexOf(a.dim) - Object.keys(DIM).indexOf(b.dim));
@@ -283,96 +312,97 @@
 
   /* =====================================================================
    * 3. BRIEF STATE (per browser; never required for the page to work)
+   *    Items keep project ids and take ids only, so they survive language changes.
    * ===================================================================== */
-  const TAKES = [
-    { id: 'lumiere', label: 'Lumière' }, { id: 'angle', label: 'Angle de vue' },
-    { id: 'materiau', label: 'Matériau' }, { id: 'facade', label: 'Détail de façade' }
-  ];
+  const TAKES = ['lumiere', 'angle', 'materiau', 'facade'];
   let brief = { query: '', items: [] };
   try { const s = JSON.parse(localStorage.getItem(STORE_KEY) || 'null'); if (s && Array.isArray(s.items)) brief = s; } catch (_) { /* private mode */ }
   const save = () => { try { localStorage.setItem(STORE_KEY, JSON.stringify(brief)); } catch (_) { /* ignore */ } };
+  const t = (k, v) => I.t(k, v);
 
   /* =====================================================================
    * 4. UI
    * ===================================================================== */
   let api = null, byId = new Map(), lastQuery = '';
-  const EXAMPLES = [
-    'Maison contemporaine au bord de l’eau, au crépuscule, vue depuis le sol',
-    'Modern cabin in the forest at night',
-    'Hall d’hôtel en marbre',
-    'Gratte-ciel en bois sous la neige'
-  ];
+  let view = null;            // current results: { out, shown, active } — re-rendered as is on language change
 
-  // ---- search form ----
-  const input = h('input', { type: 'search', id: 'dl-q', name: 'q', autocomplete: 'off', enterkeyhint: 'search',
-    placeholder: 'Ex. : maison contemporaine au bord de l’eau, au crépuscule', 'aria-describedby': 'dl-q-help' });
-  const submit = h('button', { type: 'submit', class: 'dl-link dl-search-go' }, 'Rechercher');
-  const status = h('p', { class: 'dl-search-status', role: 'status', 'aria-live': 'polite' }, 'Chargement du catalogue…');
+  // ---- search form (persistent elements; texts set by paintSearch) ----
+  const input = h('input', { type: 'search', id: 'dl-q', name: 'q', autocomplete: 'off', enterkeyhint: 'search', 'aria-describedby': 'dl-q-help' });
+  const submit = h('button', { type: 'submit', class: 'dl-link dl-search-go' });
+  const status = h('p', { class: 'dl-search-status', role: 'status', 'aria-live': 'polite' });
   const results = h('div', { class: 'dl-results', id: 'dl-results' });
+  const label = h('label', { for: 'dl-q', class: 'dl-search-label' });
+  const help = h('p', { id: 'dl-q-help', class: 'dl-note' });
+  const examples = h('div', { class: 'dl-examples' });
   const form = h('form', { class: 'dl-search-form', role: 'search', onsubmit: e => { e.preventDefault(); run(input.value); } },
-    h('label', { for: 'dl-q', class: 'dl-search-label' }, 'Décrivez la référence recherchée'),
-    h('div', { class: 'dl-search-row' }, input, submit),
-    h('p', { id: 'dl-q-help', class: 'dl-note' },
-      'En français ou en anglais. La recherche lit les titres et les descriptions d’images publiés par ArchiCGI, ses catégories et les tags éditoriaux du prototype.'),
-    h('div', { class: 'dl-examples' }, h('span', { class: 'dl-note' }, 'Essayer :'),
-      EXAMPLES.map(x => h('button', { type: 'button', class: 'dl-tag dl-example', onclick: () => { input.value = x; run(x); } }, x))));
+    label, h('div', { class: 'dl-search-row' }, input, submit), help, examples);
   els.search.replaceChildren(form, status, results);
+  status.textContent = t('s.loading');
+
+  function paintSearch() {
+    label.textContent = t('s.label');
+    input.setAttribute('placeholder', t('s.placeholder'));
+    submit.textContent = t('s.go');
+    help.textContent = t('s.help');
+    examples.replaceChildren(h('span', { class: 'dl-note' }, t('s.try')),
+      ...t('s.examples').map(x => h('button', { type: 'button', class: 'dl-tag dl-example', onclick: () => { input.value = x; run(x); } }, x)));
+  }
 
   function evidenceChip(e) {
     if (e.kind === 'tag') {
       const w = e.why;
-      return h('span', { class: 'dl-src dl-src--ed', title: w ? 'Tag déduit de « ' + w[1] + ' »' : null },
-        'Éditorial · ' + e.text);
+      return h('span', { class: 'dl-src dl-src--ed', title: w ? t('s.tagFrom', { q: I.quote(w[1]) }) : null },
+        t('s.edShort') + ' · ' + I.tag(e.text));
     }
-    const where = e.kind === 'cat' ? 'catégorie' : e.field === 'title' ? 'titre' : e.field === 'alt' ? 'description d’image' : 'légende française';
-    return h('span', { class: 'dl-src dl-src--pub' }, 'ArchiCGI · ' + where + ' : ' + (e.kind === 'cat' ? e.text : '« ' + e.text + ' »'));
+    const where = e.kind === 'cat' ? t('s.srcCat') : e.field === 'title' ? t('s.srcTitle') : e.field === 'alt' ? t('s.srcAlt') : t('s.srcFr');
+    // the matched words are quoted as published, never translated
+    return h('span', { class: 'dl-src dl-src--pub' }, 'ArchiCGI · ' + where + (I.lang === 'en' ? ': ' : ' : ') + (e.kind === 'cat' ? e.text : I.quote(e.text)));
   }
 
+  const valName = v => (v === 'image fixe' ? t('s.stillImage') : I.tag(v));
   function critLine(x) {
     const icon = { match: '✓', near: '≈', unknown: '?', absent: '–', other: '✗' }[x.status];
-    const dim = DIM[x.c.dim];
     let detail;
     if (x.status === 'match') {
       // one published source is enough (title first), then ArchiCGI's category and the editorial tags
       const shown = [x.ev.find(e => e.kind === 'text'), ...x.ev.filter(e => e.kind === 'cat'), ...x.ev.filter(e => e.kind === 'tag')].filter(Boolean);
       detail = h('span', { class: 'dl-srcs' }, shown.map(evidenceChip));
-    }
-    else if (x.status === 'near') detail = h('span', { class: 'dl-srcs' }, h('span', { class: 'dl-crit-msg' }, 'proche : '), x.ev.map(evidenceChip));
-    else if (x.status === 'unknown') detail = h('span', { class: 'dl-crit-msg' }, dim.charAt(0).toUpperCase() + dim.slice(1) + ' non renseigné dans les données');
-    else if (x.status === 'other') detail = h('span', { class: 'dl-crit-msg' }, 'les données indiquent : ' + x.vals.join(', '));
-    else detail = h('span', { class: 'dl-crit-msg' }, x.vals && x.vals.length ? 'non mentionné (données : ' + x.vals.join(', ') + ')' : 'non mentionné');
+    } else if (x.status === 'near') detail = h('span', { class: 'dl-srcs' }, h('span', { class: 'dl-crit-msg' }, t('s.near')), x.ev.map(evidenceChip));
+    else if (x.status === 'unknown') {
+      const d = dimName(x.c.dim);
+      detail = h('span', { class: 'dl-crit-msg' }, t('s.unknown', { Dim: d.charAt(0).toUpperCase() + d.slice(1), fem: DIM_FEM.has(x.c.dim) }));
+    } else if (x.status === 'other') detail = h('span', { class: 'dl-crit-msg' }, t('s.other', { list: x.vals.map(valName).join(', ') }));
+    else detail = h('span', { class: 'dl-crit-msg' }, x.vals && x.vals.length ? t('s.absentVals', { list: x.vals.map(valName).join(', ') }) : t('s.absent'));
     return h('li', { class: 'dl-crit is-' + x.status },
       h('span', { class: 'dl-crit-icon', 'aria-hidden': 'true' }, icon),
-      h('span', { class: 'dl-crit-label' }, x.c.label, h('span', { class: 'dl-visually-hidden' }, ' — ' + {
-        match: 'correspond', near: 'correspondance approchée', unknown: 'non renseigné', absent: 'non mentionné', other: 'ne correspond pas' }[x.status])),
+      h('span', { class: 'dl-crit-label' }, cLabel(x.c), h('span', { class: 'dl-visually-hidden' }, ' — ' + t('s.sr.' + x.status))),
       detail);
   }
 
   function briefButton(id) {
     const on = brief.items.some(i => i.id === id);
     return h('button', { type: 'button', class: 'dl-tag dl-add', 'data-brief-id': id, 'aria-pressed': String(on),
-      onclick: () => toggle(id) }, on ? 'Dans le brief ✓' : 'Ajouter au brief');
+      onclick: () => toggle(id) }, t(on ? 's.inBrief' : 's.addBrief'));
   }
 
   function card(r) {
     const p = r.p, pub = p.published || {};
-    const n = r.crit.length;
-    const badge = r.full ? 'Correspond à tous les critères' : 'Correspondance partielle · ' + r.matched + '/' + n;
-    return h('article', { class: 'dl-card' + (r.full ? ' is-full' : ''), 'data-id': p.id },
+    const badge = r.full ? t('s.badgeFull') : t('s.badgePartial', { m: r.matched, n: r.crit.length });
+    return h('article', { class: 'dl-card' + (r.full ? ' is-full' : '') + (view && view.active === p.id ? ' is-active' : ''), 'data-id': p.id },
       p.thumb || p.image
         ? h('img', { class: 'dl-card-img', src: p.thumb || p.image, alt: p.imageAlt || p.label, loading: 'lazy', decoding: 'async', width: 96, height: 96,
-            onerror: e => e.target.replaceWith(h('div', { class: 'dl-card-img dl-card-noimg' }, 'Image indisponible')) })
-        : h('div', { class: 'dl-card-img dl-card-noimg' }, 'Pas d’image'),
+            onerror: e => e.target.replaceWith(h('div', { class: 'dl-card-img dl-card-noimg' }, t('s.imgError'))) })
+        : h('div', { class: 'dl-card-img dl-card-noimg' }, t('s.noImage')),
       h('div', { class: 'dl-card-body' },
         h('p', { class: 'dl-badge' + (r.full ? ' is-full' : '') }, badge),
         h('h3', {}, p.label),
         pub.categories && pub.categories.length ? h('p', { class: 'dl-note' }, 'ArchiCGI · ' + pub.categories.join(', ')) : null,
         h('ul', { class: 'dl-crits' }, r.crit.map(critLine)),
         h('div', { class: 'dl-card-actions' },
-          h('button', { type: 'button', class: 'dl-tag dl-show', onclick: () => showInGraph(p.id) }, 'Voir dans le graphe'),
+          h('button', { type: 'button', class: 'dl-tag dl-show', onclick: () => showInGraph(p.id) }, t('s.showGraph')),
           briefButton(p.id),
           safeUrl(p.url) ? h('a', { class: 'dl-tag dl-ext', href: safeUrl(p.url), target: '_blank', rel: 'noopener noreferrer' },
-            pub.pageRedirectsTo ? 'Portfolio ArchiCGI ↗' : 'Voir sur ArchiCGI ↗') : null)));
+            t(pub.pageRedirectsTo ? 's.viewPortfolio' : 's.viewArchi')) : null)));
   }
 
   function run(query) {
@@ -380,55 +410,61 @@
     lastQuery = query;
     if (!api) return;
     try { const u = new URL(location.href); if (query) u.searchParams.set('q', query); else u.searchParams.delete('q'); history.replaceState(null, '', u); } catch (_) { /* file:// */ }
-    if (!query) { results.replaceChildren(); status.textContent = ''; api.setHits([]); return; }
+    if (!query) { view = null; results.replaceChildren(); status.textContent = ''; api.setHits([]); return; }
     const out = search(query, api.projects);
     if (!brief.query || brief.query === brief.autoQuery) { brief.query = query; brief.autoQuery = query; save(); renderBrief(); }
+    view = { out, shown: Math.min(RESULTS_STEP, out.results.length), active: null };
+    paintResults();
+    // halo in the graph: full matches, or the closest partial ones
+    api.setHits(out.concepts.length ? (out.full ? out.results.filter(r => r.full) : out.results.slice(0, 20)).map(r => r.p.id) : []);
+  }
+
+  // Draws the current results in the interface language (also used on language change: same results, same count)
+  function paintResults() {
     results.replaceChildren();
+    if (!view) { status.textContent = ''; return; }
+    const out = view.out;
+    const unknownList = out.unknown.map(w => I.quote(w)).join(', ');
     if (!out.concepts.length) {
-      status.textContent = 'Aucun critère reconnu' + (out.unknown.length ? ' (« ' + out.unknown.join(' », « ') + ' » introuvable dans le catalogue)' : '') + '. Reformulez ou essayez un exemple.';
-      api.setHits([]);
+      status.textContent = t('s.noCriteria', { unknown: unknownList });
       return;
     }
     const partial = out.results.length - out.full;
-    status.textContent = out.full
-      ? plural(out.full, 'projet réunit', 'projets réunissent') + ' tous les critères' + (partial ? ', ' + plural(partial, 'autre correspondance partielle', 'autres correspondances partielles') : '') + '.'
-      : 'Aucun projet ne réunit tous les critères. ' + plural(partial, 'correspondance partielle', 'correspondances partielles') + ', de la plus proche à la plus éloignée.';
+    status.textContent = out.full ? t('s.full', { n: out.full, partial }) : t('s.none', { partial });
     results.append(h('div', { class: 'dl-understood' },
-      h('span', { class: 'dl-note' }, 'Critères compris :'),
+      h('span', { class: 'dl-note' }, t('s.understood')),
       out.concepts.map(c => {
         const pc = out.perConcept.find(x => x.c === c);
-        return h('span', { class: 'dl-concept' }, c.label, h('small', {}, ' ' + DIM[c.dim] + ' · ' + plural(pc ? pc.n : 0, 'projet', 'projets')));
+        return h('span', { class: 'dl-concept' }, cLabel(c), h('small', {}, ' ' + dimName(c.dim) + ' · ' + t('s.projects', { n: pc ? pc.n : 0 })));
       }),
-      out.unknown.length ? h('span', { class: 'dl-concept is-unknown' }, 'Non trouvé : « ' + out.unknown.join(' », « ') + ' »') : null));
+      out.unknown.length ? h('span', { class: 'dl-concept is-unknown' }, t('s.notFound', { list: unknownList })) : null));
     if (!out.full && out.concepts.length > 1) {
-      const missing = out.perConcept.filter(x => x.n === 0).map(x => x.c.label);
-      results.append(h('p', { class: 'dl-nomatch' }, missing.length
-        ? 'Le catalogue ne contient aucun projet pour : ' + missing.join(', ') + '. Les résultats ci-dessous réunissent une partie des critères.'
-        : 'Chaque critère existe dans le catalogue, mais jamais tous ensemble. Les résultats ci-dessous en réunissent une partie.'));
+      const missing = out.perConcept.filter(x => x.n === 0).map(x => cLabel(x.c));
+      results.append(h('p', { class: 'dl-nomatch' }, missing.length ? t('s.missing', { list: missing.join(', ') }) : t('s.neverTogether')));
     }
-    results.append(h('p', { class: 'dl-note dl-legend-line' },
-      '✓ correspond · ≈ approché · ? non renseigné dans les données · – non mentionné · ✗ les données indiquent autre chose. ',
-      h('span', { class: 'dl-src dl-src--pub' }, 'ArchiCGI'), ' donnée publiée · ',
-      h('span', { class: 'dl-src dl-src--ed' }, 'Éditorial'), ' tag du prototype'));
+    results.append(h('p', { class: 'dl-note dl-legend-line' }, t('s.legend'),
+      h('span', { class: 'dl-src dl-src--pub' }, 'ArchiCGI'), ' ' + t('s.legendPub'),
+      h('span', { class: 'dl-src dl-src--ed' }, t('s.edShort')), ' ' + t('s.legendEd')));
     const grid = h('div', { class: 'dl-cards' });
     results.append(grid);
-    let shown = 0;
     const more = h('button', { type: 'button', class: 'dl-more', onclick: () => step() });
-    function step() {
-      out.results.slice(shown, shown + RESULTS_STEP).forEach(r => grid.append(card(r)));
-      shown = Math.min(out.results.length, shown + RESULTS_STEP);
-      const rest = out.results.length - shown;
-      if (rest > 0) more.textContent = 'Afficher ' + Math.min(rest, RESULTS_STEP) + ' résultats de plus (' + rest + ' restants)';
+    let drawn = 0;
+    function draw(upto) {
+      out.results.slice(drawn, upto).forEach(r => grid.append(card(r)));
+      drawn = upto;
+      view.shown = drawn;
+      const rest = out.results.length - drawn;
+      if (rest > 0) more.textContent = t('s.moreResults', { k: Math.min(rest, RESULTS_STEP), rest });
       else more.remove();
     }
-    step();
-    if (out.results.length > RESULTS_STEP) results.append(more);
-    // halo in the graph: full matches, or the closest partial ones
-    api.setHits((out.full ? out.results.filter(r => r.full) : out.results.slice(0, 20)).map(r => r.p.id));
+    function step() { draw(Math.min(out.results.length, drawn + RESULTS_STEP)); }
+    draw(Math.min(out.results.length, Math.max(view.shown, RESULTS_STEP)));
+    if (out.results.length > drawn) results.append(more);
   }
 
   function showInGraph(id) {
     if (!api || !api.showProject(id)) return;
+    if (view) view.active = id;
     els.search.querySelectorAll('.dl-card.is-active').forEach(c => c.classList.remove('is-active'));
     const c = els.search.querySelector('.dl-card[data-id="' + CSS.escape(id) + '"]');
     if (c) c.classList.add('is-active');
@@ -447,96 +483,105 @@
     document.querySelectorAll('.dl-add[data-brief-id]').forEach(b => {
       const on = brief.items.some(i => i.id === b.dataset.briefId);
       b.setAttribute('aria-pressed', String(on));
-      b.textContent = on ? 'Dans le brief ✓' : 'Ajouter au brief';
+      b.textContent = t(on ? 's.inBrief' : 's.addBrief');
     });
   }
 
-  const briefQuery = h('textarea', { id: 'dl-brief-query', rows: '2', placeholder: 'Ce que le visuel doit montrer' });
+  const briefQuery = h('textarea', { id: 'dl-brief-query', rows: '2' });
   briefQuery.addEventListener('input', () => { brief.query = briefQuery.value; brief.autoQuery = ''; save(); renderPreview(); });
   const briefList = h('ol', { class: 'dl-brief-list' });
-  const copyBtn = h('button', { type: 'button', class: 'dl-link', id: 'dl-copy', onclick: () => copyBrief() }, 'Copier le brief');
+  const copyBtn = h('button', { type: 'button', class: 'dl-link', id: 'dl-copy', onclick: () => copyBrief() });
   const clearBtn = h('button', { type: 'button', class: 'dl-link dl-link--alt', onclick: () => {
     if (!brief.items.length) return;
     brief.items = []; save(); renderBrief(); syncButtons(); if (api) api.refreshPanel();
-  } }, 'Vider la sélection');
+  } });
   const copyStatus = h('p', { class: 'dl-copy-status', role: 'status', 'aria-live': 'polite' });
   const preview = h('pre', { class: 'dl-preview', id: 'dl-brief-preview' });
-  const previewBox = h('details', { class: 'dl-preview-box' }, h('summary', {}, 'Aperçu du texte copié'), preview);
+  const previewSummary = h('summary', {});
+  const previewBox = h('details', { class: 'dl-preview-box' }, previewSummary, preview);
   const briefCount = h('span', { class: 'dl-brief-count' });
+  const briefTitleText = document.createTextNode('');
+  const briefIntro = h('p', {});
+  const requestLabel = h('label', { for: 'dl-brief-query', class: 'dl-search-label' });
   els.brief.replaceChildren(
-    h('div', { class: 'dl-brief-head' },
-      h('h2', { id: 'dl-brief-title' }, 'Sélection pour le brief ', briefCount),
-      h('p', {}, 'Ajoutez des images depuis les résultats ou le graphe, puis indiquez ce qu’il faut reprendre de chacune : la lumière, l’angle de vue, un matériau ou un détail de façade.')),
-    h('label', { for: 'dl-brief-query', class: 'dl-search-label' }, 'Demande'), briefQuery,
-    briefList,
+    h('div', { class: 'dl-brief-head' }, h('h2', { id: 'dl-brief-title' }, briefTitleText, ' ', briefCount), briefIntro),
+    requestLabel, briefQuery, briefList,
     h('div', { class: 'dl-brief-actions' }, copyBtn, clearBtn),
     copyStatus, previewBox);
   els.brief.setAttribute('aria-labelledby', 'dl-brief-title');
+
+  function paintBriefStatic() {
+    briefTitleText.textContent = t('b.title');
+    briefIntro.textContent = t('b.intro');
+    requestLabel.textContent = t('b.request');
+    briefQuery.setAttribute('placeholder', t('b.requestPh'));
+    copyBtn.textContent = t('b.copy');
+    clearBtn.textContent = t('b.clear');
+    previewSummary.textContent = t('b.preview');
+  }
 
   function renderBrief() {
     if (document.activeElement !== briefQuery) briefQuery.value = brief.query || '';
     briefCount.textContent = '(' + brief.items.length + ')';
     briefList.replaceChildren();
-    if (!brief.items.length) {
-      briefList.append(h('li', { class: 'dl-brief-empty' }, 'La sélection est vide. Utilisez « Ajouter au brief » sur une carte de résultat ou dans le panneau du graphe.'));
-    }
+    if (!brief.items.length) briefList.append(h('li', { class: 'dl-brief-empty' }, t('b.empty')));
     brief.items.forEach((it, idx) => {
       const p = byId.get(it.id); if (!p) return;
       const pub = p.published || {};
-      const note = h('textarea', { rows: '2', class: 'dl-brief-note', id: 'dl-note-' + idx,
-        placeholder: 'Ex. : reflets du ciel au crépuscule sur la façade vitrée' });
+      const note = h('textarea', { rows: '2', class: 'dl-brief-note', id: 'dl-note-' + idx, placeholder: t('b.notePh') });
       note.value = it.note || '';
       note.addEventListener('input', () => { it.note = note.value; save(); renderPreview(); });
       briefList.append(h('li', { class: 'dl-brief-item', 'data-id': p.id },
-        p.thumb ? h('img', { src: p.thumb, alt: '', loading: 'lazy', width: 72, height: 72 }) : h('div', { class: 'dl-card-noimg' }, 'Pas d’image'),
+        p.thumb ? h('img', { src: p.thumb, alt: '', loading: 'lazy', width: 72, height: 72 }) : h('div', { class: 'dl-card-noimg' }, t('s.noImage')),
         h('div', { class: 'dl-brief-body' },
           h('h3', {}, (idx + 1) + '. ', safeUrl(p.url) ? h('a', { href: safeUrl(p.url), target: '_blank', rel: 'noopener noreferrer' }, p.label) : p.label),
-          h('p', { class: 'dl-note' }, 'Source ArchiCGI' + (pub.categories && pub.categories.length ? ' · ' + pub.categories.join(', ') : '')),
-          h('div', { class: 'dl-takes', role: 'group', 'aria-label': 'À reprendre de cette image' },
-            h('span', { class: 'dl-note' }, 'À reprendre :'),
-            TAKES.map(t => h('button', { type: 'button', class: 'dl-tag dl-take', 'data-take': t.id, 'aria-pressed': String(it.takes.includes(t.id)),
+          h('p', { class: 'dl-note' }, t('b.source') + (pub.categories && pub.categories.length ? ' · ' + pub.categories.join(', ') : '')),
+          h('div', { class: 'dl-takes', role: 'group', 'aria-label': t('b.takesGroup') },
+            h('span', { class: 'dl-note' }, t('b.takes')),
+            TAKES.map(id => h('button', { type: 'button', class: 'dl-tag dl-take', 'data-take': id, 'aria-pressed': String(it.takes.includes(id)),
               onclick: e => {
-                const k = it.takes.indexOf(t.id);
-                if (k >= 0) it.takes.splice(k, 1); else it.takes.push(t.id);
+                const k = it.takes.indexOf(id);
+                if (k >= 0) it.takes.splice(k, 1); else it.takes.push(id);
                 e.currentTarget.setAttribute('aria-pressed', String(k < 0));
                 save(); renderPreview();
-              } }, t.label))),
-          h('label', { for: 'dl-note-' + idx, class: 'dl-visually-hidden' }, 'Note pour ' + p.label), note,
+              } }, t('take.' + id)))),
+          h('label', { for: 'dl-note-' + idx, class: 'dl-visually-hidden' }, t('b.noteFor', { title: p.label })), note,
           h('div', { class: 'dl-card-actions' },
-            h('button', { type: 'button', class: 'dl-tag', onclick: () => showInGraph(p.id) }, 'Voir dans le graphe'),
-            h('button', { type: 'button', class: 'dl-tag', onclick: () => toggle(p.id) }, 'Retirer')))));
+            h('button', { type: 'button', class: 'dl-tag', onclick: () => showInGraph(p.id) }, t('s.showGraph')),
+            h('button', { type: 'button', class: 'dl-tag', onclick: () => toggle(p.id) }, t('b.remove'))))));
     });
     copyBtn.disabled = !brief.items.length;
     renderPreview();
   }
 
+  // The copied text: labels in the interface language; request, notes, titles and links exactly as entered / published
   function briefText() {
     const L = [];
-    L.push('BRIEF — RÉFÉRENCES VISUELLES');
-    if ((brief.query || '').trim()) L.push('Demande : ' + brief.query.trim());
-    L.push('Sélection : ' + plural(brief.items.length, 'image', 'images') + ' du portfolio public d’ArchiCGI (Discovery Lab).');
+    L.push(t('bt.head'));
+    if ((brief.query || '').trim()) L.push(t('bt.request') + brief.query.trim());
+    L.push(t('bt.selection', { n: brief.items.length }));
     brief.items.forEach((it, i) => {
       const p = byId.get(it.id); if (!p) return;
       const pub = p.published || {};
-      const takes = TAKES.filter(t => it.takes.includes(t.id)).map(t => t.label.toLowerCase());
+      const takes = TAKES.filter(id => it.takes.includes(id)).map(id => t('take.' + id).toLowerCase());
       L.push('');
       L.push((i + 1) + '. ' + p.label);
-      L.push('   À reprendre : ' + (takes.length ? takes.join(', ') : 'non précisé'));
-      if ((it.note || '').trim()) L.push('   Note : ' + it.note.trim().replace(/\s*\n\s*/g, ' '));
-      L.push('   Source : ' + (p.url || ''));
-      if (pub.pageRedirectsTo) L.push('   (la page du projet renvoie vers le portfolio ArchiCGI)');
-      if (pub.categories && pub.categories.length) L.push('   Donnée ArchiCGI : catégorie ' + pub.categories.join(', '));
-      const tags = Object.values(p.facets || {}).flat().filter(t => t !== 'Extérieur' && t !== 'Intérieur');
-      if (tags.length) L.push('   Tags éditoriaux : ' + tags.join(' · '));
+      L.push(t('bt.takes') + (takes.length ? takes.join(', ') : t('bt.unspecified')));
+      if ((it.note || '').trim()) L.push(t('bt.note') + it.note.trim().replace(/\s*\n\s*/g, ' '));
+      L.push(t('bt.source') + (p.url || ''));
+      if (pub.pageRedirectsTo) L.push(t('bt.redirect'));
+      if (pub.categories && pub.categories.length) L.push(t('bt.category') + pub.categories.join(', '));
+      const tags = Object.values(p.facets || {}).flat().filter(x => x !== 'Extérieur' && x !== 'Intérieur').map(I.tag);
+      if (tags.length) L.push(t('bt.tags') + tags.join(' · '));
     });
     L.push('');
-    L.push('Tags éditoriaux : classification du prototype Discovery Lab, déduite des titres et descriptions publiés ; ce ne sont pas des données ArchiCGI. Images © ArchiCGI.');
+    L.push(t('bt.footer'));
     return L.join('\n');
   }
   function renderPreview() { preview.textContent = brief.items.length ? briefText() : ''; }
 
   async function copyBrief() {
-    if (!brief.items.length) { copyStatus.textContent = 'La sélection est vide.'; return; }
+    if (!brief.items.length) { copyStatus.textContent = t('b.emptyCopy'); return; }
     const text = briefText();
     let ok = false;
     try { if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(text); ok = true; } } catch (_) { /* fall back */ }
@@ -546,17 +591,28 @@
       try { ok = document.execCommand('copy'); } catch (_) { ok = false; }
       ta.remove();
     }
-    if (ok) {
-      copyStatus.textContent = 'Brief copié : ' + plural(brief.items.length, 'référence', 'références') + ' avec leurs liens vers ArchiCGI.';
-    } else {
+    if (ok) copyStatus.textContent = t('b.copied', { n: brief.items.length });
+    else {
       previewBox.open = true;
       const range = document.createRange(); range.selectNodeContents(preview);
       const sel = getSelection(); sel.removeAllRanges(); sel.addRange(range);
-      copyStatus.textContent = 'Copie automatique impossible dans ce navigateur : le texte est sélectionné ci-dessous, copiez-le manuellement.';
+      copyStatus.textContent = t('b.copyFail');
     }
   }
 
+  /* ---------- language change: repaint in place, state untouched ---------- */
+  document.addEventListener('discovery:lang', () => {
+    paintSearch();
+    if (!api) status.textContent = t('s.loading');
+    else paintResults();
+    paintBriefStatic();
+    renderBrief();
+    copyStatus.textContent = '';
+  });
+
   /* ---------- boot ---------- */
+  paintSearch();
+  paintBriefStatic();
   function ready() {
     if (api || !window.discoveryGraph || !window.discoveryGraph.projects) return;
     api = window.discoveryGraph;

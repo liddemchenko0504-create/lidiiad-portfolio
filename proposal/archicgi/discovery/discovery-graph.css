@@ -328,3 +328,15 @@ html.dl-noscroll, html.dl-noscroll body { overflow: hidden; }
   .dl-brief-item { grid-template-columns: 56px minmax(0, 1fr); gap: 10px; padding: 12px; }
   .dl-brief-item img { width: 56px; height: 56px; }
 }
+
+/* ---------- FR / EN switch (discovery-i18n.js) ---------- */
+.dl-head-right { display: inline-flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.dl-lang { display: inline-flex; border: 1px solid #f3f1ed; }
+.dl-lang button {
+  font: inherit; font-size: 11px; letter-spacing: .15em; min-width: 44px; min-height: 36px; padding: 6px 10px;
+  background: transparent; color: #f3f1ed; border: 0; cursor: pointer;
+}
+.dl-lang button + button { border-left: 1px solid #f3f1ed; }
+.dl-lang button[aria-pressed="true"] { background: #f3f1ed; color: #111113; }
+.dl-lang button:hover:not([aria-pressed="true"]) { background: #29292b; }
+.dl-lang button:focus-visible { outline: 2px solid #f3f1ed; outline-offset: 2px; }
