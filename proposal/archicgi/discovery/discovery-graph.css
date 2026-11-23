@@ -79,6 +79,27 @@
   cursor: pointer;
 }
 .dl-controls button:last-child { border-bottom: 0; font-size: 12px; }
+.dl-controls .dl-fs svg { width: 16px; height: 16px; display: block; margin: auto; fill: none; stroke: currentColor; stroke-width: 1.6; }
+
+/* ---------- Full screen (native :fullscreen element or fixed overlay) ---------- */
+.dl.is-full {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  padding: 16px;
+  padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
+           max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  background: var(--dl-paper);
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+}
+.dl.is-full .dl-stage { height: auto; min-height: 0; }
+.dl.is-full .dl-panel { align-self: stretch; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+html.dl-noscroll, html.dl-noscroll body { overflow: hidden; }
 .dl-controls button:hover { background: var(--dl-line); }
 
 .dl-hint {
@@ -160,6 +181,7 @@
     grid-template-areas: "filters" "stage" "panel";
   }
   .dl-stage { height: clamp(420px, 68vh, 720px); }
+  .dl.is-full { grid-template-rows: auto minmax(0, 1fr) minmax(0, 34%); }
 }
 
 /* ---------- Mobile ---------- */
@@ -175,6 +197,13 @@
   .dl-filters::-webkit-scrollbar { display: none; }
   .dl-chip { flex: none; }
   .dl-stage { height: 62svh; min-height: 380px; }  /* leaves room to scroll the page past the graph */
+  /* phone: the graph gets most of the screen */
+  .dl.is-full {
+    --dl-gap: 12px;
+    padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
+             max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+    grid-template-rows: auto minmax(0, 1fr) minmax(0, 20%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

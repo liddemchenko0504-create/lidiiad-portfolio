@@ -338,11 +338,57 @@
     /* ----- controls & hint ----- */
     const hint = h('p', { class: 'dl-hint' },
       'Glissez pour déplacer. Pincez ou faites défiler pour zoomer.');
+    const fsBtn = h('button', { type: 'button', class: 'dl-fs', onclick: () => (isFull() ? exitFull() : enterFull()) });
     const controls = h('div', { class: 'dl-controls', role: 'group', 'aria-label': 'Contrôles de la vue' },
+      fsBtn,
       h('button', { type: 'button', 'aria-label': 'Zoom avant', onclick: () => zoomBy(1.3) }, '+'),
       h('button', { type: 'button', 'aria-label': 'Zoom arrière', onclick: () => zoomBy(1 / 1.3) }, '\u2212'),
       h('button', { type: 'button', 'aria-label': 'Réinitialiser la vue', onclick: fitView }, 'Tout'));
     els.stage.append(hint, controls, buildLegend());
+
+    /* ----- full screen: the whole lab (filters + graph + panel) -----
+     * Native Fullscreen API where the browser allows it on an element; otherwise
+     * (iPhone Safari, embedded frames) a fixed overlay covering the viewport. */
+    const fsEl = () => document.fullscreenElement || document.webkitFullscreenElement || null;
+    const canNativeFs = !!(document.fullscreenEnabled || document.webkitFullscreenEnabled) &&
+      !!(root.requestFullscreen || root.webkitRequestFullscreen);
+    const isFull = () => root.classList.contains('is-full');
+    function setFull(on, pseudo) {
+      root.classList.toggle('is-full', on);
+      root.classList.toggle('is-pseudo-full', on && !!pseudo);
+      document.documentElement.classList.toggle('dl-noscroll', on && !!pseudo);
+      const label = on ? 'Quitter le plein écran' : 'Plein écran';
+      fsBtn.setAttribute('aria-label', label);
+      fsBtn.setAttribute('title', label);
+      fsBtn.setAttribute('aria-pressed', String(on));
+      const NS = 'http://www.w3.org/2000/svg', svg = document.createElementNS(NS, 'svg'), path = document.createElementNS(NS, 'path');
+      svg.setAttribute('viewBox', '0 0 16 16'); svg.setAttribute('aria-hidden', 'true');
+      path.setAttribute('d', on ? 'M6 2v4H2M10 2v4h4M10 14v-4h4M6 14v-4H2' : 'M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4');
+      svg.append(path);
+      fsBtn.replaceChildren(svg);
+    }
+    function enterFull() {
+      if (canNativeFs) {
+        const req = root.requestFullscreen || root.webkitRequestFullscreen;
+        const r = req.call(root);
+        if (r && typeof r.catch === 'function') r.catch(() => setFull(true, true));   // refused: overlay instead
+        return;
+      }
+      setFull(true, true);
+    }
+    function exitFull() {
+      if (fsEl() === root) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      else setFull(false);
+    }
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(t => document.addEventListener(t, () => {
+      if (fsEl() === root) setFull(true, false);
+      else if (!root.classList.contains('is-pseudo-full')) setFull(false);
+    }));
+    // Escape closes the overlay (native full screen handles Escape itself); a selection is cleared first
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !e.defaultPrevented && root.classList.contains('is-pseudo-full')) setFull(false);
+    });
+    setFull(false);
     // Remove the hint on the first real user interaction (not on the programmatic initial fit)
     const dropHint = () => {
       hint.remove();
@@ -415,7 +461,7 @@
       els.graph.style.cursor = '';
       if (canHover && !selectedId) clearHighlight();
     });
-    root.addEventListener('keydown', e => { if (e.key === 'Escape' && selectedId) clearSelection(); });
+    root.addEventListener('keydown', e => { if (e.key === 'Escape' && selectedId) { clearSelection(); e.preventDefault(); } });
 
     function applyFilter(id) {
       activeFilter = id;
