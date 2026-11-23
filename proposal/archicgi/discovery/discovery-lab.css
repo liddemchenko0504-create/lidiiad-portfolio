@@ -40,7 +40,8 @@ body.lab {
   font-family: var(--font-body); font-size: 16px; line-height: 1.5;
   -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
 }
-body.lab a { color: inherit; }
+/* zero specificity: links inherit the text colour unless a component (button, link-button) sets its own */
+:where(body.lab) a { color: inherit; }
 :focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 .dl-visually-hidden, .dl-offscreen {
   position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -60,8 +61,8 @@ body.lab a { color: inherit; }
 .dl-btn:hover { border-color: var(--ink); }
 .dl-btn--primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .dl-btn--primary:hover { background: #fff; border-color: #fff; }
-.dl-btn--ghost, body.lab a.dl-btn--ghost { border-color: transparent; color: var(--mute); padding: 0 10px; }
-.dl-btn--ghost:hover, body.lab a.dl-btn--ghost:hover { border-color: transparent; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+.dl-btn--ghost { border-color: transparent; color: var(--mute); padding: 0 10px; }
+.dl-btn--ghost:hover { border-color: transparent; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
 .dl-btn[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .dl-btn:disabled { opacity: .4; cursor: not-allowed; }
 .dl-btn[hidden] { display: none; }
