@@ -562,6 +562,7 @@
   const briefQuery = h('textarea', { id: 'dl-brief-query', rows: '2' });
   briefQuery.addEventListener('input', () => { brief.query = briefQuery.value; brief.autoQuery = ''; save(); renderPreview(); });
   const briefList = h('ol', { class: 'dl-brief-list' });
+  const briefStorageNote = h('p', { class: 'dl-note dl-brief-storage' });
   const copyBtn = h('button', { type: 'button', class: 'dl-btn dl-btn--primary', id: 'dl-copy', onclick: () => copyBrief() });
   const clearBtn = h('button', { type: 'button', class: 'dl-btn dl-btn--ghost dl-clear', onclick: () => {
     if (!brief.items.length) return;
@@ -577,7 +578,7 @@
   const requestLabel = h('label', { for: 'dl-brief-query', class: 'dl-search-label' });
   els.brief.replaceChildren(
     h('div', { class: 'dl-brief-head' }, h('h2', { id: 'dl-brief-title' }, briefTitleText, ' ', briefCount), briefIntro),
-    requestLabel, briefQuery, briefList,
+    requestLabel, briefQuery, briefList, briefStorageNote,
     h('div', { class: 'dl-brief-actions' }, copyBtn, clearBtn),
     copyStatus, previewBox);
   els.brief.setAttribute('aria-labelledby', 'dl-brief-title');
@@ -587,6 +588,7 @@
     briefIntro.textContent = t('b.intro');
     requestLabel.textContent = t('b.request');
     briefQuery.setAttribute('placeholder', t('b.requestPh'));
+    briefStorageNote.textContent = t('b.storageNote');
     copyBtn.textContent = t('b.copy');
     clearBtn.textContent = t('b.clear');
     previewTitle.textContent = t('b.preview');
