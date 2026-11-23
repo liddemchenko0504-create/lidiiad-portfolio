@@ -428,7 +428,7 @@
   }
 
   // Result tile: large render with its rank, title, one line of gaps; details folded; few actions
-  function card(r, rank) {
+  function card(r) {
     const p = r.p, pub = p.published || {};
     const badge = r.full ? t('s.badgeFull') : t('s.badgePartial', { m: r.matched, n: r.crit.length });
     const gaps = gapsText(r);
@@ -440,7 +440,7 @@
     return h('article', { class: 'dl-card' + (r.full ? ' is-full' : '') + (view && view.active === p.id ? ' is-active' : ''), 'data-id': p.id },
       h('button', { type: 'button', class: 'dl-card-media', 'aria-label': t('s.openRender', { title: p.label }),
         onclick: () => openRender(r), disabled: src && window.discoveryDetails ? null : '' },
-        media, h('span', { class: 'dl-card-num', 'aria-hidden': 'true' }, '# ' + String(rank).padStart(2, '0'))),
+        media),
       h('div', { class: 'dl-card-body' },
         h('p', { class: 'dl-badge' + (r.full ? ' is-full' : '') }, badge),
         h('h3', {}, p.label),
@@ -507,7 +507,7 @@
     const more = h('button', { type: 'button', class: 'dl-more', onclick: () => step() });
     let drawn = 0;
     function draw(upto) {
-      out.results.slice(drawn, upto).forEach((r, i) => grid.append(card(r, drawn + i + 1)));
+      out.results.slice(drawn, upto).forEach(r => grid.append(card(r)));
       drawn = upto;
       view.shown = drawn;
       const rest = out.results.length - drawn;
