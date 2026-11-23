@@ -25,16 +25,17 @@
 <link rel="stylesheet" href="./discovery-graph.css">
 <link rel="stylesheet" href="./discovery-lab.css?v=16">
 <script defer src="https://unpkg.com/cytoscape@3.30.4/dist/cytoscape.min.js"></script>
-<script defer src="./discovery-i18n.js?v=7"></script>
-<script defer src="./discovery-graph.js?v=3"></script>
+<script defer src="./discovery-i18n.js?v=8"></script>
+<script defer src="./discovery-graph.js?v=4"></script>
 <script defer src="./discovery-brief.js?v=7"></script>
 <script defer src="./discovery-details.js?v=2"></script>
+<script defer src="./discovery-media.js?v=1"></script>
 </head><body class="lab">
 <header class="lab-head">
 <a class="lab-brand" href="./">
   <img src="/assets/AR%20x%20DISCOVERY%20LAB.png" width="200" height="105" alt="ArchiCGI × Discovery Lab">
 </a>
-<nav class="lab-nav" aria-label="Sections" data-i18n-attr="aria-label:nav.label"><a href="#lab-results" data-i18n="nav.results">Références</a><a href="#dl-brief" data-i18n="nav.brief">Références enregistrées</a><a href="#lab-graph" data-i18n="nav.graph">Graphe des liens</a></nav>
+<nav class="lab-nav" aria-label="Sections" data-i18n-attr="aria-label:nav.label"><a href="#lab-results" data-i18n="nav.results">Références</a><a href="#dl-brief" data-i18n="nav.brief">Références enregistrées</a><a href="#lab-media" data-i18n="nav.media">Films</a><a href="#lab-graph" data-i18n="nav.graph">Graphe des liens</a></nav>
 <span id="dl-lang"></span>
 </header>
 <main class="lab-main" id="top">
@@ -54,6 +55,7 @@
 <aside id="dl-brief" class="dlx dl-brief lab-brief"></aside>
 </div>
 </div>
+<section class="lab-media dlx" id="lab-media" aria-labelledby="lab-media-title"><div id="dl-media"></div></section>
 <section class="lab-graph" id="lab-graph" aria-labelledby="lab-graph-title">
 <h2 class="lab-h2" id="lab-graph-title" data-i18n="sec.graph">Graphe des liens</h2>
 <p class="lab-lead lab-lead--small" data-i18n="sec.graphLead">Chaque projet relié à ses catégories éditoriales : choisissez un projet ou une catégorie pour voir ce qui les relie.</p>
