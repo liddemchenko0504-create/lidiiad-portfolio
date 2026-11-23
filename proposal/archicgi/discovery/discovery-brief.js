@@ -437,10 +437,11 @@
       ? h('img', { class: 'dl-card-img', src, alt: p.imageAlt || p.label, loading: eagerImage ? 'eager' : 'lazy', decoding: 'async',
           onerror: e => e.target.replaceWith(h('span', { class: 'dl-card-img dl-card-noimg' }, t('s.imgError'))) })
       : h('span', { class: 'dl-card-img dl-card-noimg' }, t('s.noImage'));
+    const canOpen = Boolean(src && window.discoveryDetails);
     return h('article', { class: 'dl-card' + (r.full ? ' is-full' : '') + (view && view.active === p.id ? ' is-active' : ''), 'data-id': p.id },
       h('button', { type: 'button', class: 'dl-card-media', 'aria-label': t('s.openRender', { title: p.label }),
-        onclick: () => openRender(r), disabled: src && window.discoveryDetails ? null : '' },
-        media),
+        onclick: () => openRender(r), disabled: canOpen ? null : '' },
+        media, canOpen ? h('span', { class: 'dl-card-expand', 'aria-hidden': 'true' }, '⤢') : null),
       h('div', { class: 'dl-card-body' },
         h('p', { class: 'dl-badge' + (r.full ? ' is-full' : '') }, badge),
         h('h3', {}, p.label),
@@ -451,9 +452,8 @@
           explanation(r)),
         h('div', { class: 'dl-card-actions' },
           briefButton(p.id),
-          window.discoveryDetails && src ? h('button', { type: 'button', class: 'dl-btn dl-btn--ghost dl-enlarge', onclick: () => openRender(r) }, t('d.enlarge')) : null,
-          h('button', { type: 'button', class: 'dl-btn dl-btn--ghost dl-show', onclick: () => showInGraph(p.id) }, t('s.showGraph')),
-          safeUrl(p.url) ? h('a', { class: 'dl-btn dl-btn--ghost dl-ext', href: safeUrl(p.url), target: '_blank', rel: 'noopener noreferrer' },
+          canOpen ? null : h('button', { type: 'button', class: 'dl-btn dl-btn--ghost dl-show', onclick: () => showInGraph(p.id) }, t('s.showGraph')),
+          !canOpen && safeUrl(p.url) ? h('a', { class: 'dl-btn dl-btn--ghost dl-ext', href: safeUrl(p.url), target: '_blank', rel: 'noopener noreferrer' },
             t(pub.pageRedirectsTo ? 's.viewPortfolio' : 's.viewArchi')) : null)));
   }
 

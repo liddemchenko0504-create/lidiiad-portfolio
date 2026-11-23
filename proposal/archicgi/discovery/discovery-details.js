@@ -159,13 +159,13 @@
   const strip = h('ol', { class: 'dl-v-strip', 'aria-labelledby': 'dl-v-strip-title' });
   const stripBox = h('section', { class: 'dl-v-stripbox', hidden: '' }, stripTitle, strip);
   const dialog = h('dialog', { class: 'dlx dl-viewer', 'aria-labelledby': 'dl-v-title' },
-    h('div', { class: 'dl-v-head' }, h('div', { class: 'dl-v-titles' }, kicker, title), extLink, closeBtn),
+    h('div', { class: 'dl-v-head' }, h('div', { class: 'dl-v-titles' }, kicker, title), closeBtn),
     h('div', { class: 'dl-v-main' },
       h('div', { class: 'dl-v-left' }, h('div', { class: 'dl-v-stage' }, frame), stripBox),
       h('div', { class: 'dl-v-side' },
         h('div', { class: 'dl-v-tools' }, backBtn, findBtn, clearBtn, addMarkBtn),
         hint, status, notice, hitInfo, explainBox,
-        h('div', { class: 'dl-v-tools dl-v-tools--quiet' }, addFrameBtn, graphBtn))));
+        h('div', { class: 'dl-v-tools dl-v-tools--quiet' }, addFrameBtn, graphBtn, extLink))));
   document.body.append(dialog);
   dialog.addEventListener('close', () => { view = null; restoreHash(); });
   dialog.addEventListener('click', e => { if (e.target === dialog) close(); });   // backdrop
@@ -174,7 +174,7 @@
   //       explain (function returning a node: why this render matched the text search)
   function open(id, opts) {
     const p = project(id);
-    if (!p || !p.image) return false;
+    if (!p || !(p.image || p.thumb)) return false;
     opts = opts || {};
     view = { id, select: !!opts.select, selection: null, highlight: opts.highlight || null, result: null, active: 0,
       back: opts.from || null, explain: opts.explain || null };
@@ -198,6 +198,7 @@
   }
   function showInGraph(id) {
     close();
+    restoreHash();
     const g = graph();
     if (!g || !g.showProject(id)) return;
     g.stage.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
@@ -232,9 +233,10 @@
     title.textContent = p.label;
     kicker.textContent = 'ArchiCGI' + (pub.categories && pub.categories.length ? ' · ' + pub.categories.join(', ') : '');
     if (safeUrl(p.url)) { extLink.href = safeUrl(p.url); extLink.hidden = false; } else extLink.hidden = true;
-    extLink.textContent = t('s.viewArchi');
+    extLink.textContent = t(pub.pageRedirectsTo ? 's.viewPortfolio' : 's.viewArchi');
     closeBtn.setAttribute('aria-label', t('d.close'));
-    if (img.getAttribute('src') !== p.image) img.src = p.image;
+    const src = p.image || p.thumb;
+    if (img.getAttribute('src') !== src) img.src = src;
     img.alt = p.imageAlt || p.label;
     overlay.classList.toggle('is-selecting', !!view.select);
     overlay.setAttribute('tabindex', view.select ? '0' : '-1');
