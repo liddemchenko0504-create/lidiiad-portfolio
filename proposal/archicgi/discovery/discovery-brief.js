@@ -427,14 +427,14 @@
     window.discoveryDetails.open(r.p.id, { explain: () => explanation(r) });
   }
 
-  // Result tile: large render with its rank, title, one line of gaps; details folded; few actions
-  function card(r) {
+  // Result tile: large render, title, one line of gaps; details folded; few actions
+  function card(r, eagerImage) {
     const p = r.p, pub = p.published || {};
     const badge = r.full ? t('s.badgeFull') : t('s.badgePartial', { m: r.matched, n: r.crit.length });
     const gaps = gapsText(r);
     const src = p.image || p.thumb;
     const media = src
-      ? h('img', { class: 'dl-card-img', src, alt: p.imageAlt || p.label, loading: rank <= 4 ? 'eager' : 'lazy', decoding: 'async',
+      ? h('img', { class: 'dl-card-img', src, alt: p.imageAlt || p.label, loading: eagerImage ? 'eager' : 'lazy', decoding: 'async',
           onerror: e => e.target.replaceWith(h('span', { class: 'dl-card-img dl-card-noimg' }, t('s.imgError'))) })
       : h('span', { class: 'dl-card-img dl-card-noimg' }, t('s.noImage'));
     return h('article', { class: 'dl-card' + (r.full ? ' is-full' : '') + (view && view.active === p.id ? ' is-active' : ''), 'data-id': p.id },
@@ -507,7 +507,7 @@
     const more = h('button', { type: 'button', class: 'dl-more', onclick: () => step() });
     let drawn = 0;
     function draw(upto) {
-      out.results.slice(drawn, upto).forEach(r => grid.append(card(r)));
+      out.results.slice(drawn, upto).forEach((r, i) => grid.append(card(r, drawn + i < 4)));
       drawn = upto;
       view.shown = drawn;
       const rest = out.results.length - drawn;
