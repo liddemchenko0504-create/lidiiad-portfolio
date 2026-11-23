@@ -373,9 +373,36 @@ body.lab {
 
 /* Search entry state: keep the work area out of the layout until it is needed. */
 .lab:not(.lab-has-query, .lab-has-project-link) :is(.lab-nav, .lab-work, .lab-graph, .source,
-  .lab-intro .lab-lead, .lab-query .dl-note, .lab-query .dl-examples) {
+  .lab-intro .lab-lead, .lab-query #dl-q-help) {
   display: none;
 }
+body.lab:not(.lab-has-query, .lab-has-project-link) { isolation: isolate; }
+body.lab:not(.lab-has-query, .lab-has-project-link)::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)),
+    url(/assets/HP-desk.png) center / cover no-repeat;
+  filter: blur(10px) grayscale(1);
+}
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-examples {
+  gap: 6px 8px;
+}
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-examples > span {
+  flex-basis: 100%;
+  color: var(--ink);
+}
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-example {
+  min-height: 44px;
+  padding: 5px 10px;
+  border: 1px solid var(--line-2);
+  background: var(--surface);
+  text-align: left;
+  text-decoration: none;
+}
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-example:hover { border-color: var(--ink); }
 .lab:not(.lab-has-query, .lab-has-project-link) #dl-lang { margin-left: auto; }
 .lab:not(.lab-has-query, .lab-has-project-link) .lab-main { padding-bottom: 0; }
 .lab:not(.lab-has-query, .lab-has-project-link) .lab-intro {
