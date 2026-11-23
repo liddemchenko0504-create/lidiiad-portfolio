@@ -89,7 +89,7 @@
       // search
       's.loading': 'Chargement du catalogue…',
       's.label': 'Décrivez la référence recherchée',
-      's.placeholder': 'Ex. : maison contemporaine au bord de l’eau, au crépuscule',
+      's.placeholder': 'Ex. : maison moderne',
       's.go': 'Rechercher',
       's.help': 'En français ou en anglais. La recherche lit les titres et les descriptions d’images publiés par ArchiCGI, ses catégories et les tags éditoriaux du prototype.',
       's.try': 'Essayer :',
