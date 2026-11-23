@@ -1,0 +1,292 @@
+/*
+ * ArchiCGI Discovery Lab — interface language (French default, English)
+ * - t(key, vars): interface strings. Values may be functions of vars (plurals).
+ * - tag(label) / group(key) / filter(id): display names for editorial data. The data keeps its
+ *   canonical (French) labels and ids, so graph links, search and saved selections never change.
+ * - Published ArchiCGI text (titles, quotes), links and user notes are never translated.
+ * Load before discovery-graph.js and discovery-brief.js. The choice is kept in localStorage.
+ */
+(() => {
+  'use strict';
+  const STORE_KEY = 'dl-lang';
+  const LANGS = ['fr', 'en'];
+  const pl = (n, one, many) => n + ' ' + (n > 1 ? many : one);      // French: 0 and 1 are singular
+  const plEn = (n, one, many) => n + ' ' + (n === 1 ? one : many);
+
+  /* ---------- editorial vocabulary (canonical label -> English) ---------- */
+  const TAGS_EN = {
+    // building type
+    'Maison & villa': 'House & villa', 'Cabane & chalet': 'Cabin & chalet', 'Maison de ville': 'Townhouse',
+    'Immeuble résidentiel': 'Apartment building', 'Quartier & lotissement': 'Neighbourhood & development',
+    'Hôtel & resort': 'Hotel & resort', 'Restaurant & bar': 'Restaurant & bar', 'Bureaux & commerce': 'Office & retail',
+    'Équipement & loisirs': 'Public & leisure', 'Industriel': 'Industrial', 'Tour & gratte-ciel': 'Tower & skyscraper',
+    // view
+    'Extérieur': 'Exterior', 'Intérieur': 'Interior', 'Vue aérienne': 'Aerial view', 'Vue rapprochée': 'Close-up',
+    'Vue de rue': 'Street view', 'Façade': 'Facade', 'Vue arrière ou latérale': 'Rear or side view',
+    'Animation 3D': '3D animation', 'Scène de vie': 'Lifestyle scene',
+    // space
+    'Séjour': 'Living room', 'Chambre': 'Bedroom', 'Cuisine': 'Kitchen', 'Salle à manger': 'Dining room',
+    'Salle de bains': 'Bathroom', 'Hall & lobby': 'Hall & lobby', 'Piscine': 'Pool', 'Terrasse & rooftop': 'Terrace & rooftop',
+    'Jardin & paysage': 'Garden & landscape',
+    // style
+    'Moderne & contemporain': 'Modern & contemporary', 'Méditerranéen': 'Mediterranean',
+    'Classique & traditionnel': 'Classic & traditional', 'Rustique': 'Rustic', 'Haut de gamme': 'High-end',
+    // material
+    'Brique': 'Brick', 'Bois': 'Wood', 'Pierre': 'Stone', 'Verre': 'Glass', 'Enduit & stuc': 'Render & stucco',
+    'Bardeaux & bardage': 'Shingles & siding', 'Marbre': 'Marble', 'Métal': 'Metal', 'Béton': 'Concrete',
+    // light
+    'Nuit': 'Night', 'Crépuscule & soir': 'Dusk & evening', 'Lumière du jour': 'Daylight',
+    // surroundings
+    'Bord de mer': 'Seaside', 'Lac & rivière': 'Lake & river', 'Front d’eau': 'Waterfront', 'Montagne': 'Mountain',
+    'Forêt & nature': 'Forest & nature', 'Ville': 'City', 'Banlieue': 'Suburb', 'Tropical': 'Tropical',
+    'Hiver & neige': 'Winter & snow', 'Automne': 'Autumn', 'Décor de fête': 'Holiday decor'
+  };
+  const GROUPS_EN = { project: 'Projects', typology: 'Building type', view: 'View', space: 'Space', style: 'Style',
+    material: 'Materials', lighting: 'Light', context: 'Surroundings' };
+  const FILTERS_EN = { all: 'All', residentiel: 'Residential', collectif: 'Multifamily housing', hospitalite: 'Hospitality',
+    commercial: 'Commercial & public', interieur: 'Interior', exterieur: 'Exterior', aerien: 'Aerial view',
+    nuit: 'Night & dusk', eau: 'By the water', animation: '3D animation' };
+
+  /* ---------- interface strings ---------- */
+  const STR = {
+    fr: {
+      'lang.switch': 'Langue de l’interface', 'lang.fr': 'Français', 'lang.en': 'English',
+      'page.title': 'ArchiCGI — Discovery Lab',
+      'page.kicker': 'REFERENCE GRAPH — 434 PROJETS',
+      'page.intro': 'Trouvez des références visuelles pour un brief parmi les 434 projets du portfolio public d’ArchiCGI. Décrivez l’image recherchée avec vos mots, comparez les projets qui y répondent, explorez leurs liens dans le graphe, puis composez une sélection annotée à copier dans votre brief.',
+      'steps.label': 'Étapes', 'steps.1': '1. Décrire', 'steps.2': '2. Comparer', 'steps.3': '3. Explorer les liens', 'steps.4': '4. Composer le brief',
+      'step.search': '1. Décrire la référence', 'step.graph': '3. Explorer les liens',
+      'graph.section': 'Explorateur de références architecturales', 'graph.filters': 'Filtres de projets',
+      'graph.canvas': 'Graphe interactif de projets et de caractéristiques',
+      'footer.text': 'PROTOTYPE INDÉPENDANT — 434 projets issus du portfolio public d’ArchiCGI, ouvert depuis le bouton « Voir tout le portfolio » de la page française (438 éléments publiés\u00a0; quatre images publiées deux fois sont regroupées). Les six réalisations présentées sur la page française y figurent avec leur légende française. Les titres, images, liens et catégories du portfolio (Exterior Rendering, Interior Rendering, 3D animation) sont publiés par ArchiCGI et restent dans leur langue d’origine. Les filtres, les catégories du graphe et les critères de recherche s’appuient sur des classifications éditoriales déduites de ces titres et descriptions, pas sur des métadonnées officielles. La sélection pour le brief est enregistrée uniquement dans ce navigateur. Images © ArchiCGI, chargées depuis archicgi.com. Relevé du 23\u00a0novembre\u00a02026.',
+      'footer.source': 'SOURCE : ARCHICGI.COM/FR/', 'footer.portfolio': 'PORTFOLIO',
+
+      // graph
+      'g.error': 'Impossible d’afficher le graphe. Consultez la console du navigateur pour le détail.',
+      'g.hint': 'Glissez pour déplacer. Pincez ou faites défiler pour zoomer.',
+      'g.controls': 'Contrôles de la vue', 'g.zoomIn': 'Zoom avant', 'g.zoomOut': 'Zoom arrière',
+      'g.reset': 'Réinitialiser la vue', 'g.resetText': 'Tout',
+      'g.fsOn': 'Plein écran', 'g.fsOff': 'Quitter le plein écran', 'g.legend': 'Légende',
+      'g.listTitle': 'Sélectionnez un projet.',
+      'g.listIntro': v => pl(v.n, 'projet', 'projets') + (v.filter ? ' · ' + v.filter : '') +
+        ' du portfolio public d’ArchiCGI. Les connexions relient chaque projet aux catégories éditoriales de ce prototype.',
+      'g.more': v => 'Afficher ' + v.k + ' de plus (' + v.rest + ' restants)',
+      'g.back': 'Retour à la liste', 'g.published': 'Publié par ArchiCGI',
+      'g.category': v => 'Catégorie du portfolio : ' + v.list,
+      'g.frCaption': v => 'Sur la page française : ' + v.q,
+      'g.alsoPublished': 'Même image aussi publiée sous :',
+      'g.redirect': 'La page du projet renvoie vers le portfolio, où l’image est publiée.',
+      'g.editorialNote': 'Classification éditoriale — déduite du titre et de la description publiés, pas une donnée ArchiCGI. Choisissez une catégorie pour voir les autres projets qui la partagent.',
+      'g.near': 'Projets proches', 'g.nearNote': 'Reliés par des catégories éditoriales communes ; les plus rares comptent davantage.',
+      'g.shared': v => 'En commun : ' + v.list,
+      'g.viewProject': 'Voir le projet sur ArchiCGI', 'g.viewPortfolio': 'Voir dans le portfolio ArchiCGI',
+      'g.viewFr': 'Voir sur la page française', 'g.briefAdd': 'Ajouter au brief', 'g.briefRemove': 'Retirer du brief',
+      'g.facetKind': v => v.group + ' · catégorie éditoriale',
+      'g.facetCount': v => pl(v.n, 'projet lié', 'projets liés') + '. Sous chaque projet : le mot publié par ArchiCGI d’où vient ce lien.',
+      'field.title': 'titre ArchiCGI', 'field.alt': 'description d’image ArchiCGI', 'field.category': 'catégorie ArchiCGI',
+      'why.fallback': 'déduit des données publiées',
+
+      // search
+      's.loading': 'Chargement du catalogue…',
+      's.label': 'Décrivez la référence recherchée',
+      's.placeholder': 'Ex. : maison contemporaine au bord de l’eau, au crépuscule',
+      's.go': 'Rechercher',
+      's.help': 'En français ou en anglais. La recherche lit les titres et les descriptions d’images publiés par ArchiCGI, ses catégories et les tags éditoriaux du prototype.',
+      's.try': 'Essayer :',
+      's.examples': ['Maison contemporaine au bord de l’eau, au crépuscule, vue depuis le sol', 'Cabane moderne en forêt, la nuit',
+        'Hall d’hôtel en marbre', 'Gratte-ciel en bois sous la neige'],
+      's.noCriteria': v => 'Aucun critère reconnu' + (v.unknown ? ' (' + v.unknown + ' introuvable dans le catalogue)' : '') + '. Reformulez ou essayez un exemple.',
+      's.full': v => pl(v.n, 'projet réunit', 'projets réunissent') + ' tous les critères' +
+        (v.partial ? ', ' + pl(v.partial, 'autre correspondance partielle', 'autres correspondances partielles') : '') + '.',
+      's.none': v => 'Aucun projet ne réunit tous les critères. ' + pl(v.partial, 'correspondance partielle', 'correspondances partielles') + ', de la plus proche à la plus éloignée.',
+      's.understood': 'Critères compris :',
+      's.projects': v => pl(v.n, 'projet', 'projets'),
+      's.notFound': v => 'Non trouvé : ' + v.list,
+      's.missing': v => 'Le catalogue ne contient aucun projet pour : ' + v.list + '. Les résultats ci-dessous réunissent une partie des critères.',
+      's.neverTogether': 'Chaque critère existe dans le catalogue, mais jamais tous ensemble. Les résultats ci-dessous en réunissent une partie.',
+      's.legend': '✓ correspond · ≈ approché · ? non renseigné dans les données · – non mentionné · ✗ les données indiquent autre chose. ',
+      's.legendPub': 'donnée publiée · ', 's.legendEd': 'tag du prototype', 's.edShort': 'Éditorial',
+      's.moreResults': v => 'Afficher ' + v.k + ' résultats de plus (' + v.rest + ' restants)',
+      's.badgeFull': 'Correspond à tous les critères', 's.badgePartial': v => 'Correspondance partielle · ' + v.m + '/' + v.n,
+      's.noImage': 'Pas d’image', 's.imgError': 'Image indisponible',
+      's.showGraph': 'Voir dans le graphe', 's.inBrief': 'Dans le brief ✓', 's.addBrief': 'Ajouter au brief',
+      's.viewArchi': 'Voir sur ArchiCGI ↗', 's.viewPortfolio': 'Portfolio ArchiCGI ↗',
+      's.srcTitle': 'titre', 's.srcAlt': 'description d’image', 's.srcFr': 'légende française', 's.srcCat': 'catégorie',
+      's.tagFrom': v => 'Tag déduit de ' + v.q,
+      's.near': 'proche : ',
+      's.unknown': v => v.Dim + ' non renseigné' + (v.fem ? 'e' : '') + ' dans les données',
+      's.other': v => 'les données indiquent : ' + v.list,
+      's.absentVals': v => 'non mentionné (données : ' + v.list + ')', 's.absent': 'non mentionné',
+      's.sr.match': 'correspond', 's.sr.near': 'correspondance approchée', 's.sr.unknown': 'non renseigné',
+      's.sr.absent': 'non mentionné', 's.sr.other': 'ne correspond pas', 's.stillImage': 'image fixe',
+
+      // brief
+      'b.title': 'Sélection pour le brief',
+      'b.intro': 'Ajoutez des images depuis les résultats ou le graphe, puis indiquez ce qu’il faut reprendre de chacune : la lumière, l’angle de vue, un matériau ou un détail de façade.',
+      'b.request': 'Demande', 'b.requestPh': 'Ce que le visuel doit montrer',
+      'b.empty': 'La sélection est vide. Utilisez « Ajouter au brief » sur une carte de résultat ou dans le panneau du graphe.',
+      'b.notePh': 'Ex. : reflets du ciel au crépuscule sur la façade vitrée',
+      'b.source': 'Source ArchiCGI', 'b.takesGroup': 'À reprendre de cette image', 'b.takes': 'À reprendre :',
+      'b.noteFor': v => 'Note pour ' + v.title, 'b.remove': 'Retirer',
+      'b.copy': 'Copier le brief', 'b.clear': 'Vider la sélection', 'b.preview': 'Aperçu du texte copié',
+      'b.emptyCopy': 'La sélection est vide.',
+      'b.copied': v => 'Brief copié : ' + pl(v.n, 'référence', 'références') + ' avec leurs liens vers ArchiCGI.',
+      'b.copyFail': 'Copie automatique impossible dans ce navigateur : le texte est sélectionné ci-dessous, copiez-le manuellement.',
+      'take.lumiere': 'Lumière', 'take.angle': 'Angle de vue', 'take.materiau': 'Matériau', 'take.facade': 'Détail de façade',
+      // copied text
+      'bt.head': 'BRIEF — RÉFÉRENCES VISUELLES', 'bt.request': 'Demande : ',
+      'bt.selection': v => 'Sélection : ' + pl(v.n, 'image', 'images') + ' du portfolio public d’ArchiCGI (Discovery Lab).',
+      'bt.takes': '   À reprendre : ', 'bt.unspecified': 'non précisé', 'bt.note': '   Note : ', 'bt.source': '   Source : ',
+      'bt.redirect': '   (la page du projet renvoie vers le portfolio ArchiCGI)',
+      'bt.category': '   Donnée ArchiCGI : catégorie ', 'bt.tags': '   Tags éditoriaux : ',
+      'bt.footer': 'Tags éditoriaux : classification du prototype Discovery Lab, déduite des titres et descriptions publiés ; ce ne sont pas des données ArchiCGI. Images © ArchiCGI.'
+    },
+    en: {
+      'lang.switch': 'Interface language', 'lang.fr': 'Français', 'lang.en': 'English',
+      'page.title': 'ArchiCGI — Discovery Lab',
+      'page.kicker': 'REFERENCE GRAPH — 434 PROJECTS',
+      'page.intro': 'Find visual references for a brief among the 434 projects in ArchiCGI’s public portfolio. Describe the image you are looking for in your own words, compare the projects that answer it, explore how they connect in the graph, then build an annotated selection to copy into your brief.',
+      'steps.label': 'Steps', 'steps.1': '1. Describe', 'steps.2': '2. Compare', 'steps.3': '3. Explore the links', 'steps.4': '4. Build the brief',
+      'step.search': '1. Describe the reference', 'step.graph': '3. Explore the links',
+      'graph.section': 'Architectural reference explorer', 'graph.filters': 'Project filters',
+      'graph.canvas': 'Interactive graph of projects and features',
+      'footer.text': 'INDEPENDENT PROTOTYPE — 434 projects from ArchiCGI’s public portfolio, opened from the “Voir tout le portfolio” button on the French page (438 published items; four images published twice are merged). The six works shown on the French page are included with their French captions. Portfolio titles, images, links and categories (Exterior Rendering, Interior Rendering, 3D animation) are published by ArchiCGI and kept in their original language. Filters, graph categories and search criteria rely on editorial classifications derived from those titles and descriptions, not on official metadata. The brief selection is stored only in this browser. Images © ArchiCGI, loaded from archicgi.com. Captured on 23 November 2026.',
+      'footer.source': 'SOURCE: ARCHICGI.COM/FR/', 'footer.portfolio': 'PORTFOLIO',
+
+      'g.error': 'The graph could not be displayed. See the browser console for details.',
+      'g.hint': 'Drag to move. Pinch or scroll to zoom.',
+      'g.controls': 'View controls', 'g.zoomIn': 'Zoom in', 'g.zoomOut': 'Zoom out',
+      'g.reset': 'Reset view', 'g.resetText': 'Fit',
+      'g.fsOn': 'Full screen', 'g.fsOff': 'Exit full screen', 'g.legend': 'Legend',
+      'g.listTitle': 'Select a project.',
+      'g.listIntro': v => plEn(v.n, 'project', 'projects') + (v.filter ? ' · ' + v.filter : '') +
+        ' from ArchiCGI’s public portfolio. Links connect each project to this prototype’s editorial categories.',
+      'g.more': v => 'Show ' + v.k + ' more (' + v.rest + ' left)',
+      'g.back': 'Back to the list', 'g.published': 'Published by ArchiCGI',
+      'g.category': v => 'Portfolio category: ' + v.list,
+      'g.frCaption': v => 'On the French page: ' + v.q,
+      'g.alsoPublished': 'Same image also published as:',
+      'g.redirect': 'The project page redirects to the portfolio, where the image is published.',
+      'g.editorialNote': 'Editorial classification — derived from the published title and description, not ArchiCGI data. Choose a category to see the other projects that share it.',
+      'g.near': 'Related projects', 'g.nearNote': 'Linked by shared editorial categories; rarer ones count more.',
+      'g.shared': v => 'Shared: ' + v.list,
+      'g.viewProject': 'View the project on ArchiCGI', 'g.viewPortfolio': 'View in the ArchiCGI portfolio',
+      'g.viewFr': 'View on the French page', 'g.briefAdd': 'Add to brief', 'g.briefRemove': 'Remove from brief',
+      'g.facetKind': v => v.group + ' · editorial category',
+      'g.facetCount': v => plEn(v.n, 'linked project', 'linked projects') + '. Under each project: the word published by ArchiCGI that this link comes from.',
+      'field.title': 'ArchiCGI title', 'field.alt': 'ArchiCGI image description', 'field.category': 'ArchiCGI category',
+      'why.fallback': 'derived from the published data',
+
+      's.loading': 'Loading the catalogue…',
+      's.label': 'Describe the reference you need',
+      's.placeholder': 'E.g. contemporary waterfront house at dusk',
+      's.go': 'Search',
+      's.help': 'In French or English. Search reads the titles and image descriptions published by ArchiCGI, its categories and the prototype’s editorial tags.',
+      's.try': 'Try:',
+      's.examples': ['Contemporary waterfront house at dusk, eye-level view', 'Modern cabin in the forest at night',
+        'Marble hotel lobby', 'Timber skyscraper in the snow'],
+      's.noCriteria': v => 'No criteria recognised' + (v.unknown ? ' (' + v.unknown + ' not found in the catalogue)' : '') + '. Rephrase or try an example.',
+      's.full': v => plEn(v.n, 'project meets', 'projects meet') + ' every criterion' +
+        (v.partial ? ', ' + plEn(v.partial, 'other partial match', 'other partial matches') : '') + '.',
+      's.none': v => 'No project meets every criterion. ' + plEn(v.partial, 'partial match', 'partial matches') + ', closest first.',
+      's.understood': 'Criteria understood:',
+      's.projects': v => plEn(v.n, 'project', 'projects'),
+      's.notFound': v => 'Not found: ' + v.list,
+      's.missing': v => 'The catalogue has no project for: ' + v.list + '. The results below meet some of the criteria.',
+      's.neverTogether': 'Each criterion exists in the catalogue, but never all together. The results below meet some of them.',
+      's.legend': '✓ matches · ≈ close · ? not stated in the data · – not mentioned · ✗ the data says otherwise. ',
+      's.legendPub': 'published data · ', 's.legendEd': 'prototype tag', 's.edShort': 'Editorial',
+      's.moreResults': v => 'Show ' + v.k + ' more results (' + v.rest + ' left)',
+      's.badgeFull': 'Meets every criterion', 's.badgePartial': v => 'Partial match · ' + v.m + '/' + v.n,
+      's.noImage': 'No image', 's.imgError': 'Image unavailable',
+      's.showGraph': 'Show in the graph', 's.inBrief': 'In the brief ✓', 's.addBrief': 'Add to brief',
+      's.viewArchi': 'View on ArchiCGI ↗', 's.viewPortfolio': 'ArchiCGI portfolio ↗',
+      's.srcTitle': 'title', 's.srcAlt': 'image description', 's.srcFr': 'French caption', 's.srcCat': 'category',
+      's.tagFrom': v => 'Tag derived from ' + v.q,
+      's.near': 'close: ',
+      's.unknown': v => v.Dim + ' not stated in the data',
+      's.other': v => 'the data says: ' + v.list,
+      's.absentVals': v => 'not mentioned (data: ' + v.list + ')', 's.absent': 'not mentioned',
+      's.sr.match': 'matches', 's.sr.near': 'close match', 's.sr.unknown': 'not stated',
+      's.sr.absent': 'not mentioned', 's.sr.other': 'does not match', 's.stillImage': 'still image',
+
+      'b.title': 'Brief selection',
+      'b.intro': 'Add images from the results or the graph, then note what to take from each one: the light, the camera angle, a material or a facade detail.',
+      'b.request': 'Request', 'b.requestPh': 'What the visual should show',
+      'b.empty': 'The selection is empty. Use “Add to brief” on a result card or in the graph panel.',
+      'b.notePh': 'E.g. sky reflections at dusk on the glazed facade',
+      'b.source': 'ArchiCGI source', 'b.takesGroup': 'What to take from this image', 'b.takes': 'Take:',
+      'b.noteFor': v => 'Note for ' + v.title, 'b.remove': 'Remove',
+      'b.copy': 'Copy brief', 'b.clear': 'Clear selection', 'b.preview': 'Preview of the copied text',
+      'b.emptyCopy': 'The selection is empty.',
+      'b.copied': v => 'Brief copied: ' + plEn(v.n, 'reference', 'references') + ' with their ArchiCGI links.',
+      'b.copyFail': 'Automatic copy is not available in this browser: the text is selected below, copy it manually.',
+      'take.lumiere': 'Light', 'take.angle': 'Camera angle', 'take.materiau': 'Material', 'take.facade': 'Facade detail',
+      'bt.head': 'BRIEF — VISUAL REFERENCES', 'bt.request': 'Request: ',
+      'bt.selection': v => 'Selection: ' + plEn(v.n, 'image', 'images') + ' from ArchiCGI’s public portfolio (Discovery Lab).',
+      'bt.takes': '   Take: ', 'bt.unspecified': 'not specified', 'bt.note': '   Note: ', 'bt.source': '   Source: ',
+      'bt.redirect': '   (the project page redirects to the ArchiCGI portfolio)',
+      'bt.category': '   ArchiCGI data: category ', 'bt.tags': '   Editorial tags: ',
+      'bt.footer': 'Editorial tags: Discovery Lab prototype classification, derived from published titles and descriptions; they are not ArchiCGI data. Images © ArchiCGI.'
+    }
+  };
+
+  /* ---------- state ---------- */
+  let lang = 'fr';
+  try { const s = localStorage.getItem(STORE_KEY); if (LANGS.includes(s)) lang = s; } catch (_) { /* private mode */ }
+
+  function t(key, vars) {
+    const v = (STR[lang] && key in STR[lang]) ? STR[lang][key] : STR.fr[key];
+    if (v === undefined) { console.warn('[discovery i18n] missing key', key); return key; }
+    return typeof v === 'function' ? v(vars || {}) : v;
+  }
+  const tag = label => (lang === 'en' && TAGS_EN[label]) || label;
+  const group = (key, fallback) => (lang === 'en' && GROUPS_EN[key]) || fallback || key;
+  const filter = (id, fallback) => (lang === 'en' && FILTERS_EN[id]) || fallback || id;
+  // quoted published text: French guillemets or English quotes; the quoted words stay as published
+  const quote = s => (lang === 'en' ? '“' + s + '”' : '« ' + s + ' »');
+
+  /* ---------- static page text ---------- */
+  function applyStatic() {
+    document.documentElement.lang = lang;
+    document.title = t('page.title');
+    document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+    document.querySelectorAll('[data-i18n-attr]').forEach(el => {
+      el.dataset.i18nAttr.split(';').forEach(pair => {
+        const [attr, key] = pair.split(':').map(x => x.trim());
+        if (attr && key) el.setAttribute(attr, t(key));
+      });
+    });
+    document.querySelectorAll('.dl-lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+    const sw = document.querySelector('.dl-lang');
+    if (sw) sw.setAttribute('aria-label', t('lang.switch'));
+  }
+
+  function setLang(next) {
+    if (!LANGS.includes(next) || next === lang) return;
+    lang = next;
+    try { localStorage.setItem(STORE_KEY, lang); } catch (_) { /* ignore */ }
+    applyStatic();
+    document.dispatchEvent(new CustomEvent('discovery:lang', { detail: { lang } }));
+  }
+
+  // FR / EN switch (built here so the page works without it if scripts fail)
+  function mountSwitch() {
+    const host = document.getElementById('dl-lang');
+    if (!host) return;
+    host.classList.add('dl-lang');
+    host.setAttribute('role', 'group');
+    host.replaceChildren(...LANGS.map(l => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.dataset.lang = l; b.textContent = l.toUpperCase();
+      b.setAttribute('lang', l);
+      b.setAttribute('aria-label', STR[l]['lang.' + l]);
+      b.addEventListener('click', () => setLang(l));
+      return b;
+    }));
+  }
+
+  window.discoveryI18n = { get lang() { return lang; }, t, tag, group, filter, quote, setLang, pl, plEn };
+  mountSwitch();
+  applyStatic();
+})();

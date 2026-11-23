@@ -39,6 +39,9 @@
   };
   if (!root || !els.graph || !els.panel || !els.stage || typeof cytoscape === 'undefined') return;
 
+  // Interface language (discovery-i18n.js). Data keeps canonical labels; only display text changes.
+  const I = window.discoveryI18n || { lang: 'fr', t: k => k, tag: x => x, group: (k, f) => f || k, filter: (i, f) => f || i,
+    quote: x => '\u00ab\u00a0' + x + '\u00a0\u00bb' };
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const canHover = window.matchMedia('(hover: hover)').matches;
 
@@ -64,8 +67,7 @@
     .then(data => { try { init(data); } catch (e) { console.error('[discovery] init failed', e); throw e; } })
     .catch(err => {
       console.error('[discovery]', err);
-      els.graph.replaceChildren(h('p', { class: 'dl-error' },
-        'Impossible d\u2019afficher le graphe. Consultez la console du navigateur pour le détail.'));
+      els.graph.replaceChildren(h('p', { class: 'dl-error' }, I.t('g.error')));
     });
 
   /* =====================================================================
@@ -192,14 +194,14 @@
     model.facets.forEach(f => {
       elements.push({
         group: 'nodes', classes: 'facet ' + f.group,
-        data: { id: f.id, label: f.label, kind: f.group },
+        data: { id: f.id, name: f.label, label: I.tag(f.label), kind: f.group },
         position: layout.pos[f.id]
       });
     });
     layout.sectors.forEach(s => {
       elements.push({
         group: 'nodes', classes: 'sector',
-        data: { id: 'sector:' + s.group, label: s.label, kind: 'sector' },
+        data: { id: 'sector:' + s.group, group: s.group, name: s.label, label: I.group(s.group, s.label), kind: 'sector' },
         position: s.pos, selectable: false, grabbable: false
       });
     });
@@ -338,15 +340,24 @@
     });
 
     /* ----- controls & hint ----- */
-    const hint = h('p', { class: 'dl-hint' },
-      'Glissez pour déplacer. Pincez ou faites défiler pour zoomer.');
+    const hint = h('p', { class: 'dl-hint' }, I.t('g.hint'));
     const fsBtn = h('button', { type: 'button', class: 'dl-fs', onclick: () => (isFull() ? exitFull() : enterFull()) });
-    const controls = h('div', { class: 'dl-controls', role: 'group', 'aria-label': 'Contrôles de la vue' },
-      fsBtn,
-      h('button', { type: 'button', 'aria-label': 'Zoom avant', onclick: () => zoomBy(1.3) }, '+'),
-      h('button', { type: 'button', 'aria-label': 'Zoom arrière', onclick: () => zoomBy(1 / 1.3) }, '\u2212'),
-      h('button', { type: 'button', 'aria-label': 'Réinitialiser la vue', onclick: fitView }, 'Tout'));
-    els.stage.append(hint, controls, buildLegend());
+    const zoomIn = h('button', { type: 'button', onclick: () => zoomBy(1.3) }, '+');
+    const zoomOut = h('button', { type: 'button', onclick: () => zoomBy(1 / 1.3) }, '\u2212');
+    const resetBtn = h('button', { type: 'button', onclick: fitView });
+    const controls = h('div', { class: 'dl-controls', role: 'group' }, fsBtn, zoomIn, zoomOut, resetBtn);
+    function labelControls() {
+      controls.setAttribute('aria-label', I.t('g.controls'));
+      zoomIn.setAttribute('aria-label', I.t('g.zoomIn'));
+      zoomOut.setAttribute('aria-label', I.t('g.zoomOut'));
+      resetBtn.setAttribute('aria-label', I.t('g.reset'));
+      resetBtn.textContent = I.t('g.resetText');
+      hint.textContent = I.t('g.hint');
+    }
+    labelControls();
+    let legend = null;
+    legend = buildLegend();
+    els.stage.append(hint, controls, legend);
 
     /* ----- full screen: the whole lab (filters + graph + panel) -----
      * Native Fullscreen API where the browser allows it on an element; otherwise
@@ -359,7 +370,7 @@
       root.classList.toggle('is-full', on);
       root.classList.toggle('is-pseudo-full', on && !!pseudo);
       document.documentElement.classList.toggle('dl-noscroll', on && !!pseudo);
-      const label = on ? 'Quitter le plein écran' : 'Plein écran';
+      const label = I.t(on ? 'g.fsOff' : 'g.fsOn');
       fsBtn.setAttribute('aria-label', label);
       fsBtn.setAttribute('title', label);
       fsBtn.setAttribute('aria-pressed', String(on));
@@ -418,9 +429,9 @@
       };
       const groups = ['project', ...model.activeGroups];
       const el = h('details', { class: 'dl-legend' },
-        h('summary', {}, 'Légende'),
-        h('ul', {}, groups.map(g => h('li', {}, glyph(g), gs(g).label || g))));
-      el.open = window.matchMedia('(min-width: 640px)').matches;
+        h('summary', {}, I.t('g.legend')),
+        h('ul', {}, groups.map(g => h('li', {}, glyph(g), I.group(g, gs(g).label || g)))));
+      el.open = legend ? legend.open : window.matchMedia('(min-width: 640px)').matches;
       return el;
     }
 
@@ -486,7 +497,7 @@
       const chips = [{ id: 'all', label: 'Tout' }, ...model.filters];
       els.filters.replaceChildren(...chips.map(c =>
         h('button', { type: 'button', class: 'dl-chip', 'data-id': c.id,
-          'aria-pressed': String(c.id === 'all'), onclick: () => applyFilter(c.id) }, c.label)));
+          'aria-pressed': String(c.id === 'all'), onclick: () => applyFilter(c.id) }, I.filter(c.id, c.label))));
     }
 
     /* =================================================================
@@ -495,14 +506,13 @@
     const nodeButton = n => h('button', { type: 'button', class: 'dl-tag', onclick: () => select(n.id()) }, n.data('label'));
     const extLink = (url, text, cls) => safeUrl(url)
       ? h('a', { class: cls, href: safeUrl(url), target: '_blank', rel: 'noopener noreferrer' }, text) : null;
-    const plural = (k, one, many) => k + ' ' + (k > 1 ? many : one);
-    const FIELD = { title: 'titre ArchiCGI', alt: 'description d\u2019image ArchiCGI', category: 'catégorie ArchiCGI' };
-    // Why a project carries an editorial tag: the published word it was derived from
+    // Why a project carries an editorial tag: the published word it was derived from (quoted as published)
     function whyText(p, key) {
       const w = p && p.why && p.why[key];
-      return w ? '\u00ab\u00a0' + w[1] + '\u00a0\u00bb \u00b7 ' + (FIELD[w[0]] || w[0]) : 'déduit des données publiées';
+      return w ? I.quote(w[1]) + ' \u00b7 ' + I.t('field.' + w[0]) : I.t('why.fallback');
     }
-    const facetKey = f => f.data('kind') + ':' + f.data('label');
+    const facetKey = f => f.data('kind') + ':' + f.data('name');   // canonical key, independent of language
+    const byLabel = (a, b) => a.data('label').localeCompare(b.data('label'), I.lang);
 
     // Long lists (hundreds of projects) are revealed in steps instead of all at once.
     // reason(node) optionally adds a short line explaining the link.
@@ -515,7 +525,7 @@
           h('li', {}, nodeButton(n), reason ? h('span', { class: 'dl-why' }, reason(n)) : null)));
         shown = Math.min(nodes.length, shown + CONFIG.listStep);
         const rest = nodes.length - shown;
-        if (rest > 0) more.textContent = 'Afficher ' + Math.min(rest, CONFIG.listStep) + ' de plus (' + rest + ' restants)';
+        if (rest > 0) more.textContent = I.t('g.more', { k: Math.min(rest, CONFIG.listStep), rest });
         else more.remove();
       }
       step();
@@ -528,13 +538,12 @@
         const visible = model.projects.filter(p => activeFilter === 'all' || (p.filters || []).includes(activeFilter));
         const f = model.filters.find(x => x.id === activeFilter);
         els.panel.append(
-          h('h2', {}, 'Sélectionnez un projet.'),
-          h('p', {}, plural(visible.length, 'projet', 'projets') + (f ? ' · ' + f.label : '') +
-            ' du portfolio public d’ArchiCGI. Les connexions relient chaque projet aux catégories éditoriales de ce prototype.'),
+          h('h2', {}, I.t('g.listTitle')),
+          h('p', {}, I.t('g.listIntro', { n: visible.length, filter: f ? I.filter(f.id, f.label) : '' })),
           ...nodeList(visible.map(p => cy.getElementById(p.id))));
         return;
       }
-      const back = h('button', { type: 'button', class: 'dl-back', onclick: clearSelection }, 'Retour à la liste');
+      const back = h('button', { type: 'button', class: 'dl-back', onclick: clearSelection }, I.t('g.back'));
       if (node.hasClass('project')) {
         const p = model.projectById.get(node.id());
         const pub = p.published || {};
@@ -548,31 +557,31 @@
         parts.push(h('h2', {}, p.label));
 
         // Published by ArchiCGI (verbatim)
-        const src = h('div', { class: 'dl-published' }, h('h3', {}, 'Publié par ArchiCGI'));
+        const src = h('div', { class: 'dl-published' }, h('h3', {}, I.t('g.published')));
         if (pub.categories && pub.categories.length) {
-          src.append(h('p', {}, 'Catégorie du portfolio : ' + pub.categories.join(', ')));
+          src.append(h('p', {}, I.t('g.category', { list: pub.categories.join(', ') })));
         }
         if (pub.frCaption) {
-          src.append(h('p', {}, 'Sur la page française : « ' + pub.frCaption + ' »'));
+          src.append(h('p', {}, I.t('g.frCaption', { q: I.quote(pub.frCaption) })));
         }
         if (pub.alsoPublishedAs && pub.alsoPublishedAs.length) {
-          src.append(h('p', {}, 'Même image aussi publiée sous :'),
+          src.append(h('p', {}, I.t('g.alsoPublished')),
             h('ul', {}, pub.alsoPublishedAs.map(d => h('li', {}, extLink(d.pageUrl, d.title, 'dl-tag') || d.title))));
         }
         if (pub.pageRedirectsTo) {
-          src.append(h('p', {}, 'La page du projet renvoie vers le portfolio, où l’image est publiée.'));
+          src.append(h('p', {}, I.t('g.redirect')));
         }
         if (src.children.length > 1) parts.push(src);     // only when the record carries published details
 
         // Editorial classification (this prototype), each tag with the published word it comes from
         const ed = model.activeGroups.map(g => {
-          const items = node.neighborhood('node.' + g).toArray().sort((a, b) => a.data('label').localeCompare(b.data('label'), 'fr'));
-          return items.length ? [h('h3', {}, model.groups[g].label),
+          const items = node.neighborhood('node.' + g).toArray().sort(byLabel);
+          return items.length ? [h('h3', {}, I.group(g, model.groups[g].label)),
             h('ul', { class: 'dl-reasons' }, items.map(n => h('li', {}, nodeButton(n), h('span', { class: 'dl-why' }, whyText(p, facetKey(n))))))] : [];
         }).flat();
         if (ed.length) {
           parts.push(h('div', { class: 'dl-editorial' },
-            h('p', { class: 'dl-note' }, 'Classification éditoriale — déduite du titre et de la description publiés, pas une donnée ArchiCGI. Choisissez une catégorie pour voir les autres projets qui la partagent.'),
+            h('p', { class: 'dl-note' }, I.t('g.editorialNote')),
             ...ed));
         }
 
@@ -580,27 +589,27 @@
         const near = related(node, 6);
         if (near.length) {
           parts.push(h('div', { class: 'dl-near' },
-            h('h3', {}, 'Projets proches'),
-            h('p', { class: 'dl-note' }, 'Reliés par des catégories éditoriales communes ; les plus rares comptent davantage.'),
+            h('h3', {}, I.t('g.near')),
+            h('p', { class: 'dl-note' }, I.t('g.nearNote')),
             h('ul', { class: 'dl-reasons' }, near.map(r => h('li', {}, nodeButton(r.node),
-              h('span', { class: 'dl-why' }, 'En commun\u00a0: ' + r.shared.join(' \u00b7 ')))))));
+              h('span', { class: 'dl-why' }, I.t('g.shared', { list: r.shared.join(' \u00b7 ') })))))));
         }
-        parts.push(extLink(p.url, pub.pageRedirectsTo ? 'Voir dans le portfolio ArchiCGI' : 'Voir le projet sur ArchiCGI', 'dl-link'));
-        if (pub.frPage) parts.push(extLink(pub.frPage, 'Voir sur la page française', 'dl-link dl-link--alt'));
+        parts.push(extLink(p.url, I.t(pub.pageRedirectsTo ? 'g.viewPortfolio' : 'g.viewProject'), 'dl-link'));
+        if (pub.frPage) parts.push(extLink(pub.frPage, I.t('g.viewFr'), 'dl-link dl-link--alt'));
         if (window.discoveryBrief) {
           const inBrief = window.discoveryBrief.has(p.id);
           parts.push(h('button', { type: 'button', class: 'dl-link dl-link--alt dl-brief-toggle', 'aria-pressed': String(inBrief),
             onclick: () => { window.discoveryBrief.toggle(p.id); renderPanel(node); } },
-            inBrief ? 'Retirer du brief' : 'Ajouter au brief'));
+            I.t(inBrief ? 'g.briefRemove' : 'g.briefAdd')));
         }
         els.panel.append(...parts.filter(Boolean));
       } else {
         const items = node.neighborhood('node.project').not('.out').toArray();
         const key = facetKey(node);
         els.panel.append(back,
-          h('h3', {}, model.groups[node.data('kind')].label + ' · catégorie éditoriale'),
+          h('h3', {}, I.t('g.facetKind', { group: I.group(node.data('kind'), model.groups[node.data('kind')].label) })),
           h('h2', {}, node.data('label')),
-          h('p', {}, plural(items.length, 'projet lié', 'projets liés') + '. Sous chaque projet\u00a0: le mot publié par ArchiCGI d\u2019où vient ce lien.'),
+          h('p', {}, I.t('g.facetCount', { n: items.length })),
           ...nodeList(items, n => whyText(model.projectById.get(n.id()), key)));
       }
     }
@@ -646,6 +655,23 @@
     renderPanel(null);
     const initial = decodeURIComponent(location.hash.slice(1));
     if (initial) select(initial);
+
+    /* ----- language change: relabel in place (filter, selection and viewport are kept) ----- */
+    document.addEventListener('discovery:lang', () => {
+      cy.batch(() => {
+        cy.nodes('.facet').forEach(n => { n.data('label', I.tag(n.data('name'))); });
+        cy.nodes('.sector').forEach(n => { n.data('label', I.group(n.data('group'), n.data('name'))); });
+      });
+      [...els.filters.children].forEach(b => {
+        const f = model.filters.find(x => x.id === b.dataset.id);
+        b.textContent = I.filter(b.dataset.id, f ? f.label : 'Tout');
+      });
+      labelControls();
+      setFull(isFull(), root.classList.contains('is-pseudo-full'));
+      const fresh = buildLegend();
+      legend.replaceWith(fresh); legend = fresh;
+      refreshPanel();
+    });
 
     // Public hooks (search & brief module, debugging)
     function showProject(id) {
