@@ -1,7 +1,8 @@
-# Lidiia Demchenko — only homepage is intended for search results.
+# Lidiia Demchenko — indexable pages are listed in the sitemap.
 # HTML pages remain crawlable so their noindex directives can be seen.
 User-agent: Googlebot-Image
 Allow: /assets/work_ilmakiage_main_header.png
+Allow: /assets/AR%20x%20DISCOVERY%20LAB.png
 Allow: /assets/68b2155a9c377a3526d83ad4_spoiled%20child.png
 Disallow: /
 
@@ -13,6 +14,7 @@ Allow: /favicon-32x32.png
 Allow: /favicon-48x48.png
 # Permit social preview artwork while keeping other image restrictions.
 Allow: /assets/work_ilmakiage_main_header.png
+Allow: /assets/AR%20x%20DISCOVERY%20LAB.png
 Disallow: /*.jpg$
 Disallow: /*.jpeg$
 Disallow: /*.png$
