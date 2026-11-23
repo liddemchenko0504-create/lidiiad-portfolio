@@ -113,8 +113,6 @@
       's.filterQueryUnknown': v => 'Les résultats correspondent aux filtres sélectionnés. ' +
         (v.unknown ? 'Le catalogue ne contient aucun résultat pour ' + v.unknown + '.' : 'Aucun critère de recherche reconnu.'),
       's.try': 'Essayer :',
-      's.examples': ['Maison contemporaine au bord de l’eau, au crépuscule, vue depuis le sol', 'Cabane moderne en forêt, la nuit',
-        'Hall d’hôtel en marbre', 'Gratte-ciel en bois sous la neige'],
       's.noCriteria': v => 'Aucun critère reconnu' + (v.unknown ? ' (' + v.unknown + ' introuvable dans le catalogue)' : '') + '. Reformulez ou essayez un exemple.',
       's.full': v => pl(v.n, 'projet réunit', 'projets réunissent') + ' tous les critères' +
         (v.partial ? ', ' + pl(v.partial, 'autre correspondance partielle', 'autres correspondances partielles') : '') + '.',
@@ -240,8 +238,6 @@
       's.filterQueryUnknown': v => 'Showing projects that match the filters. ' +
         (v.unknown ? 'The catalogue has no match for ' + v.unknown + '.' : 'No search criteria recognised.'),
       's.try': 'Try:',
-      's.examples': ['Contemporary waterfront house at dusk, eye-level view', 'Modern cabin in the forest at night',
-        'Marble hotel lobby', 'Timber skyscraper in the snow'],
       's.noCriteria': v => 'No criteria recognised' + (v.unknown ? ' (' + v.unknown + ' not found in the catalogue)' : '') + '. Rephrase or try an example.',
       's.full': v => plEn(v.n, 'project meets', 'projects meet') + ' every criterion' +
         (v.partial ? ', ' + plEn(v.partial, 'other partial match', 'other partial matches') : '') + '.',
