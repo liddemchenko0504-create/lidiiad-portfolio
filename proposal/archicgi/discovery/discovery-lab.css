@@ -453,14 +453,15 @@ body.lab:not(.lab-has-query, .lab-has-project-link)::before {
   position: relative;
   flex: 0 0 44px;
   min-height: 44px;
-  padding: 0;
+  padding: 4px;
   border-radius: 50%;
-  background: var(--ink);
+  background-color: var(--ink);
+  background-clip: content-box;
   color: var(--paper);
   font-size: 0;
 }
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go:hover {
-  background: #fff;
+  background-color: #fff;
 }
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-example {
   border: 1px solid rgba(255, 255, 255, .24);
@@ -479,19 +480,19 @@ body.lab:not(.lab-has-query, .lab-has-project-link)::before {
   position: absolute;
 }
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go::before {
-  top: 14px;
-  left: 16px;
-  width: 12px;
-  height: 12px;
+  top: 16px;
+  left: 17px;
+  width: 10px;
+  height: 10px;
   border-top: 2px solid currentColor;
   border-left: 2px solid currentColor;
   transform: rotate(45deg);
 }
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go::after {
-  top: 14px;
+  top: 16px;
   left: 21px;
   width: 2px;
-  height: 16px;
+  height: 13px;
   border-radius: 1px;
   background: currentColor;
 }
