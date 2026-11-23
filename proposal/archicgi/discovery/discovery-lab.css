@@ -139,7 +139,6 @@ body.lab {
 .dl-concept small { color: var(--mute); font-size: 12.5px; }
 .dl-concept.is-unknown { color: var(--mute); font-style: italic; }
 .dl-nomatch { border-left: 2px solid var(--ink); padding: 2px 14px; margin: 0 0 14px; font-size: 15px; line-height: 1.5; max-width: 80ch; }
-.dl-legend-line { margin: 28px 0 0 !important; padding-top: 14px; border-top: 1px solid var(--line); font-size: 12.5px !important; }
 .dl-src { font-size: 12px; padding: 1px 6px; line-height: 1.45; }
 .dl-src--pub { border: 1px solid var(--line-2); }
 .dl-src--ed { padding-left: 0; font-style: italic; color: var(--mute); }
