@@ -635,18 +635,7 @@ body.lab:not(.lab-has-query, .lab-has-project-link)::before {
 .lab-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .8s ease; }
 .lab-hero-video.is-on { opacity: 1; }
 body.lab:not(.lab-has-query, .lab-has-project-link)::before { opacity: 0; }   /* the hero layer carries the poster */
-.lab-has-query .lab-hero, .lab-has-project-link .lab-hero, .lab-has-query .lab-hero-ctl, .lab-has-project-link .lab-hero-ctl { display: none; }
-.lab-hero-ctl {
-  position: fixed; left: var(--gutter); right: var(--gutter); bottom: 14px; z-index: 5; display: flex; justify-content: space-between; align-items: center; gap: 12px; pointer-events: none;
-}
-.lab-hero-ctl > * { pointer-events: auto; }
-.lab-hero-caption { font: 500 11px var(--font-head); letter-spacing: .12em; text-transform: uppercase; color: #d4d1cb; text-decoration: none; padding: 8px 0; }
-.lab-hero-caption:hover { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
-.lab-hero-toggle {
-  min-height: 40px; padding: 0 16px; border: 1px solid var(--glass-line); border-radius: 20px; background: var(--glass-fill); color: var(--ink); cursor: pointer;
-  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); font: 500 11px var(--font-head); letter-spacing: .1em; text-transform: uppercase;
-}
-.lab-hero-toggle:hover { border-color: var(--glass-line-strong); background: var(--glass-fill-hover); }
+.lab-has-query .lab-hero, .lab-has-project-link .lab-hero { display: none; }
 .lab-media { margin-top: 72px; padding-top: 32px; border-top: 1px solid var(--line); }
 .dl-m-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
 .dl-m-tab {
@@ -695,8 +684,20 @@ body.lab:not(.lab-has-query, .lab-has-project-link)::before { opacity: 0; }   /*
 .dl-m-ytnote { position: absolute; left: 12px; right: 12px; bottom: 12px; padding: 8px 12px; border-radius: 10px; background: rgba(11, 11, 12, .72); font-size: 13.5px; text-align: left; }
 .dl-m-foot { padding: 12px 20px 16px; }
 @media (max-width: 639px) {
-  .lab-hero-ctl { bottom: 8px; } .lab-hero-caption { font-size: 10px; }
   .dl-c-ctl { flex-direction: column; align-items: stretch; gap: 4px; }
   .dl-m-playmark { width: 48px; height: 48px; margin: -24px 0 0 -24px; } .dl-m-playmark::before { left: 18px; top: 14px; border-left-width: 13px; border-top-width: 10px; border-bottom-width: 10px; }
 }
 @media (prefers-reduced-motion: reduce) { .lab-hero-video, .dl-m-thumb img { transition: none; } }
+
+/* Start screen: a smaller send arrow, and a logo that is not a link (nothing to click away to) */
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-search-form .dl-search-go {
+  flex: 0 0 36px; width: 36px; height: 36px; min-height: 36px; padding: 0; margin-right: 4px; background-clip: border-box; box-shadow: none;
+}
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go::before { top: 13px; left: 14px; width: 7px; height: 7px; border-top-width: 1.5px; border-left-width: 1.5px; }
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go::after { top: 13px; left: 17.25px; width: 1.5px; height: 10px; }
+.lab:not(.lab-has-query, .lab-has-project-link) .lab-brand { pointer-events: none; cursor: default; }
+
+/* Start screen: the circle itself is small (26 px) */
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-search-form .dl-search-go { flex: 0 0 26px; width: 26px; height: 26px; min-height: 26px; margin-right: 10px; }
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go::before { top: 9px; left: 10px; width: 5px; height: 5px; border-top-width: 1.5px; border-left-width: 1.5px; }
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go::after { top: 9.5px; left: 12.25px; width: 1.5px; height: 8px; }

@@ -1,7 +1,8 @@
 /*
  * ArchiCGI Discovery Lab — real media
  * Uses only footage published by ArchiCGI (see media.json for the source page of every clip).
- *   - start screen: the studio showreel as a muted, looping, pausable backdrop (poster first, video after load)
+ *   - start screen: the studio showreel as a muted, looping backdrop that plays on its own (poster first, video after load;
+ *     poster only for reduced motion / Save-Data)
  *   - "Films et animations" section: animations, before/after, virtual tours, interactive platform (poster until played)
  *   - project links: result cards and the graph panel get a "Watch the animation" button when ArchiCGI published one
  * Nothing is downloaded before the user presses play, except the showreel backdrop (skipped on reduced motion / Save-Data).
@@ -31,35 +32,21 @@
   const byId = new Map();
 
   /* ---------------- start-screen showreel backdrop ---------------- */
-  let heroVideo = null, heroBtn = null, heroWanted = !reduce && !lowData;
-  function paintHeroBtn() {
-    if (!heroBtn) return;
-    const playing = heroVideo && !heroVideo.paused;
-    heroBtn.textContent = t(playing ? 'm.heroPause' : 'm.heroPlay');
-    heroBtn.setAttribute('aria-pressed', String(!playing));
-  }
+  let heroVideo = null, heroWanted = !reduce && !lowData;
   function startHero() {
     if (!heroVideo || document.body.classList.contains('lab-has-query') || document.body.classList.contains('lab-has-project-link')) return;
     if (!heroVideo.getAttribute('src')) heroVideo.src = https(innerWidth < 768 ? data.hero.mobile : data.hero.desktop);
-    heroVideo.play().then(paintHeroBtn, () => { heroWanted = false; paintHeroBtn(); });
+    heroVideo.play().catch(() => { heroWanted = false; });
   }
   function buildHero() {
     const hero = data.hero;
     heroVideo = h('video', { class: 'lab-hero-video', muted: '', loop: '', playsinline: '', preload: 'none', tabindex: '-1', 'aria-hidden': 'true',
       poster: https(hero.poster) });
     heroVideo.muted = true;
-    heroVideo.addEventListener('playing', () => { heroVideo.classList.add('is-on'); paintHeroBtn(); });
-    heroVideo.addEventListener('pause', paintHeroBtn);
+    heroVideo.addEventListener('playing', () => heroVideo.classList.add('is-on'));
     heroVideo.addEventListener('error', () => { heroVideo.classList.remove('is-on'); heroWanted = false; });
     const stage = h('div', { class: 'lab-hero', 'aria-hidden': 'true', style: 'background-image:url("' + https(hero.poster) + '")' }, heroVideo);
-    heroBtn = h('button', { type: 'button', class: 'lab-hero-toggle', onclick: () => {
-      if (heroVideo.paused) { heroWanted = true; startHero(); } else { heroWanted = false; heroVideo.pause(); }
-    } });
-    const reel = h('a', { class: 'lab-hero-caption', href: https(hero.page), target: '_blank', rel: 'noopener noreferrer' }, t('m.reel'));
-    const ctl = h('div', { class: 'lab-hero-ctl' }, reel, heroBtn);
     document.body.prepend(stage);
-    document.body.append(ctl);
-    paintHeroBtn();
     // stop decoding once the work area is open
     new MutationObserver(() => {
       const entry = !document.body.classList.contains('lab-has-query') && !document.body.classList.contains('lab-has-project-link');
@@ -159,8 +146,7 @@
       } }, t('m.tab.' + k))));
   }
   function repaint() {
-    paintTabs(); paintPanel(); paintHeroBtn();
-    if (heroBtn && heroBtn.parentNode) heroBtn.parentNode.querySelector('.lab-hero-caption').textContent = t('m.reel');
+    paintTabs(); paintPanel();
   }
 
   /* ---------------- public API (result cards, graph panel) ---------------- */
