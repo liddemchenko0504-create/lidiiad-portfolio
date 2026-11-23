@@ -56,11 +56,11 @@
   /* ---------- load ---------- */
   fetch(CONFIG.dataUrl, { cache: 'no-cache' })
     .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(init)
+    .then(data => { try { init(data); } catch (e) { console.error('[discovery] init failed', e); throw e; } })
     .catch(err => {
       console.error('[discovery]', err);
       els.graph.replaceChildren(h('p', { class: 'dl-error' },
-        'Impossible de charger les données du graphe.'));
+        'Impossible d\u2019afficher le graphe. Consultez la console du navigateur pour le détail.'));
     });
 
   /* =====================================================================
@@ -168,10 +168,12 @@
     /* ----- elements ----- */
     const elements = [];
     model.projects.forEach(p => {
+      const img = p.thumb || p.image || '';
+      const d = { id: p.id, label: p.label, kind: 'project' };
+      if (img) d.image = img;            // never set an empty image: Cytoscape cannot parse background-image: ""
       elements.push({
-        group: 'nodes', classes: 'project',
-        data: { id: p.id, label: p.label, kind: 'project', image: p.thumb || p.image || '' },
-        position: layout.pos[p.id]
+        group: 'nodes', classes: img ? 'project has-image' : 'project',
+        data: d, position: layout.pos[p.id]
       });
     });
     model.facets.forEach(f => {
@@ -207,7 +209,7 @@
           'text-background-color': PAPER, 'text-background-opacity': 0.9, 'text-background-padding': 3,
           'z-index': 20
       } },
-      { selector: 'node.project[image]', style: {
+      { selector: 'node.project.has-image', style: {
           'background-image': 'data(image)', 'background-fit': 'cover', 'background-clip': 'node'
       } },
       { selector: 'node.sector', style: {
