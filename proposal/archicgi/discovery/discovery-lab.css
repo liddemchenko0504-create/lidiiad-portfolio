@@ -394,16 +394,20 @@ body.lab {
   .lab-intro .lab-lead, .lab-query #dl-q-help) {
   display: none;
 }
-body.lab:not(.lab-has-query, .lab-has-project-link) { isolation: isolate; }
-body.lab:not(.lab-has-query, .lab-has-project-link)::before {
+body.lab { isolation: isolate; }
+body.lab::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)),
+  background: linear-gradient(rgba(0, 0, 0, .88), rgba(0, 0, 0, .88)),
     url(/assets/HP-desk.png) center / cover no-repeat;
   filter: blur(10px) grayscale(1);
+}
+body.lab:not(.lab-has-query, .lab-has-project-link)::before {
+  background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)),
+    url(/assets/HP-desk.png) center / cover no-repeat;
 }
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-examples {
   gap: 6px 8px;
@@ -514,3 +518,118 @@ body.lab:not(.lab-has-query, .lab-has-project-link)::before {
   border-radius: 1px;
   background: currentColor;
 }
+
+
+/* =====================================================================
+ * Dark glass: the request block (query, examples, filters) and the project browser share one material.
+ * Translucent fill + backdrop blur + 1px light border; text stays at >= 4.5:1 on the darkest and lightest backdrop.
+ * ===================================================================== */
+:root {
+  --glass-fill: rgba(30, 30, 33, .62);
+  --glass-fill-2: rgba(255, 255, 255, .07);
+  --glass-fill-hover: rgba(255, 255, 255, .16);
+  --glass-line: rgba(255, 255, 255, .2);
+  --glass-line-strong: rgba(255, 255, 255, .45);
+  --glass-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), 0 18px 48px rgba(0, 0, 0, .35);
+  --glass-blur: blur(18px) saturate(1.2);
+}
+.glass, .lab .dl-search-form, .dl-browser-wrap {
+  border: 1px solid var(--glass-line); border-radius: 16px; background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); box-shadow: var(--glass-shadow);
+}
+.lab .dl-search-form { gap: 14px; padding: clamp(14px, 2vw, 22px); }
+.lab .dl-search-label { color: var(--ink); }
+.lab .dl-search-form .dl-search-row {
+  gap: 8px; align-items: center; padding: 4px 4px 4px 18px; border: 1px solid var(--glass-line-strong); border-radius: 14px;
+  background: rgba(0, 0, 0, .38); -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: inset 0 1px 2px rgba(0, 0, 0, .4);
+}
+.lab .dl-search-form .dl-search-row:focus-within { border-color: #fff; box-shadow: 0 0 0 3px rgba(255, 255, 255, .22); }
+.lab .dl-search-form .dl-search-row input { min-height: 52px; padding: 0; font: 18px var(--font-body); color: var(--ink); }
+.lab .dl-search-form .dl-search-row input::placeholder { color: #b9b6b0; }
+/* submit: the focal point, a solid light pill against the glass */
+.lab .dl-search-form .dl-search-go {
+  flex: none; min-height: 48px; padding: 0 26px; border-radius: 11px; background: var(--ink); color: var(--paper);
+  font-size: 12px; box-shadow: 0 4px 14px rgba(0, 0, 0, .35);
+}
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-search-form .dl-search-go { flex-basis: 48px; padding: 4px; font-size: 0; border-radius: 50%; }
+/* examples: glass chips (same material as the card, one step lighter) */
+.lab .dl-examples { gap: 8px; }
+.lab .dl-examples > .dl-note { flex-basis: 100%; color: #cfccc6; }
+.lab .dl-example {
+  min-height: 38px; padding: 6px 14px; border: 1px solid var(--glass-line); border-radius: 19px; background: var(--glass-fill-2);
+  color: var(--ink); font-size: 14.5px; line-height: 1.3; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1); text-decoration: none; transition: background-color .15s, border-color .15s;
+}
+.lab .dl-example:hover { background: var(--glass-fill-hover); border-color: var(--glass-line-strong); }
+/* filters: the disclosure belongs to the same card */
+.lab .dl-search-filters { border-top: 1px solid var(--glass-line); padding-top: 4px; }
+.lab .dl-search-filters > summary { color: var(--ink); display: flex; align-items: center; gap: 8px; list-style: none; padding: 9px 2px; }
+.lab .dl-search-filters > summary::-webkit-details-marker { display: none; }
+.lab .dl-search-filters > summary::before { content: "+"; display: inline-grid; place-items: center; width: 20px; height: 20px; border: 1px solid var(--glass-line-strong); border-radius: 50%; font-size: 14px; line-height: 1; }
+.lab .dl-search-filters[open] > summary::before { content: "\2212"; }
+.lab .dl-filter-count { min-width: 20px; padding: 0 6px; border-radius: 10px; background: var(--ink); color: var(--paper); text-align: center; font-size: 12px; font-weight: 700; }
+.lab .dl-filter-grid { gap: 10px; padding-top: 6px; }
+.lab .dl-filter-field, .dl-b-field { color: #cfccc6; font-size: 12.5px; letter-spacing: .02em; }
+.lab .dl-filter-field select, .dl-b-select {
+  min-height: 44px; padding: 6px 30px 6px 12px; border: 1px solid var(--glass-line); border-radius: 10px; color: var(--ink);
+  background-color: rgba(0, 0, 0, .34); -webkit-appearance: none; appearance: none; font: 15px var(--font-body);
+  background-image: linear-gradient(45deg, transparent 50%, #e8e6e1 50%), linear-gradient(135deg, #e8e6e1 50%, transparent 50%);
+  background-position: calc(100% - 17px) 55%, calc(100% - 12px) 55%; background-size: 5px 5px; background-repeat: no-repeat;
+}
+.lab .dl-filter-field select:hover, .dl-b-select:hover { border-color: var(--glass-line-strong); background-color: rgba(0, 0, 0, .46); }
+.lab .dl-filter-field select:focus-visible, .dl-b-select:focus-visible, .dl-b-input:focus-visible { outline: 2px solid #fff; outline-offset: 1px; }
+.lab .dl-filter-field select option, .dl-b-select option { background: #1c1c1f; color: var(--ink); }
+.lab .dl-filter-reset { color: #cfccc6; }
+.lab .dl-filter-reset:hover:not(:disabled) { color: #fff; }
+/* compact criterion labels with live counts, e.g. "Tower or skyscraper (6)" */
+.lab .dl-understood .dl-concept {
+  padding: 3px 11px; border: 1px solid var(--glass-line); border-radius: 14px; background: var(--glass-fill-2);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font-size: 13.5px;
+}
+.lab .dl-understood { gap: 8px; }
+.lab .dl-understood .dl-concept.is-unknown { color: #cfccc6; }
+
+/* ---------- graph: project browser (filter first) ---------- */
+.dl-panel .dl-browser { display: grid; gap: 12px; }
+.dl-b-label { font-family: var(--font-head); font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--mute); }
+.dl-b-input {
+  width: 100%; min-height: 48px; padding: 0 14px; border: 1px solid var(--glass-line-strong); border-radius: 12px;
+  background: rgba(255, 255, 255, .06); color: var(--ink); font: 16px var(--font-body);
+}
+.dl-b-input::placeholder { color: #b9b6b0; }
+.dl-b-input:focus { outline: none; border-color: #fff; box-shadow: 0 0 0 3px rgba(255, 255, 255, .2); }
+.dl-b-filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.dl-b-field { display: grid; gap: 3px; min-width: 0; }
+.dl-b-field span { padding-left: 2px; }
+.dl-b-select { width: 100%; min-width: 0; min-height: 40px; font-size: 14px; text-overflow: ellipsis; background-color: rgba(255, 255, 255, .06); }
+.dl-b-bar { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; min-height: 28px; padding-top: 4px; border-top: 1px solid var(--line); }
+.dl-panel p.dl-b-count { margin: 0; font-size: 14px; color: var(--ink); max-width: none; }
+.dl-b-reset { min-height: 32px; padding: 0 4px; border: 0; background: none; color: var(--mute); cursor: pointer; font: 600 11.5px var(--font-head); letter-spacing: .08em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 4px; }
+.dl-b-reset:hover { color: var(--ink); }
+.dl-b-reset[hidden] { display: none; }
+.dl-panel ul.dl-b-list { display: grid; gap: 6px; flex-wrap: nowrap; }
+.dl-b-list li { margin: 0; }
+.dl-b-item {
+  display: grid; grid-template-columns: 56px minmax(0, 1fr); align-items: center; gap: 12px; width: 100%; min-height: 64px; padding: 4px 10px 4px 4px;
+  border: 1px solid var(--glass-line); border-radius: 12px; background: var(--glass-fill-2); color: var(--ink); text-align: left; cursor: pointer;
+}
+.dl-b-item:hover { border-color: var(--glass-line-strong); background: var(--glass-fill-hover); }
+.dl-b-item:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.dl-b-item img, .dl-b-noimg { width: 56px; height: 56px; border-radius: 8px; object-fit: cover; background: var(--surface); display: block; }
+.dl-panel .dl-b-item img { aspect-ratio: 1; }
+.dl-b-title { font-size: 14px; line-height: 1.3; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.dl-b-pager { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.dl-b-pageno { font-size: 13px; color: var(--mute); }
+.dl-b-page { min-height: 40px; padding: 0 14px; border: 1px solid var(--glass-line); border-radius: 10px; background: var(--glass-fill-2); color: var(--ink); cursor: pointer; font: 500 11.5px var(--font-head); letter-spacing: .08em; text-transform: uppercase; }
+.dl-b-page:hover:not(:disabled) { border-color: var(--glass-line-strong); background: var(--glass-fill-hover); }
+.dl-b-page:disabled { opacity: .4; cursor: not-allowed; }
+.dl-panel { background: var(--glass-fill); -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); border-color: var(--glass-line); border-radius: 16px; }
+@media (max-width: 639px) {
+  .lab .dl-search-form .dl-search-row { flex-direction: row; padding-left: 14px; }
+  .lab .dl-search-form .dl-search-row input { min-height: 48px; font-size: 16.5px; }
+  .lab .dl-search-form .dl-search-go { min-height: 44px; padding: 0 16px; }
+  .dl-b-filters { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { .lab .dl-example { transition: none; } }
+.lab .dl-search-form { grid-template-columns: minmax(0, 1fr); }
+.lab .dl-example { max-width: 100%; }
