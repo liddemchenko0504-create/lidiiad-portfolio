@@ -361,6 +361,17 @@
     h('summary', {}, filterTitle, ' ', filterCount), filterGrid, filterReset);
   const form = h('form', { class: 'dl-search-form', role: 'search', onsubmit: e => { e.preventDefault(); run(input.value, true); } },
     label, h('div', { class: 'dl-search-row' }, input, submit), help, examples, filterPanel);
+  // Emptying the box on the results page (the × of the search field, or deleting the text) goes back to the
+  // start screen: no query, no filters, top of the page.
+  const backToStart = () => {
+    if (input.value.trim() || !api) return;
+    filterFields.forEach(({ select }) => { select.value = ''; });
+    document.body.classList.remove('lab-has-project-link');
+    run('');
+    window.scrollTo(0, 0);
+  };
+  input.addEventListener('input', backToStart);
+  input.addEventListener('search', backToStart);      // Safari fires this one for the ×
   // the query bar may live in its own full-width slot (#dl-query); results stay in #dl-search
   const queryHost = document.getElementById('dl-query');
   if (queryHost) { queryHost.replaceChildren(form); els.search.replaceChildren(status, results); }
