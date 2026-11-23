@@ -60,3 +60,27 @@ python3 proposal/archicgi/discovery/tools/build_detail_index.py --all --weights 
   separate the materials better. `--out DIR` writes elsewhere, for experiments.
 * **Rebuild everything.** The index must be rebuilt as a whole: the PCA is fitted on all patches, so
   adding one project changes every vector.
+
+# Homepage search suggestions
+
+`build_suggestions.js` picks the clickable examples under the search box («Essayer :» / «Try:») from the portfolio data,
+and writes them to `../suggestions.json`. The page reads that file; no example text is hard-coded elsewhere.
+
+1. `suggestion-candidates.json` lists candidate requests, each in French and English.
+2. The script opens the page in headless Chromium and runs every candidate through the page's own search engine
+   (`window.discoveryBrief.search`, the same code as the search box).
+3. A candidate is kept only if it is fully understood (no unknown or stray words), returns **the same projects in French
+   and English**, has at least **20** projects meeting every criterion but no more than a quarter of the catalogue,
+   has at least **85 %** of those projects backed by editorial tags (not only by a word in a title), ranks full matches
+   first, and names something to look at (building type, inside/outside, view, space or animation).
+4. Selection: the best request for each of the three most frequent building types in `graph-data.json`, then the
+   remaining slots by number of matching projects, each criterion family once (building types up to four times), and no
+   two suggestions sharing more than 35 % of their projects.
+
+```bash
+node proposal/archicgi/discovery/tools/build_suggestions.js           # rebuild suggestions.json
+node proposal/archicgi/discovery/tools/build_suggestions.js --check   # re-run the saved ones; non-zero exit on drift
+```
+
+Needs Node and Playwright (Chromium). `--cytoscape <file>` serves Cytoscape from a local file when unpkg is unreachable;
+`--report <file>` writes every candidate's measures. Run `--check` after changing `graph-data.json` or the search engine.

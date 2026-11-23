@@ -35,8 +35,10 @@
     .replace(/[’'`\-_/]/g, ' ').replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim();
   const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   // one regex for a list of terms; the last word may take a plural / feminine ending
-  const termRx = terms => new RegExp('\\b(?:' + terms.map(t => norm(t).split(' ').map(esc).join(' ') + '(?:s|es|x|e)?')
-    .join('|') + ')\\b', 'g');
+  // Longer terms first: a regex alternation takes the first alternative that fits, so "living" would
+  // otherwise win over "living room" and leave "room" behind as a stray free-text word.
+  const termRx = terms => new RegExp('\\b(?:' + terms.map(norm).sort((a, b) => b.length - a.length)
+    .map(t => t.split(' ').map(esc).join(' ') + '(?:s|es|x|e)?').join('|') + ')\\b', 'g');
   // Interface language (discovery-i18n.js); search itself understands French and English whatever the interface
   const I = window.discoveryI18n || { lang: 'fr', t: k => k, tag: x => x, group: (k, f) => f || k, filter: (i, f) => f || i,
     quote: x => '\u00ab\u00a0' + x + '\u00a0\u00bb' };
@@ -76,8 +78,8 @@
       ['maison de ville', 'maisons de ville', 'maison mitoyenne', 'maisons en bande', 'townhouse', 'townhome', 'row house'],
       ['townhouse', 'townhome']),
     C('apartment', 'typology', 'Immeuble de logements', ['typology:Immeuble résidentiel'],
-      ['immeuble', 'appartement', 'logement collectif', 'logements collectifs', 'residence collective', 'copropriete', 'condo',
-        'apartment', 'apartment building', 'condominium', 'multifamily', 'mid rise', 'penthouse'],
+      ['immeuble', 'immeuble residentiel', 'appartement', 'logement collectif', 'logements collectifs', 'residence collective', 'copropriete', 'condo',
+        'apartment', 'apartment building', 'residential building', 'condominium', 'multifamily', 'mid rise', 'penthouse'],
       ['apartment', 'condominium', 'condo', 'multifamily', 'mid rise', 'penthouse', 'residential building']),
     C('district', 'typology', 'Quartier ou lotissement', ['typology:Quartier & lotissement'],
       ['quartier', 'lotissement', 'ensemble residentiel', 'communaute', 'community', 'neighborhood', 'subdivision', 'development'],
@@ -90,13 +92,18 @@
       ['bureau', 'bureaux', 'commerce', 'commercial', 'boutique', 'magasin', 'mixte', 'office', 'retail', 'shop', 'mixed use'],
       ['office', 'commercial', 'business center', 'mixed use', 'storefront', 'shop']),
     C('public', 'typology', 'Équipement ou loisirs', ['typology:Équipement & loisirs'],
-      ['equipement', 'eglise', 'musee', 'bibliotheque', 'theatre', 'salle de sport', 'gymnase', 'stade', 'golf', 'gare', 'pont',
+      ['equipement', 'equipement public', 'batiment public', 'public building', 'loisirs', 'eglise', 'musee', 'bibliotheque', 'theatre', 'salle de sport', 'gymnase', 'stade', 'golf', 'gare', 'pont',
         'centre medical', 'salle de reception', 'church', 'museum', 'library', 'theater', 'gym', 'stadium', 'station', 'bridge'],
       ['church', 'museum', 'library', 'theater', 'theatre', 'gym', 'fitness', 'sports', 'golf', 'station', 'bridge', 'venue', 'clubhouse']),
     C('industrial', 'typology', 'Bâtiment industriel', ['typology:Industriel'],
       ['usine', 'entrepot', 'industriel', 'industrielle', 'factory', 'warehouse', 'industrial'], ['factory', 'warehouse', 'industrial', 'plant']),
     C('tower', 'typology', 'Tour ou gratte-ciel', ['typology:Tour & gratte-ciel'],
       ['gratte ciel', 'tour', 'tours', 'grande hauteur', 'skyscraper', 'high rise', 'tower'], ['skyscraper', 'high rise', 'tower']),
+    // any kind of housing: houses, townhouses, apartment buildings, neighbourhoods, cabins
+    C('residential', 'typology', 'Résidentiel', ['typology:Maison & villa', 'typology:Maison de ville', 'typology:Immeuble résidentiel',
+      'typology:Quartier & lotissement', 'typology:Cabane & chalet'],
+      ['residentiel', 'residentielle', 'residentiels', 'logement', 'logements', 'habitation', 'habitat', 'residential', 'housing'],
+      ['residential', 'housing']),
     // inside / outside
     C('exterior', 'inout', 'Vue extérieure', ['view:Extérieur'], ['exterieur', 'exterieure', 'dehors', 'exterior', 'outdoor'], ['exterior'],
       { cat: 'Exterior Rendering' }),
@@ -117,7 +124,7 @@
       ['bord de l eau', 'au bord de l eau', 'pres de l eau', 'face a l eau', 'les pieds dans l eau', 'front d eau', 'waterfront', 'waterside', 'by the water'],
       ['waterfront', 'waterside', 'lakeside', 'lake', 'seaside', 'seafront', 'oceanfront', 'ocean', 'sea', 'beach', 'beachfront', 'coastal', 'river']),
     C('sea', 'context', 'Bord de mer', ['context:Bord de mer'],
-      ['bord de mer', 'mer', 'ocean', 'plage', 'littoral', 'front de mer', 'seaside', 'beach', 'sea', 'oceanfront', 'coastal'],
+      ['bord de mer', 'bord de la mer', 'au bord de la mer', 'pres de la mer', 'vue sur la mer', 'vue mer', 'mer', 'ocean', 'plage', 'littoral', 'front de mer', 'seaside', 'beach', 'sea', 'oceanfront', 'coastal'],
       ['seaside', 'seafront', 'oceanfront', 'ocean', 'sea', 'beach', 'beachfront', 'coastal', 'coastline']),
     C('lake', 'context', 'Lac ou rivière', ['context:Lac & rivière'],
       ['lac', 'riviere', 'fleuve', 'canal', 'lake', 'lakeside', 'river'], ['lake', 'lakeside', 'river', 'waterway']),
@@ -164,9 +171,9 @@
     C('concrete', 'material', 'Béton', ['material:Béton'], ['beton', 'concrete'], ['concrete']),
     // spaces
     C('pool', 'space', 'Piscine', ['space:Piscine'], ['piscine', 'bassin', 'pool'], ['pool']),
-    C('terrace', 'space', 'Terrasse', ['space:Terrasse & rooftop'], ['terrasse', 'toit terrasse', 'rooftop', 'balcon', 'deck', 'terrace', 'balcony', 'patio'], ['terrace', 'rooftop', 'deck', 'balcony', 'patio']),
-    C('garden', 'space', 'Jardin', ['space:Jardin & paysage'], ['jardin', 'paysage', 'parc', 'pelouse', 'cour', 'garden', 'landscape', 'lawn', 'courtyard', 'park'], ['garden', 'landscape', 'landscaped', 'lawn', 'courtyard', 'park']),
-    C('living', 'space', 'Salon', ['space:Séjour'], ['salon', 'sejour', 'piece de vie', 'living', 'living room', 'lounge'], ['living room', 'drawing room', 'lounge']),
+    C('terrace', 'space', 'Terrasse', ['space:Terrasse & rooftop'], ['terrasse', 'toit terrasse', 'terrasse sur le toit', 'sur le toit', 'rooftop terrace', 'rooftop', 'balcon', 'deck', 'terrace', 'balcony', 'patio'], ['terrace', 'rooftop', 'deck', 'balcony', 'patio']),
+    C('garden', 'space', 'Jardin', ['space:Jardin & paysage'], ['jardin', 'jardin paysager', 'paysager', 'paysagere', 'paysage', 'landscaped', 'landscaped garden', 'parc', 'pelouse', 'cour', 'garden', 'landscape', 'lawn', 'courtyard', 'park'], ['garden', 'landscape', 'landscaped', 'lawn', 'courtyard', 'park']),
+    C('living', 'space', 'Salon', ['space:Séjour'], ['salon', 'sejour', 'piece de vie', 'living', 'living room', 'lounge'], ['living room', 'drawing room']),   // not 'lounge' in titles: fire-pit and church lounges
     C('bedroom', 'space', 'Chambre', ['space:Chambre'], ['chambre', 'suite', 'bedroom'], ['bedroom', 'suite']),
     C('kitchen', 'space', 'Cuisine', ['space:Cuisine'], ['cuisine', 'kitchen'], ['kitchen']),
     C('dining', 'space', 'Salle à manger', ['space:Salle à manger'], ['salle a manger', 'dining', 'dining room'], ['dining']),
@@ -196,7 +203,7 @@
   const CONCEPT_EN = {
     house: 'House', cabin: 'Cabin or chalet', townhouse: 'Townhouse', apartment: 'Apartment building', district: 'Neighbourhood or development',
     hotel: 'Hotel or resort', restaurant: 'Restaurant or bar', office: 'Office or retail', public: 'Public or leisure building',
-    industrial: 'Industrial building', tower: 'Tower or skyscraper', exterior: 'Exterior view', interior: 'Interior view',
+    industrial: 'Industrial building', tower: 'Tower or skyscraper', residential: 'Residential', exterior: 'Exterior view', interior: 'Interior view',
     aerial: 'Aerial view', eye: 'Eye-level view', closeup: 'Close-up', water: 'By the water', sea: 'Seaside', lake: 'Lake or river',
     mountain: 'Mountains', forest: 'Forest or nature', city: 'In the city', suburb: 'Suburb', tropical: 'Tropical',
     snow: 'Snow or winter', autumn: 'Autumn', dusk: 'Dusk', night: 'Night', day: 'Daylight', modern: 'Contemporary',
@@ -219,9 +226,9 @@
   // "sea" and "lake" are more specific than "water"; "bois" alone is wood, "en bois" too
   const STOP = new Set(norm('le la les l un une des de du d au aux a à en et ou avec sans sur sous dans pour par vers depuis tres plutot ' +
     'qui que avec style type vue vues image images rendu rendus visuel visuels perspective perspectives projet projets reference references ' +
-    'photo cgi 3d je cherche voudrais veux besoin quelque chose comme genre ' +
+    'photo cgi 3d je cherche voudrais veux besoin quelque chose comme genre batiment batiments architecture architectural architecturale visualisation ' +
     'the an of in on at with and or for by from to near some like view render rendering image visualization project ' +
-    'looking want need something picture shot please show me').split(' '));
+    'looking want need something picture shot please show me building buildings architectural').split(' '));
   LEXICON.forEach(c => { c.qRx = termRx(c.q); c.tRx = termRx(c.t); });
 
   /* =====================================================================
@@ -360,13 +367,25 @@
   else els.search.replaceChildren(form, status, results);
   status.textContent = t('s.loading');
 
+  // Homepage suggestions come from suggestions.json, built and validated against this search engine by
+  // tools/build_suggestions.js (each one stored with its French and English wording and its result count).
+  let suggestions = [];
+  fetch('suggestions.json', { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).then(cfg => {
+    suggestions = (cfg && Array.isArray(cfg.items) ? cfg.items : []).filter(i => i && i.fr && i.en);
+    paintExamples();
+  }).catch(() => { /* no suggestions: the row stays hidden */ });
+  function paintExamples() {
+    const list = suggestions.map(i => (I.lang === 'en' ? i.en.q : i.fr.q)).filter(Boolean);
+    examples.hidden = !list.length;
+    examples.replaceChildren(h('span', { class: 'dl-note' }, t('s.try')),
+      ...list.map(x => h('button', { type: 'button', class: 'dl-example', onclick: () => { input.value = x; run(x, true); } }, x)));
+  }
   function paintSearch() {
     label.textContent = t('s.label');
     input.setAttribute('placeholder', t('s.placeholder'));
     submit.textContent = t('s.go');
     help.textContent = t('s.help');
-    examples.replaceChildren(h('span', { class: 'dl-note' }, t('s.try')),
-      ...t('s.examples').map(x => h('button', { type: 'button', class: 'dl-example', onclick: () => { input.value = x; run(x, true); } }, x)));
+    paintExamples();
     paintFilters();
   }
 
