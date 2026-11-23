@@ -324,6 +324,7 @@
    * 4. UI
    * ===================================================================== */
   let api = null, byId = new Map(), lastQuery = '';
+  let pendingUserSearch = false;
   let view = null;            // current results: { out, shown, active } — re-rendered as is on language change
 
   // ---- search form (persistent elements; texts set by paintSearch) ----
@@ -334,7 +335,7 @@
   const label = h('label', { for: 'dl-q', class: 'dl-search-label' });
   const help = h('p', { id: 'dl-q-help', class: 'dl-note' });
   const examples = h('div', { class: 'dl-examples' });
-  const form = h('form', { class: 'dl-search-form', role: 'search', onsubmit: e => { e.preventDefault(); run(input.value); } },
+  const form = h('form', { class: 'dl-search-form', role: 'search', onsubmit: e => { e.preventDefault(); run(input.value, true); } },
     label, h('div', { class: 'dl-search-row' }, input, submit), help, examples);
   // the query bar may live in its own full-width slot (#dl-query); results stay in #dl-search
   const queryHost = document.getElementById('dl-query');
@@ -348,7 +349,7 @@
     submit.textContent = t('s.go');
     help.textContent = t('s.help');
     examples.replaceChildren(h('span', { class: 'dl-note' }, t('s.try')),
-      ...t('s.examples').map(x => h('button', { type: 'button', class: 'dl-example', onclick: () => { input.value = x; run(x); } }, x)));
+      ...t('s.examples').map(x => h('button', { type: 'button', class: 'dl-example', onclick: () => { input.value = x; run(x, true); } }, x)));
   }
 
   function evidenceChip(e) {
@@ -456,10 +457,11 @@
             t(pub.pageRedirectsTo ? 's.viewPortfolio' : 's.viewArchi')) : null)));
   }
 
-  function run(query) {
+  function run(query, userInitiated = false) {
     query = String(query || '').trim();
     lastQuery = query;
-    if (!api) return;
+    if (!api) { pendingUserSearch = userInitiated; return; }
+    document.body.classList.toggle('lab-has-query', Boolean(query));
     try { const u = new URL(location.href); if (query) u.searchParams.set('q', query); else u.searchParams.delete('q'); history.replaceState(null, '', u); } catch (_) { /* file:// */ }
     if (!query) { view = null; results.replaceChildren(); status.textContent = ''; api.setHits([]); return; }
     const out = search(query, api.projects);
@@ -468,6 +470,13 @@
     paintResults();
     // halo in the graph: full matches, or the closest partial ones
     api.setHits(out.concepts.length ? (out.full ? out.results.filter(r => r.full) : out.results.slice(0, 20)).map(r => r.p.id) : []);
+    if (userInitiated) {
+      const heading = document.getElementById('lab-results-title');
+      if (heading) {
+        heading.focus({ preventScroll: true });
+        heading.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      }
+    }
   }
 
   // Draws the current results in the interface language (also used on language change: same results, same count)
@@ -704,7 +713,7 @@
     api.refreshPanel();
     let q = '';
     try { q = new URL(location.href).searchParams.get('q') || ''; } catch (_) { /* ignore */ }
-    if (q || lastQuery) { input.value = q || lastQuery; run(input.value); }
+    if (q || lastQuery) { input.value = lastQuery || q; run(input.value, pendingUserSearch); }
   }
   window.discoveryBrief = {
     has: id => brief.items.some(i => i.id === id && isWhole(i)),
