@@ -141,7 +141,6 @@
       // main screen (redesign)
       'nav.label': 'Sections', 'nav.results': 'Références', 'nav.brief': 'Brief', 'nav.graph': 'Graphe des liens',
       'page.h1': 'Trouvez des références',
-      'page.imageCredit': 'Rendu ArchiCGI',
       'page.lead': 'Décrivez l’image recherchée, ouvrez un rendu, cherchez un détail de façade similaire et composez votre brief. 434 projets du portfolio public d’ArchiCGI.',
       'sec.results': 'Références', 'sec.graph': 'Graphe des liens', 'sec.gen': 'Variantes générées',
       'sec.graphLead': 'Chaque projet relié à ses catégories éditoriales : choisissez un projet ou une catégorie pour voir ce qui les relie.',
@@ -260,7 +259,6 @@
       'bt.category': '   ArchiCGI data: category ', 'bt.tags': '   Editorial tags: ',
       'nav.label': 'Sections', 'nav.results': 'References', 'nav.brief': 'Brief', 'nav.graph': 'Link graph',
       'page.h1': 'Find references',
-      'page.imageCredit': 'Rendering by ArchiCGI',
       'page.lead': 'Describe the image you need, open a render, search for a similar facade detail and build your brief. 434 projects from ArchiCGI’s public portfolio.',
       'sec.results': 'References', 'sec.graph': 'Link graph', 'sec.gen': 'Generated variants',
       'sec.graphLead': 'Each project linked to its editorial categories: choose a project or a category to see what connects them.',

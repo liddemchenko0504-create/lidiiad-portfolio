@@ -709,6 +709,9 @@
     status.textContent = '';
     renderBrief();
     api.refreshPanel();
+    // A direct graph project link opens the workspace even without a query.
+    const projectId = location.hash.slice(1);
+    if (byId.has(projectId)) document.body.classList.add('lab-has-project-link');
     let q = '';
     try { q = new URL(location.href).searchParams.get('q') || ''; } catch (_) { /* ignore */ }
     if (q || lastQuery) { input.value = lastQuery || q; run(input.value, pendingUserSearch); }
