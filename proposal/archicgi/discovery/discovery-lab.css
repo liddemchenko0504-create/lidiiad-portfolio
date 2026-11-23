@@ -697,3 +697,8 @@ body.lab:not(.lab-has-query, .lab-has-project-link)::before { opacity: 0; }   /*
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go::before { top: 13px; left: 14px; width: 7px; height: 7px; border-top-width: 1.5px; border-left-width: 1.5px; }
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go::after { top: 13px; left: 17.25px; width: 1.5px; height: 10px; }
 .lab:not(.lab-has-query, .lab-has-project-link) .lab-brand { pointer-events: none; cursor: default; }
+
+/* Start screen: the circle itself is small (26 px) */
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-search-form .dl-search-go { flex: 0 0 26px; width: 26px; height: 26px; min-height: 26px; margin-right: 10px; }
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go::before { top: 9px; left: 10px; width: 5px; height: 5px; border-top-width: 1.5px; border-left-width: 1.5px; }
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go::after { top: 9.5px; left: 12.25px; width: 1.5px; height: 8px; }
