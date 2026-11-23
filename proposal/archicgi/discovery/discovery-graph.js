@@ -457,8 +457,10 @@
       renderPanel(node);
       try { history.replaceState(null, '', '#' + encodeURIComponent(id)); } catch (_) { /* file:// */ }
     }
+    let backFocus = false;
     function clearSelection() {
       selectedId = null;
+      backFocus = true;
       clearHighlight();
       renderPanel(null);
       try { history.replaceState(null, '', location.pathname + location.search); } catch (_) { /* noop */ }
@@ -532,15 +534,98 @@
       return nodes.length > CONFIG.listStep ? [ul, more] : [ul];
     }
 
+    /* ----- filter-first project browser (panel with nothing selected) -----
+     * Nothing is listed until the user types a title or picks a filter. State survives selecting a project
+     * and coming back (query, filters, page), and language changes. */
+    const BROWSE = { q: '', f: {}, page: 0, last: null };
+    const PAGE = 6;
+    const fold = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+    const browseDims = () => [
+      ...model.activeGroups.map(g => ({ id: g, name: () => I.group(g, model.groups[g].label), values: p => (p.facets && p.facets[g]) || [], option: I.tag })),
+      { id: 'portfolio', name: () => I.t('g.bCategory'), values: p => (p.published && p.published.categories) || [], option: v => v }
+    ].filter(d => model.projects.some(p => d.values(p).length));
+    function browseMatches() {
+      const dims = browseDims(), q = fold(BROWSE.q).trim();
+      const words = q.split(/\s+/).filter(Boolean);
+      const active = dims.filter(d => BROWSE.f[d.id]);
+      if (!words.length && !active.length) return null;
+      return model.projects.filter(p => {
+        if (activeFilter !== 'all' && !(p.filters || []).includes(activeFilter)) return false;
+        const hay = fold(p.label + ' ' + ((p.published && p.published.frCaption) || ''));
+        return words.every(w => hay.includes(w)) && active.every(d => d.values(p).includes(BROWSE.f[d.id]));
+      });
+    }
+    // bring a node into view without changing the zoom more than needed
+    function focusNode(id) {
+      const n = cy.getElementById(id);
+      if (!n.nonempty()) return;
+      const z = Math.min(cy.maxZoom(), Math.max(cy.zoom(), cy.minZoom() * 2.2));
+      cy.stop();
+      cy.animate({ center: { eles: n }, zoom: z }, { duration: reduceMotion ? 0 : 320, complete: clampPan });
+      if (reduceMotion) clampPan();
+    }
+    function pickProject(id) {
+      BROWSE.last = id;
+      select(id);
+      focusNode(id);
+    }
+    function renderBrowser() {
+      const dims = browseDims();
+      const input = h('input', { type: 'search', id: 'dl-b-q', class: 'dl-b-input', autocomplete: 'off', enterkeyhint: 'search',
+        value: BROWSE.q, placeholder: I.t('g.bPlaceholder'), 'aria-describedby': 'dl-b-count' });
+      const selects = dims.map(d => {
+        const counts = new Map();
+        model.projects.forEach(p => d.values(p).forEach(v => counts.set(v, (counts.get(v) || 0) + 1)));
+        const opts = [...counts].map(([v, n]) => ({ v, text: d.option(v) + ' (' + n + ')', sort: d.option(v) }))
+          .sort((a, b) => a.sort.localeCompare(b.sort, I.lang));
+        const sel = h('select', { name: 'g.' + d.id, class: 'dl-b-select', onchange: () => { BROWSE.f[d.id] = sel.value; BROWSE.page = 0; paint(); } },
+          h('option', { value: '' }, I.t('g.bAll')), ...opts.map(o => h('option', { value: o.v }, o.text)));
+        sel.value = BROWSE.f[d.id] || '';
+        return h('label', { class: 'dl-b-field' }, h('span', {}, d.name()), sel);
+      });
+      const count = h('p', { id: 'dl-b-count', class: 'dl-b-count', role: 'status', 'aria-live': 'polite' });
+      const list = h('ul', { class: 'dl-b-list' });
+      const pager = h('div', { class: 'dl-b-pager' });
+      const reset = h('button', { type: 'button', class: 'dl-b-reset', onclick: () => {
+        BROWSE.q = ''; BROWSE.f = {}; BROWSE.page = 0; input.value = ''; selects.forEach(l => { l.querySelector('select').value = ''; }); paint(); input.focus(); } }, I.t('g.bReset'));
+      function paint() {
+        const hits = browseMatches();
+        reset.hidden = !hits;
+        list.replaceChildren(); pager.replaceChildren();
+        if (!hits) { count.textContent = I.t('g.bStart', { n: model.projects.length }); return; }
+        const pages = Math.max(1, Math.ceil(hits.length / PAGE));
+        BROWSE.page = Math.min(BROWSE.page, pages - 1);
+        count.textContent = hits.length ? I.t('g.bCount', { n: hits.length }) : I.t('g.bNone');
+        hits.slice(BROWSE.page * PAGE, BROWSE.page * PAGE + PAGE).forEach(p => list.append(h('li', {},
+          h('button', { type: 'button', class: 'dl-b-item', 'data-id': p.id, onclick: () => pickProject(p.id) },
+            p.thumb || p.image ? h('img', { src: p.thumb || p.image, alt: '', loading: 'lazy', decoding: 'async', width: 56, height: 56,
+              onerror: e => e.target.remove() }) : h('span', { class: 'dl-b-noimg' }),
+            h('span', { class: 'dl-b-title' }, p.label)))));
+        if (pages > 1) {
+          const go = d => { BROWSE.page += d; paint(); const t = list.querySelector('.dl-b-item'); if (t) t.focus({ preventScroll: true }); };
+          pager.append(
+            h('button', { type: 'button', class: 'dl-b-page', disabled: BROWSE.page === 0 ? '' : null, onclick: () => go(-1) }, I.t('g.bPrev')),
+            h('span', { class: 'dl-b-pageno' }, I.t('g.bPage', { i: BROWSE.page + 1, n: pages })),
+            h('button', { type: 'button', class: 'dl-b-page', disabled: BROWSE.page >= pages - 1 ? '' : null, onclick: () => go(1) }, I.t('g.bNext')));
+        }
+      }
+      input.addEventListener('input', () => { BROWSE.q = input.value; BROWSE.page = 0; paint(); });
+      paint();
+      return h('div', { class: 'dl-browser' },
+        h('label', { class: 'dl-b-label', for: 'dl-b-q' }, I.t('g.bSearch')), input,
+        h('div', { class: 'dl-b-filters' }, selects),
+        h('div', { class: 'dl-b-bar' }, count, reset), list, pager);
+    }
+
     function renderPanel(node) {
       els.panel.replaceChildren();
       if (!node) {
-        const visible = model.projects.filter(p => activeFilter === 'all' || (p.filters || []).includes(activeFilter));
-        const f = model.filters.find(x => x.id === activeFilter);
-        els.panel.append(
-          h('h2', {}, I.t('g.listTitle')),
-          h('p', {}, I.t('g.listIntro', { n: visible.length, filter: f ? I.filter(f.id, f.label) : '' })),
-          ...nodeList(visible.map(p => cy.getElementById(p.id))));
+        els.panel.append(h('h2', {}, I.t('g.listTitle')), renderBrowser());
+        if (BROWSE.last) {
+          const b = els.panel.querySelector('.dl-b-item[data-id="' + CSS.escape(BROWSE.last) + '"]');
+          if (b && backFocus) b.focus({ preventScroll: true });
+        }
+        backFocus = false;
         return;
       }
       const back = h('button', { type: 'button', class: 'dl-back', onclick: clearSelection }, I.t('g.back'));
