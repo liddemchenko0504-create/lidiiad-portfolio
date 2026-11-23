@@ -128,44 +128,56 @@
   }
 
   /* =====================================================================
-   * 3. VIEWER
+   * 3. VIEWER — render on the left (+ strip of similar details under it after a selection),
+   *    actions, why it matched and the chosen detail on the right
    * ===================================================================== */
   const graph = () => window.discoveryGraph;
   const project = id => graph() && graph().projects.find(p => p.id === id);
-  let view = null;                 // { id, select, selection, highlight, result, back }
+  let view = null;                 // { id, select, selection, highlight, result, active, back, explain }
 
   const title = h('h2', { id: 'dl-v-title' });
-  const kicker = h('p', { class: 'dl-note dl-v-kicker' });
-  const extLink = h('a', { class: 'dl-tag dl-ext', target: '_blank', rel: 'noopener noreferrer' });
+  const kicker = h('p', { class: 'dl-v-kicker' });
+  const extLink = h('a', { class: 'dl-btn dl-btn--ghost dl-ext', target: '_blank', rel: 'noopener noreferrer' });
   const closeBtn = h('button', { type: 'button', class: 'dl-v-close', onclick: () => close() }, '×');
   const img = h('img', { class: 'dl-v-img', alt: '', decoding: 'async', draggable: 'false' });
   const selBox = h('div', { class: 'dl-v-box dl-v-sel', hidden: '' });
   const markBox = h('div', { class: 'dl-v-box dl-v-mark', hidden: '' });
   const overlay = h('div', { class: 'dl-v-overlay' }, selBox, markBox);
   const frame = h('div', { class: 'dl-v-frame' }, img, overlay);
-  const findBtn = h('button', { type: 'button', class: 'dl-link dl-v-find', onclick: () => setSelect(!view.select) });
-  const clearBtn = h('button', { type: 'button', class: 'dl-tag dl-v-clear', onclick: () => { view.selection = null; view.result = null; paint(); } });
-  const backBtn = h('button', { type: 'button', class: 'dl-tag dl-v-back', onclick: () => goBack() });
-  const addMarkBtn = h('button', { type: 'button', class: 'dl-tag dl-v-addmark', onclick: () => addToBrief(view.id, view.highlight) });
-  const hint = h('p', { class: 'dl-note dl-v-hint', id: 'dl-v-hint' });
+  const findBtn = h('button', { type: 'button', class: 'dl-btn dl-btn--primary dl-v-find', onclick: () => setSelect(!view.select) });
+  const clearBtn = h('button', { type: 'button', class: 'dl-btn dl-v-clear', onclick: () => { view.selection = null; view.result = null; paint(); } });
+  const backBtn = h('button', { type: 'button', class: 'dl-btn dl-btn--ghost dl-v-back', onclick: () => goBack() });
+  const addMarkBtn = h('button', { type: 'button', class: 'dl-btn dl-v-addmark', onclick: () => addToBrief(view.id, view.highlight) });
+  const addFrameBtn = h('button', { type: 'button', class: 'dl-btn dl-v-addframe', onclick: () => { if (window.discoveryBrief) window.discoveryBrief.toggle(view.id); } });
+  const graphBtn = h('button', { type: 'button', class: 'dl-btn dl-btn--ghost dl-v-graph', onclick: () => showInGraph(view.id) });
+  const hint = h('p', { class: 'dl-v-hint', id: 'dl-v-hint' });
+  const explainBox = h('div', { class: 'dl-v-explain' });
   const status = h('p', { class: 'dl-v-status', role: 'status', 'aria-live': 'polite' });
-  const results = h('div', { class: 'dl-v-results' });
+  const notice = h('div', { class: 'dl-v-notice' });
+  const hitInfo = h('div', { class: 'dl-v-hitinfo', 'aria-live': 'polite' });
+  const stripTitle = h('h3', { class: 'dl-v-rtitle', id: 'dl-v-strip-title' });
+  const strip = h('ol', { class: 'dl-v-strip', 'aria-labelledby': 'dl-v-strip-title' });
+  const stripBox = h('section', { class: 'dl-v-stripbox', hidden: '' }, stripTitle, strip);
   const dialog = h('dialog', { class: 'dlx dl-viewer', 'aria-labelledby': 'dl-v-title' },
     h('div', { class: 'dl-v-head' }, h('div', { class: 'dl-v-titles' }, kicker, title), extLink, closeBtn),
     h('div', { class: 'dl-v-main' },
-      h('div', { class: 'dl-v-stage' }, frame),
+      h('div', { class: 'dl-v-left' }, h('div', { class: 'dl-v-stage' }, frame), stripBox),
       h('div', { class: 'dl-v-side' },
-        h('div', { class: 'dl-v-tools' }, backBtn, findBtn, clearBtn, addMarkBtn), hint, status, results)));
+        h('div', { class: 'dl-v-tools' }, backBtn, findBtn, clearBtn, addMarkBtn),
+        hint, status, notice, hitInfo, explainBox,
+        h('div', { class: 'dl-v-tools dl-v-tools--quiet' }, addFrameBtn, graphBtn))));
   document.body.append(dialog);
   dialog.addEventListener('close', () => { view = null; restoreHash(); });
   dialog.addEventListener('click', e => { if (e.target === dialog) close(); });   // backdrop
 
+  // opts: select (start drawing), highlight (region to mark), from (view to go back to),
+  //       explain (function returning a node: why this render matched the text search)
   function open(id, opts) {
     const p = project(id);
     if (!p || !p.image) return false;
     opts = opts || {};
-    const prev = opts.from || null;
-    view = { id, select: !!opts.select, selection: null, highlight: opts.highlight || null, result: null, back: prev, query: opts.query || null };
+    view = { id, select: !!opts.select, selection: null, highlight: opts.highlight || null, result: null, active: 0,
+      back: opts.from || null, explain: opts.explain || null };
     loadIndex().catch(() => {}).then(() => { if (view && view.id === id) paint(); });
     if (!dialog.open) { lastFocus = document.activeElement; dialog.showModal(); }
     paint();
@@ -184,13 +196,24 @@
     view = b;
     paint();
   }
+  function showInGraph(id) {
+    close();
+    const g = graph();
+    if (!g || !g.showProject(id)) return;
+    g.stage.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+  }
   const isIndexed = id => (idx ? projK.has(id) : undefined);
 
   function setSelect(on) {
     if (!view) return;
     if (on && isIndexed(view.id) === false) return;
     view.select = on;
-    if (on) { view.highlight = null; overlay.focus({ preventScroll: true }); }
+    if (on) {
+      view.highlight = null;
+      overlay.focus({ preventScroll: true });
+      // on a phone the render may be scrolled away (results above the tools): bring it back to draw on it
+      frame.scrollIntoView({ block: 'nearest', behavior: 'auto' });
+    }
     paint();
   }
 
@@ -205,6 +228,7 @@
     if (!view) return;
     const p = project(view.id), pub = p.published || {};
     const indexed = isIndexed(view.id);
+    const B = window.discoveryBrief;
     title.textContent = p.label;
     kicker.textContent = 'ArchiCGI' + (pub.categories && pub.categories.length ? ' · ' + pub.categories.join(', ') : '');
     if (safeUrl(p.url)) { extLink.href = safeUrl(p.url); extLink.hidden = false; } else extLink.hidden = true;
@@ -223,52 +247,66 @@
 
     backBtn.hidden = !view.back;
     backBtn.textContent = t('d.back');
-    findBtn.hidden = false;
     findBtn.disabled = indexed === false;
     findBtn.setAttribute('aria-pressed', String(!!view.select));
     findBtn.textContent = view.select ? t('d.stopSelect') : t('d.find');
     clearBtn.hidden = !view.selection;
     clearBtn.textContent = t('d.clear');
     addMarkBtn.hidden = !view.highlight;
-    const markIn = view.highlight && window.discoveryBrief && window.discoveryBrief.hasDetail(view.id, view.highlight);
+    const markIn = view.highlight && B && B.hasDetail(view.id, view.highlight);
     addMarkBtn.textContent = markIn ? t('d.inBrief') : t('d.addMark');
     addMarkBtn.setAttribute('aria-pressed', String(!!markIn));
+    const frameIn = B && B.has(view.id);
+    addFrameBtn.hidden = !B;
+    addFrameBtn.textContent = frameIn ? t('d.frameInBrief') : t('d.addFrame');
+    addFrameBtn.setAttribute('aria-pressed', String(!!frameIn));
+    graphBtn.textContent = t('s.showGraph');
 
     hint.textContent = indexed === false ? t('d.notIndexed', { n: idx ? idx.projects.length : '' })
-      : view.select ? t('d.hint') : view.highlight ? t('d.markedHint') : t('d.intro');
+      : view.select ? t('d.hint') : view.highlight ? t('d.markedHint') : view.result ? '' : t('d.intro');
+    explainBox.replaceChildren();
+    if (view.explain && !view.result) {
+      const node = view.explain();
+      if (node) explainBox.append(h('h3', { class: 'dl-v-rtitle' }, t('s.why')), node);
+    }
     paintResults();
   }
 
   function paintResults() {
-    results.replaceChildren();
+    strip.replaceChildren(); hitInfo.replaceChildren(); notice.replaceChildren();
     const r = view.result;
-    if (!r) return;
+    stripBox.hidden = !(r && r.list);
+    dialog.classList.toggle('has-strip', !stripBox.hidden);
+    if (!r) { status.textContent = ''; return; }
     if (r.error) { status.textContent = t('d.error'); return; }
-    const near = r.near, n = idx.projects.length;
-    status.textContent = t('d.summary', { projects: fmt(n), fragments: fmt(idx.fragments) });
-    if (near < idx.scoring.minClose) {
-      results.append(h('p', { class: 'dl-nomatch dl-v-weak' }, t('d.weak', { k: near })));
-    }
-    results.append(h('h3', { class: 'dl-v-rtitle' }, t('d.resultsTitle')));
-    const list = h('ol', { class: 'dl-v-list' });
+    status.textContent = t('d.summary', { projects: fmt(idx.projects.length), fragments: fmt(idx.fragments) });
+    if (r.near < idx.scoring.minClose) notice.append(h('p', { class: 'dl-nomatch dl-v-weak' }, t('d.weak', { k: r.near })));
+    stripTitle.textContent = t('d.resultsTitle');
     r.list.slice(0, SHOW).forEach((x, i) => {
-      const p = project(x.id), pub = p.published || {};
-      const inBrief = window.discoveryBrief && window.discoveryBrief.hasDetail(x.id, x.region);
+      const p = project(x.id);
       const crop = window.discoveryBrief ? window.discoveryBrief.cropBox(p.image, x.region, 'dl-v-crop') : h('div', { class: 'dl-v-crop' });
-      crop.setAttribute('aria-label', t('d.cropOf', { title: p.label }));
-      list.append(h('li', { class: 'dl-v-hit is-' + x.level, 'data-id': x.id, 'data-score': x.score.toFixed(4) },
-        crop,
-        h('div', { class: 'dl-v-hitbody' },
-          h('p', { class: 'dl-badge' + (x.level === 'close' ? ' is-full' : '') }, t('d.level.' + x.level) + ' · ' + x.score.toFixed(2)),
-          h('h4', {}, (i + 1) + '. ' + p.label),
-          pub.categories && pub.categories.length ? h('p', { class: 'dl-note' }, 'ArchiCGI · ' + pub.categories.join(', ')) : null,
-          h('div', { class: 'dl-card-actions' },
-            h('button', { type: 'button', class: 'dl-tag dl-v-open', onclick: () => open(x.id, { highlight: x.region, from: view }) }, t('d.viewFrame')),
-            h('button', { type: 'button', class: 'dl-tag dl-add dl-v-add', 'aria-pressed': String(!!inBrief),
-              onclick: () => addToBrief(x.id, x.region) }, inBrief ? t('d.inBrief') : t('d.add')),
-            safeUrl(p.url) ? h('a', { class: 'dl-tag dl-ext', href: safeUrl(p.url), target: '_blank', rel: 'noopener noreferrer' }, t('s.viewArchi')) : null))));
+      const on = i === view.active;
+      strip.append(h('li', { class: 'dl-v-hit is-' + x.level + (on ? ' is-active' : ''), 'data-id': x.id, 'data-score': x.score.toFixed(4) },
+        h('button', { type: 'button', class: 'dl-v-pick', 'aria-pressed': String(on),
+          'aria-label': t('d.pick', { n: i + 1, title: p.label, level: t('d.level.' + x.level) }),
+          onclick: () => { view.active = i; paintResults(); } },
+          crop,
+          h('span', { class: 'dl-v-cap' }, h('span', { class: 'dl-v-rank' }, String(i + 1).padStart(2, '0')),
+            h('span', { class: 'dl-mono' }, x.id.replace('acgi-', '')), h('span', { class: 'dl-v-band' }, t('d.level.' + x.level))))));
     });
-    results.append(list);
+    const x = r.list[view.active];
+    if (!x) return;
+    const p = project(x.id), pub = p.published || {};
+    const inBrief = window.discoveryBrief && window.discoveryBrief.hasDetail(x.id, x.region);
+    hitInfo.append(
+      h('p', { class: 'dl-badge' + (x.level === 'close' ? ' is-full' : '') }, t('d.level.' + x.level) + ' · ', h('span', { class: 'dl-mono' }, x.score.toFixed(2))),
+      h('h4', {}, p.label),
+      pub.categories && pub.categories.length ? h('p', { class: 'dl-note' }, 'ArchiCGI · ' + pub.categories.join(', ')) : null,
+      h('div', { class: 'dl-v-hitactions' },
+        h('button', { type: 'button', class: 'dl-btn dl-btn--primary dl-add dl-v-add', 'aria-pressed': String(!!inBrief),
+          onclick: () => addToBrief(x.id, x.region) }, inBrief ? t('d.inBrief') : t('d.add')),
+        h('button', { type: 'button', class: 'dl-btn dl-v-open', onclick: () => open(x.id, { highlight: x.region, from: view }) }, t('d.viewFrame')),
+        safeUrl(p.url) ? h('a', { class: 'dl-btn dl-btn--ghost dl-ext', href: safeUrl(p.url), target: '_blank', rel: 'noopener noreferrer' }, t('s.viewArchi')) : null));
   }
 
   function addToBrief(id, region) {
@@ -277,9 +315,8 @@
     const k = B.addDetail(id, region);
     if (k < 0) return;
     paint();
-    status.textContent = '';
-    results.prepend(h('div', { class: 'dl-v-added', role: 'status' }, t('d.added'), ' ',
-      h('button', { type: 'button', class: 'dl-tag dl-v-gobrief', onclick: () => goToBrief(k) }, t('d.writeNote'))));
+    notice.append(h('div', { class: 'dl-v-added', role: 'status' }, t('d.added'), ' ',
+      h('button', { type: 'button', class: 'dl-btn dl-v-gobrief', onclick: () => goToBrief(k) }, t('d.writeNote'))));
   }
   function goToBrief(k) {
     close();
@@ -294,9 +331,9 @@
     if (!view || !view.selection) return;
     const v = view, sel = view.selection;
     status.textContent = t('d.searching');
-    results.replaceChildren();
+    strip.replaceChildren(); hitInfo.replaceChildren(); notice.replaceChildren();
     try { v.result = await searchRegion(v.id, sel); } catch (e) { console.error('[discovery details]', e); v.result = { error: true }; }
-    if (view === v) { v.select = false; paint(); }
+    if (view === v) { v.select = false; v.active = 0; paint(); }
   }
 
   /* ---------- drawing a rectangle: mouse, pen or finger ---------- */
@@ -346,7 +383,7 @@
     s = Object.assign({}, s);
     if (e.shiftKey) { s.w = clamp(s.w + dir[0] * step, MIN_SIDE, 1 - s.x); s.h = clamp(s.h + dir[1] * step, MIN_SIDE, 1 - s.y); }
     else { s.x = clamp(s.x + dir[0] * step, 0, 1 - s.w); s.y = clamp(s.y + dir[1] * step, 0, 1 - s.h); }
-    view.selection = s; view.result = null; place(selBox, s); results.replaceChildren(); status.textContent = '';
+    view.selection = s; view.result = null; place(selBox, s); paintResults();
   });
 
   /* ---------- deep link: #detail=<id>:x,y,w,h ---------- */

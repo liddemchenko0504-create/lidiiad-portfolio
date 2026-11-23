@@ -328,7 +328,7 @@
 
   // ---- search form (persistent elements; texts set by paintSearch) ----
   const input = h('input', { type: 'search', id: 'dl-q', name: 'q', autocomplete: 'off', enterkeyhint: 'search', 'aria-describedby': 'dl-q-help' });
-  const submit = h('button', { type: 'submit', class: 'dl-link dl-search-go' });
+  const submit = h('button', { type: 'submit', class: 'dl-btn dl-btn--primary dl-search-go' });
   const status = h('p', { class: 'dl-search-status', role: 'status', 'aria-live': 'polite' });
   const results = h('div', { class: 'dl-results', id: 'dl-results' });
   const label = h('label', { for: 'dl-q', class: 'dl-search-label' });
@@ -336,7 +336,10 @@
   const examples = h('div', { class: 'dl-examples' });
   const form = h('form', { class: 'dl-search-form', role: 'search', onsubmit: e => { e.preventDefault(); run(input.value); } },
     label, h('div', { class: 'dl-search-row' }, input, submit), help, examples);
-  els.search.replaceChildren(form, status, results);
+  // the query bar may live in its own full-width slot (#dl-query); results stay in #dl-search
+  const queryHost = document.getElementById('dl-query');
+  if (queryHost) { queryHost.replaceChildren(form); els.search.replaceChildren(status, results); }
+  else els.search.replaceChildren(form, status, results);
   status.textContent = t('s.loading');
 
   function paintSearch() {
@@ -345,7 +348,7 @@
     submit.textContent = t('s.go');
     help.textContent = t('s.help');
     examples.replaceChildren(h('span', { class: 'dl-note' }, t('s.try')),
-      ...t('s.examples').map(x => h('button', { type: 'button', class: 'dl-tag dl-example', onclick: () => { input.value = x; run(x); } }, x)));
+      ...t('s.examples').map(x => h('button', { type: 'button', class: 'dl-example', onclick: () => { input.value = x; run(x); } }, x)));
   }
 
   function evidenceChip(e) {
@@ -404,29 +407,52 @@
 
   function briefButton(id) {
     const on = brief.items.some(i => i.id === id && isWhole(i));
-    return h('button', { type: 'button', class: 'dl-tag dl-add', 'data-brief-id': id, 'aria-pressed': String(on),
+    return h('button', { type: 'button', class: 'dl-btn dl-add', 'data-brief-id': id, 'aria-pressed': String(on),
       onclick: () => toggle(id) }, t(on ? 's.inBrief' : 's.addBrief'));
   }
 
-  function card(r) {
+  // one line under the image: what the data does not say / what differs
+  function gapsText(r) {
+    const unknown = r.crit.filter(x => x.status === 'unknown').map(x => dimName(x.c.dim));
+    const missing = r.crit.filter(x => x.status === 'other' || x.status === 'absent').map(x => cLabel(x.c));
+    return [unknown.length ? t('s.gapUnknown', { list: unknown.join(', ') }) : '',
+      missing.length ? t('s.gapMissing', { list: missing.join(', ') }) : ''].filter(Boolean).join(' · ');
+  }
+  // why a result matched: criteria with their sources (shown folded in the tile and in the render viewer)
+  const explanation = r => h('ul', { class: 'dl-crits' }, r.crit.map(critLine));
+  function openRender(r) {
+    if (!window.discoveryDetails) return;
+    if (view) view.active = r.p.id;
+    window.discoveryDetails.open(r.p.id, { explain: () => explanation(r) });
+  }
+
+  // Result tile: large render with its rank, title, one line of gaps; details folded; few actions
+  function card(r, rank) {
     const p = r.p, pub = p.published || {};
     const badge = r.full ? t('s.badgeFull') : t('s.badgePartial', { m: r.matched, n: r.crit.length });
+    const gaps = gapsText(r);
+    const src = p.image || p.thumb;
+    const media = src
+      ? h('img', { class: 'dl-card-img', src, alt: p.imageAlt || p.label, loading: rank <= 4 ? 'eager' : 'lazy', decoding: 'async',
+          onerror: e => e.target.replaceWith(h('span', { class: 'dl-card-img dl-card-noimg' }, t('s.imgError'))) })
+      : h('span', { class: 'dl-card-img dl-card-noimg' }, t('s.noImage'));
     return h('article', { class: 'dl-card' + (r.full ? ' is-full' : '') + (view && view.active === p.id ? ' is-active' : ''), 'data-id': p.id },
-      p.thumb || p.image
-        ? h('img', { class: 'dl-card-img', src: p.thumb || p.image, alt: p.imageAlt || p.label, loading: 'lazy', decoding: 'async', width: 96, height: 96,
-            onerror: e => e.target.replaceWith(h('div', { class: 'dl-card-img dl-card-noimg' }, t('s.imgError'))) })
-        : h('div', { class: 'dl-card-img dl-card-noimg' }, t('s.noImage')),
+      h('button', { type: 'button', class: 'dl-card-media', 'aria-label': t('s.openRender', { title: p.label }),
+        onclick: () => openRender(r), disabled: src && window.discoveryDetails ? null : '' },
+        media, h('span', { class: 'dl-card-num', 'aria-hidden': 'true' }, '# ' + String(rank).padStart(2, '0'))),
       h('div', { class: 'dl-card-body' },
         h('p', { class: 'dl-badge' + (r.full ? ' is-full' : '') }, badge),
         h('h3', {}, p.label),
-        pub.categories && pub.categories.length ? h('p', { class: 'dl-note' }, 'ArchiCGI · ' + pub.categories.join(', ')) : null,
-        h('ul', { class: 'dl-crits' }, r.crit.map(critLine)),
+        gaps ? h('p', { class: 'dl-card-gaps' }, gaps) : null,
+        h('details', { class: 'dl-card-why' },
+          h('summary', {}, t('s.why')),
+          pub.categories && pub.categories.length ? h('p', { class: 'dl-note' }, 'ArchiCGI · ' + pub.categories.join(', ')) : null,
+          explanation(r)),
         h('div', { class: 'dl-card-actions' },
-          h('button', { type: 'button', class: 'dl-tag dl-show', onclick: () => showInGraph(p.id) }, t('s.showGraph')),
           briefButton(p.id),
-          window.discoveryDetails && p.image ? h('button', { type: 'button', class: 'dl-tag dl-enlarge',
-            onclick: () => window.discoveryDetails.open(p.id) }, t('d.enlarge')) : null,
-          safeUrl(p.url) ? h('a', { class: 'dl-tag dl-ext', href: safeUrl(p.url), target: '_blank', rel: 'noopener noreferrer' },
+          window.discoveryDetails && src ? h('button', { type: 'button', class: 'dl-btn dl-btn--ghost dl-enlarge', onclick: () => openRender(r) }, t('d.enlarge')) : null,
+          h('button', { type: 'button', class: 'dl-btn dl-btn--ghost dl-show', onclick: () => showInGraph(p.id) }, t('s.showGraph')),
+          safeUrl(p.url) ? h('a', { class: 'dl-btn dl-btn--ghost dl-ext', href: safeUrl(p.url), target: '_blank', rel: 'noopener noreferrer' },
             t(pub.pageRedirectsTo ? 's.viewPortfolio' : 's.viewArchi')) : null)));
   }
 
@@ -467,15 +493,15 @@
       const missing = out.perConcept.filter(x => x.n === 0).map(x => cLabel(x.c));
       results.append(h('p', { class: 'dl-nomatch' }, missing.length ? t('s.missing', { list: missing.join(', ') }) : t('s.neverTogether')));
     }
-    results.append(h('p', { class: 'dl-note dl-legend-line' }, t('s.legend'),
+    const legendLine = h('p', { class: 'dl-note dl-legend-line' }, t('s.legend'),
       h('span', { class: 'dl-src dl-src--pub' }, 'ArchiCGI'), ' ' + t('s.legendPub'),
-      h('span', { class: 'dl-src dl-src--ed' }, t('s.edShort')), ' ' + t('s.legendEd')));
+      h('span', { class: 'dl-src dl-src--ed' }, t('s.edShort')), ' ' + t('s.legendEd'));
     const grid = h('div', { class: 'dl-cards' });
     results.append(grid);
     const more = h('button', { type: 'button', class: 'dl-more', onclick: () => step() });
     let drawn = 0;
     function draw(upto) {
-      out.results.slice(drawn, upto).forEach(r => grid.append(card(r)));
+      out.results.slice(drawn, upto).forEach((r, i) => grid.append(card(r, drawn + i + 1)));
       drawn = upto;
       view.shown = drawn;
       const rest = out.results.length - drawn;
@@ -485,6 +511,7 @@
     function step() { draw(Math.min(out.results.length, drawn + RESULTS_STEP)); }
     draw(Math.min(out.results.length, Math.max(view.shown, RESULTS_STEP)));
     if (out.results.length > drawn) results.append(more);
+    results.append(legendLine);
   }
 
   function showInGraph(id) {
@@ -530,8 +557,8 @@
   const briefQuery = h('textarea', { id: 'dl-brief-query', rows: '2' });
   briefQuery.addEventListener('input', () => { brief.query = briefQuery.value; brief.autoQuery = ''; save(); renderPreview(); });
   const briefList = h('ol', { class: 'dl-brief-list' });
-  const copyBtn = h('button', { type: 'button', class: 'dl-link', id: 'dl-copy', onclick: () => copyBrief() });
-  const clearBtn = h('button', { type: 'button', class: 'dl-link dl-link--alt', onclick: () => {
+  const copyBtn = h('button', { type: 'button', class: 'dl-btn dl-btn--primary', id: 'dl-copy', onclick: () => copyBrief() });
+  const clearBtn = h('button', { type: 'button', class: 'dl-btn dl-btn--ghost dl-clear', onclick: () => {
     if (!brief.items.length) return;
     brief.items = []; changed();
   } });
@@ -585,7 +612,7 @@
             (det ? ' · ' + zoneText(det) : '')),
           h('div', { class: 'dl-takes', role: 'group', 'aria-label': t('b.takesGroup') },
             h('span', { class: 'dl-note' }, t('b.takes')),
-            TAKES.map(id => h('button', { type: 'button', class: 'dl-tag dl-take', 'data-take': id, 'aria-pressed': String(it.takes.includes(id)),
+            TAKES.map(id => h('button', { type: 'button', class: 'dl-take', 'data-take': id, 'aria-pressed': String(it.takes.includes(id)),
               onclick: e => {
                 const k = it.takes.indexOf(id);
                 if (k >= 0) it.takes.splice(k, 1); else it.takes.push(id);
@@ -594,10 +621,10 @@
               } }, t('take.' + id)))),
           h('label', { for: 'dl-note-' + idx, class: 'dl-visually-hidden' }, t('b.noteFor', { title: p.label })), note,
           h('div', { class: 'dl-card-actions' },
-            det && window.discoveryDetails ? h('button', { type: 'button', class: 'dl-tag dl-open-detail',
+            det && window.discoveryDetails ? h('button', { type: 'button', class: 'dl-btn dl-btn--ghost dl-open-detail',
               onclick: () => window.discoveryDetails.open(p.id, { highlight: det }) }, t('b.viewDetail')) : null,
-            h('button', { type: 'button', class: 'dl-tag', onclick: () => showInGraph(p.id) }, t('s.showGraph')),
-            h('button', { type: 'button', class: 'dl-tag dl-remove', onclick: () => removeAt(idx) }, t('b.remove'))))));
+            h('button', { type: 'button', class: 'dl-btn dl-btn--ghost', onclick: () => showInGraph(p.id) }, t('s.showGraph')),
+            h('button', { type: 'button', class: 'dl-btn dl-btn--ghost dl-remove', onclick: () => removeAt(idx) }, t('b.remove'))))));
     });
     copyBtn.disabled = !brief.items.length;
     renderPreview();
