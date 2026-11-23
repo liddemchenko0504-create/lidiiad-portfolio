@@ -371,38 +371,37 @@ body.lab {
   .dl-card-img, .dl-btn { transition: none; }
 }
 
-/* Search entry state */
-.lab-intro-image { display: none; }
-.lab:not(.lab-has-query) .lab-intro {
-  padding-top: clamp(44px, 8vw, 116px);
+/* Search entry state: keep the work area out of the layout until it is needed. */
+.lab:not(.lab-has-query, .lab-has-project-link) :is(.lab-nav, .lab-work, .lab-graph, .source,
+  .lab-intro .lab-lead, .lab-query .dl-note, .lab-query .dl-examples) {
+  display: none;
+}
+.lab:not(.lab-has-query, .lab-has-project-link) #dl-lang { margin-left: auto; }
+.lab:not(.lab-has-query, .lab-has-project-link) .lab-main { padding-bottom: 0; }
+.lab:not(.lab-has-query, .lab-has-project-link) .lab-intro {
+  display: grid;
+  align-content: center;
+  min-height: calc(100dvh - var(--head-h));
+  padding: 20px 0;
+  border: 0;
   text-align: center;
 }
-.lab:not(.lab-has-query) .lab-intro h1 {
+.lab:not(.lab-has-query, .lab-has-project-link) .lab-intro h1 {
   max-width: 16ch;
-  margin: 0 auto 14px;
+  margin: 0 auto 24px;
   font-size: clamp(36px, 6vw, 84px);
   font-weight: 750;
   letter-spacing: -.05em;
 }
-.lab:not(.lab-has-query) .lab-intro .lab-lead { margin-inline: auto; }
-.lab:not(.lab-has-query) .lab-query { max-width: 900px; margin-inline: auto; text-align: left; }
-.lab:not(.lab-has-query) .dl-examples { gap: 8px; }
-.lab:not(.lab-has-query) .dl-examples > span { flex-basis: 100%; }
-.lab:not(.lab-has-query) .dl-example {
-  min-height: 44px;
-  padding: 6px 12px;
-  border: 1px solid var(--line-2);
+.lab:not(.lab-has-query, .lab-has-project-link) .lab-query {
+  width: min(100%, 900px);
+  margin-inline: auto;
   text-align: left;
-  text-decoration: none;
 }
-.lab:not(.lab-has-query) .dl-example:hover { border-color: var(--ink); }
-.lab:not(.lab-has-query) .lab-intro-image { display: block; margin: clamp(28px, 5vw, 70px) 0 0; text-align: right; }
-.lab-intro-image img {
-  display: block;
-  width: 100%;
-  height: clamp(160px, 27vw, 380px);
-  object-fit: cover;
-  object-position: center 54%;
-  filter: grayscale(1);
+.lab:not(.lab-has-query, .lab-has-project-link) .dl-search-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
 }
-.lab-intro-image figcaption { margin-top: 8px; color: var(--mute); font-size: 13px; }
