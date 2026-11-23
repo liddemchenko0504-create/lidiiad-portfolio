@@ -23,9 +23,9 @@
 <link rel="preload" href="./fonts/montserrat-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="./fonts/source-sans-3-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="./discovery-graph.css">
-<link rel="stylesheet" href="./discovery-lab.css?v=16">
+<link rel="stylesheet" href="./discovery-lab.css?v=17">
 <script defer src="https://unpkg.com/cytoscape@3.30.4/dist/cytoscape.min.js"></script>
-<script defer src="./discovery-i18n.js?v=8"></script>
+<script defer src="./discovery-i18n.js?v=9"></script>
 <script defer src="./discovery-graph.js?v=4"></script>
 <script defer src="./discovery-brief.js?v=7"></script>
 <script defer src="./discovery-details.js?v=2"></script>
@@ -66,17 +66,14 @@
 </section>
 </section>
 <footer class="source">
-  <p class="source-credit" data-i18n="footer.text">Prototype indépendant présentant 434 projets du portfolio public d’ArchiCGI. Images © ArchiCGI. Relevé du 23&nbsp;novembre&nbsp;2026.</p>
+  <p class="source-credit" data-i18n="footer.text">Prototype indépendant · 434 projets du portfolio public d’ArchiCGI · Images © ArchiCGI · Relevé du 23&nbsp;novembre&nbsp;2026</p>
   <p class="source-links">
     <a href="https://archicgi.com/fr/" target="_blank" rel="noopener noreferrer" data-i18n="footer.source">Page française</a>
     <a href="https://archicgi.com/3d-visualization-portfolio/" target="_blank" rel="noopener noreferrer" data-i18n="footer.portfolio">Portfolio complet</a>
+    <button type="button" class="source-more" aria-expanded="false" aria-controls="source-notes" data-i18n="footer.about">À propos des données</button>
   </p>
-  <details class="source-about">
-    <summary data-i18n="footer.about">À propos des données</summary>
-    <p data-i18n="footer.catalogue">Le portfolio complet est accessible via le bouton « Voir tout le portfolio » de la page française. Il comptait 438 entrées. Quatre paires d’images identiques ont été regroupées, ce qui ramène le total à 434 projets. Les six réalisations présentées sur la page française figurent avec leur légende française.</p>
-    <p data-i18n="footer.published">ArchiCGI publie les titres, les images, les liens et les catégories du portfolio (Exterior Rendering, Interior Rendering, 3D animation). Les titres et les catégories sont repris tels qu’ils ont été publiés. Les images sont chargées depuis archicgi.com.</p>
-    <p data-i18n="footer.classification">Les filtres, les catégories du graphe et les critères de recherche du prototype utilisent des classifications éditoriales établies à partir des titres et des descriptions des projets.</p>
-    <p data-i18n="footer.detail">La recherche de détails compare la zone sélectionnée à 30&nbsp;526 fragments d’images issus de 73 façades du catalogue. Elle utilise DINOv2 et un index de couleurs construit avec tools/build_detail_index.py.</p>
-  </details>
+  <p class="source-notes" id="source-notes" hidden data-i18n="footer.notes"></p>
 </footer>
-</main></body></html>
+</main>
+<script>document.addEventListener("click",function(e){var b=e.target.closest(".source-more");if(!b)return;var n=document.getElementById("source-notes"),o=b.getAttribute("aria-expanded")!=="true";b.setAttribute("aria-expanded",String(o));n.hidden=!o;});</script>
+</body></html>
