@@ -322,7 +322,6 @@
    * 3. SAVED REFERENCES (per browser)
    *    Keep the existing storage key so saved renders, details and notes carry over.
    * ===================================================================== */
-  const TAKES = ['lumiere', 'angle', 'materiau', 'facade'];
   let brief = { items: [] };
   try { const s = JSON.parse(localStorage.getItem(STORE_KEY) || 'null'); if (s && Array.isArray(s.items)) brief = s; } catch (_) { /* private mode */ }
   const save = () => { try { localStorage.setItem(STORE_KEY, JSON.stringify(brief)); } catch (_) { /* ignore */ } };
@@ -608,7 +607,7 @@
   function toggle(id) {
     const i = brief.items.findIndex(x => x.id === id && isWhole(x));
     if (i >= 0) brief.items.splice(i, 1);
-    else if (byId.has(id)) brief.items.push({ id, takes: [], note: '' });
+    else if (byId.has(id)) brief.items.push({ id, note: '' });
     changed();
   }
   // a found fragment: project id + region in [0, 1] image coordinates
@@ -616,7 +615,7 @@
     if (!byId.has(id) || !validRegion(region)) return -1;
     const r = { x: +region.x.toFixed(4), y: +region.y.toFixed(4), w: +region.w.toFixed(4), h: +region.h.toFixed(4) };
     let k = brief.items.findIndex(x => x.id === id && x.region && sameRegion(x.region, r));
-    if (k < 0) { brief.items.push({ id, region: r, takes: [], note: '' }); k = brief.items.length - 1; }
+    if (k < 0) { brief.items.push({ id, region: r, note: '' }); k = brief.items.length - 1; }
     changed();
     return k;
   }
@@ -672,15 +671,6 @@
           h('h3', {}, (idx + 1) + '. ', safeUrl(p.url) ? h('a', { href: safeUrl(p.url), target: '_blank', rel: 'noopener noreferrer' }, p.label) : p.label),
           h('p', { class: 'dl-note' }, t('b.source') + (pub.categories && pub.categories.length ? ' · ' + pub.categories.join(', ') : '') +
             (det ? ' · ' + zoneText(det) : '')),
-          h('div', { class: 'dl-takes', role: 'group', 'aria-label': t('b.takesGroup') },
-            h('span', { class: 'dl-note' }, t('b.takes')),
-            TAKES.map(id => h('button', { type: 'button', class: 'dl-take', 'data-take': id, 'aria-pressed': String(it.takes.includes(id)),
-              onclick: e => {
-                const k = it.takes.indexOf(id);
-                if (k >= 0) it.takes.splice(k, 1); else it.takes.push(id);
-                e.currentTarget.setAttribute('aria-pressed', String(k < 0));
-                save();
-              } }, t('take.' + id)))),
           h('label', { for: 'dl-note-' + idx, class: 'dl-visually-hidden' }, t('b.noteFor', { title: p.label })), note,
           h('div', { class: 'dl-card-actions' },
             det && window.discoveryDetails ? h('button', { type: 'button', class: 'dl-btn dl-btn--ghost dl-open-detail',
@@ -706,7 +696,7 @@
     if (api || !window.discoveryGraph || !window.discoveryGraph.projects) return;
     api = window.discoveryGraph;
     byId = new Map(api.projects.map(p => [p.id, p]));
-    brief.items = brief.items.filter(i => byId.has(i.id) && Array.isArray(i.takes) && (!i.region || validRegion(i.region)));
+    brief.items = brief.items.filter(i => i && byId.has(i.id) && (!i.region || validRegion(i.region)));
     status.textContent = '';
     renderBrief();
     api.refreshPanel();
