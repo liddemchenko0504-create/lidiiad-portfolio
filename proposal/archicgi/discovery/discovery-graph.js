@@ -257,6 +257,8 @@
       { selector: 'edge.dim', style: { opacity: 0.05 } },
       { selector: 'edge.hl',  style: { opacity: 1, width: 1.75 * S, 'z-index': 15 } },
       { selector: 'node.sel', style: { 'border-width': 4 } },
+      // search results: a halo around matching projects (does not interfere with dim/highlight states)
+      { selector: 'node.project.hit', style: { 'underlay-color': INK, 'underlay-opacity': 0.28, 'underlay-padding': 9, 'underlay-shape': 'ellipse' } },
       { selector: 'node.out', style: { opacity: 0.07, events: 'no' } },
       { selector: 'edge.out', style: { opacity: 0.03 } }
     );
@@ -494,14 +496,23 @@
     const extLink = (url, text, cls) => safeUrl(url)
       ? h('a', { class: cls, href: safeUrl(url), target: '_blank', rel: 'noopener noreferrer' }, text) : null;
     const plural = (k, one, many) => k + ' ' + (k > 1 ? many : one);
+    const FIELD = { title: 'titre ArchiCGI', alt: 'description d\u2019image ArchiCGI', category: 'catégorie ArchiCGI' };
+    // Why a project carries an editorial tag: the published word it was derived from
+    function whyText(p, key) {
+      const w = p && p.why && p.why[key];
+      return w ? '\u00ab\u00a0' + w[1] + '\u00a0\u00bb \u00b7 ' + (FIELD[w[0]] || w[0]) : 'déduit des données publiées';
+    }
+    const facetKey = f => f.data('kind') + ':' + f.data('label');
 
-    // Long lists (hundreds of projects) are revealed in steps instead of all at once
-    function nodeList(nodes) {
-      const ul = h('ul', {});
+    // Long lists (hundreds of projects) are revealed in steps instead of all at once.
+    // reason(node) optionally adds a short line explaining the link.
+    function nodeList(nodes, reason) {
+      const ul = h('ul', { class: reason ? 'dl-reasons' : null });
       let shown = 0;
       const more = h('button', { type: 'button', class: 'dl-more', onclick: () => step() });
       function step() {
-        nodes.slice(shown, shown + CONFIG.listStep).forEach(n => ul.append(h('li', {}, nodeButton(n))));
+        nodes.slice(shown, shown + CONFIG.listStep).forEach(n => ul.append(
+          h('li', {}, nodeButton(n), reason ? h('span', { class: 'dl-why' }, reason(n)) : null)));
         shown = Math.min(nodes.length, shown + CONFIG.listStep);
         const rest = nodes.length - shown;
         if (rest > 0) more.textContent = 'Afficher ' + Math.min(rest, CONFIG.listStep) + ' de plus (' + rest + ' restants)';
@@ -553,27 +564,62 @@
         }
         if (src.children.length > 1) parts.push(src);     // only when the record carries published details
 
-        // Editorial classification (this prototype)
+        // Editorial classification (this prototype), each tag with the published word it comes from
         const ed = model.activeGroups.map(g => {
           const items = node.neighborhood('node.' + g).toArray().sort((a, b) => a.data('label').localeCompare(b.data('label'), 'fr'));
-          return items.length ? [h('h3', {}, model.groups[g].label), h('ul', {}, items.map(n => h('li', {}, nodeButton(n))))] : [];
+          return items.length ? [h('h3', {}, model.groups[g].label),
+            h('ul', { class: 'dl-reasons' }, items.map(n => h('li', {}, nodeButton(n), h('span', { class: 'dl-why' }, whyText(p, facetKey(n))))))] : [];
         }).flat();
         if (ed.length) {
           parts.push(h('div', { class: 'dl-editorial' },
-            h('p', { class: 'dl-note' }, 'Classification éditoriale — déduite du titre et de la description publiés, pas une donnée ArchiCGI.'),
+            h('p', { class: 'dl-note' }, 'Classification éditoriale — déduite du titre et de la description publiés, pas une donnée ArchiCGI. Choisissez une catégorie pour voir les autres projets qui la partagent.'),
             ...ed));
+        }
+
+        // Nearest projects: the ones sharing the most (and rarest) editorial tags
+        const near = related(node, 6);
+        if (near.length) {
+          parts.push(h('div', { class: 'dl-near' },
+            h('h3', {}, 'Projets proches'),
+            h('p', { class: 'dl-note' }, 'Reliés par des catégories éditoriales communes ; les plus rares comptent davantage.'),
+            h('ul', { class: 'dl-reasons' }, near.map(r => h('li', {}, nodeButton(r.node),
+              h('span', { class: 'dl-why' }, 'En commun\u00a0: ' + r.shared.join(' \u00b7 ')))))));
         }
         parts.push(extLink(p.url, pub.pageRedirectsTo ? 'Voir dans le portfolio ArchiCGI' : 'Voir le projet sur ArchiCGI', 'dl-link'));
         if (pub.frPage) parts.push(extLink(pub.frPage, 'Voir sur la page française', 'dl-link dl-link--alt'));
+        if (window.discoveryBrief) {
+          const inBrief = window.discoveryBrief.has(p.id);
+          parts.push(h('button', { type: 'button', class: 'dl-link dl-link--alt dl-brief-toggle', 'aria-pressed': String(inBrief),
+            onclick: () => { window.discoveryBrief.toggle(p.id); renderPanel(node); } },
+            inBrief ? 'Retirer du brief' : 'Ajouter au brief'));
+        }
         els.panel.append(...parts.filter(Boolean));
       } else {
         const items = node.neighborhood('node.project').not('.out').toArray();
+        const key = facetKey(node);
         els.panel.append(back,
           h('h3', {}, model.groups[node.data('kind')].label + ' · catégorie éditoriale'),
           h('h2', {}, node.data('label')),
-          h('p', {}, plural(items.length, 'projet lié', 'projets liés')),
-          ...nodeList(items));
+          h('p', {}, plural(items.length, 'projet lié', 'projets liés') + '. Sous chaque projet\u00a0: le mot publié par ArchiCGI d\u2019où vient ce lien.'),
+          ...nodeList(items, n => whyText(model.projectById.get(n.id()), key)));
       }
+    }
+
+    function related(node, k) {
+      const N = model.projects.length, score = new Map(), shared = new Map();
+      node.neighborhood('node.facet').forEach(f => {
+        const ps = f.neighborhood('node.project').not(node).not('.out');
+        const w = Math.log((N + 1) / (ps.length + 1));
+        ps.forEach(q => {
+          const id = q.id();
+          score.set(id, (score.get(id) || 0) + w);
+          if (!shared.has(id)) shared.set(id, []);
+          shared.get(id).push(f.data('label'));
+        });
+      });
+      return [...score].filter(([id]) => shared.get(id).length >= 2)
+        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, k)
+        .map(([id]) => ({ node: cy.getElementById(id), shared: shared.get(id) }));
     }
 
     /* =================================================================
@@ -601,7 +647,21 @@
     const initial = decodeURIComponent(location.hash.slice(1));
     if (initial) select(initial);
 
-    // Debug / future hooks
-    window.discoveryGraph = { cy, select, clearSelection, fit: fitView };
+    // Public hooks (search & brief module, debugging)
+    function showProject(id) {
+      const n = cy.getElementById(id);
+      if (!n.nonempty()) return false;
+      if (n.hasClass('out')) applyFilter('all');
+      select(id);
+      return true;
+    }
+    function setHits(ids) {
+      const set = new Set(ids || []);
+      cy.batch(() => { cy.nodes('.project').forEach(n => { n.toggleClass('hit', set.has(n.id())); }); });
+    }
+    const refreshPanel = () => renderPanel(selectedId ? cy.getElementById(selectedId) : null);
+    window.discoveryGraph = { cy, select, clearSelection, fit: fitView, showProject, setHits, refreshPanel,
+      projects: model.projects, groups: model.groups, stage: els.stage };
+    document.dispatchEvent(new CustomEvent('discovery:ready'));
   }
 })();
