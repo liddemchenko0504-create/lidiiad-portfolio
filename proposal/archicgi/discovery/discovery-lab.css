@@ -226,7 +226,7 @@ body.lab {
 .dl-brief-actions #dl-copy { flex: 1; min-height: 46px; }
 .dl-copy-status { margin: 0; font-size: 14px; }
 .dl-copy-status:empty { display: none; }
-.dl-preview-box summary { cursor: pointer; font-size: 13px; color: var(--mute); }
+.dl-preview-box h3 { margin: 0; font-size: 13px; color: var(--mute); }
 .dl-preview { white-space: pre-wrap; word-break: break-word; font-family: var(--font-mono); font-size: 12px; line-height: 1.55; border: 1px solid var(--line); padding: 12px; margin: 8px 0 0; max-height: 360px; overflow: auto; }
 
 /* ---------- graph section: same type and tokens ---------- */

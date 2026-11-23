@@ -569,8 +569,8 @@
   } });
   const copyStatus = h('p', { class: 'dl-copy-status', role: 'status', 'aria-live': 'polite' });
   const preview = h('pre', { class: 'dl-preview', id: 'dl-brief-preview' });
-  const previewSummary = h('summary', {});
-  const previewBox = h('details', { class: 'dl-preview-box' }, previewSummary, preview);
+  const previewTitle = h('h3', { id: 'dl-brief-preview-title' });
+  const previewBox = h('section', { class: 'dl-preview-box', hidden: '', 'aria-labelledby': 'dl-brief-preview-title' }, previewTitle, preview);
   const briefCount = h('span', { class: 'dl-brief-count' });
   const briefTitleText = document.createTextNode('');
   const briefIntro = h('p', {});
@@ -589,7 +589,7 @@
     briefQuery.setAttribute('placeholder', t('b.requestPh'));
     copyBtn.textContent = t('b.copy');
     clearBtn.textContent = t('b.clear');
-    previewSummary.textContent = t('b.preview');
+    previewTitle.textContent = t('b.preview');
   }
 
   function renderBrief() {
@@ -664,7 +664,10 @@
     L.push(t('bt.footer'));
     return L.join('\n');
   }
-  function renderPreview() { preview.textContent = brief.items.length ? briefText() : ''; }
+  function renderPreview() {
+    previewBox.hidden = !brief.items.length;
+    preview.textContent = previewBox.hidden ? '' : briefText();
+  }
 
   async function copyBrief() {
     if (!brief.items.length) { copyStatus.textContent = t('b.emptyCopy'); return; }
@@ -679,7 +682,6 @@
     }
     if (ok) copyStatus.textContent = t('b.copied', { n: brief.items.length });
     else {
-      previewBox.open = true;
       const range = document.createRange(); range.selectNodeContents(preview);
       const sel = getSelection(); sel.removeAllRanges(); sel.addRange(range);
       copyStatus.textContent = t('b.copyFail');
