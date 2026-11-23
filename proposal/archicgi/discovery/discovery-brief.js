@@ -1,10 +1,10 @@
 /*
- * ArchiCGI Discovery Lab — from a request to a brief
+ * ArchiCGI Discovery Lab — reference search and saved references
  * 1. Plain-language search (French or English) over published titles, image descriptions,
  *    ArchiCGI categories and the editorial tags.
  * 2. Explained results: what matched, where it comes from, what the data does not say.
  * 3. Card -> graph (window.discoveryGraph.showProject).
- * 4. A selection of frames annotated for a brief, copied with source links.
+ * 4. Saved renders and details with notes and source links.
  *
  * Needs discovery-graph.js (it dispatches `discovery:ready` and exposes window.discoveryGraph).
  * Required DOM: #dl-search, #dl-brief. Text only: never innerHTML with data.
@@ -319,11 +319,11 @@
   }
 
   /* =====================================================================
-   * 3. BRIEF STATE (per browser; never required for the page to work)
-   *    Items keep project ids and take ids only, so they survive language changes.
+   * 3. SAVED REFERENCES (per browser)
+   *    Keep the existing storage key so saved renders, details and notes carry over.
    * ===================================================================== */
   const TAKES = ['lumiere', 'angle', 'materiau', 'facade'];
-  let brief = { query: '', items: [] };
+  let brief = { items: [] };
   try { const s = JSON.parse(localStorage.getItem(STORE_KEY) || 'null'); if (s && Array.isArray(s.items)) brief = s; } catch (_) { /* private mode */ }
   const save = () => { try { localStorage.setItem(STORE_KEY, JSON.stringify(brief)); } catch (_) { /* ignore */ } };
   const t = (k, v) => I.t(k, v);
@@ -447,14 +447,6 @@
   const sameRegion = (a, b) => ['x', 'y', 'w', 'h'].every(k => Math.abs(a[k] - b[k]) < 1e-4);
   const pct = v => Math.round(v * 100);
   const zoneText = r => t('b.zone', { x0: pct(r.x), x1: pct(r.x + r.w), y0: pct(r.y), y1: pct(r.y + r.h) });
-  function detailLink(it) {
-    try {
-      const u = new URL(location.href);
-      if (!/^https?:$/.test(u.protocol)) return '';
-      u.search = ''; u.hash = 'detail=' + it.id + ':' + ['x', 'y', 'w', 'h'].map(k => it.region[k].toFixed(4)).join(',');
-      return u.toString();
-    } catch (_) { return ''; }
-  }
   // crop of a render shown with CSS only (no canvas, works with images served without CORS)
   function cropBox(src, r, cls) {
     const el = h('div', { class: cls, role: 'img' });
@@ -537,9 +529,6 @@
     if (!query && !hasFilters) { view = null; paintResults(); api.setHits([]); return; }
     const filteredProjects = hasFilters ? api.projects.filter(p => activeFilters.every(f => f.values(p).includes(f.selected))) : null;
     const out = search(query, api.projects, filteredProjects);
-    if (query && query !== brief.query && (!brief.query || brief.query === brief.autoQuery)) {
-      brief.query = query; brief.autoQuery = query; save(); renderBrief();
-    }
     view = { out, hasFilters, eligible: filteredProjects?.length, shown: Math.min(RESULTS_STEP, out.results.length), active: null };
     paintResults();
     // halo in the graph: full matches, or the closest partial ones
@@ -609,7 +598,7 @@
     api.stage.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
   }
 
-  // ---- brief ----
+  // ---- saved references ----
   function changed() {
     save(); renderBrief(); syncButtons();
     if (api) api.refreshPanel();
@@ -640,44 +629,28 @@
     });
   }
 
-  const briefQuery = h('textarea', { id: 'dl-brief-query', rows: '2' });
-  briefQuery.addEventListener('input', () => { brief.query = briefQuery.value; brief.autoQuery = ''; save(); renderPreview(); });
   const briefList = h('ol', { class: 'dl-brief-list' });
   const briefStorageNote = h('p', { class: 'dl-note dl-brief-storage' });
-  const copyBtn = h('button', { type: 'button', class: 'dl-btn dl-btn--primary', id: 'dl-copy', onclick: () => copyBrief() });
-  const clearBtn = h('button', { type: 'button', class: 'dl-btn dl-btn--ghost dl-clear', onclick: () => {
+  const clearBtn = h('button', { type: 'button', class: 'dl-btn dl-btn--ghost dl-clear', hidden: '', onclick: () => {
     if (!brief.items.length) return;
     brief.items = []; changed();
   } });
-  const copyStatus = h('p', { class: 'dl-copy-status', role: 'status', 'aria-live': 'polite' });
-  const preview = h('pre', { class: 'dl-preview', id: 'dl-brief-preview' });
-  const previewTitle = h('h3', { id: 'dl-brief-preview-title' });
-  const previewBox = h('section', { class: 'dl-preview-box', hidden: '', 'aria-labelledby': 'dl-brief-preview-title' }, previewTitle, preview);
   const briefCount = h('span', { class: 'dl-brief-count' });
   const briefTitleText = document.createTextNode('');
-  const briefIntro = h('p', {});
-  const requestLabel = h('label', { for: 'dl-brief-query', class: 'dl-search-label' });
   els.brief.replaceChildren(
-    h('div', { class: 'dl-brief-head' }, h('h2', { id: 'dl-brief-title' }, briefTitleText, ' ', briefCount), briefIntro),
-    requestLabel, briefQuery, briefList, briefStorageNote,
-    h('div', { class: 'dl-brief-actions' }, copyBtn, clearBtn),
-    copyStatus, previewBox);
+    h('div', { class: 'dl-brief-head' }, h('h2', { id: 'dl-brief-title' }, briefTitleText, ' ', briefCount)),
+    briefList, briefStorageNote, clearBtn);
   els.brief.setAttribute('aria-labelledby', 'dl-brief-title');
 
   function paintBriefStatic() {
     briefTitleText.textContent = t('b.title');
-    briefIntro.textContent = t('b.intro');
-    requestLabel.textContent = t('b.request');
-    briefQuery.setAttribute('placeholder', t('b.requestPh'));
     briefStorageNote.textContent = t('b.storageNote');
-    copyBtn.textContent = t('b.copy');
     clearBtn.textContent = t('b.clear');
-    previewTitle.textContent = t('b.preview');
   }
 
   function renderBrief() {
-    if (document.activeElement !== briefQuery) briefQuery.value = brief.query || '';
     briefCount.textContent = '(' + brief.items.length + ')';
+    clearBtn.hidden = !brief.items.length;
     briefList.replaceChildren();
     if (!brief.items.length) briefList.append(h('li', { class: 'dl-brief-empty' }, t('b.empty')));
     brief.items.forEach((it, idx) => {
@@ -685,7 +658,7 @@
       const pub = p.published || {};
       const note = h('textarea', { rows: '2', class: 'dl-brief-note', id: 'dl-note-' + idx, placeholder: t('b.notePh') });
       note.value = it.note || '';
-      note.addEventListener('input', () => { it.note = note.value; save(); renderPreview(); });
+      note.addEventListener('input', () => { it.note = note.value; save(); });
       const det = it.region ? it.region : null;
       const thumb = det && p.image ? cropBox(p.image, det, 'dl-brief-crop')
         : p.thumb ? h('img', { src: p.thumb, alt: '', loading: 'lazy', width: 72, height: 72 }) : h('div', { class: 'dl-card-noimg' }, t('s.noImage'));
@@ -705,7 +678,7 @@
                 const k = it.takes.indexOf(id);
                 if (k >= 0) it.takes.splice(k, 1); else it.takes.push(id);
                 e.currentTarget.setAttribute('aria-pressed', String(k < 0));
-                save(); renderPreview();
+                save();
               } }, t('take.' + id)))),
           h('label', { for: 'dl-note-' + idx, class: 'dl-visually-hidden' }, t('b.noteFor', { title: p.label })), note,
           h('div', { class: 'dl-card-actions' },
@@ -714,61 +687,6 @@
             h('button', { type: 'button', class: 'dl-btn dl-btn--ghost', onclick: () => showInGraph(p.id) }, t('s.showGraph')),
             h('button', { type: 'button', class: 'dl-btn dl-btn--ghost dl-remove', onclick: () => removeAt(idx) }, t('b.remove'))))));
     });
-    copyBtn.disabled = !brief.items.length;
-    renderPreview();
-  }
-
-  // The copied text: labels in the interface language; request, notes, titles and links exactly as entered / published
-  function briefText() {
-    const L = [];
-    L.push(t('bt.head'));
-    if ((brief.query || '').trim()) L.push(t('bt.request') + brief.query.trim());
-    L.push(t('bt.selection', { n: brief.items.length }));
-    brief.items.forEach((it, i) => {
-      const p = byId.get(it.id); if (!p) return;
-      const pub = p.published || {};
-      const takes = TAKES.filter(id => it.takes.includes(id)).map(id => t('take.' + id).toLowerCase());
-      L.push('');
-      L.push((i + 1) + '. ' + p.label);
-      if (it.region) {
-        L.push(t('bt.detail') + zoneText(it.region));
-        const link = detailLink(it);
-        if (link) L.push(t('bt.detailLink') + link);
-      }
-      L.push(t('bt.takes') + (takes.length ? takes.join(', ') : t('bt.unspecified')));
-      if ((it.note || '').trim()) L.push(t('bt.note') + it.note.trim().replace(/\s*\n\s*/g, ' '));
-      L.push(t('bt.source') + (p.url || ''));
-      if (pub.pageRedirectsTo) L.push(t('bt.redirect'));
-      if (pub.categories && pub.categories.length) L.push(t('bt.category') + pub.categories.join(', '));
-      const tags = Object.values(p.facets || {}).flat().filter(x => x !== 'Extérieur' && x !== 'Intérieur').map(I.tag);
-      if (tags.length) L.push(t('bt.tags') + tags.join(' · '));
-    });
-    L.push('');
-    L.push(t('bt.footer'));
-    return L.join('\n');
-  }
-  function renderPreview() {
-    previewBox.hidden = !brief.items.length;
-    preview.textContent = previewBox.hidden ? '' : briefText();
-  }
-
-  async function copyBrief() {
-    if (!brief.items.length) { copyStatus.textContent = t('b.emptyCopy'); return; }
-    const text = briefText();
-    let ok = false;
-    try { if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(text); ok = true; } } catch (_) { /* fall back */ }
-    if (!ok) {
-      const ta = h('textarea', { readonly: '', 'aria-hidden': 'true', class: 'dl-offscreen' });
-      ta.value = text; document.body.append(ta); ta.select();
-      try { ok = document.execCommand('copy'); } catch (_) { ok = false; }
-      ta.remove();
-    }
-    if (ok) copyStatus.textContent = t('b.copied', { n: brief.items.length });
-    else {
-      const range = document.createRange(); range.selectNodeContents(preview);
-      const sel = getSelection(); sel.removeAllRanges(); sel.addRange(range);
-      copyStatus.textContent = t('b.copyFail');
-    }
   }
 
   /* ---------- language change: repaint in place, state untouched ---------- */
@@ -778,7 +696,6 @@
     else paintResults();
     paintBriefStatic();
     renderBrief();
-    copyStatus.textContent = '';
   });
 
   /* ---------- boot ---------- */
@@ -804,8 +721,7 @@
     has: id => brief.items.some(i => i.id === id && isWhole(i)),
     toggle, addDetail, hasDetail, cropBox, zoneText,
     get items() { return brief.items.map(x => Object.assign({}, x)); },
-    search: q => (api ? search(q, api.projects) : null),
-    text: briefText
+    search: q => (api ? search(q, api.projects) : null)
   };
   document.addEventListener('discovery:ready', ready);
   ready();
