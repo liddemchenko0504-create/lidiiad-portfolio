@@ -99,7 +99,8 @@
 }
 .dl.is-full .dl-stage { height: auto; min-height: 0; }
 .dl.is-full .dl-panel { align-self: stretch; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
-html.dl-noscroll, html.dl-noscroll body { overflow: hidden; }
+html.dl-noscroll { overflow: hidden; overscroll-behavior: none; }
+html.dl-noscroll body { position: fixed; left: 0; right: 0; width: 100%; overflow: hidden; }
 .dl-controls button:hover { background: var(--dl-line); }
 
 .dl-hint {
@@ -227,3 +228,19 @@ html.dl-noscroll, html.dl-noscroll body { overflow: hidden; }
 .dl-detail-actions .dl-tag { min-height: 36px; font-size: 12px; padding: 6px 10px; }
 .dl-detail-actions .dl-note { flex-basis: 100%; margin: 2px 0 0; font-size: 12px; color: var(--dl-mute); }
 .dl-tag:disabled { opacity: .45; cursor: not-allowed; }
+
+/* full screen on touch devices: the stage owns every gesture, the panel and chips keep their own scrolling */
+.dl-fs-exit { display: none; }
+.dl.is-full .dl-fs-exit {
+  display: inline-flex; align-items: center; position: fixed; z-index: 2; top: max(10px, env(safe-area-inset-top)); right: max(10px, env(safe-area-inset-right));
+  min-height: 44px; padding: 0 14px; border: 1px solid var(--dl-ink); background: var(--dl-paper); color: var(--dl-ink); cursor: pointer;
+  font: 600 12px 'Montserrat', sans-serif; letter-spacing: .08em; text-transform: uppercase; touch-action: manipulation;
+}
+.dl.is-full .dl-filters { margin-right: 112px; }
+.dl-controls button { touch-action: manipulation; }
+.dl.is-full { touch-action: none; overscroll-behavior: none; }
+.dl.is-full .dl-panel { touch-action: pan-y; }
+.dl.is-full .dl-filters { touch-action: pan-x; }
+@supports (height: 100dvh) {
+  .dl.is-full { bottom: auto; height: 100dvh; }
+}

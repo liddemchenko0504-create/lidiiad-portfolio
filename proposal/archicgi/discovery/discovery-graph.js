@@ -262,7 +262,9 @@
       // search results: a halo around matching projects (does not interfere with dim/highlight states)
       { selector: 'node.project.hit', style: { 'underlay-color': INK, 'underlay-opacity': 0.28, 'underlay-padding': 9, 'underlay-shape': 'ellipse' } },
       { selector: 'node.out', style: { opacity: 0.07, events: 'no' } },
-      { selector: 'edge.out', style: { opacity: 0.03 } }
+      { selector: 'edge.out', style: { opacity: 0.03 } },
+      // panel search / filters: unrelated nodes are removed from the picture, not just faded
+      { selector: '.gone', style: { display: 'none' } }
     );
 
     /* ----- instance ----- */
@@ -366,21 +368,49 @@
     const canNativeFs = !!(document.fullscreenEnabled || document.webkitFullscreenEnabled) &&
       !!(root.requestFullscreen || root.webkitRequestFullscreen);
     const isFull = () => root.classList.contains('is-full');
+    // iOS Safari keeps scrolling the page behind an overlay unless the body itself is pinned: freeze it at the
+    // current scroll offset and put the page back exactly there on exit.
+    // The overlay leaves the page flow, which shortens the document and makes the browser clamp the scroll offset:
+    // read it before anything changes and put it back when leaving.
+    let savedY = null, pinned = false;
+    function pinPage(on) {
+      const de = document.documentElement;
+      if (on && !pinned) {
+        pinned = true;
+        document.body.style.top = -(savedY || 0) + 'px';
+        de.classList.add('dl-noscroll');
+      } else if (!on && pinned) {
+        pinned = false;
+        de.classList.remove('dl-noscroll');
+        document.body.style.top = '';
+      }
+    }
+    const exitBtn = h('button', { type: 'button', class: 'dl-fs-exit', onclick: () => exitFull() });
+    root.prepend(exitBtn);
     function setFull(on, pseudo) {
+      const was = root.classList.contains('is-full');
+      if (on && !was && savedY === null) savedY = window.scrollY;
       root.classList.toggle('is-full', on);
       root.classList.toggle('is-pseudo-full', on && !!pseudo);
-      document.documentElement.classList.toggle('dl-noscroll', on && !!pseudo);
+      pinPage(on && !!pseudo);
+      if (!on && was && savedY !== null) { window.scrollTo(0, savedY); savedY = null; }
       const label = I.t(on ? 'g.fsOff' : 'g.fsOn');
       fsBtn.setAttribute('aria-label', label);
       fsBtn.setAttribute('title', label);
       fsBtn.setAttribute('aria-pressed', String(on));
+      exitBtn.textContent = '\u00d7 ' + I.t('g.fsExit');
+      exitBtn.setAttribute('aria-label', I.t('g.fsOff'));
       const NS = 'http://www.w3.org/2000/svg', svg = document.createElementNS(NS, 'svg'), path = document.createElementNS(NS, 'path');
       svg.setAttribute('viewBox', '0 0 16 16'); svg.setAttribute('aria-hidden', 'true');
       path.setAttribute('d', on ? 'M6 2v4H2M10 2v4h4M10 14v-4h4M6 14v-4H2' : 'M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4');
       svg.append(path);
       fsBtn.replaceChildren(svg);
     }
+    // while the lab fills the screen a two-finger pinch must zoom the graph, never the page behind it
+    root.addEventListener('touchmove', e => { if (isFull() && e.touches.length > 1) e.preventDefault(); }, { passive: false });
+    root.addEventListener('gesturestart', e => { if (isFull()) e.preventDefault(); });
     function enterFull() {
+      if (savedY === null) savedY = window.scrollY;      // before the browser changes the layout
       if (canNativeFs) {
         const req = root.requestFullscreen || root.webkitRequestFullscreen;
         const r = req.call(root);
@@ -478,18 +508,55 @@
     });
     root.addEventListener('keydown', e => { if (e.key === 'Escape' && selectedId) { clearSelection(); e.preventDefault(); } });
 
-    function applyFilter(id) {
-      activeFilter = id;
-      selectedId = null;
+    /* One set of matches drives the list and the graph.
+     * scopeIds = ids matched by the project browser (title + filters), or null when the browser is empty.
+     * Without a scope, the graph shows the current preset (chip). With one, only the matching projects and
+     * the categories they connect to are drawn. */
+    let scopeIds = null;
+    function applyScope() {
       cy.batch(() => {
-        cy.elements().removeClass('dim hl sel out');
-        if (id !== 'all') {
-          const keep = cy.nodes('.project').filter(n => (model.projectById.get(n.id()).filters || []).includes(id));
-          cy.nodes('.project').not(keep).addClass('out');
+        cy.elements().removeClass('dim hl sel out gone');
+        const projects = cy.nodes('.project');
+        if (scopeIds) {
+          const gone = projects.filter(n => !scopeIds.has(n.id()));
+          gone.addClass('gone');
+          const live = projects.not(gone);
+          cy.nodes('.facet').forEach(f => { if (f.neighborhood('node.project').intersection(live).empty()) f.addClass('gone'); });
+          cy.nodes('.sector').forEach(sec => { if (cy.nodes('.facet.' + sec.data('group')).not('.gone').empty()) sec.addClass('gone'); });
+          cy.edges().forEach(e => { if (e.source().hasClass('gone') || e.target().hasClass('gone')) e.addClass('gone'); });
+        } else if (activeFilter !== 'all') {
+          const keep = projects.filter(n => (model.projectById.get(n.id()).filters || []).includes(activeFilter));
+          projects.not(keep).addClass('out');
           cy.nodes('.facet').forEach(f => { if (f.neighborhood('node.project').intersection(keep).empty()) f.addClass('out'); });
           cy.edges().forEach(e => { if (e.source().hasClass('out') || e.target().hasClass('out')) e.addClass('out'); });
         }
       });
+    }
+    // bring everything that is still drawn into view (never zoomed in further than a readable level)
+    function fitScope(animate) {
+      const eles = cy.elements('.project, .facet').not('.gone, .out');
+      if (eles.empty()) return;
+      const bb = eles.boundingBox({ includeLabels: false });
+      const w = cy.width(), hh = cy.height(), pad = Math.min(CONFIG.fitPadding, w * 0.06);
+      const base = cy.minZoom() / CONFIG.minZoomFactor;
+      let z = Math.min((w - 2 * pad) / Math.max(bb.w, 1), (hh - 2 * pad) / Math.max(bb.h, 1));
+      z = Math.max(cy.minZoom(), Math.min(z, cy.maxZoom(), base * 3));
+      const pan = { x: w / 2 - z * (bb.x1 + bb.w / 2), y: hh / 2 - z * (bb.y1 + bb.h / 2) };
+      cy.stop();
+      if (animate && !reduceMotion) cy.animate({ zoom: z, pan }, { duration: 280, complete: clampPan });
+      else { cy.viewport({ zoom: z, pan }); clampPan(); }
+    }
+    // recompute the scope from the browser state; optionally move the camera
+    function syncScope(fit) {
+      const m = browseMatches();
+      scopeIds = m ? new Set(m.map(p => p.id)) : null;
+      applyScope();
+      if (fit) fitScope(true);
+    }
+    function applyFilter(id) {
+      activeFilter = id;
+      selectedId = null;
+      syncScope(browseMatches() !== null);      // the camera only moves when the browser narrows the graph
       [...els.filters.children].forEach(b => b.setAttribute('aria-pressed', String(b.dataset.id === id)));
       renderPanel(null);
     }
@@ -588,8 +655,9 @@
       const pager = h('div', { class: 'dl-b-pager' });
       const reset = h('button', { type: 'button', class: 'dl-b-reset', onclick: () => {
         BROWSE.q = ''; BROWSE.f = {}; BROWSE.page = 0; input.value = ''; selects.forEach(l => { l.querySelector('select').value = ''; }); paint(); input.focus(); } }, I.t('g.bReset'));
-      function paint() {
+      function paint(fit) {
         const hits = browseMatches();
+        syncScope(fit !== false && fit !== 'init');
         reset.hidden = !hits;
         list.replaceChildren(); pager.replaceChildren();
         if (!hits) { count.textContent = I.t('g.bStart', { n: model.projects.length }); return; }
@@ -602,7 +670,7 @@
               onerror: e => e.target.remove() }) : h('span', { class: 'dl-b-noimg' }),
             h('span', { class: 'dl-b-title' }, p.label)))));
         if (pages > 1) {
-          const go = d => { BROWSE.page += d; paint(); const t = list.querySelector('.dl-b-item'); if (t) t.focus({ preventScroll: true }); };
+          const go = d => { BROWSE.page += d; paint(false); const t = list.querySelector('.dl-b-item'); if (t) t.focus({ preventScroll: true }); };
           pager.append(
             h('button', { type: 'button', class: 'dl-b-page', disabled: BROWSE.page === 0 ? '' : null, onclick: () => go(-1) }, I.t('g.bPrev')),
             h('span', { class: 'dl-b-pageno' }, I.t('g.bPage', { i: BROWSE.page + 1, n: pages })),
@@ -610,7 +678,7 @@
         }
       }
       input.addEventListener('input', () => { BROWSE.q = input.value; BROWSE.page = 0; paint(); });
-      paint();
+      paint('init');
       return h('div', { class: 'dl-browser' },
         h('label', { class: 'dl-b-label', for: 'dl-b-q' }, I.t('g.bSearch')), input,
         h('div', { class: 'dl-b-filters' }, selects),
@@ -701,7 +769,7 @@
         }
         els.panel.append(...parts.filter(Boolean));
       } else {
-        const items = node.neighborhood('node.project').not('.out').toArray();
+        const items = node.neighborhood('node.project').not('.out, .gone').toArray();
         const key = facetKey(node);
         els.panel.append(back,
           h('h3', {}, I.t('g.facetKind', { group: I.group(node.data('kind'), model.groups[node.data('kind')].label) })),
@@ -714,7 +782,7 @@
     function related(node, k) {
       const N = model.projects.length, score = new Map(), shared = new Map();
       node.neighborhood('node.facet').forEach(f => {
-        const ps = f.neighborhood('node.project').not(node).not('.out');
+        const ps = f.neighborhood('node.project').not(node).not('.out, .gone');
         const w = Math.log((N + 1) / (ps.length + 1));
         ps.forEach(q => {
           const id = q.id();
@@ -776,6 +844,7 @@
       const n = cy.getElementById(id);
       if (!n.nonempty()) return false;
       if (n.hasClass('out')) applyFilter('all');
+      if (n.hasClass('gone')) { BROWSE.q = ''; BROWSE.f = {}; BROWSE.page = 0; syncScope(false); }
       select(id);
       return true;
     }

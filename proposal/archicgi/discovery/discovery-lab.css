@@ -243,14 +243,6 @@ body.lab {
 .dl-brief-body h3 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .dl-brief-body .dl-badge { color: var(--ink); }
 .dl-brief-body textarea { font-size: 14px; }
-.dl-takes { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
-.dl-takes .dl-note { margin-right: 4px; }
-.dl-take {
-  min-height: 30px; padding: 0 9px; border: 1px solid var(--line-2); background: none; color: var(--mute); cursor: pointer;
-  font-family: var(--font-head); font-size: 10.5px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
-}
-.dl-take:hover { color: var(--ink); border-color: var(--ink); }
-.dl-take[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .dl-brief-item .dl-card-actions { margin: 0; gap: 0; }
 .dl-brief-item .dl-card-actions .dl-btn { min-height: 32px; padding: 0 8px; }
 .dl-brief-item .dl-card-actions .dl-btn:first-child { margin-right: 0; }

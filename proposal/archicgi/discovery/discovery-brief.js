@@ -320,9 +320,8 @@
 
   /* =====================================================================
    * 3. BRIEF STATE (per browser; never required for the page to work)
-   *    Items keep project ids and take ids only, so they survive language changes.
+   *    Items keep project ids, an optional detail region and a free-text note, so they survive language changes.
    * ===================================================================== */
-  const TAKES = ['lumiere', 'angle', 'materiau', 'facade'];
   let brief = { query: '', items: [] };
   try { const s = JSON.parse(localStorage.getItem(STORE_KEY) || 'null'); if (s && Array.isArray(s.items)) brief = s; } catch (_) { /* private mode */ }
   const save = () => { try { localStorage.setItem(STORE_KEY, JSON.stringify(brief)); } catch (_) { /* ignore */ } };
@@ -619,7 +618,7 @@
   function toggle(id) {
     const i = brief.items.findIndex(x => x.id === id && isWhole(x));
     if (i >= 0) brief.items.splice(i, 1);
-    else if (byId.has(id)) brief.items.push({ id, takes: [], note: '' });
+    else if (byId.has(id)) brief.items.push({ id, note: '' });
     changed();
   }
   // a found fragment: project id + region in [0, 1] image coordinates
@@ -627,7 +626,7 @@
     if (!byId.has(id) || !validRegion(region)) return -1;
     const r = { x: +region.x.toFixed(4), y: +region.y.toFixed(4), w: +region.w.toFixed(4), h: +region.h.toFixed(4) };
     let k = brief.items.findIndex(x => x.id === id && x.region && sameRegion(x.region, r));
-    if (k < 0) { brief.items.push({ id, region: r, takes: [], note: '' }); k = brief.items.length - 1; }
+    if (k < 0) { brief.items.push({ id, region: r, note: '' }); k = brief.items.length - 1; }
     changed();
     return k;
   }
@@ -699,15 +698,6 @@
           h('h3', {}, (idx + 1) + '. ', safeUrl(p.url) ? h('a', { href: safeUrl(p.url), target: '_blank', rel: 'noopener noreferrer' }, p.label) : p.label),
           h('p', { class: 'dl-note' }, t('b.source') + (pub.categories && pub.categories.length ? ' · ' + pub.categories.join(', ') : '') +
             (det ? ' · ' + zoneText(det) : '')),
-          h('div', { class: 'dl-takes', role: 'group', 'aria-label': t('b.takesGroup') },
-            h('span', { class: 'dl-note' }, t('b.takes')),
-            TAKES.map(id => h('button', { type: 'button', class: 'dl-take', 'data-take': id, 'aria-pressed': String(it.takes.includes(id)),
-              onclick: e => {
-                const k = it.takes.indexOf(id);
-                if (k >= 0) it.takes.splice(k, 1); else it.takes.push(id);
-                e.currentTarget.setAttribute('aria-pressed', String(k < 0));
-                save(); renderPreview();
-              } }, t('take.' + id)))),
           h('label', { for: 'dl-note-' + idx, class: 'dl-visually-hidden' }, t('b.noteFor', { title: p.label })), note,
           h('div', { class: 'dl-card-actions' },
             det && window.discoveryDetails ? h('button', { type: 'button', class: 'dl-btn dl-btn--ghost dl-open-detail',
@@ -728,7 +718,6 @@
     brief.items.forEach((it, i) => {
       const p = byId.get(it.id); if (!p) return;
       const pub = p.published || {};
-      const takes = TAKES.filter(id => it.takes.includes(id)).map(id => t('take.' + id).toLowerCase());
       L.push('');
       L.push((i + 1) + '. ' + p.label);
       if (it.region) {
@@ -736,7 +725,6 @@
         const link = detailLink(it);
         if (link) L.push(t('bt.detailLink') + link);
       }
-      L.push(t('bt.takes') + (takes.length ? takes.join(', ') : t('bt.unspecified')));
       if ((it.note || '').trim()) L.push(t('bt.note') + it.note.trim().replace(/\s*\n\s*/g, ' '));
       L.push(t('bt.source') + (p.url || ''));
       if (pub.pageRedirectsTo) L.push(t('bt.redirect'));
@@ -789,7 +777,7 @@
     if (api || !window.discoveryGraph || !window.discoveryGraph.projects) return;
     api = window.discoveryGraph;
     byId = new Map(api.projects.map(p => [p.id, p]));
-    brief.items = brief.items.filter(i => byId.has(i.id) && Array.isArray(i.takes) && (!i.region || validRegion(i.region)));
+    brief.items = brief.items.filter(i => byId.has(i.id) && (!i.region || validRegion(i.region)));
     status.textContent = '';
     renderBrief();
     api.refreshPanel();
