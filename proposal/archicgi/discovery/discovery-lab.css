@@ -391,7 +391,7 @@ body.lab {
 
 /* Search entry state: keep the work area out of the layout until it is needed. */
 .lab:not(.lab-has-query, .lab-has-project-link) :is(.lab-nav, .lab-work, .lab-graph, .source,
-  .lab-intro .lab-lead, .lab-query #dl-q-help) {
+  .lab-intro .lab-lead, .lab-query #dl-q-help, .lab-query .dl-search-filters) {
   display: none;
 }
 body.lab { isolation: isolate; }
