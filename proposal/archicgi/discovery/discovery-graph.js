@@ -698,7 +698,7 @@
     }
     const refreshPanel = () => renderPanel(selectedId ? cy.getElementById(selectedId) : null);
     window.discoveryGraph = { cy, select, clearSelection, fit: fitView, showProject, setHits, refreshPanel,
-      projects: model.projects, groups: model.groups, stage: els.stage };
+      projects: model.projects, groups: model.groups, filters: model.filters, stage: els.stage };
     document.dispatchEvent(new CustomEvent('discovery:ready'));
   }
 })();

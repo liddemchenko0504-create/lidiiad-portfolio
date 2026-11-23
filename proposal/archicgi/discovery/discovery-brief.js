@@ -211,6 +211,11 @@
   }
   // a criterion's name in the interface language; free words are quoted as typed
   const cLabel = c => (c.free ? I.quote(c.word) : I.lang === 'en' ? (c.en || CONCEPT_EN[c.id] || c.label) : c.label);
+  function summaryLabel(c) {
+    if (c.id === 'snow') return I.lang === 'en' ? 'Snow or winter surroundings' : 'Neige ou décor hivernal';
+    if (c.id === 'wood') return I.lang === 'en' ? 'Wood material' : 'Matériau bois';
+    return cLabel(c);
+  }
   // "sea" and "lake" are more specific than "water"; "bois" alone is wood, "en bois" too
   const STOP = new Set(norm('le la les l un une des de du d au aux a à en et ou avec sans sur sous dans pour par vers depuis tres plutot ' +
     'qui que avec style type vue vues image images rendu rendus visuel visuels perspective perspectives projet projets reference references ' +
@@ -295,10 +300,13 @@
   }
   const WEIGHT = { match: 1, near: 0.6, unknown: 0.4, absent: 0.15, other: 0 };
 
-  function search(query, projects) {
+  function search(query, projects, filteredProjects = null) {
     const { concepts, unknown } = parse(query, projects);
-    if (!concepts.length) return { concepts, unknown, results: [], full: 0 };
-    const results = projects.map(p => {
+    if (!concepts.length) {
+      const results = (filteredProjects || []).map(p => ({ p, crit: [], full: false }));
+      return { concepts, unknown, results, full: 0, perConcept: [] };
+    }
+    const results = (filteredProjects || projects).map(p => {
       const crit = concepts.map(c => evaluate(p, c));
       const matched = crit.filter(x => x.status === 'match').length;
       const score = crit.reduce((s, x) => s + WEIGHT[x.status] * (DIM_WEIGHT[x.c.dim] || 1), 0);
@@ -306,7 +314,7 @@
       return { p, crit, matched, score, textEv, full: matched === concepts.length };
     }).filter(r => r.matched > 0 || r.crit.some(x => x.status === 'near'))
       .sort((a, b) => b.full - a.full || b.score - a.score || b.matched - a.matched || b.textEv - a.textEv || a.p.label.localeCompare(b.p.label));
-    const perConcept = concepts.map(c => ({ c, n: projects.filter(p => evaluate(p, c).status === 'match').length }));
+    const perConcept = concepts.map((c, i) => ({ c, n: results.filter(r => r.crit[i].status === 'match').length }));
     return { concepts, unknown, results, full: results.filter(r => r.full).length, perConcept };
   }
 
@@ -325,7 +333,8 @@
    * ===================================================================== */
   let api = null, byId = new Map(), lastQuery = '';
   let pendingUserSearch = false;
-  let view = null;            // current results: { out, shown, active } — re-rendered as is on language change
+  let view = null;
+  let filterFields = [];
 
   // ---- search form (persistent elements; texts set by paintSearch) ----
   const input = h('input', { type: 'search', id: 'dl-q', name: 'q', autocomplete: 'off', enterkeyhint: 'search', 'aria-describedby': 'dl-q-help' });
@@ -335,8 +344,17 @@
   const label = h('label', { for: 'dl-q', class: 'dl-search-label' });
   const help = h('p', { id: 'dl-q-help', class: 'dl-note' });
   const examples = h('div', { class: 'dl-examples' });
+  const filterTitle = h('span', {});
+  const filterCount = h('span', { class: 'dl-filter-count', hidden: '' });
+  const filterGrid = h('div', { class: 'dl-filter-grid' });
+  const filterReset = h('button', { type: 'button', class: 'dl-btn dl-btn--ghost dl-filter-reset', disabled: '', onclick: () => {
+    filterFields.forEach(({ select }) => { select.value = ''; });
+    run(input.value);
+  } });
+  const filterPanel = h('details', { class: 'dl-search-filters', hidden: '' },
+    h('summary', {}, filterTitle, ' ', filterCount), filterGrid, filterReset);
   const form = h('form', { class: 'dl-search-form', role: 'search', onsubmit: e => { e.preventDefault(); run(input.value, true); } },
-    label, h('div', { class: 'dl-search-row' }, input, submit), help, examples);
+    label, h('div', { class: 'dl-search-row' }, input, submit), help, examples, filterPanel);
   // the query bar may live in its own full-width slot (#dl-query); results stay in #dl-search
   const queryHost = document.getElementById('dl-query');
   if (queryHost) { queryHost.replaceChildren(form); els.search.replaceChildren(status, results); }
@@ -350,6 +368,46 @@
     help.textContent = t('s.help');
     examples.replaceChildren(h('span', { class: 'dl-note' }, t('s.try')),
       ...t('s.examples').map(x => h('button', { type: 'button', class: 'dl-example', onclick: () => { input.value = x; run(x, true); } }, x)));
+    paintFilters();
+  }
+
+  function mountFilters(params) {
+    const definitions = Object.entries(api.groups).filter(([id]) => id !== 'project').map(([id, group]) => ({
+      id, name: () => id === 'material' ? t('s.filterMaterial') : I.group(id, group.label),
+      values: p => p.facets?.[id] || [], optionName: I.tag
+    }));
+    const presets = new Map((api.filters || []).map(({ id, label }) => [id, label]));
+    definitions.push(
+      { id: 'portfolio', name: () => t('s.filterPortfolio'), values: p => p.published?.categories || [], optionName: value => value },
+      { id: 'preset', name: () => t('s.filterPresets'), values: p => p.filters || [], optionName: id => I.filter(id, presets.get(id)) }
+    );
+    filterFields = definitions.map(field => {
+      const options = new Set(api.projects.flatMap(field.values));
+      const select = h('select', { name: 'filter.' + field.id, onchange: () => run(input.value) });
+      return { ...field, options, select, label: h('span', {}) };
+    }).filter(field => field.options.size);
+    filterGrid.replaceChildren(...filterFields.map(({ label, select }) => h('label', { class: 'dl-filter-field' }, label, select)));
+    paintFilters();
+    filterFields.forEach(({ select, options }) => {
+      const saved = params.get(select.name);
+      if (options.has(saved)) select.value = saved;
+    });
+    filterPanel.open = filterFields.some(({ select }) => select.value);
+    filterPanel.hidden = !filterFields.length;
+  }
+
+  function paintFilters() {
+    filterTitle.textContent = t('s.filters');
+    filterReset.textContent = t('s.clearFilters');
+    filterFields.forEach(({ name, options, optionName, select, label }) => {
+      const selected = select.value;
+      label.textContent = name();
+      const entries = [...options].map(value => ({ value, text: optionName(value) }))
+        .sort((a, b) => a.text.localeCompare(b.text, I.lang));
+      select.replaceChildren(h('option', { value: '' }, t('s.filterAll')),
+        ...entries.map(({ value, text }) => h('option', { value }, text)));
+      select.value = selected;
+    });
   }
 
   function evidenceChip(e) {
@@ -424,12 +482,13 @@
   function openRender(r) {
     if (!window.discoveryDetails) return;
     if (view) view.active = r.p.id;
-    window.discoveryDetails.open(r.p.id, { explain: () => explanation(r) });
+    window.discoveryDetails.open(r.p.id, { explain: r.crit.length ? () => explanation(r) : null });
   }
 
   // Result tile: large render, title, one line of gaps; details folded; few actions
   function card(r, eagerImage) {
     const p = r.p, pub = p.published || {};
+    const hasCriteria = r.crit.length > 0;
     const badge = r.full ? t('s.badgeFull') : t('s.badgePartial', { m: r.matched, n: r.crit.length });
     const gaps = gapsText(r);
     const src = p.image || p.thumb;
@@ -443,13 +502,13 @@
         onclick: () => openRender(r), disabled: canOpen ? null : '' },
         media, canOpen ? h('span', { class: 'dl-card-expand', 'aria-hidden': 'true' }, '⤢') : null),
       h('div', { class: 'dl-card-body' },
-        h('p', { class: 'dl-badge' + (r.full ? ' is-full' : '') }, badge),
+        hasCriteria ? h('p', { class: 'dl-badge' + (r.full ? ' is-full' : '') }, badge) : null,
         h('h3', {}, p.label),
         gaps ? h('p', { class: 'dl-card-gaps' }, gaps) : null,
-        h('details', { class: 'dl-card-why' },
+        hasCriteria ? h('details', { class: 'dl-card-why' },
           h('summary', {}, t('s.why')),
           pub.categories && pub.categories.length ? h('p', { class: 'dl-note' }, 'ArchiCGI · ' + pub.categories.join(', ')) : null,
-          explanation(r)),
+          explanation(r)) : null,
         h('div', { class: 'dl-card-actions' },
           briefButton(p.id),
           canOpen ? null : h('button', { type: 'button', class: 'dl-btn dl-btn--ghost dl-show', onclick: () => showInGraph(p.id) }, t('s.showGraph')),
@@ -461,15 +520,31 @@
     query = String(query || '').trim();
     lastQuery = query;
     if (!api) { pendingUserSearch = userInitiated; return; }
-    document.body.classList.toggle('lab-has-query', Boolean(query));
-    try { const u = new URL(location.href); if (query) u.searchParams.set('q', query); else u.searchParams.delete('q'); history.replaceState(null, '', u); } catch (_) { /* file:// */ }
-    if (!query) { view = null; results.replaceChildren(); status.textContent = ''; api.setHits([]); return; }
-    const out = search(query, api.projects);
-    if (!brief.query || brief.query === brief.autoQuery) { brief.query = query; brief.autoQuery = query; save(); renderBrief(); }
-    view = { out, shown: Math.min(RESULTS_STEP, out.results.length), active: null };
+    const activeFilters = filterFields.map(({ values, select }) => ({ values, selected: select.value })).filter(f => f.selected);
+    const hasFilters = activeFilters.length > 0;
+    filterCount.hidden = !hasFilters;
+    filterCount.textContent = hasFilters ? String(activeFilters.length) : '';
+    filterReset.disabled = !hasFilters;
+    document.body.classList.toggle('lab-has-query', Boolean(query) || hasFilters);
+    try {
+      const u = new URL(location.href);
+      if (query) u.searchParams.set('q', query); else u.searchParams.delete('q');
+      filterFields.forEach(({ select }) => {
+        if (select.value) u.searchParams.set(select.name, select.value); else u.searchParams.delete(select.name);
+      });
+      history.replaceState(null, '', u);
+    } catch (_) { /* file:// */ }
+    if (!query && !hasFilters) { view = null; paintResults(); api.setHits([]); return; }
+    const filteredProjects = hasFilters ? api.projects.filter(p => activeFilters.every(f => f.values(p).includes(f.selected))) : null;
+    const out = search(query, api.projects, filteredProjects);
+    if (query && query !== brief.query && (!brief.query || brief.query === brief.autoQuery)) {
+      brief.query = query; brief.autoQuery = query; save(); renderBrief();
+    }
+    view = { out, hasFilters, eligible: filteredProjects?.length, shown: Math.min(RESULTS_STEP, out.results.length), active: null };
     paintResults();
     // halo in the graph: full matches, or the closest partial ones
-    api.setHits(out.concepts.length ? (out.full ? out.results.filter(r => r.full) : out.results.slice(0, 20)).map(r => r.p.id) : []);
+    const hits = out.concepts.length ? (out.full ? out.results.filter(r => r.full) : out.results.slice(0, 20)) : out.results;
+    api.setHits(hits.map(r => r.p.id));
     if (userInitiated) {
       const heading = document.getElementById('lab-results-title');
       if (heading) {
@@ -485,22 +560,28 @@
     if (!view) { status.textContent = ''; return; }
     const out = view.out;
     const unknownList = out.unknown.map(w => I.quote(w)).join(', ');
-    if (!out.concepts.length) {
+    if (view.eligible === 0) {
+      status.textContent = t('s.noFilterResults');
+      return;
+    }
+    if (!out.concepts.length && !view.hasFilters) {
       status.textContent = t('s.noCriteria', { unknown: unknownList });
       return;
     }
-    const partial = out.results.length - out.full;
-    status.textContent = out.full ? t('s.full', { n: out.full, partial }) : t('s.none', { partial });
-    results.append(h('div', { class: 'dl-understood' },
-      h('span', { class: 'dl-note' }, t('s.understood')),
-      out.concepts.map(c => {
-        const pc = out.perConcept.find(x => x.c === c);
-        return h('span', { class: 'dl-concept' }, cLabel(c), h('small', {}, ' ' + dimName(c.dim) + ' · ' + t('s.projects', { n: pc ? pc.n : 0 })));
-      }),
-      out.unknown.length ? h('span', { class: 'dl-concept is-unknown' }, t('s.notFound', { list: unknownList })) : null));
-    if (!out.full && out.concepts.length > 1) {
-      const missing = out.perConcept.filter(x => x.n === 0).map(x => cLabel(x.c));
-      results.append(h('p', { class: 'dl-nomatch' }, missing.length ? t('s.missing', { list: missing.join(', ') }) : t('s.neverTogether')));
+    if (out.concepts.length) {
+      const partial = out.results.length - out.full;
+      status.textContent = out.full ? t('s.full', { n: out.full, partial }) : t('s.none', { partial });
+      results.append(h('div', { class: 'dl-understood' },
+        h('span', { class: 'dl-note' }, t('s.understood')),
+        out.perConcept.map(({ c, n }) => h('span', { class: 'dl-concept' }, summaryLabel(c) + ' (' + n + ')')),
+        out.unknown.length ? h('span', { class: 'dl-concept is-unknown' }, t('s.notFound', { list: unknownList })) : null));
+      if (!out.full && out.concepts.length > 1) {
+        const missing = out.perConcept.filter(x => x.n === 0).map(x => cLabel(x.c));
+        results.append(h('p', { class: 'dl-nomatch' }, missing.length ? t('s.missing', { list: missing.join(', ') }) : t('s.neverTogether')));
+      }
+    } else {
+      status.textContent = t('s.filtered', { n: out.results.length });
+      if (lastQuery) results.append(h('p', { class: 'dl-nomatch' }, t('s.filterQueryUnknown', { unknown: unknownList })));
     }
     const grid = h('div', { class: 'dl-cards' });
     results.append(grid);
@@ -714,9 +795,10 @@
     // A direct graph project link opens the workspace even without a query.
     const projectId = location.hash.slice(1);
     if (byId.has(projectId)) document.body.classList.add('lab-has-project-link');
-    let q = '';
-    try { q = new URL(location.href).searchParams.get('q') || ''; } catch (_) { /* ignore */ }
-    if (q || lastQuery) { input.value = lastQuery || q; run(input.value, pendingUserSearch); }
+    const params = new URLSearchParams(location.search);
+    mountFilters(params);
+    input.value = lastQuery || params.get('q') || '';
+    if (input.value || filterPanel.open) run(input.value, pendingUserSearch);
   }
   window.discoveryBrief = {
     has: id => brief.items.some(i => i.id === id && isWhole(i)),

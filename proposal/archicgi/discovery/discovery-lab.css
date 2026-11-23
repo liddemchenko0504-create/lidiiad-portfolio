@@ -146,6 +146,21 @@ body.lab {
   font-family: var(--font-body); font-size: 15px; border-bottom: 1px solid var(--line-2);
 }
 .dl-example:hover { border-bottom-color: var(--ink); }
+.dl-search-filters > summary {
+  width: fit-content; min-height: 40px; padding: 9px 4px; cursor: pointer;
+  color: var(--ink); font-weight: 600; text-underline-offset: 4px;
+}
+.dl-search-filters > summary:hover { text-decoration: underline; }
+.dl-filter-count { color: var(--mute); font-variant-numeric: tabular-nums; }
+.dl-filter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 154px), 1fr)); gap: 12px; }
+.dl-filter-field { display: grid; gap: 4px; min-width: 0; color: var(--mute); font-size: 14px; }
+.dl-filter-field select {
+  width: 100%; min-width: 0; min-height: 44px; padding: 6px 8px;
+  border: 1px solid var(--line-2); border-radius: 0; background: var(--surface); color: var(--ink);
+  color-scheme: dark; font: 16px var(--font-body);
+}
+.dl-filter-field select:hover { border-color: var(--mute); }
+.dl-filter-reset { margin-top: 8px; }
 
 /* ---------- results summary ---------- */
 .dl-search-status { font-family: var(--font-head); font-weight: 600; font-size: 15px; line-height: 1.4; margin: 0 0 10px; }
@@ -153,7 +168,6 @@ body.lab {
 .dl-understood { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 18px; font-size: 14px; margin: 0 0 14px; }
 .dl-understood > .dl-note { font-size: 14px; }
 .dl-concept { color: var(--ink); }
-.dl-concept small { color: var(--mute); font-size: 12.5px; }
 .dl-concept.is-unknown { color: var(--mute); font-style: italic; }
 .dl-nomatch { border-left: 2px solid var(--ink); padding: 2px 14px; margin: 0 0 14px; font-size: 15px; line-height: 1.5; max-width: 80ch; }
 .dl-src { font-size: 12px; padding: 1px 6px; line-height: 1.45; }
@@ -363,7 +377,6 @@ body.lab {
   .dl-search-go { min-height: 50px; }
   .dl-search-status { font-size: 15px; }
   .dl-understood { font-size: 13.5px; gap: 2px 14px; }
-  .dl-concept small { display: none; }
   .dl-nomatch { font-size: 14px; }
   .dl-example { font-size: 14.5px; }
   .lab-intro h1 { font-size: 26px; }
