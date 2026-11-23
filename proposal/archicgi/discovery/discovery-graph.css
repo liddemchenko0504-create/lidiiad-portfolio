@@ -1,0 +1,171 @@
+/* ArchiCGI Discovery Lab — graph styles. Everything is scoped under .dl */
+
+.dl {
+  --dl-ink: #000;
+  --dl-paper: #fff;
+  --dl-mute: #8c8c8c;
+  --dl-line: #d6d6d6;
+  --dl-gap: 24px;
+  --dl-panel-w: 340px;
+
+  display: grid;
+  gap: var(--dl-gap);
+  grid-template-columns: minmax(0, 1fr) var(--dl-panel-w);
+  grid-template-areas:
+    "filters filters"
+    "stage   panel";
+  color: var(--dl-ink);
+}
+
+/* ---------- Filters ---------- */
+.dl-filters {
+  grid-area: filters;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.dl-chip {
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  padding: 10px 14px;
+  min-height: 44px;
+  background: var(--dl-paper);
+  color: var(--dl-ink);
+  border: 1px solid var(--dl-ink);
+  border-radius: 0;
+  cursor: pointer;
+}
+.dl-chip[aria-pressed="true"] { background: var(--dl-ink); color: var(--dl-paper); }
+.dl-chip:hover { background: var(--dl-line); }
+.dl-chip[aria-pressed="true"]:hover { background: var(--dl-ink); }
+
+/* ---------- Stage ---------- */
+.dl-stage {
+  grid-area: stage;
+  position: relative;
+  height: clamp(440px, 74vh, 800px);
+  border: 1px solid var(--dl-ink);
+  background: var(--dl-paper);
+  overflow: hidden;
+}
+#dl-graph {
+  position: absolute;
+  inset: 0;
+  touch-action: none;           /* we own pan/zoom inside the stage */
+  cursor: grab;
+}
+#dl-graph:active { cursor: grabbing; }
+
+.dl-controls {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--dl-ink);
+  background: var(--dl-paper);
+}
+.dl-controls button {
+  font: inherit;
+  font-size: 18px;
+  line-height: 1;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  color: var(--dl-ink);
+  border: 0;
+  border-bottom: 1px solid var(--dl-line);
+  cursor: pointer;
+}
+.dl-controls button:last-child { border-bottom: 0; font-size: 12px; }
+.dl-controls button:hover { background: var(--dl-line); }
+
+.dl-hint {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  max-width: calc(100% - 84px);
+  margin: 0;
+  font-size: 12px;
+  color: var(--dl-mute);
+  pointer-events: none;
+}
+
+.dl-legend {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  max-width: calc(100% - 24px);
+  background: var(--dl-paper);
+  border: 1px solid var(--dl-ink);
+  font-size: 12px;
+}
+.dl-legend summary { padding: 8px 12px; cursor: pointer; }
+.dl-legend ul { list-style: none; margin: 0; padding: 4px 12px 12px; display: grid; gap: 6px; }
+.dl-legend li { display: flex; align-items: center; gap: 8px; }
+.dl-legend svg { width: 16px; height: 16px; flex: none; }
+
+/* ---------- Panel ---------- */
+.dl-panel { grid-area: panel; min-width: 0; }
+.dl-panel h2 { margin: 0 0 12px; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.1; }
+.dl-panel h3 { margin: 16px 0 6px; font-size: 12px; font-weight: 600; color: var(--dl-mute); }
+.dl-panel p  { margin: 0 0 12px; font-size: 14px; line-height: 1.5; max-width: 60ch; }
+.dl-panel ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.dl-panel figure { margin: 0 0 16px; }
+.dl-panel img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--dl-line); }
+.dl-panel figcaption { font-size: 11px; color: var(--dl-mute); margin-top: 4px; }
+
+.dl-tag, .dl-back, .dl-link {
+  font: inherit;
+  font-size: 13px;
+  padding: 8px 12px;
+  min-height: 40px;
+  background: var(--dl-paper);
+  color: var(--dl-ink);
+  border: 1px solid var(--dl-ink);
+  border-radius: 0;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.dl-tag:hover, .dl-back:hover { background: var(--dl-line); }
+.dl-link { background: var(--dl-ink); color: var(--dl-paper); margin-top: 16px; }
+.dl-back { border-color: var(--dl-line); margin-bottom: 16px; }
+
+.dl :focus-visible { outline: 2px solid var(--dl-ink); outline-offset: 2px; }
+.dl-stage :focus-visible { outline-color: var(--dl-ink); }
+
+.dl-error { padding: 24px; font-size: 14px; }
+
+/* ---------- Tablet ---------- */
+@media (max-width: 1023px) {
+  .dl {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "filters" "stage" "panel";
+  }
+  .dl-stage { height: clamp(420px, 68vh, 720px); }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 639px) {
+  .dl { --dl-gap: 16px; }
+  .dl-filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-inline: -4px;
+    padding-inline: 4px;
+  }
+  .dl-filters::-webkit-scrollbar { display: none; }
+  .dl-chip { flex: none; }
+  .dl-stage { height: 62svh; min-height: 380px; }  /* leaves room to scroll the page past the graph */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dl * { transition: none !important; scroll-behavior: auto !important; }
+}
+/* ArchiCGI dark editorial palette */
+.dl{--dl-ink:#f3f1ed;--dl-paper:#111113;--dl-mute:#a5a5a5;--dl-line:#414143}
+.dl-stage{background:#111113}.dl-chip:hover,.dl-tag:hover,.dl-back:hover,.dl-controls button:hover{background:#29292b}.dl-chip[aria-pressed="true"]{background:#f3f1ed;color:#111113}.dl-chip[aria-pressed="true"]:hover{background:#f3f1ed;color:#111113}.dl-link{background:#f3f1ed;color:#111113}
