@@ -159,7 +159,7 @@
   const stripTitle = h('h3', { class: 'dl-v-rtitle', id: 'dl-v-strip-title' });
   const strip = h('ol', { class: 'dl-v-strip', 'aria-labelledby': 'dl-v-strip-title' });
   const stripBox = h('section', { class: 'dl-v-stripbox', hidden: '' }, stripTitle, strip);
-  const dialog = h('dialog', { class: 'dlx dl-viewer', 'aria-labelledby': 'dl-v-title' },
+  const dialog = h('dialog', { class: 'dlx dl-viewer', 'aria-labelledby': 'dl-v-title', tabindex: '-1' },
     h('div', { class: 'dl-v-head' }, h('div', { class: 'dl-v-titles' }, kicker, title), closeBtn),
     h('div', { class: 'dl-v-main' },
       h('div', { class: 'dl-v-left' }, h('div', { class: 'dl-v-stage' }, frame), stripBox),
@@ -180,10 +180,11 @@
     view = { id, select: !!opts.select, selection: null, highlight: opts.highlight || null, result: null, active: 0,
       back: opts.from || null, explain: opts.explain || null };
     loadIndex().catch(() => {}).then(() => { if (view && view.id === id) paint(); });
-    if (!dialog.open) { lastFocus = document.activeElement; dialog.showModal(); }
+    // focus the window itself, not the ×: no focus ring on open; Tab still reaches the close button
+    if (!dialog.open) { lastFocus = document.activeElement; dialog.showModal(); dialog.focus({ preventScroll: true }); }
     paint();
     if (opts.select) overlay.focus({ preventScroll: true });
-    else closeBtn.focus({ preventScroll: true });
+    else dialog.focus({ preventScroll: true });   // no focus ring on the × when the window opens
     return true;
   }
   let lastFocus = null;

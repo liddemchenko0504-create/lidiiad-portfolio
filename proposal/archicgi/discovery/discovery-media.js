@@ -59,7 +59,7 @@
   }
 
   /* ---------------- player dialog ---------------- */
-  const dlg = h('dialog', { class: 'dl-media-dialog' });
+  const dlg = h('dialog', { class: 'dl-media-dialog', tabindex: '-1' });
   const dlgTitle = h('h2', { class: 'dl-m-title' });
   const dlgBody = h('div', { class: 'dl-m-body' });
   const dlgSrc = h('a', { class: 'dl-m-src', target: '_blank', rel: 'noopener noreferrer' });
@@ -87,7 +87,7 @@
       dlgBody.replaceChildren(v);
       v.play().catch(() => {});
     }
-    if (!dlg.open) dlg.showModal();
+    if (!dlg.open) { dlg.showModal(); dlg.focus({ preventScroll: true }); }
     return true;
   }
 

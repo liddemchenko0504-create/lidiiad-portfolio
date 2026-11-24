@@ -400,7 +400,7 @@
       fsBtn.setAttribute('aria-label', label);
       fsBtn.setAttribute('title', label);
       fsBtn.setAttribute('aria-pressed', String(on));
-      exitBtn.textContent = '\u00d7 ' + I.t('g.fsExit');
+      exitBtn.textContent = '\u00d7';
       exitBtn.setAttribute('aria-label', I.t('g.fsOff'));
       const NS = 'http://www.w3.org/2000/svg', svg = document.createElementNS(NS, 'svg'), path = document.createElementNS(NS, 'path');
       svg.setAttribute('viewBox', '0 0 16 16'); svg.setAttribute('aria-hidden', 'true');

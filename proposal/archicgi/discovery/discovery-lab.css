@@ -702,3 +702,14 @@ body.lab:not(.lab-has-query, .lab-has-project-link)::before { opacity: 0; }   /*
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go::before { top: 9px; left: 10px; width: 5px; height: 5px; border-top-width: 1.5px; border-left-width: 1.5px; }
 .lab:not(.lab-has-query, .lab-has-project-link) .dl-search-go::after { top: 9.5px; left: 12.25px; width: 1.5px; height: 8px; }
 .dl-examples[hidden] { display: none; }
+
+/* Close buttons: a bare × on a transparent background, no frame (44 px hit area kept) */
+.dl-v-close, .dl-m-close, .dl.is-full .dl-fs-exit {
+  display: inline-grid; place-items: center; width: 44px; height: 44px; min-height: 44px; padding: 0;
+  border: 0; border-radius: 0; background: transparent; box-shadow: none; color: var(--ink);
+  font: 300 30px/1 var(--font-body); letter-spacing: 0; text-transform: none; cursor: pointer; opacity: .8;
+}
+.dl-v-close:hover, .dl-m-close:hover, .dl.is-full .dl-fs-exit:hover { opacity: 1; border: 0; background: transparent; }
+.dl-v-close:focus-visible, .dl-m-close:focus-visible, .dl.is-full .dl-fs-exit:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.dl.is-full .dl-filters { margin-right: 56px; }
+.dl-viewer:focus, .dl-media-dialog:focus { outline: none; }
